@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
 	<title>Portail AWE</title>
 </head>
@@ -19,8 +20,18 @@
 		</nav>
 		<button class="topButtonStyle" type="button">Connexion</button>
 	</header>
-
-<p>This is the first paragraph</p>
-
+	
+	<section>
+		<article>
+			<h1><img src="tofill.png" alt = "IMAGE"/>Actualités</h1>
+		</article>	
+		<article>
+			<h1><img src="tofill.png" alt = "IMAGE"/>Généralités</h1>
+		</article>	
+	</section>
+	<aside>
+		<h1>Nombre d'agriculteurs inscrits</h1>
+		<h1>Nombre de visite par jour</h1>                   
+	</aside>
 </body>
 </html>
