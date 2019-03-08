@@ -7,9 +7,9 @@
 <body>
 	<header>
 		<div id="logo">
-			<img src="images/LogoPrincipal" alt="Logo Principal" />               
+			<img src="images/LogoPrincipal" alt="Logo Principal AWE!" />               
 		</div>
-		<h1>Bienvenue sur le portail de l'AWE</h1>		
+		<h1>Bienvenue sur le portail de l'AWE!</h1>		
 
 		<nav>
 			<ul>

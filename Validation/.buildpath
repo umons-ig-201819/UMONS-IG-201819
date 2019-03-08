@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="lib" path="lib/phpunit-8.0.4.phar"/>
+	<buildpathentry kind="src" path=""/>
+</buildpath>
