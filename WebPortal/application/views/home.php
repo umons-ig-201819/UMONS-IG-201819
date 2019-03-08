@@ -28,10 +28,15 @@
 		<article>
 			<h1><img src="tofill.png" alt = "IMAGE"/>Généralités</h1>
 		</article>	
+    	
+    	<aside>
+    		<h1>Nombre d'agriculteurs inscrits</h1>
+    		<h1>Nombre de visite par jour</h1>                   
+    	</aside>
 	</section>
-	<aside>
-		<h1>Nombre d'agriculteurs inscrits</h1>
-		<h1>Nombre de visite par jour</h1>                   
-	</aside>
+	
+	<footer>
+	</footer>
+	
 </body>
 </html>
