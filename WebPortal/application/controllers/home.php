@@ -22,13 +22,13 @@ class Home extends CI_Controller
     {
         //Loading url helper
         $this->load->helper('url');
-        $this->load->view('connect');
+        $this->load->view('connection');
     }
-    public function nscript()
+    public function inscript()
     {
         //Loading url helper
         $this->load->helper('url');
-        $this->load->view('inscript');
+        $this->load->view('inscription');
     }    
 }
 ?>
