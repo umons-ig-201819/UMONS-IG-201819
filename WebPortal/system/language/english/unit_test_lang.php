@@ -55,8 +55,4 @@ $lang['ut_array'] = 'Array';
 $lang['ut_object'] = 'Object';
 $lang['ut_resource'] = 'Resource';
 $lang['ut_null'] = 'Null';
-<<<<<<< HEAD
 $lang['ut_notes'] = 'Notes';
-=======
-$lang['ut_notes'] = 'Notes';
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

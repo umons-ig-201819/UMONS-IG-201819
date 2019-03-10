@@ -572,8 +572,4 @@ class CI_Trackback
     {
         return (count($this->error_msg) > 0) ? $open . implode($close . $open, $this->error_msg) . $close : '';
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

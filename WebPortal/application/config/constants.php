@@ -82,8 +82,4 @@ defined('EXIT_UNKNOWN_METHOD') or define('EXIT_UNKNOWN_METHOD', 6); // unknown c
 defined('EXIT_USER_INPUT') or define('EXIT_USER_INPUT', 7); // invalid user input
 defined('EXIT_DATABASE') or define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN') or define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
-<<<<<<< HEAD
 defined('EXIT__AUTO_MAX') or define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
-=======
-defined('EXIT__AUTO_MAX') or define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

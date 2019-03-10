@@ -455,8 +455,4 @@ class CI_Migration
     {
         return get_instance()->$var;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

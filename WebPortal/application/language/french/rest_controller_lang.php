@@ -14,8 +14,4 @@ $lang['text_rest_api_key_permissions'] = 'Cette clef d\'API n\'a pas les permiss
 $lang['text_rest_api_key_time_limit'] = 'Cette clef d\'API a atteint sa limite de temps pour cette méthode';
 $lang['text_rest_ip_address_time_limit'] = 'This IP Address has reached the time limit for this method'; // todo translate
 $lang['text_rest_unknown_method'] = 'Méthode inconnue';
-<<<<<<< HEAD
 $lang['text_rest_unsupported'] = 'Protocole non-supporté';
-=======
-$lang['text_rest_unsupported'] = 'Protocole non-supporté';
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

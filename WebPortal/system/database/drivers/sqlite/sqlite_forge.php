@@ -199,8 +199,4 @@ class CI_DB_sqlite_forge extends CI_DB_forge
             $this->primary_keys = array();
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -1034,8 +1034,4 @@ if (! function_exists('_get_validation_object')) {
 
         return $return;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

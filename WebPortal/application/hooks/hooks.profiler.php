@@ -18,8 +18,4 @@ class ProfilerEnabler
         $CI->output->enable_profiler(config_item('enable_profiling'));
     }
 }
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

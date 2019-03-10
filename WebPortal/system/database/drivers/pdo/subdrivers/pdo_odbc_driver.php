@@ -215,8 +215,4 @@ class CI_DB_pdo_odbc_driver extends CI_DB_pdo_driver
     {
         return 'SELECT column_name FROM information_schema.columns WHERE table_name = ' . $this->escape($table);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

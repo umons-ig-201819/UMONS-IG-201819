@@ -155,8 +155,4 @@ class CI_Utf8
     {
         return (preg_match('/[^\x00-\x7F]/S', $str) === 0);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

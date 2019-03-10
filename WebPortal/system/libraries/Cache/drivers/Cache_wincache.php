@@ -224,8 +224,4 @@ class CI_Cache_wincache extends CI_Driver
     {
         return (extension_loaded('wincache') && ini_get('wincache.ucenabled'));
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -162,8 +162,4 @@ if (! function_exists('hex2bin')) {
 
         return pack('H*', $data);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

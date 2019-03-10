@@ -124,8 +124,4 @@ if (! function_exists('delete_cookie')) {
     {
         set_cookie($name, '', '', $domain, $path, $prefix);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

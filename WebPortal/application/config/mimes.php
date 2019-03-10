@@ -483,8 +483,4 @@ return array(
     'odm' => 'application/vnd.oasis.opendocument.text-master',
     'ott' => 'application/vnd.oasis.opendocument.text-template',
     'oth' => 'application/vnd.oasis.opendocument.text-web'
-<<<<<<< HEAD
 );
-=======
-);
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

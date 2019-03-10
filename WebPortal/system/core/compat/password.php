@@ -225,8 +225,4 @@ if (! function_exists('password_verify')) {
 
         return ($compare === 0);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

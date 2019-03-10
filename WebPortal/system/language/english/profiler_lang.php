@@ -57,8 +57,4 @@ $lang['profiler_no_memory'] = 'Memory Usage Unavailable';
 $lang['profiler_no_profiles'] = 'No Profile data - all Profiler sections have been disabled.';
 $lang['profiler_section_hide'] = 'Hide';
 $lang['profiler_section_show'] = 'Show';
-<<<<<<< HEAD
 $lang['profiler_seconds'] = 'seconds';
-=======
-$lang['profiler_seconds'] = 'seconds';
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -551,8 +551,4 @@ class CI_Cart
         );
         $this->CI->session->unset_userdata('cart_contents');
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

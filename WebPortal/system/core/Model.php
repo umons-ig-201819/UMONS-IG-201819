@@ -74,8 +74,4 @@ class CI_Model
         // most likely a typo in your model code.
         return get_instance()->$key;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

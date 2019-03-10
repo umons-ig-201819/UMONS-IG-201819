@@ -265,8 +265,4 @@ class Key extends REST_Controller
     {
         return $this->rest->db->where(config_item('rest_key_column'), $key)->delete(config_item('rest_keys_table'));
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

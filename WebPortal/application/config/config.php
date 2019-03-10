@@ -520,8 +520,4 @@ $config['rewrite_short_tags'] = FALSE;
  * | Comma-separated: '10.0.1.200,192.168.5.0/24'
  * | Array: array('10.0.1.200', '192.168.5.0/24')
  */
-<<<<<<< HEAD
 $config['proxy_ips'] = '';
-=======
-$config['proxy_ips'] = '';
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

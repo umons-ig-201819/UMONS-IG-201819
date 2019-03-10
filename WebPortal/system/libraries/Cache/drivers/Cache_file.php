@@ -286,8 +286,4 @@ class CI_Cache_file extends CI_Driver
 
         return $data;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -414,8 +414,4 @@ class CI_Session_database_driver extends CI_Session_driver implements SessionHan
 
         return parent::_release_lock();
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

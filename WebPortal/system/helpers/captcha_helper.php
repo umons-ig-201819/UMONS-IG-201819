@@ -324,8 +324,4 @@ if (! function_exists('create_captcha')) {
             'filename' => $img_filename
         );
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

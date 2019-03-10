@@ -51,8 +51,4 @@ class Migration_create_table_api_limits extends CI_Migration
             $this->dbforge->drop_table($table);
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

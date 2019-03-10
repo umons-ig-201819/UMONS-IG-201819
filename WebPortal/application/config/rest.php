@@ -624,8 +624,4 @@ $config['allowed_cors_origins'] = [];
  * | http://docs.sencha.com/extjs/6.5.2/classic/Ext.data.proxy.Rest.html#cfg-withCredentials
  * |
  */
-<<<<<<< HEAD
 $config['forced_cors_headers'] = [];
-=======
-$config['forced_cors_headers'] = [];
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

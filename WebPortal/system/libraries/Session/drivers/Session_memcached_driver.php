@@ -368,8 +368,4 @@ class CI_Session_memcached_driver extends CI_Session_driver implements SessionHa
 
         return TRUE;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

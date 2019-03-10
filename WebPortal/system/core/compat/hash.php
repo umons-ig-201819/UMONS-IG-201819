@@ -222,8 +222,4 @@ if (! function_exists('hash_pbkdf2')) {
 
         return defined('MB_OVERLOAD_STRING') ? mb_substr($hash, 0, $length, '8bit') : substr($hash, 0, $length);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

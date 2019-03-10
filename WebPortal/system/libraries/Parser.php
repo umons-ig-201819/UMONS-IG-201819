@@ -246,8 +246,4 @@ class CI_Parser
 
         return $replace;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -1080,8 +1080,4 @@ class CI_Security
 
         return $this->_csrf_hash;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

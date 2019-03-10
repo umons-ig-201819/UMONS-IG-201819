@@ -185,8 +185,4 @@ class CI_DB_sqlite3_result extends CI_DB_result
         // Only resetting to the start of the result set is supported
         return ($n > 0) ? FALSE : $this->result_id->reset();
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

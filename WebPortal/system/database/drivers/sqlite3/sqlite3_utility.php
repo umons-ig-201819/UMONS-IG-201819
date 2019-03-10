@@ -59,8 +59,4 @@ class CI_DB_sqlite3_utility extends CI_DB_utility
         // Not supported
         return $this->db->display_error('db_unsupported_feature');
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -77,8 +77,4 @@ class CI_DB_mssql_utility extends CI_DB_utility
         // Currently unsupported
         return $this->db->display_error('db_unsupported_feature');
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -194,8 +194,4 @@ abstract class CI_Session_driver implements SessionHandlerInterface
         ini_set('session.save_path', config_item('sess_save_path'));
         return $this->_failure;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

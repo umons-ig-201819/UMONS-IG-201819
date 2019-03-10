@@ -1367,8 +1367,4 @@ class CI_Loader
         $CI = & get_instance();
         return $CI->$component;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

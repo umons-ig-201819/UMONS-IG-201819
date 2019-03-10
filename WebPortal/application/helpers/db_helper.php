@@ -84,8 +84,4 @@ if (! function_exists('drop_trigger')) {
     {
         return "DROP TRIGGER {$trigger_name};";
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

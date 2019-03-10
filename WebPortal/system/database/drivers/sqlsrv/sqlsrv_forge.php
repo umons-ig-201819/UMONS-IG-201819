@@ -151,8 +151,4 @@ class CI_DB_sqlsrv_forge extends CI_DB_forge
             $field['auto_increment'] = ' IDENTITY(1,1)';
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

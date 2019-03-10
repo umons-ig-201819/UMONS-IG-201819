@@ -44,8 +44,4 @@ $lang['migration_multiple_version'] = 'There are multiple migrations with the sa
 $lang['migration_class_doesnt_exist'] = 'The migration class "%s" could not be found.';
 $lang['migration_missing_up_method'] = 'The migration class "%s" is missing an "up" method.';
 $lang['migration_missing_down_method'] = 'The migration class "%s" is missing a "down" method.';
-<<<<<<< HEAD
 $lang['migration_invalid_filename'] = 'Migration "%s" has an invalid filename.';
-=======
-$lang['migration_invalid_filename'] = 'Migration "%s" has an invalid filename.';
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -132,8 +132,4 @@ $autoload['language'] = array();
  * |
  * | $autoload['model'] = array('first_model' => 'first');
  */
-<<<<<<< HEAD
 $autoload['model'] = array();
-=======
-$autoload['model'] = array();
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

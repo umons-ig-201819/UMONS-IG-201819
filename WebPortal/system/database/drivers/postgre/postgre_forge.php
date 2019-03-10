@@ -193,8 +193,4 @@ class CI_DB_postgre_forge extends CI_DB_forge
             $field['type'] = ($field['type'] === 'NUMERIC') ? 'BIGSERIAL' : 'SERIAL';
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -517,8 +517,4 @@ if ($EXT->call_hook('display_override') === FALSE) {
  * Is there a "post_system" hook?
  * ------------------------------------------------------
  */
-<<<<<<< HEAD
 $EXT->call_hook('post_system');
-=======
-$EXT->call_hook('post_system');
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

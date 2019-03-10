@@ -192,8 +192,4 @@ class CI_DB_mysql_result extends CI_DB_result
     {
         return mysql_fetch_object($this->result_id, $class_name);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

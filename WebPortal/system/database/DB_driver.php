@@ -1884,8 +1884,4 @@ abstract class CI_DB_driver
      */
     protected function _reset_select()
     {}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

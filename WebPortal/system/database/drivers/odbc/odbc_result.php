@@ -251,8 +251,4 @@ if (! function_exists('odbc_fetch_object')) {
 
         return $rs_object;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

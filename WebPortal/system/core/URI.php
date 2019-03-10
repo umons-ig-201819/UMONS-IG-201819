@@ -616,8 +616,4 @@ class CI_URI
     {
         return ltrim(load_class('Router', 'core')->directory, '/') . implode('/', $this->rsegments);
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

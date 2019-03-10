@@ -211,8 +211,4 @@ $robots = array(
     'ia_archiver' => 'Alexa Crawler',
     'MJ12bot' => 'Majestic-12',
     'Uptimebot' => 'Uptimebot'
-<<<<<<< HEAD
 );
-=======
-);
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

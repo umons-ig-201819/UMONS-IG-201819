@@ -81,8 +81,4 @@ $config['migration_version'] = 0;
  * | Also, writing permission is required within the migrations path.
  * |
  */
-<<<<<<< HEAD
 $config['migration_path'] = APPPATH . 'migrations/';
-=======
-$config['migration_path'] = APPPATH . 'migrations/';
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git
