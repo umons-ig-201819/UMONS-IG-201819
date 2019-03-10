@@ -59,4 +59,8 @@ $route['translate_uri_dashes'] = TRUE;
  * | -------------------------------------------------------------------------
  */
 $route['api/example/users/(:num)'] = 'api/example/users/id/$1'; // Example 4
+<<<<<<< HEAD
 $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/id/$1/format/$3$4'; // Example 8
+=======
+$route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/id/$1/format/$3$4'; // Example 8
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

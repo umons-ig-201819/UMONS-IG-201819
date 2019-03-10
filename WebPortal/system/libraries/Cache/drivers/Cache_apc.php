@@ -223,4 +223,8 @@ class CI_Cache_apc extends CI_Driver
     {
         return (extension_loaded('apc') && ini_get('apc.enabled'));
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

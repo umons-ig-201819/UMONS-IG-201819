@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
 	<title>Portail AWE</title>
+=======
+
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css"
+	href="<?php echo base_url(); ?>assets/css/style.css">
+<title>Portail AWE</title>
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git
 </head>
 <body>
 

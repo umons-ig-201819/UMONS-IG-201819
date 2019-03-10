@@ -48,4 +48,8 @@ $lang['ftp_unable_to_download'] = 'Unable to download the specified file. Please
 $lang['ftp_no_source_file'] = 'Unable to locate the source file. Please check your path.';
 $lang['ftp_unable_to_rename'] = 'Unable to rename the file.';
 $lang['ftp_unable_to_delete'] = 'Unable to delete the file.';
+<<<<<<< HEAD
 $lang['ftp_unable_to_move'] = 'Unable to move the file. Please make sure the destination directory exists.';
+=======
+$lang['ftp_unable_to_move'] = 'Unable to move the file. Please make sure the destination directory exists.';
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

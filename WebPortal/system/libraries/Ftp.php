@@ -627,4 +627,8 @@ class CI_FTP
         $CI->lang->load('ftp');
         show_error($CI->lang->line($line));
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -40,4 +40,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $lang['pagination_first_link'] = '&lsaquo; First';
 $lang['pagination_next_link'] = '&gt;';
 $lang['pagination_prev_link'] = '&lt;';
+<<<<<<< HEAD
 $lang['pagination_last_link'] = 'Last &rsaquo;';
+=======
+$lang['pagination_last_link'] = 'Last &rsaquo;';
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

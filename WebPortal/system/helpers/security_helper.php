@@ -145,4 +145,8 @@ if (! function_exists('encode_php_tags')) {
             '?&gt;'
         ), $str);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -254,6 +254,7 @@ class CI_DB_ibase_driver extends CI_DB
      */
     public function field_data($table)
     {
+<<<<<<< HEAD
         $sql = 'SELECT "rfields"."RDB$FIELD_NAME" AS "name",
 				CASE "fields"."RDB$FIELD_TYPE"
 					WHEN 7 THEN \'SMALLINT\'
@@ -406,3 +407,157 @@ class CI_DB_ibase_driver extends CI_DB
         ibase_close($this->conn_id);
     }
 }
+=======
+        $sql = 'SELECT "rfields"."RDB$FIELD_NAME" AS "name",
+				CASE "fields"."RDB$FIELD_TYPE"
+					WHEN 7 THEN \'SMALLINT\'
+					WHEN 8 THEN \'INTEGER\'
+					WHEN 9 THEN \'QUAD\'
+					WHEN 10 THEN \'FLOAT\'
+					WHEN 11 THEN \'DFLOAT\'
+					WHEN 12 THEN \'DATE\'
+					WHEN 13 THEN \'TIME\'
+					WHEN 14 THEN \'CHAR\'
+					WHEN 16 THEN \'INT64\'
+					WHEN 27 THEN \'DOUBLE\'
+					WHEN 35 THEN \'TIMESTAMP\'
+					WHEN 37 THEN \'VARCHAR\'
+					WHEN 40 THEN \'CSTRING\'
+					WHEN 261 THEN \'BLOB\'
+					ELSE NULL
+				END AS "type",
+				"fields"."RDB$FIELD_LENGTH" AS "max_length",
+				"rfields"."RDB$DEFAULT_VALUE" AS "default"
+			FROM "RDB$RELATION_FIELDS" "rfields"
+				JOIN "RDB$FIELDS" "fields" ON "rfields"."RDB$FIELD_SOURCE" = "fields"."RDB$FIELD_NAME"
+			WHERE "rfields"."RDB$RELATION_NAME" = ' . $this->escape($table) . '
+			ORDER BY "rfields"."RDB$FIELD_POSITION"';
+
+        return (($query = $this->query($sql)) !== FALSE) ? $query->result_object() : FALSE;
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Error
+     *
+     * Returns an array containing code and message of the last
+     * database error that has occurred.
+     *
+     * @return array
+     */
+    public function error()
+    {
+        return array(
+            'code' => ibase_errcode(),
+            'message' => ibase_errmsg()
+        );
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Update statement
+     *
+     * Generates a platform-specific update string from the supplied data
+     *
+     * @param string $table
+     * @param array $values
+     * @return string
+     */
+    protected function _update($table, $values)
+    {
+        $this->qb_limit = FALSE;
+        return parent::_update($table, $values);
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Truncate statement
+     *
+     * Generates a platform-specific truncate string from the supplied data
+     *
+     * If the database does not support the TRUNCATE statement,
+     * then this method maps to 'DELETE FROM table'
+     *
+     * @param string $table
+     * @return string
+     */
+    protected function _truncate($table)
+    {
+        return 'DELETE FROM ' . $table;
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Delete statement
+     *
+     * Generates a platform-specific delete string from the supplied data
+     *
+     * @param string $table
+     * @return string
+     */
+    protected function _delete($table)
+    {
+        $this->qb_limit = FALSE;
+        return parent::_delete($table);
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * LIMIT
+     *
+     * Generates a platform-specific LIMIT clause
+     *
+     * @param string $sql
+     *            SQL Query
+     * @return string
+     */
+    protected function _limit($sql)
+    {
+        // Limit clause depends on if Interbase or Firebird
+        if (stripos($this->version(), 'firebird') !== FALSE) {
+            $select = 'FIRST ' . $this->qb_limit . ($this->qb_offset ? ' SKIP ' . $this->qb_offset : '');
+        } else {
+            $select = 'ROWS ' . ($this->qb_offset ? $this->qb_offset . ' TO ' . ($this->qb_limit + $this->qb_offset) : $this->qb_limit);
+        }
+
+        return preg_replace('`SELECT`i', 'SELECT ' . $select, $sql, 1);
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Insert batch statement
+     *
+     * Generates a platform-specific insert string from the supplied data.
+     *
+     * @param string $table
+     *            Table name
+     * @param array $keys
+     *            INSERT keys
+     * @param array $values
+     *            INSERT values
+     * @return string|bool
+     */
+    protected function _insert_batch($table, $keys, $values)
+    {
+        return ($this->db_debug) ? $this->display_error('db_unsupported_feature') : FALSE;
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Close DB Connection
+     *
+     * @return void
+     */
+    protected function _close()
+    {
+        ibase_close($this->conn_id);
+    }
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

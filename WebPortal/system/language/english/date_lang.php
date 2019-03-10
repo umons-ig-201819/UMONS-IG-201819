@@ -91,4 +91,8 @@ $lang['UP115'] = '(UTC +11:30) Norfolk Island';
 $lang['UP12'] = '(UTC +12:00) Fiji, Gilbert Islands, Kamchatka Time, New Zealand Standard Time';
 $lang['UP1275'] = '(UTC +12:45) Chatham Islands Standard Time';
 $lang['UP13'] = '(UTC +13:00) Samoa Time Zone, Phoenix Islands Time, Tonga';
+<<<<<<< HEAD
 $lang['UP14'] = '(UTC +14:00) Line Islands';
+=======
+$lang['UP14'] = '(UTC +14:00) Line Islands';
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

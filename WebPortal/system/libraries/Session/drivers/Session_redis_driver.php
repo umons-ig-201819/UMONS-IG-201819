@@ -382,4 +382,8 @@ class CI_Session_redis_driver extends CI_Session_driver implements SessionHandle
 
         return TRUE;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

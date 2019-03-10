@@ -166,4 +166,8 @@ class CI_DB_pdo_oci_forge extends CI_DB_pdo_forge
                 return;
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

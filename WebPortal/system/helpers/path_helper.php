@@ -77,4 +77,8 @@ if (! function_exists('set_realpath')) {
         // Add a trailing slash, if this is a directory
         return is_dir($path) ? rtrim($path, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR : $path;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

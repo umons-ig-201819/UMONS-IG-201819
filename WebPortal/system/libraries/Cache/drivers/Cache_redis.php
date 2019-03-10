@@ -318,4 +318,8 @@ class CI_Cache_redis extends CI_Driver
             $this->_redis->close();
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

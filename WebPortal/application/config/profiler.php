@@ -23,4 +23,8 @@ $config['queries'] = TRUE;
 $config['eloquent'] = FALSE;
 $config['uri_string'] = TRUE;
 $config['view_data'] = TRUE;
+<<<<<<< HEAD
 $config['query_toggle_count'] = 1000;
+=======
+$config['query_toggle_count'] = 1000;
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

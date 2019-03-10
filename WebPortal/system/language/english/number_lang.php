@@ -41,4 +41,8 @@ $lang['terabyte_abbr'] = 'TB';
 $lang['gigabyte_abbr'] = 'GB';
 $lang['megabyte_abbr'] = 'MB';
 $lang['kilobyte_abbr'] = 'KB';
+<<<<<<< HEAD
 $lang['bytes'] = 'Bytes';
+=======
+$lang['bytes'] = 'Bytes';
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -237,4 +237,8 @@ class CI_DB_ibase_forge extends CI_DB_forge
     {
         // Not supported
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

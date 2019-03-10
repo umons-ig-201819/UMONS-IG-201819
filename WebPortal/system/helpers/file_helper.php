@@ -417,4 +417,8 @@ if (! function_exists('octal_permissions')) {
     {
         return substr(sprintf('%o', $perms), - 3);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

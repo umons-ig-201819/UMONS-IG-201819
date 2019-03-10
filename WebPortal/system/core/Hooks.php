@@ -236,4 +236,8 @@ class CI_Hooks
         $this->_in_progress = FALSE;
         return TRUE;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

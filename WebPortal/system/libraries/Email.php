@@ -2396,4 +2396,8 @@ class CI_Email
 
         return isset($length) ? substr($str, $start, $length) : substr($str, $start);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

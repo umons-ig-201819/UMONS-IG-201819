@@ -2720,4 +2720,8 @@ abstract class CI_DB_query_builder extends CI_DB_driver
             'qb_limit' => FALSE
         ));
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

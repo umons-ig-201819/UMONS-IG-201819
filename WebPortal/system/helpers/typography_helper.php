@@ -105,4 +105,8 @@ if (! function_exists('entity_decode')) {
     {
         return get_instance()->security->entity_decode($str, $charset);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -890,4 +890,8 @@ class CI_Session
     {
         $this->unmark_temp($key);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -194,4 +194,8 @@ function &DB($params = '', $query_builder_override = NULL)
 
     $DB->initialize();
     return $DB;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

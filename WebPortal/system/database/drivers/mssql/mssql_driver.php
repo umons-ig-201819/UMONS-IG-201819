@@ -301,6 +301,7 @@ class CI_DB_mssql_driver extends CI_DB
      */
     protected function _list_columns($table = '')
     {
+<<<<<<< HEAD
         return 'SELECT COLUMN_NAME
 			FROM INFORMATION_SCHEMA.Columns
 			WHERE UPPER(TABLE_NAME) = ' . $this->escape(strtoupper($table));
@@ -500,3 +501,204 @@ class CI_DB_mssql_driver extends CI_DB
         mssql_close($this->conn_id);
     }
 }
+=======
+        return 'SELECT COLUMN_NAME
+			FROM INFORMATION_SCHEMA.Columns
+			WHERE UPPER(TABLE_NAME) = ' . $this->escape(strtoupper($table));
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Returns an object with field data
+     *
+     * @param string $table
+     * @return array
+     */
+    public function field_data($table)
+    {
+        $sql = 'SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, NUMERIC_PRECISION, COLUMN_DEFAULT
+			FROM INFORMATION_SCHEMA.Columns
+			WHERE UPPER(TABLE_NAME) = ' . $this->escape(strtoupper($table));
+
+        if (($query = $this->query($sql)) === FALSE) {
+            return FALSE;
+        }
+        $query = $query->result_object();
+
+        $retval = array();
+        for ($i = 0, $c = count($query); $i < $c; $i ++) {
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = $query[$i]->COLUMN_NAME;
+            $retval[$i]->type = $query[$i]->DATA_TYPE;
+            $retval[$i]->max_length = ($query[$i]->CHARACTER_MAXIMUM_LENGTH > 0) ? $query[$i]->CHARACTER_MAXIMUM_LENGTH : $query[$i]->NUMERIC_PRECISION;
+            $retval[$i]->default = $query[$i]->COLUMN_DEFAULT;
+        }
+
+        return $retval;
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Error
+     *
+     * Returns an array containing code and message of the last
+     * database error that has occurred.
+     *
+     * @return array
+     */
+    public function error()
+    {
+        // We need this because the error info is discarded by the
+        // server the first time you request it, and query() already
+        // calls error() once for logging purposes when a query fails.
+        static $error = array(
+            'code' => 0,
+            'message' => NULL
+        );
+
+        $message = mssql_get_last_message();
+        if (! empty($message)) {
+            $error['code'] = $this->query('SELECT @@ERROR AS code')->row()->code;
+            $error['message'] = $message;
+        }
+
+        return $error;
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Update statement
+     *
+     * Generates a platform-specific update string from the supplied data
+     *
+     * @param string $table
+     * @param array $values
+     * @return string
+     */
+    protected function _update($table, $values)
+    {
+        $this->qb_limit = FALSE;
+        $this->qb_orderby = array();
+        return parent::_update($table, $values);
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Truncate statement
+     *
+     * Generates a platform-specific truncate string from the supplied data
+     *
+     * If the database does not support the TRUNCATE statement,
+     * then this method maps to 'DELETE FROM table'
+     *
+     * @param string $table
+     * @return string
+     */
+    protected function _truncate($table)
+    {
+        return 'TRUNCATE TABLE ' . $table;
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Delete statement
+     *
+     * Generates a platform-specific delete string from the supplied data
+     *
+     * @param string $table
+     * @return string
+     */
+    protected function _delete($table)
+    {
+        if ($this->qb_limit) {
+            return 'WITH ci_delete AS (SELECT TOP ' . $this->qb_limit . ' * FROM ' . $table . $this->_compile_wh('qb_where') . ') DELETE FROM ci_delete';
+        }
+
+        return parent::_delete($table);
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * LIMIT
+     *
+     * Generates a platform-specific LIMIT clause
+     *
+     * @param string $sql
+     *            SQL Query
+     * @return string
+     */
+    protected function _limit($sql)
+    {
+        $limit = $this->qb_offset + $this->qb_limit;
+
+        // As of SQL Server 2005 (9.0.*) ROW_NUMBER() is supported,
+        // however an ORDER BY clause is required for it to work
+        if (version_compare($this->version(), '9', '>=') && $this->qb_offset && ! empty($this->qb_orderby)) {
+            $orderby = $this->_compile_order_by();
+
+            // We have to strip the ORDER BY clause
+            $sql = trim(substr($sql, 0, strrpos($sql, $orderby)));
+
+            // Get the fields to select from our subquery, so that we can avoid CI_rownum appearing in the actual results
+            if (count($this->qb_select) === 0 or strpos(implode(',', $this->qb_select), '*') !== FALSE) {
+                $select = '*'; // Inevitable
+            } else {
+                // Use only field names and their aliases, everything else is out of our scope.
+                $select = array();
+                $field_regexp = ($this->_quoted_identifier) ? '("[^\"]+")' : '(\[[^\]]+\])';
+                for ($i = 0, $c = count($this->qb_select); $i < $c; $i ++) {
+                    $select[] = preg_match('/(?:\s|\.)' . $field_regexp . '$/i', $this->qb_select[$i], $m) ? $m[1] : $this->qb_select[$i];
+                }
+                $select = implode(', ', $select);
+            }
+
+            return 'SELECT ' . $select . " FROM (\n\n" . preg_replace('/^(SELECT( DISTINCT)?)/i', '\\1 ROW_NUMBER() OVER(' . trim($orderby) . ') AS ' . $this->escape_identifiers('CI_rownum') . ', ', $sql) . "\n\n) " . $this->escape_identifiers('CI_subquery') . "\nWHERE " . $this->escape_identifiers('CI_rownum') . ' BETWEEN ' . ($this->qb_offset + 1) . ' AND ' . $limit;
+        }
+
+        return preg_replace('/(^\SELECT (DISTINCT)?)/i', '\\1 TOP ' . $limit . ' ', $sql);
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Insert batch statement
+     *
+     * Generates a platform-specific insert string from the supplied data.
+     *
+     * @param string $table
+     *            Table name
+     * @param array $keys
+     *            INSERT keys
+     * @param array $values
+     *            INSERT values
+     * @return string|bool
+     */
+    protected function _insert_batch($table, $keys, $values)
+    {
+        // Multiple-value inserts are only supported as of SQL Server 2008
+        if (version_compare($this->version(), '10', '>=')) {
+            return parent::_insert_batch($table, $keys, $values);
+        }
+
+        return ($this->db_debug) ? $this->display_error('db_unsupported_feature') : FALSE;
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Close DB Connection
+     *
+     * @return void
+     */
+    protected function _close()
+    {
+        mssql_close($this->conn_id);
+    }
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

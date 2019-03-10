@@ -209,4 +209,8 @@ class CI_DB_Cache
     {
         delete_files($this->db->cachedir, TRUE, TRUE);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

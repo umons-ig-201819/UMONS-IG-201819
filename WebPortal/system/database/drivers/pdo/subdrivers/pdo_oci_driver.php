@@ -189,6 +189,7 @@ class CI_DB_pdo_oci_driver extends CI_DB_pdo_driver
             $owner = $this->username;
         }
 
+<<<<<<< HEAD
         return 'SELECT COLUMN_NAME FROM ALL_TAB_COLUMNS
 			WHERE UPPER(OWNER) = ' . $this->escape(strtoupper($owner)) . '
 				AND UPPER(TABLE_NAME) = ' . $this->escape(strtoupper($table));
@@ -310,3 +311,126 @@ class CI_DB_pdo_oci_driver extends CI_DB_pdo_driver
         return 'SELECT * FROM (SELECT inner_query.*, rownum rnum FROM (' . $sql . ') inner_query WHERE rownum < ' . ($this->qb_offset + $this->qb_limit + 1) . ')' . ($this->qb_offset ? ' WHERE rnum >= ' . ($this->qb_offset + 1) : '');
     }
 }
+=======
+        return 'SELECT COLUMN_NAME FROM ALL_TAB_COLUMNS
+			WHERE UPPER(OWNER) = ' . $this->escape(strtoupper($owner)) . '
+				AND UPPER(TABLE_NAME) = ' . $this->escape(strtoupper($table));
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Returns an object with field data
+     *
+     * @param string $table
+     * @return array
+     */
+    public function field_data($table)
+    {
+        if (strpos($table, '.') !== FALSE) {
+            sscanf($table, '%[^.].%s', $owner, $table);
+        } else {
+            $owner = $this->username;
+        }
+
+        $sql = 'SELECT COLUMN_NAME, DATA_TYPE, CHAR_LENGTH, DATA_PRECISION, DATA_LENGTH, DATA_DEFAULT, NULLABLE
+			FROM ALL_TAB_COLUMNS
+			WHERE UPPER(OWNER) = ' . $this->escape(strtoupper($owner)) . '
+				AND UPPER(TABLE_NAME) = ' . $this->escape(strtoupper($table));
+
+        if (($query = $this->query($sql)) === FALSE) {
+            return FALSE;
+        }
+        $query = $query->result_object();
+
+        $retval = array();
+        for ($i = 0, $c = count($query); $i < $c; $i ++) {
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = $query[$i]->COLUMN_NAME;
+            $retval[$i]->type = $query[$i]->DATA_TYPE;
+
+            $length = ($query[$i]->CHAR_LENGTH > 0) ? $query[$i]->CHAR_LENGTH : $query[$i]->DATA_PRECISION;
+            if ($length === NULL) {
+                $length = $query[$i]->DATA_LENGTH;
+            }
+            $retval[$i]->max_length = $length;
+
+            $default = $query[$i]->DATA_DEFAULT;
+            if ($default === NULL && $query[$i]->NULLABLE === 'N') {
+                $default = '';
+            }
+            $retval[$i]->default = $query[$i]->COLUMN_DEFAULT;
+        }
+
+        return $retval;
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Insert batch statement
+     *
+     * @param string $table
+     *            Table name
+     * @param array $keys
+     *            INSERT keys
+     * @param array $values
+     *            INSERT values
+     * @return string
+     */
+    protected function _insert_batch($table, $keys, $values)
+    {
+        $keys = implode(', ', $keys);
+        $sql = "INSERT ALL\n";
+
+        for ($i = 0, $c = count($values); $i < $c; $i ++) {
+            $sql .= '	INTO ' . $table . ' (' . $keys . ') VALUES ' . $values[$i] . "\n";
+        }
+
+        return $sql . 'SELECT * FROM dual';
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Delete statement
+     *
+     * Generates a platform-specific delete string from the supplied data
+     *
+     * @param string $table
+     * @return string
+     */
+    protected function _delete($table)
+    {
+        if ($this->qb_limit) {
+            $this->where('rownum <= ', $this->qb_limit, FALSE);
+            $this->qb_limit = FALSE;
+        }
+
+        return parent::_delete($table);
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * LIMIT
+     *
+     * Generates a platform-specific LIMIT clause
+     *
+     * @param string $sql
+     *            SQL Query
+     * @return string
+     */
+    protected function _limit($sql)
+    {
+        if (version_compare($this->version(), '12.1', '>=')) {
+            // OFFSET-FETCH can be used only with the ORDER BY clause
+            empty($this->qb_orderby) && $sql .= ' ORDER BY 1';
+
+            return $sql . ' OFFSET ' . (int) $this->qb_offset . ' ROWS FETCH NEXT ' . $this->qb_limit . ' ROWS ONLY';
+        }
+
+        return 'SELECT * FROM (SELECT inner_query.*, rownum rnum FROM (' . $sql . ') inner_query WHERE rownum < ' . ($this->qb_offset + $this->qb_limit + 1) . ')' . ($this->qb_offset ? ' WHERE rnum >= ' . ($this->qb_offset + 1) : '');
+    }
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

@@ -55,4 +55,8 @@ $lang['email_failed_smtp_login'] = 'Failed to send AUTH LOGIN command. Error: %s
 $lang['email_smtp_auth_un'] = 'Failed to authenticate username. Error: %s';
 $lang['email_smtp_auth_pw'] = 'Failed to authenticate password. Error: %s';
 $lang['email_smtp_data_failure'] = 'Unable to send data: %s';
+<<<<<<< HEAD
 $lang['email_exit_status'] = 'Exit status code: %s';
+=======
+$lang['email_exit_status'] = 'Exit status code: %s';
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

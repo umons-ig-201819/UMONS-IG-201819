@@ -400,4 +400,8 @@ abstract class CI_DB_utility
 
         return;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

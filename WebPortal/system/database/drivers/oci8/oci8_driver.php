@@ -492,6 +492,7 @@ class CI_DB_oci8_driver extends CI_DB
             $owner = $this->username;
         }
 
+<<<<<<< HEAD
         return 'SELECT COLUMN_NAME FROM ALL_TAB_COLUMNS
 			WHERE UPPER(OWNER) = ' . $this->escape(strtoupper($owner)) . '
 				AND UPPER(TABLE_NAME) = ' . $this->escape(strtoupper($table));
@@ -691,3 +692,204 @@ class CI_DB_oci8_driver extends CI_DB
         parent::_reset_select();
     }
 }
+=======
+        return 'SELECT COLUMN_NAME FROM ALL_TAB_COLUMNS
+			WHERE UPPER(OWNER) = ' . $this->escape(strtoupper($owner)) . '
+				AND UPPER(TABLE_NAME) = ' . $this->escape(strtoupper($table));
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Returns an object with field data
+     *
+     * @param string $table
+     * @return array
+     */
+    public function field_data($table)
+    {
+        if (strpos($table, '.') !== FALSE) {
+            sscanf($table, '%[^.].%s', $owner, $table);
+        } else {
+            $owner = $this->username;
+        }
+
+        $sql = 'SELECT COLUMN_NAME, DATA_TYPE, CHAR_LENGTH, DATA_PRECISION, DATA_LENGTH, DATA_DEFAULT, NULLABLE
+			FROM ALL_TAB_COLUMNS
+			WHERE UPPER(OWNER) = ' . $this->escape(strtoupper($owner)) . '
+				AND UPPER(TABLE_NAME) = ' . $this->escape(strtoupper($table));
+
+        if (($query = $this->query($sql)) === FALSE) {
+            return FALSE;
+        }
+        $query = $query->result_object();
+
+        $retval = array();
+        for ($i = 0, $c = count($query); $i < $c; $i ++) {
+            $retval[$i] = new stdClass();
+            $retval[$i]->name = $query[$i]->COLUMN_NAME;
+            $retval[$i]->type = $query[$i]->DATA_TYPE;
+
+            $length = ($query[$i]->CHAR_LENGTH > 0) ? $query[$i]->CHAR_LENGTH : $query[$i]->DATA_PRECISION;
+            if ($length === NULL) {
+                $length = $query[$i]->DATA_LENGTH;
+            }
+            $retval[$i]->max_length = $length;
+
+            $default = $query[$i]->DATA_DEFAULT;
+            if ($default === NULL && $query[$i]->NULLABLE === 'N') {
+                $default = '';
+            }
+            $retval[$i]->default = $default;
+        }
+
+        return $retval;
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Error
+     *
+     * Returns an array containing code and message of the last
+     * database error that has occurred.
+     *
+     * @return array
+     */
+    public function error()
+    {
+        // oci_error() returns an array that already contains
+        // 'code' and 'message' keys, but it can return false
+        // if there was no error ....
+        if (is_resource($this->curs_id)) {
+            $error = oci_error($this->curs_id);
+        } elseif (is_resource($this->stmt_id)) {
+            $error = oci_error($this->stmt_id);
+        } elseif (is_resource($this->conn_id)) {
+            $error = oci_error($this->conn_id);
+        } else {
+            $error = oci_error();
+        }
+
+        return is_array($error) ? $error : array(
+            'code' => '',
+            'message' => ''
+        );
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Insert batch statement
+     *
+     * Generates a platform-specific insert string from the supplied data
+     *
+     * @param string $table
+     *            Table name
+     * @param array $keys
+     *            INSERT keys
+     * @param array $values
+     *            INSERT values
+     * @return string
+     */
+    protected function _insert_batch($table, $keys, $values)
+    {
+        $keys = implode(', ', $keys);
+        $sql = "INSERT ALL\n";
+
+        for ($i = 0, $c = count($values); $i < $c; $i ++) {
+            $sql .= '	INTO ' . $table . ' (' . $keys . ') VALUES ' . $values[$i] . "\n";
+        }
+
+        return $sql . 'SELECT * FROM dual';
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Truncate statement
+     *
+     * Generates a platform-specific truncate string from the supplied data
+     *
+     * If the database does not support the TRUNCATE statement,
+     * then this method maps to 'DELETE FROM table'
+     *
+     * @param string $table
+     * @return string
+     */
+    protected function _truncate($table)
+    {
+        return 'TRUNCATE TABLE ' . $table;
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Delete statement
+     *
+     * Generates a platform-specific delete string from the supplied data
+     *
+     * @param string $table
+     * @return string
+     */
+    protected function _delete($table)
+    {
+        if ($this->qb_limit) {
+            $this->where('rownum <= ', $this->qb_limit, FALSE);
+            $this->qb_limit = FALSE;
+        }
+
+        return parent::_delete($table);
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * LIMIT
+     *
+     * Generates a platform-specific LIMIT clause
+     *
+     * @param string $sql
+     *            SQL Query
+     * @return string
+     */
+    protected function _limit($sql)
+    {
+        if (version_compare($this->version(), '12.1', '>=')) {
+            // OFFSET-FETCH can be used only with the ORDER BY clause
+            empty($this->qb_orderby) && $sql .= ' ORDER BY 1';
+
+            return $sql . ' OFFSET ' . (int) $this->qb_offset . ' ROWS FETCH NEXT ' . $this->qb_limit . ' ROWS ONLY';
+        }
+
+        $this->limit_used = TRUE;
+        return 'SELECT * FROM (SELECT inner_query.*, rownum rnum FROM (' . $sql . ') inner_query WHERE rownum < ' . ($this->qb_offset + $this->qb_limit + 1) . ')' . ($this->qb_offset ? ' WHERE rnum >= ' . ($this->qb_offset + 1) : '');
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * Close DB Connection
+     *
+     * @return void
+     */
+    protected function _close()
+    {
+        oci_close($this->conn_id);
+    }
+
+    // --------------------------------------------------------------------
+
+    /**
+     * We need to reset our $limit_used hack flag, so it doesn't propagate
+     * to subsequent queries.
+     *
+     * @return void
+     */
+    protected function _reset_select()
+    {
+        $this->limit_used = FALSE;
+        parent::_reset_select();
+    }
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

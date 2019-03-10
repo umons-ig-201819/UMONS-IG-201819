@@ -62,4 +62,8 @@ class CI_DB_pdo_forge extends CI_DB_forge
      * @var string
      */
     protected $_drop_table_if = FALSE;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

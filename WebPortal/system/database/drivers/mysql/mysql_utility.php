@@ -197,4 +197,8 @@ class CI_DB_mysql_utility extends CI_DB_utility
 
         return $output;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

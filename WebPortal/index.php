@@ -261,4 +261,8 @@ define('VIEWPATH', $view_folder . DIRECTORY_SEPARATOR);
  *
  * And away we go...
  */
+<<<<<<< HEAD
 require_once BASEPATH . 'core/CodeIgniter.php';
+=======
+require_once BASEPATH . 'core/CodeIgniter.php';
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

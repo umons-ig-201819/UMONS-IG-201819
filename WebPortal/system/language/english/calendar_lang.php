@@ -81,4 +81,8 @@ $lang['cal_august'] = 'August';
 $lang['cal_september'] = 'September';
 $lang['cal_october'] = 'October';
 $lang['cal_november'] = 'November';
+<<<<<<< HEAD
 $lang['cal_december'] = 'December';
+=======
+$lang['cal_december'] = 'December';
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

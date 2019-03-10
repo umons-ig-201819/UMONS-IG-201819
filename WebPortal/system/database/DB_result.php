@@ -623,4 +623,8 @@ class CI_DB_result
     {
         return new $class_name();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

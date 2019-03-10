@@ -136,4 +136,8 @@ if (! function_exists('mb_substr')) {
         log_message('debug', 'Compatibility (mbstring): iconv_substr() is not available, falling back to substr().');
         return isset($length) ? substr($str, $start, $length) : substr($str, $start);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

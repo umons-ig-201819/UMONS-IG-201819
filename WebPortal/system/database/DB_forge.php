@@ -949,4 +949,8 @@ abstract class CI_DB_forge
     {
         $this->fields = $this->keys = $this->primary_keys = array();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

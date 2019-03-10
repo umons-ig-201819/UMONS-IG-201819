@@ -18,4 +18,8 @@ $hook['post_controller_constructor'][] = array(
     'filename' => 'hooks.profiler.php',
     'filepath' => 'hooks',
     'params' => array()
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

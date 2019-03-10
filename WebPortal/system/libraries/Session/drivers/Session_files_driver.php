@@ -380,4 +380,8 @@ class CI_Session_files_driver extends CI_Session_driver implements SessionHandle
     {
         return (self::$func_overload) ? mb_strlen($str, '8bit') : strlen($str);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

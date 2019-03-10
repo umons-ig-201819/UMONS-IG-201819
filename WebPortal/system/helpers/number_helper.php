@@ -84,4 +84,8 @@ if (! function_exists('byte_format')) {
 
         return number_format($num, $precision) . ' ' . $unit;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

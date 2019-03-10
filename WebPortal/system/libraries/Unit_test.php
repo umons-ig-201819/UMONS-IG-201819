@@ -412,4 +412,8 @@ function is_true($test)
 function is_false($test)
 {
     return ($test === FALSE);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git
