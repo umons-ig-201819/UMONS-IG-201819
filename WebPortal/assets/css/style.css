@@ -1,28 +1,4 @@
 /* HEADER */
-header h1
-{
-    font-size: 2.5em;
-    font-weight: normal;
-    margin: 0 0 0 10px;
-}
-
-.topnav 
-{
-  overflow: hidden;
-  background-color: rgba(0,0,100,0.8);
-  display: flex;
-  flex : 3;
-  
-}
-
-.topnav a {
-
-  float: left;
-  display: block;
-  color : white;
-  text-align: center;
-  padding: 14px 16px;
-}
 
 header 
 {
@@ -30,6 +6,27 @@ header
 	justify-content: space-between;
 	align-items: flex-end;
 }
+
+header h1
+{
+    font-size: 2.5em; 
+    font-weight: normal;
+    margin: 0 0 0 10px;
+}
+
+header nav
+{ 
+  background-color: rgba(0,0,100,0.8);
+}
+
+header nav a 
+{
+  display: block;
+  color : white;
+  text-align: center;
+  padding: 14px 16px;
+}
+
 
 aside
 {
@@ -57,7 +54,6 @@ aside
 }
 
 header
-
 {
     display: flex;
     justify-content: space-between;
@@ -72,14 +68,12 @@ nav ul
 }
 
 #titre_principal
-
 {
     display: flex;
     flex-direction: column;
 }
 
 section
-
 {
     display: flex;
     margin-bottom: 20px;
