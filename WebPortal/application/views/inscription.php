@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css"
     	href="<?php echo base_url(); ?>assets/css/style.css">
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/home.js"></script>
     <title>Portail AWE</title>
     </head>
     
@@ -20,37 +21,39 @@ Pour les autres types d'inscriptions (par ex. : scientifiques, conseillers), vou
 </section>
 
 <section class="column middle">
-
+	<form action="#" method="POST" onSubmit="return inscriptionValidate(this)">
 	<fieldset>
 	<legend> Informations d'inscription :  </legend>
 		<article>
 	       	<br><label >sexe : </label><br>
-        		<input type="radio" name="type" value="homme"> Homme&nbsp;&nbsp;
-				<input type="radio" name="type" value="femme"> Femme<br><br>
+        		<input type="radio" name="gender" value="man"> Homme&nbsp;&nbsp;
+				<input type="radio" name="gender" value="female"> Femme&nbsp;&nbsp;
+				<input type="radio" name="gender" value="other"> autre<br><br>
 	
         	<label >Nom : </label><br>
-        		<input type="text" name="nom"><br><br>
+        		<input type="text" name="lastname" required><br><br>
         	<label >Pr&eacute;nom : </label><br>
-        		<input type="text" name="nom"><br><br>
+        		<input type="text" name="firstname" required><br><br>
         	<label >Date de naissance : </label> <br>
-        		<input type="date" name="date_nais"><br><br>
+        		<input type="date" name="date_nais" required><br><br>
         	<label >E-mail : </label> <br>
-        		<input type="text" name="email"><br><br>
+        		<input type="text" name="mail" required><br><br>
         	<label >Num&eacute;ro de t&eacute;l&eacute;phone : </label> <br>
-        		<input type="text" name="tel"><br><br>
+        		<input type="text" name="tel1" required><br><br>
         	<label >Num&eacute;ro de GSM : </label><br>
-        		<input type="text" name="tel"><br><br>
+        		<input type="text" name="tel2" required><br><br>
  
     		<label >Nom d'utilisateur :</label><br>
-    			<input type="text" name="login"><br><br>
+    			<input type="text" name="login" required><br><br>
 
 		<label >Mot de passe :</label> <br>
-		<input type="password" id="mdp" name="mdp" placeholder="Votre mot de passe" size="22" maxlength="20" required/><br><br>
-		<input type="password" id="confirm_mdp" name="confirm_mdp" placeholder="Confirmation du mot de passe" size="22" maxlength="20" required/> <br><br>
+		<input type="password" id="mdp" name="mdp" placeholder="Votre mot de passe" required/><br><br>
+		<input type="password" id="confirm_mdp" name="confirm_mdp" placeholder="Confirmation du mot de passe" required/> <br><br>
 
     	<input type="submit"><input type="reset">				
 		</article>
 	</fieldset>
+	</form>
 </section>
     
     <?php include ("footer.php")?>
