@@ -1,11 +1,18 @@
-h1 {
-	color: rgba(0,0,100,0.8);
-	text-align: center;
+/* HEADER */
+header h1
+{
+    font-size: 2.5em;
+    font-weight: normal;
+    margin: 0 0 0 10px;
 }
 
-.topnav {
+.topnav 
+{
   overflow: hidden;
   background-color: rgba(0,0,100,0.8);
+  display: flex;
+  flex : 3;
+  
 }
 
 .topnav a {
@@ -15,6 +22,77 @@ h1 {
   color : white;
   text-align: center;
   padding: 14px 16px;
-
 }
 
+header 
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+aside
+{
+    flex: 1.2;
+    position: relative;
+    background-color: #706b64;
+    box-shadow: 0px 2px 5px #1c1a19;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    font-size: 0.9em;
+}
+
+#logo
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#logo img
+{
+    width: 100px;
+    height: 100px;
+}
+
+header
+
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+nav ul
+
+{
+    list-style-type: none;
+    display: flex;
+}
+
+#titre_principal
+
+{
+    display: flex;
+    flex-direction: column;
+}
+
+section
+
+{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+
+article, aside
+{
+    text-align: justify;
+}
+
+article
+{
+    margin-right: 20px;
+    flex: 3;
+}
