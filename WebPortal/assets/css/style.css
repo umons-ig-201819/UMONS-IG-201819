@@ -1,19 +1,4 @@
-h1 {
-	color: rgba(0,0,100,0.8);
-	text-align: center;
-}
-
-.topnav {
-  overflow: hidden;
-  background-color: rgba(0,0,100,0.8);
-}
-
-.topnav a {
-
-  float: left;
-  display: block;
-  color : white;
-  text-align: center;
-  padding: 14px 16px;
-
+h1
+{
+	color : blue;
 }
