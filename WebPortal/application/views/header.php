@@ -17,9 +17,9 @@
 	<nav>
         <article class="topnav"> 
             <a href="<?php echo base_url("home/main"); ?>">Accueil</a>
-            <a href="#">Help</a>
-            <a href="#">Connexion</a>
-            <a href="#">Inscription</a>
+            <a href="<?php echo base_url("home/help"); ?>">Help</a>
+            <a href="<?php echo base_url("home/connect"); ?>">Connexion</a>
+            <a href="<?php echo base_url("home/inscript"); ?>">Inscription</a>
         </article>
         </br></br>
 	</nav>
