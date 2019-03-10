@@ -1,10 +1,13 @@
 <?php
 use Restserver\Libraries\REST_Controller;
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 // This can be removed if you use __autoload() in config.php OR use Modular Extensions
-/** @noinspection PhpIncludeInspection */
-//To Solve File REST_Controller not found
+/**
+ *
+ * @noinspection PhpIncludeInspection
+ */
+// To Solve File REST_Controller not found
 require APPPATH . 'libraries/REST_Controller.php';
 require APPPATH . 'libraries/Format.php';
 
@@ -12,14 +15,15 @@ require APPPATH . 'libraries/Format.php';
  * This is an example of a few basic user interaction methods you could use
  * all done with a hardcoded array
  *
- * @package         CodeIgniter
- * @subpackage      Rest Server
- * @category        Controller
- * @author          Phil Sturgeon, Chris Kacerguis
- * @license         MIT
- * @link            https://github.com/chriskacerguis/codeigniter-restserver
+ * @package CodeIgniter
+ * @subpackage Rest Server
+ * @category Controller
+ * @author Phil Sturgeon, Chris Kacerguis
+ * @license MIT
+ * @link https://github.com/chriskacerguis/codeigniter-restserver
  */
-class Example extends REST_Controller {
+class Example extends REST_Controller
+{
 
     function __construct()
     {
@@ -37,25 +41,42 @@ class Example extends REST_Controller {
     {
         // Users from a data store e.g. database
         $users = [
-            ['id' => 1, 'name' => 'John', 'email' => 'john@example.com', 'fact' => 'Loves coding'],
-            ['id' => 2, 'name' => 'Jim', 'email' => 'jim@example.com', 'fact' => 'Developed on CodeIgniter'],
-            ['id' => 3, 'name' => 'Jane', 'email' => 'jane@example.com', 'fact' => 'Lives in the USA', ['hobbies' => ['guitar', 'cycling']]],
+            [
+                'id' => 1,
+                'name' => 'John',
+                'email' => 'john@example.com',
+                'fact' => 'Loves coding'
+            ],
+            [
+                'id' => 2,
+                'name' => 'Jim',
+                'email' => 'jim@example.com',
+                'fact' => 'Developed on CodeIgniter'
+            ],
+            [
+                'id' => 3,
+                'name' => 'Jane',
+                'email' => 'jane@example.com',
+                'fact' => 'Lives in the USA',
+                [
+                    'hobbies' => [
+                        'guitar',
+                        'cycling'
+                    ]
+                ]
+            ]
         ];
 
         $id = $this->get('id');
 
         // If the id parameter doesn't exist return all the users
 
-        if ($id === NULL)
-        {
+        if ($id === NULL) {
             // Check if the users data store contains users (in case the database result returns NULL)
-            if ($users)
-            {
+            if ($users) {
                 // Set the response and exit
                 $this->response($users, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
-            }
-            else
-            {
+            } else {
                 // Set the response and exit
                 $this->response([
                     'status' => FALSE,
@@ -69,8 +90,7 @@ class Example extends REST_Controller {
         $id = (int) $id;
 
         // Validate the id.
-        if ($id <= 0)
-        {
+        if ($id <= 0) {
             // Invalid id, set the response and exit.
             $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
@@ -80,23 +100,17 @@ class Example extends REST_Controller {
 
         $user = NULL;
 
-        if (!empty($users))
-        {
-            foreach ($users as $key => $value)
-            {
-                if (isset($value['id']) && $value['id'] === $id)
-                {
+        if (! empty($users)) {
+            foreach ($users as $key => $value) {
+                if (isset($value['id']) && $value['id'] === $id) {
                     $user = $value;
                 }
             }
         }
 
-        if (!empty($user))
-        {
+        if (! empty($user)) {
             $this->set_response($user, REST_Controller::HTTP_OK); // OK (200) being the HTTP response code
-        }
-        else
-        {
+        } else {
             $this->set_response([
                 'status' => FALSE,
                 'message' => 'User could not be found'
@@ -122,8 +136,7 @@ class Example extends REST_Controller {
         $id = (int) $this->get('id');
 
         // Validate the id.
-        if ($id <= 0)
-        {
+        if ($id <= 0) {
             // Set the response and exit
             $this->response(NULL, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400) being the HTTP response code
         }
@@ -136,5 +149,4 @@ class Example extends REST_Controller {
 
         $this->set_response($message, REST_Controller::HTTP_NO_CONTENT); // NO_CONTENT (204) being the HTTP response code
     }
-
 }
