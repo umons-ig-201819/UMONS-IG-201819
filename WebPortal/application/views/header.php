@@ -16,7 +16,7 @@
 
 	<nav>
         <article class="topnav"> 
-            <a href="home.php">Accueil</a>
+            <a href="<?php echo base_url("home/main"); ?>">Accueil</a>
             <a href="#">Help</a>
             <a href="#">Connexion</a>
             <a href="#">Inscription</a>
