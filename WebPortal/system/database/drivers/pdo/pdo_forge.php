@@ -35,35 +35,31 @@
  * @since	Version 2.1.0
  * @filesource
  */
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * PDO Forge Class
  *
- * @package CodeIgniter
- * @subpackage Drivers
- * @category Database
- * @author EllisLab Dev Team
- * @link https://codeigniter.com/database/
+ * @package		CodeIgniter
+ * @subpackage	Drivers
+ * @category	Database
+ * @author		EllisLab Dev Team
+ * @link		https://codeigniter.com/database/
  */
-class CI_DB_pdo_forge extends CI_DB_forge
-{
+class CI_DB_pdo_forge extends CI_DB_forge {
 
-    /**
-     * CREATE TABLE IF statement
-     *
-     * @var string
-     */
-    protected $_create_table_if = FALSE;
+	/**
+	 * CREATE TABLE IF statement
+	 *
+	 * @var	string
+	 */
+	protected $_create_table_if	= FALSE;
 
-    /**
-     * DROP TABLE IF statement
-     *
-     * @var string
-     */
-    protected $_drop_table_if = FALSE;
-<<<<<<< HEAD
+	/**
+	 * DROP TABLE IF statement
+	 *
+	 * @var	string
+	 */
+	protected $_drop_table_if	= FALSE;
+
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

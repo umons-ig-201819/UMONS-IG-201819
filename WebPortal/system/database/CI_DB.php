@@ -1,6 +1,4 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class CI_DB extends CI_DB_driver
-{
-}
+class CI_DB extends CI_DB_driver { }

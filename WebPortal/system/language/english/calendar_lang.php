@@ -35,7 +35,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['cal_su'] = 'Su';
 $lang['cal_mo'] = 'Mo';
@@ -81,8 +81,4 @@ $lang['cal_august'] = 'August';
 $lang['cal_september'] = 'September';
 $lang['cal_october'] = 'October';
 $lang['cal_november'] = 'November';
-<<<<<<< HEAD
 $lang['cal_december'] = 'December';
-=======
-$lang['cal_december'] = 'December';
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

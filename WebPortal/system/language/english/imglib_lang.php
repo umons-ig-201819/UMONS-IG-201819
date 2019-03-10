@@ -35,7 +35,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['imglib_source_image_required'] = 'You must specify a source image in your preferences.';
 $lang['imglib_gd_required'] = 'The GD image library is required for this feature.';
@@ -54,8 +54,4 @@ $lang['imglib_invalid_path'] = 'The path to the image is not correct.';
 $lang['imglib_invalid_image'] = 'The provided image is not valid.';
 $lang['imglib_copy_failed'] = 'The image copy routine failed.';
 $lang['imglib_missing_font'] = 'Unable to find a font to use.';
-<<<<<<< HEAD
 $lang['imglib_save_failed'] = 'Unable to save the image. Please make sure the image and file directory are writable.';
-=======
-$lang['imglib_save_failed'] = 'Unable to save the image. Please make sure the image and file directory are writable.';
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

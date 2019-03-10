@@ -35,7 +35,7 @@
  * @since	Version 1.0.0
  * @filesource
  */
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['upload_userfile_not_set'] = 'Unable to find a post variable called userfile.';
 $lang['upload_file_exceeds_limit'] = 'The uploaded file exceeds the maximum allowed size in your PHP configuration file.';
@@ -52,8 +52,4 @@ $lang['upload_destination_error'] = 'A problem was encountered while attempting 
 $lang['upload_no_filepath'] = 'The upload path does not appear to be valid.';
 $lang['upload_no_file_types'] = 'You have not specified any allowed file types.';
 $lang['upload_bad_filename'] = 'The file name you submitted already exists on the server.';
-<<<<<<< HEAD
 $lang['upload_not_writable'] = 'The upload destination folder does not appear to be writable.';
-=======
-$lang['upload_not_writable'] = 'The upload destination folder does not appear to be writable.';
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

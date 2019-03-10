@@ -1,8 +1,8 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
 
-class Rest_server extends CI_Controller
-{
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Rest_server extends CI_Controller {
 
     public function index()
     {
@@ -10,8 +10,4 @@ class Rest_server extends CI_Controller
 
         $this->load->view('rest_server');
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

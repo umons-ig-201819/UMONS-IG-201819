@@ -35,34 +35,29 @@
  * @since	Version 1.3.0
  * @filesource
  */
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * ODBC Utility Class
  *
- * @package CodeIgniter
- * @subpackage Drivers
- * @category Database
- * @author EllisLab Dev Team
- * @link https://codeigniter.com/database/
+ * @package		CodeIgniter
+ * @subpackage	Drivers
+ * @category	Database
+ * @author		EllisLab Dev Team
+ * @link		https://codeigniter.com/database/
  */
-class CI_DB_odbc_utility extends CI_DB_utility
-{
+class CI_DB_odbc_utility extends CI_DB_utility {
 
-    /**
-     * Export
-     *
-     * @param array $params
-     *            Preferences
-     * @return mixed
-     */
-    protected function _backup($params = array())
-    {
-        // Currently unsupported
-        return $this->db->display_error('db_unsupported_feature');
-    }
-<<<<<<< HEAD
+	/**
+	 * Export
+	 *
+	 * @param	array	$params	Preferences
+	 * @return	mixed
+	 */
+	protected function _backup($params = array())
+	{
+		// Currently unsupported
+		return $this->db->display_error('db_unsupported_feature');
+	}
+
 }
-=======
-}
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git

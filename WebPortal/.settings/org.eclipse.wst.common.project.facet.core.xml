@@ -1,17 +1,7 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
-	<fixed facet="php.core.component" />
-	<fixed facet="php.component" />
-	<installed facet="php.core.component" version="1" />
-	<installed facet="php.component" version="7.3" />
+  <fixed facet="php.core.component"/>
+  <fixed facet="php.component"/>
+  <installed facet="php.core.component" version="1"/>
+  <installed facet="php.component" version="7.3"/>
 </faceted-project>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<faceted-project>
-	<fixed facet="php.core.component" />
-	<fixed facet="php.component" />
-	<installed facet="php.core.component" version="1" />
-	<installed facet="php.component" version="7.3" />
-</faceted-project>
->>>>>>> branch 'master' of git@github.com:umons-ig-201819/UMONS-IG-201819.git
