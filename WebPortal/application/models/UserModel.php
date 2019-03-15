@@ -4,7 +4,7 @@
  * \author    VirginieVD
  * \version   1.0
  * \date      2019-03-15
- * \brief     Model to manage users, roles, rights and avices for the Wallesmart database
+ * \brief     Model to manage users, roles, rights and advices for the Wallesmart database
  *
  * \details   This class is supposed to be used with the codeigniter framework
  */
