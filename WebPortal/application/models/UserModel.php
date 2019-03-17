@@ -61,14 +61,14 @@ class UserModel extends CI_Model {
 	//-------------------------------------------------------------
 
 	/**
-	* get_user_roles() returns all roles for a specific user
+	* getUserRoles() returns all roles for a specific user
 	
 	* @param $userid	
 		
 	* @return an array of roles (name order)
-	* @see get_role() for returned data structure
+	* @see getRole() for returned data structure
 	*/	
-	public function get_user_roles($userid)
+	public function getUserRoles($userid)
 	{
 		if(is_null($userid)) return NULL;
 		$sql="SELECT 
@@ -86,12 +86,12 @@ class UserModel extends CI_Model {
 	}	
 	
 	/**
-	* get_roles() returns all roles
+	* getRoles() returns all roles
 			
 	* @return an array of roles (name order)
-	* @see get_role() for returned data structure
+	* @see getRole() for returned data structure
 	*/	
-	public function get_roles()
+	public function getRoles()
 	{
 
 		$sql="SELECT 
@@ -107,7 +107,7 @@ class UserModel extends CI_Model {
 	}	
 	
 	/**
-	* get_role() returns role informations based on it's id
+	* getRole() returns role informations based on it's id
 	
 	* @param $roleid	
 		
@@ -116,7 +116,7 @@ class UserModel extends CI_Model {
 	* <br> $response['name'] role name (unique)
 	* <br> $response['description'] role description
 	*/		
-	public function get_role($roleid)
+	public function getRole($roleid)
 	{
 		if(is_null($roleid)) return NULL;
 		$sql="SELECT 
@@ -132,14 +132,14 @@ class UserModel extends CI_Model {
 	}	
 	
 	/**
-	* get_user_rights() returns all the rights of a specific user
+	* get_userRights() returns all the rights of a specific user
 	
 	* @param $userid
 			
 	* @return an array of rights (name order)
-	* @see get_right() for returned data structure
+	* @see getRight() for returned data structure
 	*/	
-	public function get_user_rights($userid)
+	public function getUserRights($userid)
 	{
 		if(is_null($userid)) return NULL;
 		$sql="SELECT 
@@ -158,12 +158,12 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* get_rights() returns all rights
+	* getRights() returns all rights
 			
 	* @return an array of rights (name order)
-	* @see get_right() for returned data structure
+	* @see getRight() for returned data structure
 	*/		
-	public function get_rights()
+	public function getRights()
 	{
 		$sql="SELECT 
 					d_id AS id, 
@@ -183,9 +183,9 @@ class UserModel extends CI_Model {
 	* @param $roleid
 			
 	* @return an array of rights (name order)
-	* @see get_right() for returned data structure
+	* @see getRight() for returned data structure
 	*/		
-	public function get_role_rights($roleid)
+	public function getRoleRights($roleid)
 	{
 		if(is_null($roleid)) return NULL;
 		$sql="SELECT 
@@ -203,7 +203,7 @@ class UserModel extends CI_Model {
 	}
 
 	/**
-	* get_right() return a right based on its id
+	* getRight() return a right based on its id
 	
 	* @param $rightid	
 		
@@ -212,7 +212,7 @@ class UserModel extends CI_Model {
 	* <br> $response['name'] right name (unique)
 	* <br> $response['description'] right description
 	*/		
-	public function get_right($rightid)
+	public function getRight($rightid)
 	{
 		if(is_null($rightid)) return NULL;
 		$sql="SELECT 
@@ -230,7 +230,7 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* get_user() this method returns user informations based on its user id
+	* getUser() this method returns user informations based on its user id
 	
 	* @param $userid
 		
@@ -247,7 +247,7 @@ class UserModel extends CI_Model {
 	* <br> $response['visible'] default visibility attribute for user files (0=hidden, 1=visible, 2=on demand)
 	* <br> $response['advice']  1 if a user is ok to receive advices and 0 if not
 	*/	
-	public function get_user($userid) 			
+	public function getUser($userid) 			
 	{ 
 		if(is_null($userid)) return NULL;
 		$sql="SELECT 
@@ -271,7 +271,7 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* get_users() is a method for searching users in the database
+	* getUsers() is a method for searching users in the database
 	
 	* @param $filter is optional and is an array containing search criterions
 	* @param $filter['lastname'] is optional and contains the lastname (can be partial) of seached user(s)
@@ -287,9 +287,9 @@ class UserModel extends CI_Model {
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing teh search query with OR operators and TRUE for AND operators
 	
 	* @return an array of users (lastname, firstname ascending order)
-	* @see get_user() for the data structure of returned users
+	* @see getUser() for the data structure of returned users
 	*/
-	public function get_users($filter = NULL, $and = false) 			
+	public function getUsers($filter = NULL, $and = false) 			
 	{ 
 		
 		$sql="SELECT 
@@ -499,13 +499,13 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* login_is_free() this method checks of a login is not already used
+	* loginIsFree() this method checks of a login is not already used
 	
 	* @param $login
 		
 	* @return a boolean : FALSE if the login is already used, TRUE if not
 	*/	
-	public function login_is_free($login)
+	public function loginIsFree($login)
 	{
 		if(empty($login)) return false;
 		$logtest=$this->get_users(array("login" => $login));
@@ -514,21 +514,21 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* get_users_from_role() this method returns all users having a specific role
+	* getUsersFromRole() this method returns all users having a specific role
 	
 	* @param $roleid
 		
 	* @return an array of users (lastname, firstname ascending order)
-	* @see get_user() for the data structure of returned users
+	* @see getUser() for the data structure of returned users
 	*/		
-	public function get_users_from_role($roleid)
+	public function getUsersFromRole($roleid)
 	{
 		if(empty($roleid)) return NULL;
 		return $this->get_users(array("role" => intval($roleid)));
 	}
 	
 	/**
-	* get_advices() this method returns an advice based on its id
+	* getAdvices() this method returns an advice based on its id
 	
 	* @param $dvid advice id
 	
@@ -543,7 +543,7 @@ class UserModel extends CI_Model {
 	* <br> $response['advisor_lastname'] is the lastname of advisor
 	* <br> $response['advisor_lastname'] is the firstname of advisor
 	*/	
-	public function get_advice($advid) 			
+	public function getAdvice($advid) 			
 	{ 
 		if(is_null($advid)) return NULL;
 		$sql="SELECT 
@@ -570,7 +570,7 @@ class UserModel extends CI_Model {
 	
 	
 	/**
-	* get_advices() is a method for searching advices in the database
+	* getAdvices() is a method for searching advices in the database
 	
 	* @param $filter is optional and is an array containing search criterions
 	* @param $filter['advice'] is optional and contains a substring which will be searched into the advice's text
@@ -583,7 +583,7 @@ class UserModel extends CI_Model {
 	* @return an array of advices whith firstnames and lasnames of users and advisers. Results are sorted by advice_date (descending)
 	* @see get_advices() for the data structure of an advice
 	*/	
-	public function get_advices($filter=NULL)
+	public function getAdvices($filter=NULL)
 	{
 		$sql="SELECT 
 					c_id AS id,
@@ -705,14 +705,14 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* get_user_advices() is a method for searching all advices sended to a specific user
+	* getUserAdvices() is a method for searching all advices sended to a specific user
 	
 	* @param $userid contains the identifier of the advised user
 	
 	* @return an array of advices whith firstnames and lasnames of users and advisers. Results are sorted by advice_date (descending)
-	* @see get_advices() for returned data structure
+	* @see getAdvices() for returned data structure
 	*/	
-	public function get_user_advices($userid)
+	public function getUserAdvices($userid)
 	{
 		if(is_null($userid)) return NULL;
 		$filter['user_id']=$userid;
@@ -720,14 +720,14 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* get_advisor_advices() is a method for searching all advices written by a specific user (advisor)
+	* getAdvisorAdvices() is a method for searching all advices written by a specific user (advisor)
 	
 	* @param $userid contains the identifier of the advisor
 	
 	* @return an array of advices whith firstnames and lasnames of users and advisers. Results are sorted by advice_date (descending)
-	* @see get_advices() for returned data structure
+	* @see getAdvices() for returned data structure
 	*/	
-	public function get_advisor_advices($userid)
+	public function getAdvisorAdvices($userid)
 	{
 		if(is_null($userid)) return NULL;
 		$filter['advisor_id']=$userid; 		
@@ -739,7 +739,7 @@ class UserModel extends CI_Model {
 	//-------------------------------------------------------------
 	
 	/**
-	* add_user() is a method for adding an user
+	* addUser() is a method for adding an user
 	
 	* @param $user is an array containing user data
 	* @param $user['lastname'] (required) contains the lastname 
@@ -757,7 +757,7 @@ class UserModel extends CI_Model {
 	
 	* @return new user id if insert succeeded and FALSE if not
 	*/		
-	public function add_user($user = NULL)
+	public function addUser($user = NULL)
 	{		
 		if(is_null($user)) return false;
 		
@@ -802,14 +802,14 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* add_user_role() is a method for adding a role to an user
+	* addUserRole() is a method for adding a role to an user
 	
 	* @param $userid 
 	* @param $roleid 
 	
 	* @return TRUE if insert succeeded and FALSE if not
 	*/		
-	public function add_user_role($userid, $roleid)
+	public function addUserRole($userid, $roleid)
 	{
 		if(empty($userid)) return false;
 		if(empty($roleid)) return false;
@@ -822,14 +822,14 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* add_role() is a method for adding a role
+	* addRole() is a method for adding a role
 	
 	* @param $name (required) role name (must be unique)
 	* @param $description (optional) role description
 	
 	* @return new role id if insert succeeded and FALSE if not
 	*/		
-	public function add_role($name, $description = NULL)
+	public function addRole($name, $description = NULL)
 	{
 		if(empty($name)) return false;
 		
@@ -841,14 +841,14 @@ class UserModel extends CI_Model {
 	}	
 	
 	/**
-	* add_right() is a method for adding a right
+	* addRight() is a method for adding a right
 	
 	* @param $name (required) right name (must be unique)
 	* @param $description (optional) right description
 	
 	* @return new right id if insert succeeded and FALSE if not
 	*/		
-	public function add_right($name, $description = NULL)
+	public function addRight($name, $description = NULL)
 	{
 		if(empty($name)) return false;
 		
@@ -860,14 +860,14 @@ class UserModel extends CI_Model {
 	}	
 	
 	/**
-	* add_role_right() is a method for adding a right to a role
+	* addRoleRight() is a method for adding a right to a role
 	
 	* @param $roleid 
 	* @param $rightid 
 	
 	* @return TRUE if insert succeeded and FALSE if not
 	*/		
-	public function add_role_right($roleid,$rightid)
+	public function addRoleRight($roleid,$rightid)
 	{
 		if(empty($rightid)) return false;
 		if(empty($roleid)) return false;
@@ -880,7 +880,7 @@ class UserModel extends CI_Model {
 	}	
 
 	/**
-	* add_advice() is a method for adding an advice
+	* addAdvice() is a method for adding an advice
 	
 	* @param $userid (required) id of advised user
 	* @param $advisor_id (required) id of advisor
@@ -888,7 +888,7 @@ class UserModel extends CI_Model {
 	
 	* @return new advice id if insert succeeded and FALSE if not
 	*/		
-	public function add_advice($user_id, $advisor_id, $advice)
+	public function addAdvice($user_id, $advisor_id, $advice)
 	{
 		if(empty($user_id)) return false;
 		if(empty($advisor_id)) return false;
@@ -906,7 +906,7 @@ class UserModel extends CI_Model {
 	//-------------------------------------------------------------
 		
 	/**
-	* update_user() is a method for updating informations of a specific user
+	* updateUser() is a method for updating informations of a specific user
 	
 	* @param $user['id'] (required) user id of the user whose informaions need to be updated 
 	* @param $user['lastname'] is optional and contains the lastname
@@ -923,7 +923,7 @@ class UserModel extends CI_Model {
 	
 	* @return TRUE if update succeeded and FALSE if not
 	*/		
-	public function update_user($user = NULL)
+	public function updateUser($user = NULL)
 	{		
 	
 		if(is_null($user)) return false;
@@ -1060,7 +1060,7 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* update_role() is a method for updating name and/or description of a specific role
+	* updateUole() is a method for updating name and/or description of a specific role
 	
 	* @param $id role id (required)
 	* @param $name new role name (optional)
@@ -1068,7 +1068,7 @@ class UserModel extends CI_Model {
 	
 	* @return TRUE if update succeeded and FALSE if not
 	*/		
-	public function update_role($id, $name= NULL, $description = NULL)
+	public function updateRole($id, $name= NULL, $description = NULL)
 	{
 		if(empty($id)) return false;
 		
@@ -1109,7 +1109,7 @@ class UserModel extends CI_Model {
 	}	
 	
 	/**
-	* update_right() is a method for updating name and/or description of a specific right
+	* updateRight() is a method for updating name and/or description of a specific right
 	
 	* @param $id right id (required)
 	* @param $name new right name (optional)
@@ -1117,7 +1117,7 @@ class UserModel extends CI_Model {
 	
 	* @return TRUE if update succeeded and FALSE if not
 	*/		
-	public function update_right($id, $name = NULL, $description = NULL)
+	public function updateRight($id, $name = NULL, $description = NULL)
 	{
 		if(empty($id)) return false;
 		
@@ -1157,7 +1157,7 @@ class UserModel extends CI_Model {
 	}	
 	
 	/**
-	* update_advice() is a method for updating a specific advice
+	* updateAdvice() is a method for updating a specific advice
 	
 	* @param $id advice id (required)
 	* @param $user_id new user id of advised user (optional)
@@ -1166,7 +1166,7 @@ class UserModel extends CI_Model {
 	
 	* @return TRUE if update succeeded and FALSE if not
 	*/		
-	public function update_advice($id, $user_id = NULL, $advisor_id = NULL, $advice = NULL)
+	public function updateAdvice($id, $user_id = NULL, $advisor_id = NULL, $advice = NULL)
 	{
 		if(empty($id)) return false;
 		
@@ -1215,13 +1215,13 @@ class UserModel extends CI_Model {
 	//-------------------------------------------------------------	
 	
 	/**
-	* delete_user() delete an user based on its id
+	* deleteUser() delete an user based on its id
 	
 	* @param $userid
 		
 	* @return a boolean (TRUE if deletion has been applied, FALSE if not)
 	*/		
-	public function delete_user($userid)
+	public function deleteUser($userid)
 	{
 		if(is_null($userid)) return false;
 		$sql="DELETE FROM utilisateur WHERE ut_id= ?";
@@ -1230,14 +1230,14 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* delete_user_role() remove a role for a specific user
+	* delete_userRole() remove a role for a specific user
 	
 	* @param $userid
 	* @param $roleid
 		
 	* @return a boolean (TRUE if deletion has been applied, FALSE if not)
 	*/		
-	public function delete_user_role($userid, $roleid)
+	public function deleteUserRole($userid, $roleid)
 	{
 		if(empty($userid)) return false;
 		if(empty($roleid)) return false;
@@ -1250,13 +1250,13 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* delete_user_all_role() remove all roles for a specific user
+	* delete_userAllRole() remove all roles for a specific user
 	
 	* @param $userid
 		
 	* @return a boolean (TRUE if deletion has been applied, FALSE if not)
 	*/	
-	public function delete_user_all_role($userid)
+	public function deleteUserAllRole($userid)
 	{
 		if(empty($userid)) return false;
 		
@@ -1268,13 +1268,13 @@ class UserModel extends CI_Model {
 	}	
 	
 	/**
-	* delete_role() delete a role based on its id
+	* deleteRole() delete a role based on its id
 	
 	* @param $roleid
 		
 	* @return a boolean (TRUE if deletion has been applied, FALSE if not)
 	*/		
-	public function delete_role($roleid)
+	public function deleteRole($roleid)
 	{
 		if(empty($roleid)) return false;
 		
@@ -1286,13 +1286,13 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* delete_right() delete a right based on its id
+	* deleteRight() delete a right based on its id
 	
 	* @param $rightid
 		
 	* @return a boolean (TRUE if deletion has been applied, FALSE if not)
 	*/		
-	public function delete_right($rightid)
+	public function deleteRight($rightid)
 	{
 		if(empty($rightid)) return false;
 		
@@ -1304,14 +1304,14 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* delete_role_right() remove a right for a specific role
+	* deleteRoleRight() remove a right for a specific role
 	
 	* @param $roleid
 	* @param $rightid
 		
 	* @return a boolean (TRUE if deletion has been applied, FALSE if not)
 	*/	
-	public function delete_role_right($roleid,$rightid)
+	public function deleteRoleRight($roleid,$rightid)
 	{
 		if(empty($rightid)) return false;
 		if(empty($roleid)) return false;
@@ -1324,13 +1324,13 @@ class UserModel extends CI_Model {
 	}
 	
 	/**
-	* delete_role_all_right() remove all rights for a specific role
+	* deleteRoleAllRight() remove all rights for a specific role
 	
 	* @param $roleid
 		
 	* @return a boolean (TRUE if deletion has been applied, FALSE if not)
 	*/			
-	public function delete_role_all_right($roleid)
+	public function deleteRoleAllRight($roleid)
 	{
 		if(empty($roleid)) return false;
 		
@@ -1342,13 +1342,13 @@ class UserModel extends CI_Model {
 	}	
 
 	/**
-	* delete_advice() delete an advice based on its id
+	* deleteAdvice() delete an advice based on its id
 	
 	* @param $advid advice id	
 		
 	* @return a boolean (TRUE if deletion has been applied, FALSE if not)
 	*/	
-	public function delete_advice($advid)
+	public function deleteAdvice($advid)
 	{
 		if(empty($advid)) return false;
 		
