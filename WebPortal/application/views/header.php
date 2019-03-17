@@ -20,10 +20,10 @@
             </div>
     		<nav>
     			<ul>
-    			<li><a href="<?php echo base_url("home/main"); ?>">Accueil</a></li>
-                    <li><a href="<?php echo base_url("home/help"); ?>">Help</a></li>
-                    <li><a href="<?php echo base_url("home/connect"); ?>">Connexion</a></li>
-                    <li><a href="<?php echo base_url("home/inscript"); ?>">Inscription</a></li>
+    			<li><a href="<?php echo base_url("home"); ?>">Accueil</a></li>
+                    <li><a href="<?php echo base_url("help"); ?>">Help</a></li>
+                    <li><a href="<?php echo base_url("connection"); ?>">Connexion</a></li>
+                    <li><a href="<?php echo base_url("connection/register"); ?>">Inscription</a></li>
     			</ul>
     		</nav>
     	</header>
