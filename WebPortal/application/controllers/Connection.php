@@ -11,6 +11,8 @@ class Connection extends CI_Controller {
         if($this->input->post('action')){
             // data sent
             print_r($this->UserModel->authentification($this->input->post('username'),$this->input->post('password')));
+            // Save user id inside session 'UserID' : $this->session, see https://www.codeigniter.com/userguide3/libraries/sessions.html
+            // Put user id $this->session->set_userdata('UserID', valeur ici);
         }
         $this->load->view('connection');
         $this->load->view('footer');
