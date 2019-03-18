@@ -3,7 +3,7 @@
 		<h1>Connexion</h1>
 <?php
 if($this->session->UserID):
-?>		<p id="success">Bienvenue <?=ucfirst($firstname).' '.str2upper($lastname);?>.</p>
+?>		<p id="success">Bienvenue <?=ucfirst($firstname).' '.strtoupper($lastname);?>.</p>
 
 <?php
 else:
