@@ -6,14 +6,19 @@ class Connection extends CI_Controller {
         parent::__construct();
         $this->load->model('UserModel');
     }
+    public function logout(){
+        $this->session->sess_destroy();
+        $this->index();
+    }
     public function index(){
-        $this->load->view('header');
+        $data = array();
         if($this->input->post('action')){
-            // data sent
-            print_r($this->UserModel->authentification($this->input->post('username'),$this->input->post('password')));
-            // Save user id inside session 'UserID' : $this->session, see https://www.codeigniter.com/userguide3/libraries/sessions.html
-            // Put user id $this->session->set_userdata('UserID', valeur ici);
+            $data = $this->UserModel->authentification($this->input->post('username'),$this->input->post('password'));
+            if($data !== false){
+                $this->session->set_userdata('UserID', $data['id']);
+            } 
         }
+        $this->load->view('header');
         $this->load->view('connection');
         $this->load->view('footer');
     }
