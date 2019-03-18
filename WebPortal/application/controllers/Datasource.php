@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class DataSource extends CI_Controller {
+class Datasource extends CI_Controller {
     public function __construct(){
         parent::__construct();
-        $this->load->model('DataSourceModel');
+        //$this->load->model('DataSourceModel');
     }
     public function index($sourceID=0){
         $sourceID = intval(ŝourceID);
