@@ -9,17 +9,17 @@ class Profil extends CI_Controller {
     }
     public function index($userID=null){
         if(is_null($userID)) $userID = $this->session->UserID;
+        $editable_login = false;
         if($userID != $this->session->UserID){
             // TODO get right to change user personal info
-            $data['editable_login'] = True;
-        }else{
-            $data['editable_login'] = False;
+            $editable_login = True;
         }
-        $data               = $this->UserModel->getUser($this->session->UserID);
-        $data['username']   = $data['login'];
-        $data['user_id']    = $data['id'];
-        $data['sharing']    = $data['visible'];
-        $data['advice']     = $data['advice'] == 1;
+        $data                   = $this->UserModel->getUser($this->session->UserID);
+        $data['username']       = $data['login'];
+        $data['user_id']        = $data['id'];
+        $data['sharing']        = $data['visible'];
+        $data['advice']         = $data['advice'] == 1;
+        $data['editable_login'] = $editable_login;
         foreach($data as $key => $value)
             $data[$key] = html_escape($value);
         
