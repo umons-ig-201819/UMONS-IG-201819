@@ -22,7 +22,11 @@
     			<ul>
     			<li><a href="<?php echo site_url("home"); ?>">Accueil</a></li>
                     <li><a href="<?php echo site_url("help"); ?>">Help</a></li>
+                    <?php if($this->session->UserID): ?>
+                    <li><a href="<?php echo site_url("connection/logout"); ?>">Connexion</a></li>
+                    <?php else: ?>
                     <li><a href="<?php echo site_url("connection"); ?>">Connexion</a></li>
+                    <?php endif; ?>
                     <li><a href="<?php echo site_url("connection/register"); ?>">Inscription</a></li>
     			</ul>
     		</nav>
