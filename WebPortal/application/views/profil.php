@@ -1,9 +1,9 @@
 <section>
 	<h1>Mon profil</h1>
-	<a href="<?=site_url('profil/remove');?>">Supprimer mon profil</a>
+	<a href="<?=site_url("profil/remove/$user_id");?>">Supprimer mon profil</a>
 	<article id="account_information">
 		<?php
-echo form_open('profil/update');
+echo form_open("profil/update/$user_id");
 echo form_fieldset('Donn&eacute;es personnelles');
 echo '<p>';
     echo form_label('Nom','lastname');
@@ -35,13 +35,13 @@ echo '<p>';
 echo '</p>';
 echo '<p>';
     echo form_label('Login','username');
-    echo form_input('username',$username,'id="username" readonly="readonly"');
+    echo form_input('username',$username,'id="username"'.($editable_login?'':' readonly="readonly"'));
 echo '</p>';
 echo form_submit('action', 'Modifier');
 
 echo '<p>';
-    echo '<a href="'.site_url('profil/password').'">Modifier mon mot de passe</a>';
-    echo '<a href="'.site_url('profil/data').'">Modifier mon mot de passe</a>';
+    echo '<a href="'.site_url("profil/password/$user_id").'">Modifier mon mot de passe</a>';
+    echo '<a href="'.site_url("profil/data/$user_id").'">Modifier mon mot de passe</a>';
 echo '</p>';
 
 echo form_fieldset_close();
@@ -50,22 +50,18 @@ echo form_close();
 	</article>
 	<article id="account_right">
 		<?php
-echo form_open('profil/rights');
+echo form_open("profil/rights/$user_id");
 echo form_fieldset('Droits d\'acc&egrave;s');
 echo '<p>';
-    echo form_label('Autoriser les &eacute;leveurs/agriculteurs &agrave; visualiser mes données&nbsp;?','farmer_enabled');
-    echo form_radio('farmer','1',$farmer, 'id="farmer_enabled"');
-    echo form_radio('farmer','0',!$farmer, 'id="farmer_disabled"');
+    echo form_label('Partager mes sources de donn&eacute;es','sharing_refuse');
+    echo form_radio('sharing','0',$sharing === 0, 'id="sharing_refuse"');
+    echo form_radio('sharing','2',$sharing === 1, 'id="sharing_request"');
+    echo form_radio('sharing','1',$sharing === 2, 'id="sharing_allow"');
 echo '</p>';
 echo '<p>';
-    echo form_label('Autoriser les conseillers &agrave; visualiser mes donn&eacute;es&nbsp;?','advisor_enabled');
-    echo form_radio('advisor','1',$advisor, 'id="advisor_enabled"');
-    echo form_radio('advisor','0',!$advisor, 'id="advisor_disabled"');
-echo '</p>';
-echo '<p>';
-    echo form_label('Autoriser les scientifiques &agrave; visualiser mes donn&eacute;es&nbsp;?','scientist_enabled');
-    echo form_radio('scientist','1',$scientist, 'id="scientist_enabled"');
-    echo form_radio('scientist','0',!$scientist, 'id="scientist_disabled"');
+    echo form_label('Recevoir les requêtes d\'accès aux données (si le partage n\'est pas d\'office autorisé).','advice_enabled');
+    echo form_radio('advice','1',$advise, 'id="advise_enabled"');
+    echo form_radio('advice','0',!$advise, 'id="advise_disabled"');
 echo '</p>';
 echo '<p>';
     echo form_label('En connaissance du R.G.P.D., j\'accepte que Wallesmart utilise mes données &agrave; des fins statistiques.','gdpr_enabled');

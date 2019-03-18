@@ -27,7 +27,7 @@ class UserModel extends CI_Model {
 	* @param $password (will be hashed inside this method with a SHA1 function)
 		
 	* @return an array containing user informations
-	* @see get_user() for the data structure of returned user
+	* @see getUser() for the data structure of returned user
 	*/
 	public function authentification($login,$password)
 	{
