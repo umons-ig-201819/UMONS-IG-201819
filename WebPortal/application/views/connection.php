@@ -7,7 +7,7 @@ if($this->session->UserID):
 
 <?php
 else:
-        if($data === false):
+        if($error):
 ?>
 		<p id="error">Erreur de login/mot de passe.</p>
 <?php

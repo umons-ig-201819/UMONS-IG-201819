@@ -16,10 +16,12 @@ class Connection extends CI_Controller {
             $data = $this->UserModel->authentification($this->input->post('username'),$this->input->post('password'));
             if($data !== false){
                 $this->session->set_userdata('UserID', $data['id']);
-            } 
+            }else{
+                $data = array('error' => true);
+            }
         }
         $this->load->view('header');
-        $this->load->view('connection');
+        $this->load->view('connection',$data);
         $this->load->view('footer');
     }
 }
