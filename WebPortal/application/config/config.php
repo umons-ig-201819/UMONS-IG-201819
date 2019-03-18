@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['server_ip']    = getHostByName(getHostName());
-$config['base_url']     = 'http://' . (preg_match('/^192.168.2.\d+$/',$config['server_ip']) ? $config['server_ip'] : 'localhost/UMONS-IG-201819/WebPortal/');
+$config['base_url']     = 'http://' . (preg_match('/^192.168.2.\d+$/',$config['server_ip']) ? "$config[server_ip]/index.php/" : 'localhost/UMONS-IG-201819/WebPortal/index.php/');
 
 /*
 |--------------------------------------------------------------------------
