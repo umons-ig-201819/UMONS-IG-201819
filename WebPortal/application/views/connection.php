@@ -2,7 +2,7 @@
 	<article>
 		<h1>Connexion</h1>
 <?php
-if($this->session->UserID):
+if(isset($this->session->UserID)):
 ?>		<p id="success">Bienvenue <?=ucfirst($firstname).' '.strtoupper($lastname);?>.</p>
 
 <?php
