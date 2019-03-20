@@ -246,7 +246,7 @@ class UserModel extends CI_Model {
 	* <br> $response['login'] 
 	* <br> $response['visible'] default visibility attribute for user files (0=hidden, 1=visible, 2=on demand)
 	* <br> $response['advice']  1 if a user is ok to receive advices and 0 if not
-	*/	
+	*/
 	public function getUser($userid) 			
 	{ 
 		if(is_null($userid)) return NULL;
