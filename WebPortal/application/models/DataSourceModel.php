@@ -3,7 +3,7 @@
  * \file      models/DataSourceModel.php
  * \author    EmilieG
  * \version   1.0
- * \date      2019-03-...
+ * \date      2019-03-22
  * \brief     Model to manage files linked with users and projects for the Wallesmart database
  *
  * \details   This class is supposed to be used with the codeigniter framework
