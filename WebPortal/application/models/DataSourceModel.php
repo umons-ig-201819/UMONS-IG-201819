@@ -83,32 +83,32 @@ class DataSourceModel extends CI_Model{
     //-------------------- INSERT ---------------------------------
     //-------------------------------------------------------------
     /**
-	 * addFileApp() is a method for adding a file
+	 * addDataSourceApp() is a method for adding a file
 
 	 * @param $userID is is the id of the owner of the data source
-	 * @param $fileApp is an array containing the informations about the data source
-	 * @param $fileApp ['name'] (required) is the name of the data source
-	 * @param $fileApp ['url'] (optional) is the access url to the data source (default value=NULL)
-	 * @param $fileApp ['appli'] (optional) means if the id is an application (1) or not (0) =default
-	 * @param $fileApp ['config'] (optional) could be, for exemple, a JSON app configuration file
-	 * @param $fileApp ['visible'] (required) means if the data source have to be hidden (=2), visible (=1) or on demand (=0, default)
+	 * @param $dataSource is an array containing the informations about the data source
+	 * @param $dataSource ['name'] (required) is the name of the data source
+	 * @param $dataSource ['url'] (optional) is the access url to the data source (default value=NULL)
+	 * @param $dataSource ['appli'] (optional) means if the id is an application (1) or not (0) =default
+	 * @param $dataSource ['config'] (optional) could be, for exemple, a JSON app configuration file
+	 * @param $dataSource ['visible'] (required) means if the data source have to be hidden (=2), visible (=1) or on demand (=0, default)
 	 * @return new data source id if insert succeeded and FALSE if not
 	 */
-	public function addFileApp($userID,$fileApp=NULL)
+	public function addDataSourceApp($userID,$dataSource=NULL)
 	{
 		if(empty($userID)) return false;
-		if(empty($fileApp ['name'])) return false;
+		if(empty($dataSource ['name'])) return false;
 		
-		$fName = $fileApp['name'];
+		$fName = $dataSource['name'];
 		
 		$sql = "INSERT INTO fichierappli
 					(f_id_proprio, f_nom, f_url, f_appli, f_config, f_visible_awe, f_dateajout)
 					VALUES (?,?,?,?,?,?,NOW())";
 		
-		$fURL=NULL; 		if(isset($fileApp ['url'])) $fURL=$fileApp ['url'];
-		$fAppli=0; 			if(isset($fileApp ['appli'])) $fAppli=intval($fileApp ['appli']);
-		$fConfig=NULL; 		if(isset($fileApp ['config'])) $fConfig=$fileApp ['config'];
-		$fVisible=0; 		if(isset($fileApp ['visible'])) $fVisible=intval($fileApp ['visible']);
+		$fURL=NULL; 		if(isset($dataSource ['url'])) $fURL=$dataSource ['url'];
+		$fAppli=0; 			if(isset($dataSource ['appli'])) $fAppli=intval($dataSource ['appli']);
+		$fConfig=NULL; 		if(isset($dataSource ['config'])) $fConfig=$dataSource ['config'];
+		$fVisible=0; 		if(isset($dataSource ['visible'])) $fVisible=intval($dataSource ['visible']);
 			
 		if( ! $this->db->query($sql, array(intval($userID), $fName, $fURL, intval($fAppli), $fConfig, intval($fVisible))) )
 		{
@@ -122,22 +122,22 @@ class DataSourceModel extends CI_Model{
 	/**
 	 * addFileProject() is a method to link a data source to a project
 	 
-	 * @param $fileID (required) is the id of a data source
-	 * @param $projID (required) is the id of the project
+	 * @param $dataSourceID (required) is the id of a data source
+	 * @param $projectID (required) is the id of the project
 	 * @param $askAccess (required) means if an access request is refused (2), if it is accepted (1) or if it is made (0) = default
 	 
 	 * @return TRUE if insert succeeded and FALSE if not
 	 */
-	public function addFileProject($fileID,$projID,$askAccess)
+	public function addDataSourceProject($dataSourceID,$projectID,$askAccess)
 	{
-		if(empty($fileID)) return false;
-		if(empty($projID)) return false;
+		if(empty($dataSourceID)) return false;
+		if(empty($projectID)) return false;
 			
 		$sql = "INSERT INTO fichier_projet
 					(fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
 					VALUES (?,?,?,NOW())";
 			
-		if( ! $this->db->query($sql, array(intval($fileID), intval($projID), intval($askAccess))) )
+		if( ! $this->db->query($sql, array(intval($dataSourceID), intval($projID), intval($askAccess))) )
 		{
 			return false;
 		} 
@@ -148,31 +148,31 @@ class DataSourceModel extends CI_Model{
 	/**
 	 * addFileUser() is a method to add a data source for a user
 
-	 * @param $fileID (required) is the id of a data source
+	 * @param $dataSourceID (required) is the id of a data source
 	 * @param $userID (required) is the id of a user
-	 * @param $fileUser (required) is an array containing the informations of the type of access has a user for a data source
-	 * @param $fileUser ['read'] (required) means if a user may read a data source or not (0) = default
-	 * @param $fileUser ['modify'] (required) means if a user may modify a data source or not (0) = default
-	 * @param $fileUser ['remove'] (required) means if a user may remove a data source or not (0) = default
-	 * @param $fileUser ['askaccess'] (required) means if an access request is refused (2), if it is accepted (1) or if the request is made (0) = default
+	 * @param $dataSourceUser (required) is an array containing the informations of the type of access has a user for a data source
+	 * @param $dataSourceUser ['read'] (required) means if a user may read a data source or not (0) = default
+	 * @param $dataSourceUser ['modify'] (required) means if a user may modify a data source or not (0) = default
+	 * @param $dataSourceUser ['remove'] (required) means if a user may remove a data source or not (0) = default
+	 * @param $dataSourceUser ['askaccess'] (required) means if an access request is refused (2), if it is accepted (1) or if the request is made (0) = default
 	 
 	 * @return TRUE if insert succeeded and FALSE if not
 	 */
-	public function addFileUser($fileID,$userID,$fileUser)
+	public function addFileUser($dataSourceID,$userID,$dataSourceUser)
 	{
-	    if(empty($fileID)) return false;
+	    if(empty($dataSourceID)) return false;
 	    if(empty($userID)) return false;
 		
 		$sql = "INSERT IGNORE INTO utilisateur_fichier
 					(uf_id_invite, uf_id_fichier, uf_lire, uf_modifier, uf_effacer, uf_demande_acces, uf_demande_date)
 					VALUES (?,?,?,?,?,?,NOW())";
 		
-		$fuRead='0'; 		if(isset($fileUser['read'])) 			$fuRead=intval($fileUser['read']);
-		$fuModify='0';		if(isset($fileUser['modify']))			$fuModify=intval($fileUser['modify']);
-		$fuRemove='0';		if(isset($fileUser['remove']))			$fuRemove=intval($fileUser['remove']);
-		$askAccess = '0';   if(isset($fileUser['askaccess']))       $askAccess=intval($fileUser['askaccess']);
+		$fuRead='0'; 		if(isset($dataSourceUser['read'])) 			    $fuRead=intval($dataSourceUser['read']);
+		$fuModify='0';		if(isset($dataSourceUser['modify']))			$fuModify=intval($dataSourceUser['modify']);
+		$fuRemove='0';		if(isset($dataSourceUser['remove']))			$fuRemove=intval($dataSourceUser['remove']);
+		$askAccess = '0';   if(isset($dataSourceUser['askaccess']))         $askAccess=intval($dataSourceUser['askaccess']);
 		
-		if( ! $this->db->query($sql, array(intval($userID), intval($fileID), intval($fuRead), intval($fuModify), intval($fuRemove), intval($askAccess))) )
+		if( ! $this->db->query($sql, array(intval($userID), intval($dataSourceID), intval($fuRead), intval($fuModify), intval($fuRemove), intval($askAccess))) )
 		{
 			return false;
 		}
@@ -186,71 +186,71 @@ class DataSourceModel extends CI_Model{
 	//-------------------------------------------------------------
 	  
 	/**
-     * deleteFile() delete a data source based on its id
+     * deleteDataSource() delete a data source based on its id
      
-     * @param $fileID
+     * @param $dataSourceID
      
      * @return a boolean (TRUE if deletion has been applied, FALSE if not)
      */
-    public function deleteFile($fileID)
+	public function deleteDataSource($dataSourceID)
     {
-        if(is_null($fileID)) return false;
+        if(is_null($dataSourceID)) return false;
         
 		$sql="DELETE FROM fichierappli WHERE f_id= ?";
         
-		if( ! $this->db->query($sql, array(intval($fileID))) ) return false;
+		if( ! $this->db->query($sql, array(intval($dataSourceID))) ) return false;
 		return true;
     
 	}
     
 	/**
-	 * deleteUserFile() remove a data source for a specific user
+	 * deleteUserDataSource() remove a data source for a specific user
 	 
 	 * @param $userID
-	 * @param $fileID
+	 * @param $dataSourceID
 	 
 	 * @return a boolean (TRUE if deletion has been applied, FALSE if not)
 	 */
-    public function deleteUserFile($userID, $fileID)
+	public function deleteUserDataSource($userID, $dataSourceID)
     {
-        if(empty($userID)) return false;
-        if(empty($fileID)) return false;
+        if(empty($dataSourceID)) return false;
+        if(empty($dataSourceID)) return false;
         
 		$sql="DELETE FROM utilisateur_fichier WHERE uf_id_fichier=? AND uf_id_invite=?";
 		
-		if( ! $this->db->query($sql, array(intval($userID), intval($fileID))) ) return false;
+		if( ! $this->db->query($sql, array(intval($userID), intval($dataSourceID))) ) return false;
         return true;  
     
 	}
 	
 	/**
-	 * deleteFileProject() remove a data source for a specific project
+	 * deleteDataSourceProject() remove a data source for a specific project
 	 
-	 * @param $fileID
+	 * @param $dataSourceID
 	 * @param $projID
 	 
 	 * @return a boolean (TRUE if deletion has been applied, FALSE if not)
 	 */
-    public function deleteFileProject($fileID, $projID)
+	public function deleteDataSourceProject($dataSourceID, $projID)
     {
-        if(empty($fileID)) return false;
+        if(empty($dataSourceID)) return false;
         if(empty($projID)) return false;
         
         $sql="DELETE FROM fichier_projet WHERE fp_id_projet=? AND fp_id_projet=?";
         
-		if( ! $this->db->query($sql, array(intval($fileID), intval($projID))) ) return false;
+        if( ! $this->db->query($sql, array(intval($dataSourceID), intval($projID))) ) return false;
         return true;
         
     }
     
     /**
-     * deleteAllFilesUser() remove all data sources for a specific user
+     * deleteAllDataSourcesUser() remove all data sources for a specific user
      
      * @param $userID
      
      * @return a boolean (TRUE if deletion has been applied, FALSE if not)
      */
-    public function deleteAllFilesUser($userID)
+    public function deleteAllDataSourcesUser($userID)
     {
         if(empty($userID)) return false;
         
@@ -262,55 +262,55 @@ class DataSourceModel extends CI_Model{
     }
 	
 	/**
-     * deleteAllUsersFile() remove all users for a specific data source
+     * deleteAllUsersDataSource() remove all users for a specific data source
      
-     * @param $fileID
+     * @param $dataSourceID
      
      * @return a boolean (TRUE if deletion has been applied, FALSE if not)
      */
-    public function deleteAllUsersFile($fileID)
+    public function deleteAllUsersDataSource($dataSourceID)
     {
-        if(empty($fileID)) return false;
+        if(empty($dataSourceID)) return false;
         
         $sql="DELETE FROM utilisateur_fichier WHERE uf_id_fichier=?";
         
-		if( ! $this->db->query($sql, array(intval($fileID))) ) return false;
+        if( ! $this->db->query($sql, array(intval($dataSourceID))) ) return false;
         return true;
         
     }
 	
 	/**
-     * deleteAllProjectsFile() remove all projects for a specific data source
+     * deleteAllProjectsDataSource() remove all projects for a specific data source
      
-     * @param $fileID
+     * @param $dataSourceID
      
      * @return a boolean (TRUE if deletion has been applied, FALSE if not)
      */
-    public function deleteAllProjectsFile($fileID)
+    public function deleteAllProjectsDataSource($dataSourceID)
     {
-        if(empty($fileID)) return false;
+        if(empty($dataSourceID)) return false;
         
         $sql="DELETE FROM fichier_projet WHERE fp_id_fichier=?";
         
-		if( ! $this->db->query($sql, array(intval($fileID))) ) return false;
+        if( ! $this->db->query($sql, array(intval($dataSourceID))) ) return false;
         return true;
         
     }
 	
 	/**
-     * deleteAllFilesProject() remove all data sources for a specific project
+     * deleteAllDataSourcesProject() remove all data sources for a specific project
      
-     * @param $projID
+     * @param $projectID
      
      * @return a boolean (TRUE if deletion has been applied, FALSE if not)
      */
-    public function deleteAllFilesProject($projID)
+    public function deleteAllDataSourcesProject($projectID)
     {
-        if(empty($projID)) return false;
+        if(empty($projectID)) return false;
         
         $sql="DELETE FROM fichier_projet WHERE fp_id_projet=?";
 		
-        if( ! $this->db->query($sql, array(intval($projID))) ) return false;
+        if( ! $this->db->query($sql, array(intval($projectID))) ) return false;
         return true;
         
     }
@@ -320,22 +320,22 @@ class DataSourceModel extends CI_Model{
     //-------------------------------------------------------------
 	
 	 /**
-     * updateFile() is a method for updating a specific data source
+     * updateDataSource() is a method for updating a specific data source
      
 	 * @param $userID is is the id of the owner of the data source
-	 * @param $fileApp is an array containing the informations about the data source
-	 * @param $fileAppID is the id of the data source
-	 * @param $fileApp ['name'] (optional) is the new name of the data source
-	 * @param $fileApp ['url'] (optional) is the new access url to the data source (default value=NULL)
-	 * @param $fileApp ['appli'] (optional) means if the id is an application (1) or not (0) =default
-	 * @param $fileApp ['config'] (optional) could be, for exemple, a JSON app configuration file
-	 * @param $fileApp ['visible'] (optional) means if the data source have to be hidden (=2), visible (=1) or if it is accessible on request (=0)
+	 * @param $dataSource is an array containing the informations about the data source
+	 * @param $dataSourceID is the id of the data source
+	 * @param $dataSource ['name'] (optional) is the new name of the data source
+	 * @param $dataSource ['url'] (optional) is the new access url to the data source (default value=NULL)
+	 * @param $dataSource ['appli'] (optional) means if the id is an application (1) or not (0) =default
+	 * @param $dataSource ['config'] (optional) could be, for exemple, a JSON app configuration file
+	 * @param $dataSource ['visible'] (optional) means if the data source have to be hidden (=2), visible (=1) or if it is accessible on request (=0)
      
      * @return TRUE if update succeeded and FALSE if not
      */
-    public function updateFile($fileAppID,$userID = NULL,$fileApp = NULL)
+    public function updateDataSource($dataSourceID,$userID = NULL,$dataSource = NULL)
     {       
-        if(empty($fileAppID)) return false;
+        if(empty($dataSourceID)) return false;
 
         $first=true;
         $params = array();
@@ -349,55 +349,55 @@ class DataSourceModel extends CI_Model{
                 $sql.=' f_id_proprio = ? ';
                 $params[] = $userID;
         }
-        if(isset($fileApp['name']))
+        if(isset($dataSource['name']))
         {
-            if(!empty($fileApp['name']))
+            if(!empty($dataSource['name']))
             {
                 if($first) $first=false;
                 else $sql.=', ';
                 
                 $sql.=' f_nom = ? ';
-                $params[] = $fileApp['name'];
+                $params[] = $dataSource['name'];
             }
         }
-        if(isset($fileApp['url']))
+        if(isset($dataSource['url']))
         {
-            if(!empty($fileApp['url']))
+            if(!empty($dataSource['url']))
             {
                 if($first) $first=false;
                 else $sql.=', ';
                 
                 $sql.=' f_url = ? ';
-                $params[] = $fileApp['url'];
+                $params[] = $dataSource['url'];
             }
         }
-        if(isset($fileApp ['appli']))
+        if(isset($dataSource ['appli']))
         {
                 if($first) $first=false;
                 else $sql.=', ';
                 
                 $sql.=' f_appli = ? ';
-                $params[] = $fileApp ['appli'];
+                $params[] = $dataSource ['appli'];
         }
-		if(isset($fileApp ['config']))
+        if(isset($dataSource ['config']))
         {
                 if($first) $first=false;
                 else $sql.=', ';
                 
                 $sql.=' f_config = ? ';
-                $params[] = $fileApp ['config'];
+                $params[] = $dataSource ['config'];
         }
-		if(isset($fileApp ['visible']))
+        if(isset($dataSource ['visible']))
         {
                 if($first) $first=false;
                 else $sql.=', ';
                 
                 $sql.=' f_visible_awe = ? ';
-                $params[] = $fileApp ['visible'];
+                $params[] = $dataSource ['visible'];
         }
 		
         $sql.= " WHERE f_id= ? ";
-        $params[] = intval($fileAppID);
+        $params[] = intval($dataSourceID);
         
         if($first) return false;
         
@@ -407,60 +407,60 @@ class DataSourceModel extends CI_Model{
     }
     
     /**
-     * updateFileUser() is a method for updating the access of a user to a data source
+     * updateDataSourceUser() is a method for updating the access of a user to a data source
      
-     * @param $fileID contains the id of the data source
+     * @param $dataSourceID contains the id of the data source
 	 * @param $userID is the id of the user
-     * @param $fileUser ['read'] (optional) means if a user may read a data source or not (0) = default
-	 * @param $fileUser ['modify'] (optional) means if a user may modify a data source or not (0) = default
-	 * @param $fileUser ['remove'] (optional) means if a user may remove a data source or not (0) = default
-	 * @param $fileUser ['askaccess'] (optional) means if an access request is refused (2), if it is accepted (1) or if the request is made (0) = default
+     * @param $dataSourceUser ['read'] (optional) means if a user may read a data source or not (0) = default
+	 * @param $dataSourceUser ['modify'] (optional) means if a user may modify a data source or not (0) = default
+	 * @param $dataSourceUser ['remove'] (optional) means if a user may remove a data source or not (0) = default
+	 * @param $dataSourceUser ['askaccess'] (optional) means if an access request is refused (2), if it is accepted (1) or if the request is made (0) = default
 		   
      * @return TRUE if update succeeded and FALSE if not
      */
-    public function updateFileUser($fileID, $userID, $fileUser = NULL)
+    public function updateDataSourceUser($dataSourceID, $userID, $dataSourceUser = NULL)
     {       
-        if(is_null($fileID)) return false;
+        if(is_null($dataSourceID)) return false;
         if(is_null($userID)) return false;
 		
 		$first=true;
         $params = array();
         $sql="UPDATE utilisateur_fichier SET ";
         
-		if(isset($fileUser ['read']))
+        if(isset($dataSourceUser['read']))
         {
                 if($first) $first=false;
                 else $sql.=', ';
                 
                 $sql.=' uf_lire = ? ';
-                $params[] = intval($fileUser ['read']);
+                $params[] = intval($dataSourceUser['read']);
         }
-		if(isset($fileUser ['modify']))
+        if(isset($dataSourceUser['modify']))
         {
                 if($first) $first=false;
                 else $sql.=', ';
                 
                 $sql.=' uf_modifier = ? ';
-                $params[] = intval($fileUser ['modify']);
+                $params[] = intval($dataSourceUser['modify']);
         }
-		if(isset($fileUser ['remove']))
+        if(isset($dataSourceUser['remove']))
         {
                 if($first) $first=false;
                 else $sql.=', ';
                 
                 $sql.=' uf_effacer = ? ';
-                $params[] = intval($fileUser ['remove']);
+                $params[] = intval($dataSourceUser['remove']);
         }
-		if(isset($fileUser ['askaccess']))
+        if(isset($dataSourceUser['askaccess']))
         {
                 if($first) $first=false;
                 else $sql.=', ';
                 
                 $sql.=' uf_demande_acces = ? ';
-                $params[] = intval($fileUser ['askaccess']);
+                $params[] = intval($dataSourceUser['askaccess']);
         }
         
-        $sql.= " WHERE uf_id_fichier= ".intval($fileID)." AND uf_id_invite = ".intval($userID);
+        $sql.= " WHERE uf_id_fichier= ".intval($dataSourceID)." AND uf_id_invite = ".intval($userID);
         
         if($first) return false;
         
@@ -470,18 +470,18 @@ class DataSourceModel extends CI_Model{
     }
 	
 	/**
-     * updateFileProject() is a method for updating the access of a project to a data source
+     * updateDataSourceProject() is a method for updating the access of a project to a data source
      
-     * @param $fileID contains the id of the the id of the data source
-	 * @param $projID is the ID of the project
+     * @param $dataSourceID contains the id of the the id of the data source
+	 * @param $projectID is the ID of the project
 	 * @param $askAccess (required) means if an access request is refused (2), if it is accepted (1) or if the request is made (0) = default
 		   
      * @return TRUE if update succeeded and FALSE if not
      */
-    public function updateFileProject($fileID, $projID, $askAccess)
+    public function updateDataSourceProject($dataSourceID, $projectID, $askAccess)
     {       
-        if(is_null($fileID)) return false;
-        if(is_null($projID)) return false;
+        if(is_null($dataSourceID)) return false;
+        if(is_null($projectID)) return false;
         		
 		$first=true;
         $params = array();
@@ -496,7 +496,7 @@ class DataSourceModel extends CI_Model{
                 $params[] = intval($askAccess);
         }
         
-        $sql.= " WHERE fp_id_projet= ".intval($projID)." AND fp_id_fichier = ".intval($fileID);
+        $sql.= " WHERE fp_id_projet= ".intval($projectID)." AND fp_id_fichier = ".intval($dataSourceID);
         
         if($first) return false;
         
@@ -511,9 +511,9 @@ class DataSourceModel extends CI_Model{
 	
 
 	/**
-     * getFile() this method returns a data source based on its id
+     * getDataSource() this method returns a data source based on its id
      
-     * @param $fileID file id
+     * @param $dataSourceID data source id
      
      * @return a data source with its informations
      * <br> $response['id'] is the data source id
@@ -525,9 +525,9 @@ class DataSourceModel extends CI_Model{
      * <br> $response['visible'] default visibility attribute for user files (0=hidden, 1=visible, 2=on demand)
      * <br> $response['add_date'] is the creation date of the data source in the database
      */
-    public function getFile($fileID)
+    public function getDataSource($dataSourceID)
     {
-        if(is_null($fileID)) return NULL;
+        if(is_null($dataSourceID)) return NULL;
         
         $sql="SELECT
 					f_id AS id,
@@ -540,7 +540,7 @@ class DataSourceModel extends CI_Model{
                     f_dateajout AS add_date
 				FROM fichierappli
 				WHERE (f_visible_awe = 0 OR f_visible_awe = 1) AND f_id = ? ";
-        $query = $this->db->query($sql, array($fileID));
+        $query = $this->db->query($sql, array($dataSourceID));
         $File=$query->row_array();
         
         return $File;
@@ -548,7 +548,7 @@ class DataSourceModel extends CI_Model{
 	}
 	
 	 /**
-     * getOwnerFiles() this method returns the data sources that belong to a user
+     * getOwnedDataSources() this method returns the data sources that belong to a user
      
      * @param $userID user id
      
@@ -561,7 +561,7 @@ class DataSourceModel extends CI_Model{
      * <br> $response['visible'] default visibility attribute for user files (0=hidden, 1=visible, 2=on demand)
      * <br> $response['add_date'] is the creation date of the data source in the database
      */
-    public function getOwnerFiles($userID)
+	public function getOwnedDataSources($userID)
     {
         if(is_null($userID)) return NULL;
         
@@ -583,7 +583,7 @@ class DataSourceModel extends CI_Model{
 	}
  	
 	/**
-	* getFiles() is a method for searching data sources in the database
+	* getDataSources() is a method for searching data sources in the database
 	
 	* @param $filter is optional and is an array containing search criterions
 	* @param $filter['file_name'] is optional and contains the name (can be partial) of searched data source(s)
@@ -596,9 +596,9 @@ class DataSourceModel extends CI_Model{
 	* @return an array of data sources (ordered by date)
 	* @see getFiles() for the data structure of returned data sources
 	*/
-	 public function getFiles($filter = NULL, $and = false)
-	 {
-	 $sql="SELECT
+	public function getDataSources($filter = NULL, $and = false)
+	{
+        $sql="SELECT
             	 f_id AS id,
             	 f_nom AS file_name,
             	 f_url AS file_url,
@@ -609,120 +609,119 @@ class DataSourceModel extends CI_Model{
             	 f_visible_awe AS visible
             	 FROM fichierappli
                  WHERE (f_visible_awe = 0 OR f_visible_awe = 1) ";
+        
+        $params = array();
 	 
-	 $params = array();
-	 
-	 if(!is_null($filter))
-	 {
-	 $first=true;
-	 $operator=' OR ';
-	 if($and) $operator=' AND ';
-	 
-	 foreach($filter as $k => $v)
-	 {
-	
-	 if($k=='file_name')
-	 {
-	     if($first)
-	     {
-	         $sql.=' AND ( ';
-	         $first=false;
-	     }
-	     else
-	     {
-	         $sql.=$operator;
-	     }
-	 $sql.='f_nom LIKE ?';
-	 $params[] = '%'.$v.'%'; 
-	 }
-	 
-	 if($k=='file_url')
-	 {
-	     if($first)
-	     {
-	         $sql.=' AND ( ';
-	         $first=false;
-	     }
-	     else
-	     {
-	         $sql.=$operator;
-	     }
-	 $sql.='f_url LIKE ?';
-	 $params[] = '%'.$v.'%';
-	 }
-	 
-	 if($k=='application')
-	 {
-	     if($first)
-	     {
-	         $sql.=' AND ( ';
-	         $first=false;
-	     }
-	     else
-	     {
-	         $sql.=$operator;
-	     }
-	 $sql.='f_appli = ?';
-	 $params[] = $v ;
-	 }
-	 
-	 if($k=='add_date')
-	 {
-	     if($first)
-	     {
-	         $sql.=' AND ( ';
-	         $first=false;
-	     }
-	     else
-	     {
-	         $sql.=$operator;
-	     }
-	 $sql.='DATE(f_dateajout) = ?';
-	 $params[] = $v ;
-	 }
-	 
-	 if($k=='ownerID')
-	 {
-	     if($first)
-	     {
-	         $sql.=' AND ( ';
-	         $first=false;
-	     }
-	     else
-	     {
-	         $sql.=$operator;
-	     }
-	 $sql.='f_id_proprio LIKE ?';
-	 $params[] = $v ;
-	 }
-	 
-	 if($k=='visible')
-	 {
-	     if($first)
-	     {
-	         $sql.=' AND ( ';
-	         $first=false;
-	     }
-	     else
-	     {
-	         $sql.=$operator;
-	     }
-	 $sql.='f_visible_awe = ?';
-	 $params[] = $v ;
-	 }
-	 }
-	   $sql.=' ) ';  	 
-	 }
-	 $sql.=' ORDER BY f_dateajout DESC';
-	 
-	 $query = $this->db->query($sql, $params);
-	 $files=$query->result_array();
-	 
-	 return $files;
+        if(!is_null($filter))
+        {
+            $first=true;
+            $operator=' OR ';
+            if($and) $operator=' AND ';
+            
+            foreach($filter as $k => $v)
+            {
+                if($k=='file_name')
+                {
+                    if($first)
+                    {
+                        $sql.=' AND ( ';
+                        $first=false;
+                    }
+                    else
+                    {
+                        $sql.=$operator;
+                    }
+                    $sql.='f_nom LIKE ?';
+                    $params[] = '%'.$v.'%'; 
+                }
+                
+                if($k=='file_url')
+                {
+                    if($first)
+                    {
+                        $sql.=' AND ( ';
+                        $first=false;
+                    }
+                    else
+                    {
+                        $sql.=$operator;
+                    }
+                    $sql.='f_url LIKE ?';
+                    $params[] = '%'.$v.'%';
+                }
+
+                if($k=='application')
+                {
+                    if($first)
+                    {
+                        $sql.=' AND ( ';
+                        $first=false;
+                    }
+                    else
+                    {
+                        $sql.=$operator;
+                    }
+                    $sql.='f_appli = ?';
+                    $params[] = $v ;
+                }
+
+                if($k=='add_date')
+                {
+                    if($first)
+                    {
+                        $sql.=' AND ( ';
+                        $first=false;
+                    }
+                    else
+                    {
+                        $sql.=$operator;
+                    }
+                    $sql.='DATE(f_dateajout) = ?';
+                    $params[] = $v ;
+                }
+                
+                if($k=='ownerID')
+                {
+                    if($first)
+                    {
+                        $sql.=' AND ( ';
+                        $first=false;
+                    }
+                    else
+                    {
+                        $sql.=$operator;
+                    }
+                    $sql.='f_id_proprio LIKE ?';
+                    $params[] = $v ;
+                }
+
+                if($k=='visible')
+                {
+                    if($first)
+                    {
+                        $sql.=' AND ( ';
+                        $first=false;
+                    }
+                    else
+                    {
+                         $sql.=$operator;
+                    }
+                    $sql.='f_visible_awe = ?';
+                    $params[] = $v ;
+                }
+            }
+            $sql.=' ) ';  	 
+        }
+        $sql.=' ORDER BY f_dateajout DESC';
+
+        $query = $this->db->query($sql, $params);
+        $dataSources=$query->result_array();
+
+        return $dataSources;
 	 }
 	
 	 /**
-	* getUserFiles() is a method for searching the data sources of a user in the database
+	* getUserDataSources() is a method for searching the data sources of a user in the database
 	
 	* @param $filter is optional and is an array containing search criterions
 	* @param $filter['file_name'] is optional and contains the name (can be partial) of searched data source(s)
@@ -739,9 +738,9 @@ class DataSourceModel extends CI_Model{
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
 	
 	* @return an array of files (ordered by date)
-	* @see getUserFiles() for the data structure of returned files
+	* @see getUserDataSources() for the data structure of returned files
 	*/
-	public function getUserFiles($userID,$filter = NULL, $and = false) 			
+	 public function getUserDataSources($userID,$filter = NULL, $and = false) 			
 	{ 
 	    if(is_null($userID)) return NULL;
 
@@ -882,13 +881,13 @@ class DataSourceModel extends CI_Model{
 		$sql.=' ORDER BY a.f_dateajout DESC';		
 
 		$query = $this->db->query($sql, $params);
-		$files=$query->result_array();		
+		$dataSources=$query->result_array();		
 		
-		return $files;
+		return $dataSources;
 	}
 	
 	/**
-	* getFileUsers() is a method for searching the users of a data source in the database
+	* getDataSourceUsers() is a method for searching the users of a data source in the database
 	
 	* @param $filter is optional and is an array containing search criterions
 	* @param $filter['user_name'] is optional and contains the lastname (can be partial) of searched user(s)
@@ -898,11 +897,11 @@ class DataSourceModel extends CI_Model{
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
 	
 	* @return an array of data source(s) (ordered by date)
-	* @see getUserFiles() for the data structure of returned files
+	* @see getDataSourceFiles() for the data structure of returned files
 	*/
-	public function getFileUsers($fileID,$filter = NULL, $and = false) 			
+	public function getDataSourceUsers($dataSourceID,$filter = NULL, $and = false) 			
 	{ 
-	    if(is_null($fileID)) return NULL;
+	    if(is_null($dataSourceID)) return NULL;
 	    
 	    $sql="SELECT
 					a.f_nom AS file_name,
@@ -922,7 +921,7 @@ class DataSourceModel extends CI_Model{
 				WHERE (a.f_visible_awe = 0 OR a.f_visible_awe = 1) AND uf_id_fichier = ?";
 		
 		$params = array();
-		$params[]=intval($fileID);
+		$params[]=intval($dataSourceID);
 		
 		if(!is_null($filter))
 		{
@@ -1004,7 +1003,7 @@ class DataSourceModel extends CI_Model{
 	}
 	
 	/**
-	* getProjectFiles() is a method for searching the data sources of a project in the database
+	* getProjectDataSources() is a method for searching the data sources of a project in the database
 	
 	* @param $filter is optional and is an array containing search criterions
 	* @param $filter['file_name'] is optional and contains the name (can be partial) of searched data source(s)
@@ -1018,11 +1017,11 @@ class DataSourceModel extends CI_Model{
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
 	
 	* @return an array of data sources (ordered by date)
-	* @see getProjectFiles() for the data structure of returned data sources
+	* @see getProjectDataSources() for the data structure of returned data sources
 	*/
-	public function getProjectFiles($projID,$filter = NULL, $and = false) 			
+	public function getProjectDataSources($projecID,$filter = NULL, $and = false) 			
 	{ 
-	    if(is_null($projID)) return NULL;
+	    if(is_null($projecID)) return NULL;
 	    $sql="SELECT
 					fp_id_projet AS projectID,
 					fp_id_fichier AS fileID,
@@ -1040,7 +1039,7 @@ class DataSourceModel extends CI_Model{
 				WHERE fp_id_projet = ? ";
 		
 		$params = array();
-		$params [] = intval($projID);
+		$params [] = intval($projecID);
 		
 		if(!is_null($filter))
 		{
@@ -1158,13 +1157,13 @@ class DataSourceModel extends CI_Model{
 		$sql.=' ORDER BY a.f_dateajout DESC';		
 
 		$query = $this->db->query($sql, $params);
-		$files=$query->result_array();		
+		$dataSources=$query->result_array();		
 		
-		return $files;
+		return $dataSources;
 	}
 	
 	/**
-	* getFileProjects() is a method for searching the projects linked with a data source in the database
+	* getDataSourceProjects() is a method for searching the projects linked with a data source in the database
 	
 	* @param $filter is optional and is an array containing search criterions
 	* @param $filter['project_name'] is optional and contains the name (can be partial) of searched project(s)
@@ -1173,11 +1172,11 @@ class DataSourceModel extends CI_Model{
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
 	
 	* @return an array of files (ordered by date)
-	* @see getUserFiles() for the data structure of returned projects
+	* @see getUserDataSources() for the data structure of returned projects
 	*/
-	public function getFileProjects($fileID, $filter = NULL, $and = false) 			
+	public function getDataSourceProjects($dataSourceID, $filter = NULL, $and = false) 			
 	{ 
-	    if(is_null($fileID)) return NULL;
+	    if(is_null($dataSourceID)) return NULL;
 	    $sql="SELECT
                     p.fp_id_projet AS project_ID,
                     projet.p_nom AS project_name,
@@ -1189,7 +1188,7 @@ class DataSourceModel extends CI_Model{
 				WHERE p.fp_id_fichier = ?";
 		
 		$params = array();
-		$params [] = intval($fileID);
+		$params [] = intval($dataSourceID);
 		
 		if(!is_null($filter))
 		{
