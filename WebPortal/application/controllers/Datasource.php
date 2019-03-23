@@ -77,6 +77,8 @@ class Datasource extends CI_Controller {
     public function index($sourceID=-1){
         $sourceID = intval($sourceID);
         
+        
+        /*
         $sources = $this->DataSourceModel->getUserDataSources($this->session->UserID);
         
         $options = array(
@@ -85,6 +87,15 @@ class Datasource extends CI_Controller {
         
         foreach($sources as $source){
             $options[$source['fileID']] = $source['file_name'];
+        }*/
+        $sources = $this->DataSourceModel->getAccessibleDataSources($this->session->UserID);
+        
+        $options = array(
+            '0'         => 'Veuillez s&eacute;lectionner une source',
+        );
+        
+        foreach($sources as $source){
+            $options[$source['id']] = $source['name'];
         }
         
         $notebook = json_decode(file_get_contents(self::ZEPPELIN_URL.'/api/notebook'),true);

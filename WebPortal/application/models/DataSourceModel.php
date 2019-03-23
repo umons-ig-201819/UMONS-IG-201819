@@ -720,6 +720,36 @@ class DataSourceModel extends CI_Model{
         return $dataSources;
 	 }
 	
+	 public function getAccessibleDataSources($userID){
+	     $userID = intval($userID);
+	     $sql = "
+            SELECT
+    	       `ds`.`f_id`              AS `id`,
+               `ds`.`f_id_proprio`      AS `owner_id`,
+               `ds`.`f_nom`             AS `name`,
+               `ds`.`f_url`             AS `url`,
+               `ds`.`f_appli`           AS `is_application`,
+               `ds`.`f_visible_awe`     AS `visibility`,
+               `ds`.`f_dateajout`       AS `published`
+    	     FROM `fichierappli` AS `ds`
+             WHERE
+                    `ds`.`visibility`=1
+                OR  `owner_id`= $userID
+                OR  $userID IN (SELECT `c_id_conseiller` FROM `conseil` WHERE `c_id_utilisateur` = `ds`.`f_id_proprio`)
+                OR  $userID IN (
+                                    SELECT `up`.`up_id_participant`
+                                    FROM `utilisateur_projet` AS `up`
+                                    LEFT JOIN `projet` AS `p` ON `up`.`up_id_projet`=`p`.`p_id`
+                                    LEFT JOIN `fichier_projet` AS `fp` ON `fp`.`fp_id_projet`=`p`.`p_id`
+                                    WHERE `fp`.`fp_demande_acces`=1 AND `fp`.`fp_id_fichier`=`ds`.`f_id`
+                               )
+	     ";
+	     $query = $this->db->query($sql, $params);
+	     $dataSources=$query->result_array();
+	     
+	     return $dataSources;
+	 }
+	 
 	 /**
 	* getUserDataSources() is a method for searching the data sources of a user in the database
 	
