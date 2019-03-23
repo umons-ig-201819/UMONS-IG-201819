@@ -19,11 +19,19 @@ class Datasource extends CI_Controller {
         $sourceID = intval($sourceID);
         
         $sources = $this->DataSourceModel->getUserDataSources($this->session->UserID);
-        print_r($sources);
         
         $options = array(
             '0'         => 'Veuillez s&eacute;lectionner une source',
         );
+        
+        foreach($sources as $source){
+            $options[$source['fileID']] = $source['file_name'];
+        }
+        
+        $notebook = $sources['file_url'];
+        
+        print_r(file_get_contents('http://192.168.2.169:8080/api/notebook'));
+        
         
         $data = array(
             'selected'          => $sourceID,
