@@ -94,7 +94,7 @@ print("paragraph found");
         if(!preg_match('/^[0-9a-zA-Z]+$/', $sourceID)) $sourceID = '';
         
         $url = null;
-        if(!empty($sourceID) && array_key_exists($sourceID, $sources)){
+        if(!empty($sourceID) && array_key_exists($sourceID, $options)){
             $url = $this->getWorkingCopy($sourceID);
         }else{
             print_r($sources);
