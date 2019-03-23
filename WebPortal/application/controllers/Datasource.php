@@ -48,14 +48,19 @@ class Datasource extends CI_Controller {
         if(is_null($notesList)){
             $notesList = json_decode(file_get_contents(self::ZEPPELIN_URL.'/api/notebook'),true);
         }
+print_r($notesList);
         $workingNote = createNoteIfNotExists($notesList);
+print_r($workingNote);
         $paragraphs  = listParagraphs($workingNote);
+print_r($paragraphs);
         $paragraphID = null;
         foreach($paragraphs as $paragraph){
             if($paragraph['title'] == $originNote)
                 $paragraphID = $paragraph['id'];
         }
+print_r($paragraphID);
         if(is_null($paragraphID)){
+print('is null');
             // Create a copy of the first paragraph of the $originNote to $workingNote entitled with the $originNote identifier
             $source = listParagraphs($originNote);
             $headers = array('http' =>
@@ -69,6 +74,7 @@ class Datasource extends CI_Controller {
             $result      = file_get_contents(self::ZEPPELIN_URL.'/api/notebook/$workingNote/paragraph', true, $context);
             $paragraphID = $result['body'];
         }else{
+print('not null');
             // Update
             file_get_contents(self::ZEPPELIN_URL."/api/notebook/job/$workingNote/$paragraphID");
         }
