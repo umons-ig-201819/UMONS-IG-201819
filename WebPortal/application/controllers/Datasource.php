@@ -56,7 +56,6 @@ class Datasource extends CI_Controller {
                 $paragraphID = $paragraph['id'];
         }
         if(is_null($paragraphID)){
-print("paragraph not found");
             // Create a copy of the first paragraph of the $originNote to $workingNote entitled with the $originNote identifier
             $source = $this->listParagraphs($originNote);
             $headers = array('http' =>
@@ -69,7 +68,6 @@ print("paragraph not found");
             print('@'.$headers['http']['content'].'@');
             $context      = stream_context_create($headers);
             $result      = json_decode(file_get_contents(self::ZEPPELIN_URL."/api/notebook/$workingNote/paragraph", true, $context),true);
-print_r($result);
             $paragraphID = $result['body'];
         }else{
             // Update
