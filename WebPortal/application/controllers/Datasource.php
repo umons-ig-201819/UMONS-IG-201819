@@ -106,12 +106,14 @@ class Datasource extends CI_Controller {
         if($sourceID >= 0 && array_key_exists($sourceID, $sources)){
             $url = getWorkingCopy($sourceID);
         }
-        
+
         $data = array(
             'selected'          => $sourceID,
             'url'               => $url,
             'options'           => $options
         );
+        
+        print_r($data);
         
         $this->load->view('header');
         $this->load->view('datasource',$data);
