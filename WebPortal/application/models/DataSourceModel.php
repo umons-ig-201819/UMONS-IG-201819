@@ -733,8 +733,8 @@ class DataSourceModel extends CI_Model{
                `ds`.`f_dateajout`       AS `published`
     	     FROM `fichierappli` AS `ds`
              WHERE
-                    `ds`.`visibility`=1
-                OR  `owner_id`= $userID
+                    `ds`.`f_visible_awe`=1
+                OR  `ds`.`f_id_proprio`= $userID
                 OR  $userID IN (SELECT `c_id_conseiller` FROM `conseil` WHERE `c_id_utilisateur` = `ds`.`f_id_proprio`)
                 OR  $userID IN (
                                     SELECT `up`.`up_id_participant`
