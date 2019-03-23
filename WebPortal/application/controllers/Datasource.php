@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Datasource extends CI_Controller {
+    public const ZEPPELIN_URL = 'http://192.168.2.169:8080';
     public function __construct(){
         parent::__construct();
         $this->load->model('DataSourceModel');
@@ -15,6 +16,12 @@ class Datasource extends CI_Controller {
      https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/credential.html
      https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/helium.html
      */
+    private function getSource($sourceURL){// Must have access to $sourceID
+        $notebook = $sources["$sourceID"]['file_url'];
+        $json = file_get_contents(self::ZEPPELIN_URL.'/api/notebook');
+        $data = json_decode($json);
+        print_r($data);
+    }
     public function index($sourceID=-1){
         $sourceID = intval($sourceID);
         
@@ -30,13 +37,13 @@ class Datasource extends CI_Controller {
         
         if($sourceID >= 0 && array_key_exists($sourceID, $sources)){
             $notebook = $sources["$sourceID"]['file_url'];
-            $json = file_get_contents('http://192.168.2.169:8080/api/notebook');
+            $json = file_get_contents(self::ZEPPELIN_URL.'/api/notebook');
             $data = json_decode($json);
             print_r($data);
             
         }
         echo "Test 2\n";
-        print_r(json_decode(file_get_contents("http://92.168.2.169:8080/api/notebook/2E5CQKJ2U")));
+        print_r(json_decode(file_get_contents(self::ZEPPELIN_URL.'/api/notebook/2E5CQKJ2U')));
         
 /*
  * {"status":"OK","message":"",
