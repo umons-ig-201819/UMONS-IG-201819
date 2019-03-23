@@ -1,61 +1,43 @@
 <?php
 
-// Connexion test case
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+//require_once("../../lib/go-pear.phar");
+define("__ROOT__",dirname(dirname(dirname(__FILE__))));
+require_once(__ROOT__.'/WebPortal/application/models/UserModel.php');
 
+// Connexion test case
+echo "test";
 class ConnexionTest extends PHPUnit_Framework_TestCase
 {
-
+    
     /**
      *
      * @var Connexion
      */
     private $connexion;
-
-    /**
-     * Prepares the environment before running a test.
-     */
-    protected function setUp()
+    
+    
+    
+    
+    public function testAuthentification($login, $password)
     {
-        parent::setUp();
-
-        // TODO Auto-generated ConnexionTest::setUp()
-
-        $this->connexion = new Connexion(/* parameters */);
-    }
-
-    /**
-     * Cleans up the environment after running a test.
-     */
-    protected function tearDown()
-    {
-        // TODO Auto-generated ConnexionTest::tearDown()
-        $this->connexion = null;
-
-        parent::tearDown();
-    }
-
-    /**
-     * Constructs the test case.
-     */
-    public function __construct()
-    {
-        // TODO Auto-generated constructor
-    }
-    
-    
-    
-    public function testAuthentification($login, $password){
-        $login="acools";
-        $password="test";
         
+        $a=new UserModel;
+        $a->authentification("acools","test");
         
-        $this->notassertequal(false, authentification($login,$password));
+        //echo ($this->assertequal(false, authentification($login,$password)));
         
         
         
     }
     
+    //test
     
     
 }
+$login="acools";
+$password="test";
+$test= new ConnexionTest;
+$test->testAuthentification($login, $password);
 
