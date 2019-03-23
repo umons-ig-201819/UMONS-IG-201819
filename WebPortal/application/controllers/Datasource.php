@@ -4,11 +4,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Datasource extends CI_Controller {
     public function __construct(){
         parent::__construct();
-        //$this->load->model('DataSourceModel');
+        $this->load->model('DataSourceModel');
     }
+    /*
+     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/interpreter.html
+     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/zeppelin_server.html
+     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/notebook.html
+     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/notebook_repository.html
+     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/configuration.html
+     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/credential.html
+     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/helium.html
+     */
     public function index($sourceID=-1){
         $sourceID = intval($sourceID);
-                
+        
+        $sources = $this->DataSourceModel->getUserDataSources($this->session->UserID);
+        print_r($sources);
+        
         $options = array(
             '0'         => 'Veuillez s&eacute;lectionner une source',
         );
@@ -29,12 +41,14 @@ class Datasource extends CI_Controller {
             $userID                         = $this->session->UserID;
             $path_parts                     = pathinfo($_FILES["datafile"]["name"]);
             
-            $config['upload_path']          = "/var/nfs/general/$userID/";
-            $config['allowed_types']        = 'csv|mdb|accdb';
-            $config['max_size']             = 100;
-            $config['file_ext_tolower']     = true;
-            $config['detect_mime']          = true;
-            $config['file_name']            = dechex(time()).'.'.strtolower($path_parts['extension']);
+            $config = array(
+                'upload_path'          => "/var/nfs/general/$userID/",
+                'allowed_types'        => 'csv|mdb|accdb',
+                'max_size'             => 100,
+                'file_ext_tolower'     => true,
+                'detect_mime'          => true,
+                'file_name'            => dechex(time()).'.'.strtolower($path_parts['extension'])
+            );
             
             $this->load->library('upload', $config);
             
