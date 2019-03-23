@@ -18,7 +18,7 @@ class Datasource extends CI_Controller {
         $notesList = $notesList['body'];
         $name = "user/work-".$this->session->UserID;
         foreach($notesList as $note){
-            if($note['name']==$name) {echo "note found $note[id]\n";return $note['id'];}
+            if($note['name']==$name) return $note['id'];
         }
         $headers = array('http' =>
             array(
@@ -29,8 +29,6 @@ class Datasource extends CI_Controller {
         );
         $context  = stream_context_create($headers);
         $result = file_get_contents(self::ZEPPELIN_URL.'/api/notebook', true, $context);
-echo "Creation d'une note :\n";
-print_r($result);
         return $result['body'];
     }
     private function listParagraphs($noteID){
@@ -71,7 +69,7 @@ print("paragraph not found");
                 )
             );
             $context      = stream_context_create($headers);
-            $result      = file_get_contents(self::ZEPPELIN_URL.'/api/notebook/$workingNote/paragraph', true, $context);
+            $result      = file_get_contents(self::ZEPPELIN_URL."/api/notebook/$workingNote/paragraph", true, $context);
             $paragraphID = $result['body'];
         }else{
 print("paragraph found");
@@ -96,8 +94,6 @@ print("paragraph found");
         $url = null;
         if(!empty($sourceID) && array_key_exists($sourceID, $options)){
             $url = $this->getWorkingCopy($sourceID);
-        }else{
-            print_r($sources);
         }
 
         $data = array(
