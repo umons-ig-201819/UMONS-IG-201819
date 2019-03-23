@@ -9,18 +9,70 @@ class Datasource extends CI_Controller {
     }
     /*
      https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/interpreter.html
-     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/zeppelin_server.html
      https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/notebook.html
-     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/notebook_repository.html
-     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/configuration.html
-     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/credential.html
-     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/helium.html
      */
-    private function getSource($sourceURL){// Must have access to $sourceID
-        $notebook = $sources["$sourceID"]['file_url'];
-        $json = file_get_contents(self::ZEPPELIN_URL.'/api/notebook');
-        $data = json_decode($json);
-        print_r($data);
+    private function createNoteIfNotExists($notesList=null){
+        if(is_null($notesList)){
+            $notesList = json_decode(file_get_contents(self::ZEPPELIN_URL.'/api/notebook'),true);
+        }
+        $notesList = $notesList['body'];
+        $name = "user/work-".$this->session->UserID;
+        foreach($notesList as $note){
+            if($note['name']==$name) return $note['id'];
+        }
+        $headers = array('http' =>
+            array(
+                'method'  => 'POST',
+                'header'  => 'Content-Type: application/x-www-form-urlencoded',
+                'content' => '{"name": "'.$name.'"}'
+            )
+        );
+        $context  = stream_context_create($headers);
+        $result = file_get_contents(self::ZEPPELIN_URL.'/api/notebook', true, $context);
+        return $result['body'];
+    }
+    private function listParagraphs($noteID){
+        $information = json_decode(file_get_contents(self::ZEPPELIN_URL."/api/notebook/$noteID"),true);
+        $information = $information['body']['paragraphs'];
+        $result      = array();
+        foreach($information as $paragraph){
+            $tmp = array();
+            $tmp['title'] = array_key_exists('title',$paragraph) ? $paragraph['title'] : '' ;
+            $tmp['text']  = array_key_exists('text' ,$paragraph) ? $paragraph['text' ] : '' ;
+            $tmp['id']    = array_key_exists('id'   ,$paragraph) ? $paragraph['id' ]   : '' ;
+            array_push($result,$tmp);
+        }
+        return $result;
+    }
+    private function getWorkingCopy($originNote,$notesList=null){// Must have access to $sourceID
+        if(is_null($notesList)){
+            $notesList = json_decode(file_get_contents(self::ZEPPELIN_URL.'/api/notebook'),true);
+        }
+        $workingNote = createNoteIfNotExists($notesList);
+        $paragraphs  = listParagraphs($workingNote);
+        $paragraphID = null;
+        foreach($paragraphs as $paragraph){
+            if($paragraph['title'] == $originNote)
+                $paragraphID = $paragraph['id'];
+        }
+        if(is_null($paragraphID)){
+            // Create a copy of the first paragraph of the $originNote to $workingNote entitled with the $originNote identifier
+            $source = listParagraphs($originNote);
+            $headers = array('http' =>
+                array(
+                    'method'  => 'POST',
+                    'header'  => 'Content-Type: application/x-www-form-urlencoded',
+                    'content' => '{"title": "'.$originNote.'", "text": "'.$source[0]['text'].'"}'// TODO check if dubble-quotes (") is properly handled
+                )
+            );
+            $context      = stream_context_create($headers);
+            $result      = file_get_contents(self::ZEPPELIN_URL.'/api/notebook/$workingNote/paragraph', true, $context);
+            $paragraphID = $result['body'];
+        }else{
+            // Update
+            file_get_contents(self::ZEPPELIN_URL."/api/notebook/job/$workingNote/$paragraphID");
+        }
+        return self::ZEPPELIN_URL."/#/notebook/$workingNote/paragraph/$paragraphID?asIframe";
     }
     public function index($sourceID=-1){
         $sourceID = intval($sourceID);
@@ -35,42 +87,18 @@ class Datasource extends CI_Controller {
             $options[$source['fileID']] = $source['file_name'];
         }
         
+        $notebook = json_decode(file_get_contents(self::ZEPPELIN_URL.'/api/notebook'),true);
+        
+        $url = null;
+        
+        
         if($sourceID >= 0 && array_key_exists($sourceID, $sources)){
-            $notebook = $sources["$sourceID"]['file_url'];
-            $json = file_get_contents(self::ZEPPELIN_URL.'/api/notebook');
-            $data = json_decode($json);
-            print_r($data);
-            
+            $url = getWorkingCopy($sourceID);
         }
-        echo "Test 2\n";
-        print_r(json_decode(file_get_contents(self::ZEPPELIN_URL.'/api/notebook/2E5CQKJ2U')));
-        
-/*
- * {"status":"OK","message":"",
- *      "body":[
- *          {"name":"Zeppelin Tutorial/Basic Features (Spark)","id":"2A94M5J1Z"},
- *          {"name":"Zeppelin Tutorial/Matplotlib (Python • PySpark)","id":"2C2AUG798"},
- *          {"name":"Zeppelin Tutorial/R (SparkR)","id":"2BWJFTXKJ"},
- *          {"name":"Zeppelin Tutorial/Using Flink for batch processing","id":"2C35YU814"},
- *          {"name":"Zeppelin Tutorial/Using Mahout","id":"2BYEZ5EVK"},
- *          {"name":"Zeppelin Tutorial/Using Pig for querying data","id":"2C57UKYWR"},
- *          {"name":"test-access","id":"2E5MMRQK9"},
- *          {"name":"test-csv","id":"2E6UBUUT8"},
- *          {"name":"test-mariadb","id":"2E3GME58D"},
- *          {"name":"test-postgresql","id":"2E5CQKJ2U"},
- *          {"name":"test-python","id":"2E67ZW96V"},
- *          {"name":"test-rest","id":"2E6SRTGQJ"}
- *       ]
- * }
-
- */
-        print_r();
-        
         
         $data = array(
             'selected'          => $sourceID,
-            'notebook_table'    => 'http://192.168.2.169:8080/#/notebook/2E6UBUUT8',
-            'notebook_graph'    => 'http://192.168.2.169:8080/#/notebook/2E6UBUUT8/paragraph/20190217-060926_1012400790?asIframe',
+            'url'               => $url,
             'options'           => $options
         );
         

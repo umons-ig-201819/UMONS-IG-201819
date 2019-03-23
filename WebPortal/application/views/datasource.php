@@ -13,6 +13,5 @@ echo form_fieldset_close();
 echo form_close();
 		?>
 	</article>
-	<iframe id="table_view" src="<?=$notebook_table?>" sandbox="allow-plugins allow-scripts allow-same-origin"></iframe>
-	<iframe id="graph_view" src="<?=$notebook_graph?>" sandbox="allow-plugins allow-scripts allow-same-origin"></iframe>
+	<iframe id="table_view" src="<?=$url?>" sandbox="allow-plugins allow-scripts allow-same-origin"></iframe>
 </section>
