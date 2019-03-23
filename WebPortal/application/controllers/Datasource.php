@@ -18,6 +18,7 @@ class Datasource extends CI_Controller {
         $notesList = $notesList['body'];
         $name = "user/work-".$this->session->UserID;
         foreach($notesList as $note){
+            print_r($note);
             if($note['name']==$name) return $note['id'];
         }
         $headers = array('http' =>
@@ -29,6 +30,7 @@ class Datasource extends CI_Controller {
         );
         $context  = stream_context_create($headers);
         $result = file_get_contents(self::ZEPPELIN_URL.'/api/notebook', true, $context);
+        print_r($result);
         return $result['body'];
     }
     private function listParagraphs($noteID){
