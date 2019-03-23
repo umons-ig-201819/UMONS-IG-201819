@@ -95,7 +95,7 @@ class Datasource extends CI_Controller {
         );
         
         foreach($sources as $source){
-            $options[$source['id']] = $source['name'];
+            $options[$source['url']] = $source['name'];
         }
         
         $notebook = json_decode(file_get_contents(self::ZEPPELIN_URL.'/api/notebook'),true);
@@ -112,8 +112,6 @@ class Datasource extends CI_Controller {
             'url'               => $url,
             'options'           => $options
         );
-        
-        print_r($data);
         
         $this->load->view('header');
         $this->load->view('datasource',$data);
