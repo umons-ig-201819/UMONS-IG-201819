@@ -74,10 +74,7 @@ class Datasource extends CI_Controller {
         }
         return self::ZEPPELIN_URL."/#/notebook/$workingNote/paragraph/$paragraphID?asIframe";
     }
-    public function index($sourceID=-1){
-        $sourceID = intval($sourceID);
-        
-        
+    public function index($sourceID='0'){
         /*
         $sources = $this->DataSourceModel->getUserDataSources($this->session->UserID);
         
@@ -98,11 +95,9 @@ class Datasource extends CI_Controller {
             $options[$source['url']] = $source['name'];
         }
         
-        $notebook = json_decode(file_get_contents(self::ZEPPELIN_URL.'/api/notebook'),true);
+        if(!preg_match('/^[0-9a-zA-Z]+$/', $sourceID)) $sourceID = 0;
         
         $url = null;
-        
-        
         if($sourceID >= 0 && array_key_exists($sourceID, $sources)){
             $url = getWorkingCopy($sourceID);
         }
