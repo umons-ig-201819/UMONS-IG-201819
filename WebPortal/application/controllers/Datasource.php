@@ -63,7 +63,7 @@ print("paragraph not found");
                 array(
                     'method'  => 'POST',
                     'header'  => 'Content-Type: application/x-www-form-urlencoded',
-                    'content' => '{"title": "'.$originNote.'", "text": "'.$source[0]['text'].'"}'// TODO check if dubble-quotes (") is properly handled
+                    'content' => '{"title": "'.$originNote.'", "text": "'.preg_replace('/"/','\\"',$source[0]['text']).'"}'// TODO check if dubble-quotes (") is properly handled
                 )
             );
             print('@'.$headers['http']['content'].'@');
