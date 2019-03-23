@@ -28,9 +28,36 @@ class Datasource extends CI_Controller {
             $options[$source['fileID']] = $source['file_name'];
         }
         
-        $notebook = $sources['file_url'];
+        if($sourceID >= 0 && array_key_exists($sourceID, $sources)){
+            $notebook = $sources["$sourceID"]['file_url'];
+            $json = file_get_contents('http://192.168.2.169:8080/api/notebook');
+            $data = json_decode($json);
+            print_r($data);
+            
+        }
+        echo "Test 2\n";
+        print_r(json_decode(file_get_contents("http://92.168.2.169:8080/api/notebook/2E5CQKJ2U")));
         
-        print_r(file_get_contents('http://192.168.2.169:8080/api/notebook'));
+/*
+ * {"status":"OK","message":"",
+ *      "body":[
+ *          {"name":"Zeppelin Tutorial/Basic Features (Spark)","id":"2A94M5J1Z"},
+ *          {"name":"Zeppelin Tutorial/Matplotlib (Python • PySpark)","id":"2C2AUG798"},
+ *          {"name":"Zeppelin Tutorial/R (SparkR)","id":"2BWJFTXKJ"},
+ *          {"name":"Zeppelin Tutorial/Using Flink for batch processing","id":"2C35YU814"},
+ *          {"name":"Zeppelin Tutorial/Using Mahout","id":"2BYEZ5EVK"},
+ *          {"name":"Zeppelin Tutorial/Using Pig for querying data","id":"2C57UKYWR"},
+ *          {"name":"test-access","id":"2E5MMRQK9"},
+ *          {"name":"test-csv","id":"2E6UBUUT8"},
+ *          {"name":"test-mariadb","id":"2E3GME58D"},
+ *          {"name":"test-postgresql","id":"2E5CQKJ2U"},
+ *          {"name":"test-python","id":"2E67ZW96V"},
+ *          {"name":"test-rest","id":"2E6SRTGQJ"}
+ *       ]
+ * }
+
+ */
+        print_r();
         
         
         $data = array(
