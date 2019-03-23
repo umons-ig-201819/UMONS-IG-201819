@@ -28,7 +28,7 @@ class Datasource extends CI_Controller {
             )
         );
         $context  = stream_context_create($headers);
-        $result = file_get_contents(self::ZEPPELIN_URL.'/api/notebook', true, $context);
+        $result = json_decode(file_get_contents(self::ZEPPELIN_URL.'/api/notebook', true, $context),true);
         return $result['body'];
     }
     private function listParagraphs($noteID){
@@ -68,11 +68,10 @@ print("paragraph not found");
             );
             print('@'.$headers['http']['content'].'@');
             $context      = stream_context_create($headers);
-            $result      = file_get_contents(self::ZEPPELIN_URL."/api/notebook/$workingNote/paragraph", true, $context);
+            $result      = json_decode(file_get_contents(self::ZEPPELIN_URL."/api/notebook/$workingNote/paragraph", true, $context),true);
 print_r($result);
             $paragraphID = $result['body'];
         }else{
-print("paragraph found");
             // Update
             file_get_contents(self::ZEPPELIN_URL."/api/notebook/job/$workingNote/$paragraphID");
         }
