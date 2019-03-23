@@ -42,8 +42,6 @@ class Datasource extends CI_Controller {
             $tmp['id']    = array_key_exists('id'   ,$paragraph) ? $paragraph['id' ]   : '' ;
             array_push($result,$tmp);
         }
-print("List paragraphs:\n");
-print_r($result);
         return $result;
     }
     private function getWorkingCopy($originNote,$notesList=null){// Must have access to $sourceID
@@ -68,9 +66,10 @@ print("paragraph not found");
                     'content' => '{"title": "'.$originNote.'", "text": "'.$source[0]['text'].'"}'// TODO check if dubble-quotes (") is properly handled
                 )
             );
+            print("@$headers[content]@");
             $context      = stream_context_create($headers);
             $result      = file_get_contents(self::ZEPPELIN_URL."/api/notebook/$workingNote/paragraph", true, $context);
-            print_r($result);
+print_r($result);
             $paragraphID = $result['body'];
         }else{
 print("paragraph found");
