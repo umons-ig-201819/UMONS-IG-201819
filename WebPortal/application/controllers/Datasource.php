@@ -96,6 +96,8 @@ print("paragraph found");
         $url = null;
         if(!empty($sourceID) && array_key_exists($sourceID, $sources)){
             $url = $this->getWorkingCopy($sourceID);
+        }else{
+            print_r($sources);
         }
 
         $data = array(

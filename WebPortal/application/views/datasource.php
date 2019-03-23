@@ -13,5 +13,7 @@ echo form_fieldset_close();
 echo form_close();
 		?>
 	</article>
+	<?php if(isset($url) && !empty($url)): ?>
 	<iframe id="table_view" width="100%" src="<?=$url;?>" sandbox="allow-plugins allow-scripts allow-same-origin"></iframe>
+	<?php endif; ?>
 </section>
