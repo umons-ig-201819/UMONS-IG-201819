@@ -70,6 +70,7 @@ print("paragraph not found");
             );
             $context      = stream_context_create($headers);
             $result      = file_get_contents(self::ZEPPELIN_URL."/api/notebook/$workingNote/paragraph", true, $context);
+            print_r($result);
             $paragraphID = $result['body'];
         }else{
 print("paragraph found");
