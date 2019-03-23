@@ -1,8 +1,7 @@
 <?php
 
-/**
- * Connexion test case.
- */
+// Connexion test case
+
 class ConnexionTest extends PHPUnit_Framework_TestCase
 {
 
@@ -42,5 +41,21 @@ class ConnexionTest extends PHPUnit_Framework_TestCase
     {
         // TODO Auto-generated constructor
     }
+    
+    
+    
+    public function testAuthentification($login, $password){
+        $login="acools";
+        $password="test";
+        
+        
+        $this->notassertequal(false, authentification($login,$password));
+        
+        
+        
+    }
+    
+    
+    
 }
 

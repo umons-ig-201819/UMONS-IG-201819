@@ -29,7 +29,8 @@
                     <?php else: ?>
                     <li><a href="<?php echo site_url("connection"); ?>">Connexion</a></li>
                     <?php endif; ?>
-                    <li><a href="<?php echo site_url("connection/register"); ?>">Inscription</a></li>
+                    <li><a href="<?php echo site_url("register"); ?>">Inscription</a></li>
+              <!--     <li><a href="?php echo site_url("connection/register"); ?>">Inscription</a></li>        -->              
     			</ul>
     		</nav>
     	</header>
