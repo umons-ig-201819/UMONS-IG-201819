@@ -744,7 +744,7 @@ class DataSourceModel extends CI_Model{
                                     WHERE `fp`.`fp_demande_acces`=1 AND `fp`.`fp_id_fichier`=`ds`.`f_id`
                                )
 	     ";
-	     $query = $this->db->query($sql, $params);
+	     $query = $this->db->query($sql);
 	     $dataSources=$query->result_array();
 	     
 	     return $dataSources;
