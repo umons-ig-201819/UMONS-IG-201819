@@ -18,8 +18,7 @@ class Datasource extends CI_Controller {
         $notesList = $notesList['body'];
         $name = "user/work-".$this->session->UserID;
         foreach($notesList as $note){
-            print_r($note);
-            if($note['name']==$name) return $note['id'];
+            if($note['name']==$name) {echo "note found $note[id]\n";return $note['id'];}
         }
         $headers = array('http' =>
             array(
@@ -30,7 +29,8 @@ class Datasource extends CI_Controller {
         );
         $context  = stream_context_create($headers);
         $result = file_get_contents(self::ZEPPELIN_URL.'/api/notebook', true, $context);
-        print_r($result);
+echo "Creation d'une note :\n";
+print_r($result);
         return $result['body'];
     }
     private function listParagraphs($noteID){
@@ -44,6 +44,8 @@ class Datasource extends CI_Controller {
             $tmp['id']    = array_key_exists('id'   ,$paragraph) ? $paragraph['id' ]   : '' ;
             array_push($result,$tmp);
         }
+print("List paragraphs:\n");
+print_r($result);
         return $result;
     }
     private function getWorkingCopy($originNote,$notesList=null){// Must have access to $sourceID
@@ -58,6 +60,7 @@ class Datasource extends CI_Controller {
                 $paragraphID = $paragraph['id'];
         }
         if(is_null($paragraphID)){
+print("paragraph not found");
             // Create a copy of the first paragraph of the $originNote to $workingNote entitled with the $originNote identifier
             $source = $this->listParagraphs($originNote);
             $headers = array('http' =>
@@ -71,36 +74,27 @@ class Datasource extends CI_Controller {
             $result      = file_get_contents(self::ZEPPELIN_URL.'/api/notebook/$workingNote/paragraph', true, $context);
             $paragraphID = $result['body'];
         }else{
+print("paragraph found");
             // Update
             file_get_contents(self::ZEPPELIN_URL."/api/notebook/job/$workingNote/$paragraphID");
         }
         return self::ZEPPELIN_URL."/#/notebook/$workingNote/paragraph/$paragraphID?asIframe";
     }
-    public function index($sourceID='0'){
-        /*
-        $sources = $this->DataSourceModel->getUserDataSources($this->session->UserID);
-        
-        $options = array(
-            '0'         => 'Veuillez s&eacute;lectionner une source',
-        );
-        
-        foreach($sources as $source){
-            $options[$source['fileID']] = $source['file_name'];
-        }*/
+    public function index($sourceID=''){
         $sources = $this->DataSourceModel->getAccessibleDataSources($this->session->UserID);
         
         $options = array(
-            '0'         => 'Veuillez s&eacute;lectionner une source',
+            ''         => 'Veuillez s&eacute;lectionner une source',
         );
         
         foreach($sources as $source){
             $options[$source['url']] = $source['name'];
         }
         
-        if(!preg_match('/^[0-9a-zA-Z]+$/', $sourceID)) $sourceID = 0;
+        if(!preg_match('/^[0-9a-zA-Z]+$/', $sourceID)) $sourceID = '';
         
         $url = null;
-        if($sourceID >= 0 && array_key_exists($sourceID, $sources)){
+        if(!empty($sourceID) && array_key_exists($sourceID, $sources)){
             $url = $this->getWorkingCopy($sourceID);
         }
 
