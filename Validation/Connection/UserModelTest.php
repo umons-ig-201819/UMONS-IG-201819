@@ -54,7 +54,7 @@ class UserModelTest extends TestCase
         ;
         $this->assertEquals(false,$a->authentification("acools","test"));
     }
-}
+
     /*protected function setUp()
     {
         parent::setUp();
@@ -124,13 +124,13 @@ class UserModelTest extends TestCase
     
     
     
-    public function testAuthentification()
-    {
+    public function testAuthentification(){
         $a = new UserModel();
         $a->authentification("acools","test");
-        
        
     } 
+    
+     } 
 
 /*
     public function testloginisfree()
