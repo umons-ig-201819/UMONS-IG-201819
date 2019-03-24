@@ -31,6 +31,7 @@ echo "Load CI\n";
 try{
     require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
 }catch(Exception $e){}
+}catch(Error $ee){}
 echo "CI loaded\n";
 
 use PHPUnit\Framework\TestCase;
