@@ -5,4 +5,17 @@
     		<directory suffix="Test.php">Connection</directory>
     	</testsuite>
   	</testsuites>
+  		<php>
+		<var name="DB_DSN" value="mysql:dbname=wallesmart;host=192.168.2.1" />
+		<var name="DB_USER" value="root" />
+		<var name="DB_PASSWD" value="" />
+		<var name="DB_DBNAME" value="wallesmart" />
+    	</php>
+	
+	
+	<dataset>
+   		 <utilisateur ut_id="1" ut_nom="thomas" ut_prenom="Kerala" ut_date_naiss="12345" ut_mail="dkdkd@mail.com" ut_tel="495859" ut_gsm="029484020" ut_sexe="f" ut_login="acools" ut_password="test" ut_visible_awe="1" ut_accepter_conseil="1"/>
+   		 <utilisateur ut_id="2" ut_nom="thmas" ut_prenom="Kela" ut_date_naiss="12345" ut_mail="dkdkd@mail.com" ut_tel="495859" ut_gsm="029484020" ut_sexe="f" ut_login="cools" ut_password="test" ut_visible_awe="1" ut_accepter_conseil="1"/>
+   		 <utilisateur ut_id="3" ut_nom="tomas" ut_prenom="Kala" ut_date_naiss="12345" ut_mail="dkdkd@mail.com" ut_tel="495859" ut_gsm="029484020" ut_sexe="f" ut_login="cool" ut_password="test" ut_visible_awe="1" ut_accepter_conseil="1"/>
+	</dataset>
 </phpunit>
