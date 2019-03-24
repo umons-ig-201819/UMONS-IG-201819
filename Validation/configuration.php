@@ -31,6 +31,10 @@ try{
 }catch(Exception $e){
 }catch(Error $ee){}
 
+echo "Loading ci_controller instance:\n";
+echo CI_Controller::get_instance();
+echo "done\n";
+
 require_once(BASEPATH."core/Model.php");
 require_once(BASEPATH."core/Controller.php");
 
