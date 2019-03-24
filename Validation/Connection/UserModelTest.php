@@ -40,7 +40,8 @@ class ConnectionTest extends TestCase
     public function test_connexion()
     {
         $a = new UserModel();
-        $a->authentification("acools","test");
+        ;
+        $this->assertEquals(false,$a->authentification("acools","test"));
     }
 }
     /*protected function setUp()
