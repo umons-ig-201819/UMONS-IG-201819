@@ -26,7 +26,7 @@ try {
     //require_once(__WEB_DIR__.'/system/core/Model.php');
     //require_once(__WEB_DIR__.'/system/core/Controller.php');
     require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
-} catch (CI_Exceptions $e) {
+} catch (Exception $e) {
 }
 
 use PHPUnit\Framework\TestCase;
