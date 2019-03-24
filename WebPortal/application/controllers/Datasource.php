@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Datasource extends CI_Controller {
-    public const ZEPPELIN_URL = 'http://192.168.2.169:8080';
+    public const ZEPPELIN_URL = 'http://192.168.2.168/zeppelin';#'http://192.168.2.169:8080';
     public function __construct(){
         parent::__construct();
         $this->load->model('DataSourceModel');
