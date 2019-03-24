@@ -7,13 +7,14 @@ echo form_fieldset('Source de données');
 echo '<p>';
     echo form_label('Source');
     echo form_dropdown('datasource',$options,$selected,'id="datasource" required="required"');
+    echo form_submit('action', 'Charger');
 echo '</p>';
-echo form_submit('action', 'Charger');
 echo form_fieldset_close();
 echo form_close();
 		?>
 	</article>
 	<?php if(isset($url) && !empty($url)): ?>
-	<iframe id="table_view" width="100%" height="500px" src="<?=$url;?>" sandbox="allow-plugins allow-scripts allow-same-origin" scrolling="yes"></iframe>
+	<!--  sandbox="allow-plugins allow-scripts allow-same-origin"  --> 
+	<iframe id="table_view" width="100%" height="500px" src="<?=$url;?>" scrolling="yes"></iframe>
 	<?php endif; ?>
 </section>
