@@ -86,9 +86,14 @@ class Datasource extends CI_Controller {
             $options[$source['url']] = $source['name'];
         }
         
+        if(empty($sourceID) && !empty($this->input->post('datasource'))){
+            $sourceID = $this->input->post('datasource');
+        }
+        
         if(!preg_match('/^[0-9a-zA-Z]+$/', $sourceID)) $sourceID = '';
         
         $url = null;
+        
         if(!empty($sourceID) && array_key_exists($sourceID, $options)){
             $url = $this->getWorkingCopy($sourceID);
         }

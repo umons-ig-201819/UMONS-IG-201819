@@ -14,6 +14,6 @@ echo form_close();
 		?>
 	</article>
 	<?php if(isset($url) && !empty($url)): ?>
-	<iframe id="table_view" width="100%" src="<?=$url;?>" sandbox="allow-plugins allow-scripts allow-same-origin"></iframe>
+	<iframe id="table_view" width="100%" height="500px" src="<?=$url;?>" sandbox="allow-plugins allow-scripts allow-same-origin" scrolling="yes"></iframe>
 	<?php endif; ?>
 </section>
