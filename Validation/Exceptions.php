@@ -84,6 +84,7 @@ class CI_Exceptions {
         {
             $heading = 'Not Found';
             $message = 'The controller/method pair you requested was not found.';
+            print("ICI");
         }
         else
         {
