@@ -2,12 +2,11 @@
 
 // use PHPUnit\Framework\TestCase;
 
+use PHPUnit\Framework\TestCase;
+
 require_once(__DIR__.'/../configuration.php');
 
 load_model('UserModel');
-
-print("test loaded\n");
-// Connexion test case
 
 class UserModelTest extends TestCase
 {
@@ -23,13 +22,11 @@ class UserModelTest extends TestCase
     
     public function testAuthentification($login, $password)
     {
-        
-        $this->authentification("acools","test");
+        $a = new UserModel();
+        $a->authentification("acools","test");
         
         //echo ($this->assertequal(false, authentification($login,$password)));
-        
-        
-        
+           
     }
     
     //test
