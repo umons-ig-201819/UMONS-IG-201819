@@ -21,7 +21,9 @@ function load_controller($name){
 }
 
 // Rewrite show404 from CI_Exception class to prevent exit
-require_once(__WEB_DIR__.'/system/core/Common.php');
+#require_once(__WEB_DIR__.'/system/core/Common.php');
+require_once(__VALIDATION_DIR__.'/Common.php');
+
 load_class('Exceptions','../../Validation/');
 
 echo "Load CI\n";
