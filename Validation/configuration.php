@@ -22,7 +22,7 @@ function load_controller($name){
 
 // Rewrite show404 from CI_Exception class to prevent exit
 require_once(__WEB_DIR__.'/system/core/Common.php');
-load_class('Exceptions','../../../../Validation/');
+load_class('Exceptions','../../../../../Validation/');
 
 
 // $_error =& load_class('Exceptions', 'core');
