@@ -20,13 +20,14 @@ function load_controller($name){
     require_once(__WEB_DIR__."/application/controllers/$name.php");
 }
 
-require_once(__WEB_DIR__.'/system/core/Exceptions.php');
+// Rewrite show404 from CI_Exception class to prevent exit
 
-try {
-    //require_once(__WEB_DIR__.'/system/core/Model.php');
-    //require_once(__WEB_DIR__.'/system/core/Controller.php');
-    require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
-} catch (Exception $e) {
-}
+class CI_Exceptions {};
+
+require_once(__WEB_DIR__.'/system/core/Exceptions.php');
+//$reflector = new ReflectionClass('CI_Exceptions');
+//$show404 = $reflector->getMethod('show_404');
+
+require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
 
 use PHPUnit\Framework\TestCase;
