@@ -17,7 +17,28 @@ class ConnectionTest extends TestCase
      * @var Connexion
      */
     private $connexion;
-    protected function setUp()
+        // only instantiate pdo once for test clean-up/fixture load
+    static private $pdo = null;
+
+    // only instantiate PHPUnit_Extensions_Database_DB_IDatabaseConnection once per test
+    private $conn = null;
+    public function testCalculate()
+    {
+        $this->assertEquals(2, 1 + 1);
+    }
+    final public function getConnection()
+    {
+        if ($this->conn === null) {
+            if (self::$pdo == null) {
+                self::$pdo = new PDO( $GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD'] );
+            }
+            $this->conn = $this->createDefaultDBConnection(self::$pdo, $GLOBALS['DB_DBNAME']);
+        }
+
+        return $this->conn;
+    }
+}
+    /*protected function setUp()
     {
         parent::setUp();
 
@@ -45,13 +66,13 @@ class ConnectionTest extends TestCase
     public function testCalculate()
     {
         $this->assertEquals(2, 1 + 1);
-    }
-}
+    }*/
+
     
     
     
-    /*
-    public function getConnection() {
+    
+   /* public function getConnection() {
         $connexion = new PDO(
             "mysql:host=localhost;dbname=wallesmart", "root", "");
         return $this->createDefaultDBConnection($connexion, "wallesmart");
@@ -60,6 +81,8 @@ class ConnectionTest extends TestCase
     public function getDataSet() {
         return $this->createXMLDataSet("seed.xml");
     }
+    
+   
 */    /*use TestCaseTrait;
 
     // only instantiate pdo once for test clean-up/fixture load
