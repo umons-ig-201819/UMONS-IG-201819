@@ -6,22 +6,59 @@ class Register extends CI_Controller {
         parent::__construct();
         $this->load->model('UserModel');
     }
-    public function logout(){
-        $this->session->sess_destroy();
-        $this->index();
-    }
+
     public function index(){
         $data = array();
-        if($this->input->post('action')){
-            $data = $this->UserModel->authentification($this->input->post('username'),$this->input->post('password'));
-            if($data !== false){
-                $this->session->set_userdata('UserID', $data['id']);
-            }else{
-                $data = array('error' => true);
+        $data2 = array();
+        if($this->input->post('registering')){
+            $data['lastname'] = ($this->input->post('lastname'));
+            $data['firstname'] = ($this->input->post('firstname'));
+            $data['birthdate'] = ($this->input->post('birthdate'));
+            $data['email'] = ($this->input->post('email'));
+            $data['phone'] = ($this->input->post('phone'));
+            $data['mobile'] = ($this->input->post('mobile'));
+            $data['gender'] = ($this->input->post('gender'));
+            $data['login'] = ($this->input->post('login'));
+            $data['password'] = ($this->input->post('password'));
+            $data['visible'] = ($this->input->post('visible'));
+            $data['advice'] = 0;
+ 
+            $this->load->helper(array('form', 'url'));
+            $this->load->library('form_validation');
+            
+            $this->form_validation->set_rules('login', 'login', 'trim|required|min_length[5]|max_length[12]');
+            $this->form_validation->set_rules('firstname', 'Lirstname', 'trim|required|min_length[5]|max_length[12]');
+            $this->form_validation->set_rules('lastname', 'Lastname', 'trim|required|min_length[5]|max_length[12]');
+            $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('password', 'mot de passe', 'trim|required|min_length[8]',
+                array('required' => 'You must provide a %s.'));
+            $this->form_validation->set_rules('confirm_mdp', 'Password Confirmation', 'trim|required|min_length[8]');
+ 
+            list($resultatRegister,$errorTextorID) = $this->UserModel->addUser($data);
+            if (!$resultatRegister) $data2 = array('error' => $errorTextorID);
+            
+            
+            $this->load->view('header');
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->load->view('register',$data2);
             }
+            else
+            {
+                $this->load->view('connection');
+            }
+            $this->load->view('footer');
+                     
+ 
+            
+
+  
         }
+        else
+        {
         $this->load->view('header');
-        $this->load->view('register');
+        $this->load->view('register',$data2);
         $this->load->view('footer');
+        }
     }
 }

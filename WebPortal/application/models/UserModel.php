@@ -761,23 +761,23 @@ class UserModel extends CI_Model {
 	{		
 		if(is_null($user)) return false;
 		
-		if(!isset($user['lastname'])) return false;
-		if(!isset($user['firstname'])) return false;
-		if(!isset($user['login'])) return false;
-		if(!isset($user['password'])) return false;
+		if(!isset($user['lastname'])) return array(FALSE,'Nom invalide' );
+		if(!isset($user['firstname'])) return array(FALSE,'Nom invalide' );
+		if(!isset($user['login'])) return array(FALSE,'Login invalide' );
+		if(!isset($user['password'])) return array(FALSE,'PWD invalide' );
 
-		if(empty($user['lastname'])) return false;
-		if(empty($user['firstname'])) return false;
-		if(empty($user['login'])) return false;
-		if(empty($user['password'])) return false;		
+		if(empty($user['lastname'])) return array(FALSE,'Nom Vide' );
+		if(empty($user['firstname'])) return array(FALSE,'Prenom Vide' );
+		if(empty($user['login'])) return array(FALSE,'Login Vide' );
+		if(empty($user['password'])) return array(FALSE,'PWD Vide' );		
 		
 		$lastname=$user['lastname'];
 		$firstname=$user['firstname'];
 		$login=$user['login'];
 		$password=sha1($user['password']);
 
-		if(!$this->login_is_free($login)) return false;
-		
+		if(!$this->login_is_free($login)) return array(FALSE,'Login d&eacute;j&agrave; exitant' );
+				
 			
 		$sql = "INSERT INTO utilisateur 
 				(ut_nom, ut_prenom, ut_date_naiss, ut_mail, ut_tel, ut_gsm, ut_sexe, ut_login, ut_password, ut_visible_awe, ut_accepter_conseil)
@@ -794,12 +794,30 @@ class UserModel extends CI_Model {
 		
 		if( ! $this->db->query($sql, array($lastname, $firstname, $birthdate, $email, $phone, $mobile, $gender, $login, $password, $visible, $advice)) )
 		{
-			return false;
+		    return array(FALSE,'Erreur d\'ecriture à la DB' );
 		}
 		
-		return $this->db->insert_id();
-		
+	//	return $this->db->insert_id();
+		return array(TRUE,$this->db->insert_id());
 	}
+		
+	
+	/**
+	 * login_is_free() is a method for checking if login exists
+	 */
+	private function login_is_free($login){
+	    $sqllogin = "SELECT ut_login FROM utilisateur WHERE ut_login = '$login'";
+	    $loginExist = $this->db->query($sqllogin);
+	    $row = $loginExist->row();
+	    if (!empty ($row)) return FALSE;
+	    else return TRUE;
+	    
+	}
+	
+	
+	
+	
+	
 	
 	/**
 	* addUserRole() is a method for adding a role to an user
