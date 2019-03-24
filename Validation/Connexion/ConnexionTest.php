@@ -1,14 +1,8 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+require_once(__DIR__.'/../configuration.php');
 
-define("__ROOT__",dirname(__DIR__));
-echo __ROOT__."\n";
-
-//require_once("../../lib/go-pear.phar");
-define("__ROOT__",dirname(dirname(dirname(__FILE__))));
-require_once(__ROOT__.'/WebPortal/application/models/UserModel.php');
+load_model('UserModel');
 
 // Connexion test case
 echo "test";

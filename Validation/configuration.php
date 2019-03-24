@@ -8,9 +8,9 @@ define("__VALIDATION_DIR__",__ROOT_DIR__.'/Validation');
 define("__WEB_DIR__",__ROOT_DIR__.'/WebPortal');
 
 function load_model($name){
-    require_once(__WEB_DIR__.'/application/models/UserModel.php');
+    require_once(__WEB_DIR__."/application/models/$name.php");
 }
 
 function load_controller($name){
-    require_once(__WEB_DIR__.'/application/controllers/UserModel.php');
+    require_once(__WEB_DIR__."/application/controllers/$name.php");
 }
