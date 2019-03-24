@@ -11,7 +11,22 @@ load_model('UserModel');
 
 class ConnectionTest extends TestCase
 {
+    */
+    /**
+     *
+     * @var Connexion
+     */
+    private $connexion;
     
+    public function getConnection() {
+        $connexion = new PDO(
+            "mysql:host=localhost;dbname=wallesmart", "root", "");
+        return $this->createDefaultDBConnection($connexion, "wallesmart");
+    }
+
+    public function getDataSet() {
+        return $this->createXMLDataSet("seed.xml");
+    }
     /*use TestCaseTrait;
 
     // only instantiate pdo once for test clean-up/fixture load
@@ -31,12 +46,7 @@ class ConnectionTest extends TestCase
 
         return $this->conn;
     }
-    */
-    /**
-     *
-     * @var Connexion
-     */
-    private $connexion;
+    
     
     public function testCalculate()
     {
@@ -44,14 +54,14 @@ class ConnectionTest extends TestCase
     }
     
     
-    /*public function testAuthentification()
+    public function testAuthentification()
     {
         $a = new UserModel();
         $a->authentification("acools","test");
         
         //echo ($this->assertequal(false, authentification($login,$password)));
            
-    }
+    } /*
     public function testloginisfree()
     {
         $a= new UserModel();
