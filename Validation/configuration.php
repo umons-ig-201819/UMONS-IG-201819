@@ -25,7 +25,6 @@ require_once(__WEB_DIR__.'/system/core/Common.php');
 load_class('Exceptions','../../Validation/');
 
 echo "Load CI\n";
-try{
   
 require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
 echo "CI loaded\n";
