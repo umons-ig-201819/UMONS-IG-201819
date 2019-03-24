@@ -96,8 +96,11 @@ class CI_Exceptions {
         {
             log_message('error', $heading.': '.$page);
         }
-        
+        echo "A: ";
+        debug_print_backtrace();
         echo $this->show_error($heading, $message, 'error_404', 404);
+        echo "B: ";
+        debug_print_backtrace();
         // BYPASS exit(4); // EXIT_UNKNOWN_FILE
     }
     
