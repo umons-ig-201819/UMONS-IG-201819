@@ -17,7 +17,7 @@ class ConnectionTest extends TestCase
      * @var Connexion
      */
     private $connexion;
-    /*protected function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
@@ -41,7 +41,7 @@ class ConnectionTest extends TestCase
     {
         $a = new UserModel();
         $a->authentification("acools","test");
-    }*/
+    }
     public function testCalculate()
     {
         $this->assertEquals(2, 1 + 1);
