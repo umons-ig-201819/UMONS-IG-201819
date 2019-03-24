@@ -36,8 +36,11 @@ class ConnexionTest extends TestCase
     
     
 }
+echo "a";
 $login="acools";
 $password="test";
-$test= new ConnexionTest;
+echo "b";
+$test= new ConnexionTest();
+echo "c";
 $test->testAuthentification($login, $password);
-
+echo "d";
