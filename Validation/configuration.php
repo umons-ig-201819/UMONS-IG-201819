@@ -14,3 +14,7 @@ function load_model($name){
 function load_controller($name){
     require_once(__WEB_DIR__."/application/controllers/$name.php");
 }
+
+
+require_once(__WEB_DIR__.'/system/core/Model.php');
+require_once(__WEB_DIR__.'/system/core/Controller.php');
