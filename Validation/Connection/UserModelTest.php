@@ -17,13 +17,46 @@ class ConnectionTest extends TestCase
      * @var Connexion
      */
     private $connexion;
+    protected function setUp()
+    {
+        parent::setUp();
+
+        $connexion = new PDO("mysql:host=localhost;dbname=wallesmart", "root", "");
+        return $this->createDefaultDBConnection($connexion, "wallesmart");
+ 
+        
+    }
+
+    /**
+     * Cleans up the environment after running a test.
+     */
+    protected function tearDown()
+    {
+        // TODO Auto-generated ConTest::tearDown()
+        $this->con = null;
+
+        parent::tearDown();
+    }
+
+    /**
+     * Constructs the test case.
+     */
+    public function __construct()
+    {
+        $a = new UserModel();
+        $a->authentification("acools","test");
+    }
+}
     
+    
+    
+    /*
     public function getConnection() {
         $connexion = new PDO(
             "mysql:host=localhost;dbname=wallesmart", "root", "");
         return $this->createDefaultDBConnection($connexion, "wallesmart");
     }
-/*
+
     public function getDataSet() {
         return $this->createXMLDataSet("seed.xml");
     }
@@ -53,7 +86,7 @@ class ConnectionTest extends TestCase
         $this->assertEquals(2, 1 + 1);
     }
     
-    
+    /*
     public function testAuthentification()
     {
         $a = new UserModel();
