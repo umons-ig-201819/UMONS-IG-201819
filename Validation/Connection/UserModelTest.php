@@ -15,18 +15,28 @@ class ConnectionTest extends TestCase
      *
      * @var Connexion
      */
+    public $connexiontest;
     private $connexion;
-    
-    
-    
-    
-    public function testAuthentification()
+    public function setUp()
     {
-        $a = new UserModel();
-        $a->authentification("acools","test");
-        
-        //echo ($this->assertequal(false, authentification($login,$password)));
-           
+        $this->connexiontest = new UserModel();
+    }
+    
+    
+    
+    
+     public function testIfWheelWorks()
+     {
+        // Suppose we have 100 gumballs...
+        $this->connexiontest->getUserRoles(100);
+
+        // ... And we turn the wheel once...
+        $this->connexiontest->authentification("test","test");
+
+        $this->connexiontest->getRoles();
+
+        // ... we should now have 99 gumballs remaining in the machine right?
+        //$this->assertEquals(99, $this->connexiontest->getGumballs()); 
     }
     
     //test
