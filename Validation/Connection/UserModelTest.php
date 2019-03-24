@@ -27,13 +27,16 @@ class ConnectionTest extends TestCase
     
      public function testIfWheelWorks()
      {
+         $this->loginIsFree("acools");
+         $this->loginIsFree("acools");
+         
         // Suppose we have 100 gumballs...
-        $this->connexiontest->getUserRoles(100);
+        //$this->connexiontest->getUserRoles(100);
 
         // ... And we turn the wheel once...
-        $this->connexiontest->authentification("test","test");
+        //$this->connexiontest->authentification("test","test");
 
-        $this->connexiontest->getRoles();
+        //$this->connexiontest->getRoles();
 
         // ... we should now have 99 gumballs remaining in the machine right?
         //$this->assertEquals(99, $this->connexiontest->getGumballs()); 
