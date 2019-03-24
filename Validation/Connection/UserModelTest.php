@@ -10,8 +10,6 @@ class UserModelTest extends TestCase{
     }
     protected function setUp(){
         $this->userModel = new UserModel();
-        $this->userModel->load =& load_class('Loader', 'core');
-        $this->userModel->load->initialize();
     }
     protected function tearDown(){
         $this->userModel = null;

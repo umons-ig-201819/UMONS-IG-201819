@@ -31,6 +31,8 @@ try{
 }catch(Exception $e){
 }catch(Error $ee){}
 
+CI_Controller::get_instance();
+
 require_once(BASEPATH."core/Model.php");
 require_once(BASEPATH."core/Controller.php");
 
