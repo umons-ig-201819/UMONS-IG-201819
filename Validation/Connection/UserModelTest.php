@@ -1,6 +1,5 @@
 <?php
-// use PHPUnit\Framework\TestCase;
-// use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\TestCase;
 require_once(__DIR__.'/../configuration.php');
 load_model('UserModel');
 class UserModelTest extends TestCase
