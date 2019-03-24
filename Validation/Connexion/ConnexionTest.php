@@ -6,6 +6,7 @@ require_once(__DIR__.'/../configuration.php');
 
 load_model('UserModel');
 
+print("test loaded\n");
 // Connexion test case
 
 class ConnexionTest extends TestCase

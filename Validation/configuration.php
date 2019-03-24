@@ -24,11 +24,8 @@ function load_controller($name){
 require_once(__WEB_DIR__.'/system/core/Common.php');
 load_class('Exceptions','../../Validation/');
 
-
-// $_error =& load_class('Exceptions', 'core');
-//$reflector = new ReflectionClass('CI_Exceptions');
-//$show404 = $reflector->getMethod('show_404');
-
+echo "Load CI\n";
 require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
+echo "CI loaded\n";
 
 use PHPUnit\Framework\TestCase;
