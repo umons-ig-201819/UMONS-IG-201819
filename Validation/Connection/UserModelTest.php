@@ -12,9 +12,6 @@ class UserModelTest extends TestCase
      */
     private $connexion;
     
-    
-    
-    
     public function testAuthentification()
     {
         $a = new UserModel();
