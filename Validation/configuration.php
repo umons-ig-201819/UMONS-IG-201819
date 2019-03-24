@@ -1,7 +1,7 @@
 <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
 
 define("__ROOT_DIR__",dirname(__DIR__));
 define("__VALIDATION_DIR__",__ROOT_DIR__.'/Validation');
@@ -25,6 +25,8 @@ require_once(__WEB_DIR__.'/system/core/Common.php');
 load_class('Exceptions','../../Validation/');
 
 echo "Load CI\n";
+try{
+  
 require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
 echo "CI loaded\n";
 
