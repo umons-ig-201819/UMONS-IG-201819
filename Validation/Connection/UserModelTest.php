@@ -20,13 +20,8 @@ class UserModelTest extends TestCase
         $a = new UserModel();
         $a->authentification("acools","test");
         
-        //echo ($this->assertequal(false, authentification($login,$password)));
-           
     }
-    
-    //test
-    
-    
+  
 }
 
 
