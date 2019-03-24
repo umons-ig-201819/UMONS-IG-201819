@@ -17,7 +17,7 @@ class ConnectionTest extends TestCase
      * @var Connexion
      */
     private $connexion;
-    protected function setUp()
+    /*protected function setUp()
     {
         parent::setUp();
 
@@ -27,9 +27,7 @@ class ConnectionTest extends TestCase
         
     }
 
-    /**
-     * Cleans up the environment after running a test.
-     */
+ 
     protected function tearDown()
     {
         // TODO Auto-generated ConTest::tearDown()
@@ -38,14 +36,12 @@ class ConnectionTest extends TestCase
         parent::tearDown();
     }
 
-    /**
-     * Constructs the test case.
-     */
+   
     public function __construct()
     {
         $a = new UserModel();
         $a->authentification("acools","test");
-    }
+    }*/
     public function testCalculate()
     {
         $this->assertEquals(2, 1 + 1);
