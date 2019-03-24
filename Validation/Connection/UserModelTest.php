@@ -12,7 +12,7 @@ load_model('UserModel');
 class ConnectionTest extends TestCase
 {
     
-    use TestCaseTrait;
+    /*use TestCaseTrait;
 
     // only instantiate pdo once for test clean-up/fixture load
     static private $pdo = null;
@@ -31,24 +31,27 @@ class ConnectionTest extends TestCase
 
         return $this->conn;
     }
-    
+    */
     /**
      *
      * @var Connexion
      */
     private $connexion;
     
+    public function testCalculate()
+    {
+        $this->assertEquals(2, 1 + 1);
+    }
     
     
-    
-    /*public function testAuthentification()
+    public function testAuthentification()
     {
         $a = new UserModel();
         $a->authentification("acools","test");
         
         //echo ($this->assertequal(false, authentification($login,$password)));
            
-    }*/
+    }
     public function testloginisfree()
     {
         $a= new UserModel();
