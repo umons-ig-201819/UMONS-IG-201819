@@ -11,7 +11,7 @@ load_model('UserModel');
 
 class ConnectionTest extends TestCase
 {
-    */
+    
     /**
      *
      * @var Connexion
