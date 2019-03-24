@@ -70,8 +70,8 @@ class Datasource extends CI_Controller {
             $result      = json_decode(file_get_contents(self::ZEPPELIN_URL."/api/notebook/$workingNote/paragraph", true, $context),true);
             $paragraphID = $result['body'];
         }else{
-            // Update
-            file_get_contents(self::ZEPPELIN_URL."/api/notebook/job/$workingNote/$paragraphID");
+            // TODO Update (only if... outdated)
+            // file_get_contents(self::ZEPPELIN_URL."/api/notebook/job/$workingNote/$paragraphID");
         }
         return self::ZEPPELIN_URL."/#/notebook/$workingNote/paragraph/$paragraphID?asIframe";
     }
