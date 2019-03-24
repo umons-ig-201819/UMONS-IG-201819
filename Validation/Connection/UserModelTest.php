@@ -23,11 +23,11 @@ class ConnectionTest extends TestCase
             "mysql:host=localhost;dbname=wallesmart", "root", "");
         return $this->createDefaultDBConnection($connexion, "wallesmart");
     }
-
+/*
     public function getDataSet() {
         return $this->createXMLDataSet("seed.xml");
     }
-    /*use TestCaseTrait;
+*/    /*use TestCaseTrait;
 
     // only instantiate pdo once for test clean-up/fixture load
     static private $pdo = null;
