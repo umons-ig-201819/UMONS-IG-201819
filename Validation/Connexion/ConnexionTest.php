@@ -9,7 +9,7 @@ load_model('UserModel');
 print("test loaded\n");
 // Connexion test case
 
-class ConnexionTest extends TestCase
+class UserModelTest extends TestCase
 {
     
     /**
@@ -24,8 +24,7 @@ class ConnexionTest extends TestCase
     public function testAuthentification($login, $password)
     {
         
-        $a=new UserModel;
-        $a->authentification("acools","test");
+        $this->authentification("acools","test");
         
         //echo ($this->assertequal(false, authentification($login,$password)));
         
@@ -37,11 +36,12 @@ class ConnexionTest extends TestCase
     
     
 }
+/*
 echo "a";
 $login="acools";
 $password="test";
 echo "b";
-$test= new ConnexionTest();
+$test= new UserModelTest();
 echo "c";
 $test->testAuthentification($login, $password);
-echo "d";
+echo "d";*/
