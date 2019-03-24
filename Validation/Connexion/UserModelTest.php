@@ -20,7 +20,7 @@ class UserModelTest extends TestCase
     
     
     
-    public function testAuthentification($login, $password)
+    public function testAuthentification()
     {
         $a = new UserModel();
         $a->authentification("acools","test");
@@ -33,12 +33,3 @@ class UserModelTest extends TestCase
     
     
 }
-/*
-echo "a";
-$login="acools";
-$password="test";
-echo "b";
-$test= new UserModelTest();
-echo "c";
-$test->testAuthentification($login, $password);
-echo "d";*/
