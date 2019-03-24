@@ -1,12 +1,14 @@
 <?php
 
+use PHPUnit\Framework\TestCase;
+
 require_once(__DIR__.'/../configuration.php');
 
 load_model('UserModel');
 
 // Connexion test case
-echo "test";
-class ConnexionTest extends PHPUnit_Framework_TestCase
+
+class ConnexionTest extends TestCase
 {
     
     /**

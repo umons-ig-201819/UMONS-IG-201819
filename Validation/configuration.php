@@ -20,3 +20,5 @@ function load_controller($name){
 
 require_once(__WEB_DIR__.'/system/core/Model.php');
 require_once(__WEB_DIR__.'/system/core/Controller.php');
+
+use PHPUnit\Framework\TestCase;
