@@ -46,7 +46,7 @@ class ConnectionTest extends TestCase
 
         return $this->conn;
     }
-    
+    */
     
     public function testCalculate()
     {
@@ -59,8 +59,7 @@ class ConnectionTest extends TestCase
         $a = new UserModel();
         $a->authentification("acools","test");
         
-        //echo ($this->assertequal(false, authentification($login,$password)));
-           
+       
     } /*
     public function testloginisfree()
     {
