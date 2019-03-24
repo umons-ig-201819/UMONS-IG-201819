@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 define("__ROOT__",dirname(__DIR__));
-echo "__ROOT__\n";
+echo __ROOT__."\n";
 
 //require_once("../../lib/go-pear.phar");
 define("__ROOT__",dirname(dirname(dirname(__FILE__))));
