@@ -20,10 +20,13 @@ function load_controller($name){
     require_once(__WEB_DIR__."/application/controllers/$name.php");
 }
 
+require_once(__WEB_DIR__.'/system/core/Exceptions.php');
 
-//require_once(__WEB_DIR__.'/system/core/Model.php');
-//require_once(__WEB_DIR__.'/system/core/Controller.php');
-require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
-
+try {
+    //require_once(__WEB_DIR__.'/system/core/Model.php');
+    //require_once(__WEB_DIR__.'/system/core/Controller.php');
+    require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
+} catch (CI_Exceptions $e) {
+}
 
 use PHPUnit\Framework\TestCase;
