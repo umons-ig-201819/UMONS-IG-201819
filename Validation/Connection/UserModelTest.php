@@ -12,7 +12,7 @@ load_model('UserModel');
 class ConnectionTest extends TestCase
 {
     
-    use PHPUnit_Extensions_Database_TestCase_Trait;
+    use TestCaseTrait;
 
     // only instantiate pdo once for test clean-up/fixture load
     static private $pdo = null;
