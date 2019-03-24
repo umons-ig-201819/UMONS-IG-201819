@@ -44,7 +44,7 @@ class ConnectionTest extends TestCase
     }
     
     
-    public function testAuthentification()
+    /*public function testAuthentification()
     {
         $a = new UserModel();
         $a->authentification("acools","test");
@@ -56,7 +56,7 @@ class ConnectionTest extends TestCase
     {
         $a= new UserModel();
         $a->loginIsFree("acools");
-    }
+    }*/
     
     //test
     
