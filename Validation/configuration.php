@@ -8,6 +8,7 @@ define("__VALIDATION_DIR__",__ROOT_DIR__.'/Validation');
 define("__WEB_DIR__",__ROOT_DIR__.'/WebPortal');
 
 define("BASEPATH",__WEB_DIR__.'/system');
+define("APPPATH",__WEB_DIR__.'/application/');
 
 function load_model($name){
     require_once(__WEB_DIR__."/application/models/$name.php");
@@ -18,7 +19,9 @@ function load_controller($name){
 }
 
 
-require_once(__WEB_DIR__.'/system/core/Model.php');
-require_once(__WEB_DIR__.'/system/core/Controller.php');
+//require_once(__WEB_DIR__.'/system/core/Model.php');
+//require_once(__WEB_DIR__.'/system/core/Controller.php');
+require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
+
 
 use PHPUnit\Framework\TestCase;
