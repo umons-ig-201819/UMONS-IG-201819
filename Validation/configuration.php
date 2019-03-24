@@ -7,7 +7,7 @@ define("__ROOT_DIR__",dirname(__DIR__));
 define("__VALIDATION_DIR__",__ROOT_DIR__.'/Validation');
 define("__WEB_DIR__",__ROOT_DIR__.'/WebPortal');
 
-define("BASEPATH",__WEB_DIR__.'/system');
+define("BASEPATH",__WEB_DIR__.'/system/');
 define("APPPATH",__WEB_DIR__.'/application/');
 
 function load_model($name){
