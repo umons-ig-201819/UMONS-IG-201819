@@ -46,6 +46,10 @@ class ConnectionTest extends TestCase
         $a = new UserModel();
         $a->authentification("acools","test");
     }
+    public function testCalculate()
+    {
+        $this->assertEquals(2, 1 + 1);
+    }
 }
     
     
@@ -81,10 +85,7 @@ class ConnectionTest extends TestCase
     }
     */
     
-    public function testCalculate()
-    {
-        $this->assertEquals(2, 1 + 1);
-    }
+    
     
     /*
     public function testAuthentification()
