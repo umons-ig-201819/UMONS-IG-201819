@@ -1,0 +1,7 @@
+<phpunit bootstrap="configuration.php">
+  <testsuites>
+    <testsuite name="Connection">
+      <directory>Connection</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>
