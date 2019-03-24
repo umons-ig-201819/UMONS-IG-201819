@@ -3,13 +3,13 @@
 // use PHPUnit\Framework\TestCase;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\DbUnit\TestCaseTrait;
+//use PHPUnit\DbUnit\TestCaseTrait;
 
 require_once(__DIR__.'/../configuration.php');
 
 load_model('UserModel');
 
-class ConnectionTest extends TestCase
+class UserModelTest extends TestCase
 {
     
     /**
@@ -17,15 +17,19 @@ class ConnectionTest extends TestCase
      * @var Connexion
      */
     private $connexion;
-        // only instantiate pdo once for test clean-up/fixture load
+        
+    /*
     static private $pdo = null;
 
     // only instantiate PHPUnit_Extensions_Database_DB_IDatabaseConnection once per test
     private $conn = null;
+    */
     public function testCalculate()
     {
         $this->assertEquals(2, 1 + 1);
     }
+    
+    /*
     final public function getConnection()
     {
         if ($this->conn === null) {
@@ -42,7 +46,7 @@ class ConnectionTest extends TestCase
     {
         return $this->createFlatXMLDataSet( __DIR__ . '/../../Fixtures/test.xml' );
     }
-    
+    */
     public function test_connexion()
     {
         $a = new UserModel();
@@ -119,14 +123,16 @@ class ConnectionTest extends TestCase
     
     
     
-    /*
+    
     public function testAuthentification()
     {
         $a = new UserModel();
         $a->authentification("acools","test");
         
        
-    } /*
+    } 
+
+/*
     public function testloginisfree()
     {
         $a= new UserModel();
