@@ -26,12 +26,12 @@ require_once(__VALIDATION_DIR__.'/Common.php');
 
 load_class('Exceptions','../../Validation/');
 
-echo "Load CI\n";
-
 try{
     require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
 }catch(Exception $e){
 }catch(Error $ee){}
-echo "CI loaded\n";
+
+require_once(BASEPATH."core/Model.php");
+require_once(BASEPATH."core/Controller.php");
 
 use PHPUnit\Framework\TestCase;
