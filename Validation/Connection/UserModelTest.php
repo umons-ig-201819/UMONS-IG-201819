@@ -37,6 +37,12 @@ class ConnectionTest extends TestCase
 
         return $this->conn;
     }
+    
+     public function getDataSet()
+    {
+        return $this->createFlatXMLDataSet( __DIR__ . '/../../Fixtures/test.xml' );
+    }
+    
     public function test_connexion()
     {
         $a = new UserModel();
