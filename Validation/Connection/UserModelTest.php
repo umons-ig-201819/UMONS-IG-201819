@@ -20,7 +20,7 @@ class UserModelTest extends TestCase{
     public function testAuthentification(){
         $this->userModel->authentification("acools","test");
     }
-    
+    /*
     public function testGetUserRoles(){
         $this->userModel->getUserRoles(1);
         // assertEquals(?)   
@@ -187,7 +187,7 @@ class UserModelTest extends TestCase{
     public function testDeleteAdvice(){
         $this->userModel->deleteAdvice();
         // assertEquals(?)
-    }
+    }*/
 }
 
 
