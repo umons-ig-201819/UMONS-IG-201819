@@ -21,10 +21,11 @@ function load_controller($name){
 }
 
 // Rewrite show404 from CI_Exception class to prevent exit
+require_once(__WEB_DIR__.'/system/core/Common.php');
+load_class('Exceptions','../../../Validation/');
 
-class CI_Exceptions {};
 
-require_once(__WEB_DIR__.'/system/core/Exceptions.php');
+// $_error =& load_class('Exceptions', 'core');
 //$reflector = new ReflectionClass('CI_Exceptions');
 //$show404 = $reflector->getMethod('show_404');
 
