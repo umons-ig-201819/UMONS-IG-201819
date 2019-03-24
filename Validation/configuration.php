@@ -27,8 +27,10 @@ require_once(__VALIDATION_DIR__.'/Common.php');
 load_class('Exceptions','../../Validation/');
 
 echo "Load CI\n";
-  
-require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
+
+try{
+    require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
+}catch(Exception $e){}
 echo "CI loaded\n";
 
 use PHPUnit\Framework\TestCase;
