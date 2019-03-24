@@ -1,7 +1,7 @@
 <phpunit bootstrap="configuration.php">
   <testsuites>
     <testsuite name="Connection">
-      <directory>Connection</directory>
+      <directory suffix="Test.php">Connection</directory>
     </testsuite>
   </testsuites>
 </phpunit>
