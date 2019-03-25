@@ -34,6 +34,11 @@ $router =& load_class('Router', 'core');
 $router->class='FakeController';
 $router->method='index';
 
+echo 'Loader: ';
+echo load_class('Loader', 'core');
+echo "\n";
+
+
 echo 'Session: ';
 echo load_class('Session', 'libraries');
 echo "\n";
