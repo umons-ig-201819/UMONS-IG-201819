@@ -33,6 +33,11 @@ load_class('Utf8', 'core');
 $router =& load_class('Router', 'core');
 $router->class='FakeController';
 $router->method='index';
+
+$router =& load_class('Session', 'libraries');
+
+
+
 $bck = $router->directory;
 $router->directory = '../../../Validation/';
 
