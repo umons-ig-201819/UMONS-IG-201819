@@ -130,8 +130,9 @@ if(!function_exists('synchronize_workspace')){
         }
         foreach($workspaceParagraphs as $paragraph){
             if(!array_key_exists('origin', $paragraph))
-                $paragraph['origin']    = explode('_',$paragraph['title']);
+                $paragraph['origin']    = explode('_',$paragraph['title'])[0];
         }
+        print_r($workspaceParagraphs);
         $assoc = array();
         foreach($originalParagraphs as $paragraph){
             $assoc[$paragraph['id']] = &$paragraph;
