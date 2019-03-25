@@ -148,7 +148,7 @@ print_r($assoc);
             }else{
                 $assoc[$paragraph['origin']]['process'] = true;
                 $original       = $assoc[$paragraph['origin']];
-                print_r($paragraph);
+echo "$original[id]: ".(array_key_exists('dateStarted', $original)?'dateStarted':'').', '.(array_key_exists('dateCreated', $original)?'dateCreated':'')."\n";
                 $originDate     = empty($original['dateStarted']) ? $original['dateCreated'] : $original['dateStarted'];
                 $paragraphDate  = empty($paragraph['dateStarted']) ? $paragraph['dateCreated'] : $paragraph['dateStarted'];
                 $originDate     = intval($originDate);
