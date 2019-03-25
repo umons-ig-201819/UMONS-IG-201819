@@ -33,6 +33,9 @@ $router =& load_class('Router', 'core');
 $router->class='../../../Validation/FakeController';
 $router->method='index';
 
+echo "To find: ".APPPATH.'controllers/'.$RTR->directory.$router->class.".php\n";
+echo "File exists ? ".( file_exists(APPPATH.'controllers/'.$RTR->directory.$router->class.'.php') ?  "Oui" : "Non")."\n";
+
 try{
     include_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
 }catch(Exception $e){
