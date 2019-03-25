@@ -27,16 +27,19 @@ require_once(__VALIDATION_DIR__.'/Common.php');
 load_class('Exceptions','../../Validation/');
 
 try{
-    require_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
+    include_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
 }catch(Exception $e){
 }catch(Error $ee){}
+
+
+include_once(BASEPATH."core/Model.php");
+include_once(BASEPATH."core/Controller.php");
+include_once(BASEPATH."libraries/Session/Session.php");
 
 echo "Loading ci_controller instance:\n";
 echo new CI_Controller();
 print_r(CI_Controller::get_instance());
 echo "done\n";
 
-require_once(BASEPATH."core/Model.php");
-require_once(BASEPATH."core/Controller.php");
 
 use PHPUnit\Framework\TestCase;
