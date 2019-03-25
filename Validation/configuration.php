@@ -30,8 +30,8 @@ require_once(__VALIDATION_DIR__.'/Common.php');
 load_class('Exceptions','../../Validation/');
 load_class('Utf8', 'core');
 $router =& load_class('Router', 'core');
-$router->routes['default_controller']='FakeController';
-print_r($router->routes);
+$router->routes['class']='FakeController';
+$router->routes['method']='index';
 print_r($router);
 
 try{
