@@ -146,7 +146,7 @@ if(!function_exists('synchronize_workspace')){
             }else{
                 $assoc[$paragraph['origin']]['process'] = true;
                 $original       = $assoc[$paragraph['origin']];
-print_r($assoc[$paragraph['origin']]);
+#print_r($assoc[$paragraph['origin']]);
 echo "$original[id]: ".(array_key_exists('dateStarted', $original)?'dateStarted':'').', '.(array_key_exists('dateCreated', $original)?'dateCreated':'')."\n";
                 $originDate     = empty($original['dateStarted']) ? $original['dateCreated'] : $original['dateStarted'];
                 $paragraphDate  = empty($paragraph['dateStarted']) ? $paragraph['dateCreated'] : $paragraph['dateStarted'];
