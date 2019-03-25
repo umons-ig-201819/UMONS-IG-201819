@@ -48,6 +48,7 @@ if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$router->directory.$cl
     echo "Loading\n";
     include_once(BASEPATH."core/Controller.php");
     echo "CI_Controller done\n";
+    echo "directory directory ".$router->directory."\n";
     include_once(APPPATH.'controllers/'.$router->directory.$class.'.php');
     echo "Loaded\n";
     
