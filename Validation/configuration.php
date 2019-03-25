@@ -34,7 +34,7 @@ $router =& load_class('Router', 'core');
 $router->class='FakeController';
 $router->method='index';
 
-$router =& load_class('Session', 'libraries');
+echo 'Session: '.load_class('Session', 'libraries')."\n";
 
 
 
