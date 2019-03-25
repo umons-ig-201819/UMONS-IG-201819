@@ -38,10 +38,12 @@ include_once(BASEPATH."core/Model.php");
 include_once(BASEPATH."core/Controller.php");
 
 
+ob_start();
 try{
     include_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
 }catch(Exception $e){
 }catch(Error $ee){}
+ob_end_clean();
 
 new CI_Controller();
 CI_Controller::get_instance();
