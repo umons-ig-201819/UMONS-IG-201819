@@ -32,7 +32,6 @@ load_class('Utf8', 'core');
 $router =& load_class('Router', 'core');
 $router->class='FakeController';
 $router->method='index';
-print_r($router);
 
 try{
     include_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
