@@ -129,11 +129,12 @@ if(!function_exists('synchronize_workspace')){
             $originalParagraphs = list_paragraphs($originalID);
         }
         foreach($workspaceParagraphs as $paragraph){
+            print_r($paragraph);
             $paragraph['origin'] = 'totalnimp';
+            print_r($paragraph);
             if(!array_key_exists('origin', $paragraph))
                 $paragraph['origin']    = explode('_',$paragraph['title'])[0];
         }
-        print_r($workspaceParagraphs);
         $assoc = array();
         foreach($originalParagraphs as $paragraph){
             $assoc[$paragraph['id']] = &$paragraph;
