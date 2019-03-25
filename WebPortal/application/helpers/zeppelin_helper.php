@@ -128,17 +128,14 @@ if(!function_exists('synchronize_workspace')){
         if(is_null($originalParagraphs)){
             $originalParagraphs = list_paragraphs($originalID);
         }
-        foreach($workspaceParagraphs as $paragraph){
-            print_r($paragraph);
-            $paragraph['origin'] = 'totalnimp';
-            print_r($paragraph);
+        foreach($workspaceParagraphs as $pos => $paragraph){
             if(!array_key_exists('origin', $paragraph))
-                $paragraph['origin']    = explode('_',$paragraph['title'])[0];
+                $workspaceParagraphs[$pos]['origin'] = explode('_',$paragraph['title'])[0];
         }
         $assoc = array();
-        foreach($originalParagraphs as $paragraph){
+        foreach($originalParagraphs as $pos => $paragraph){
+            $originalParagraphs['processed'] = false; 
             $assoc[$paragraph['id']] = &$paragraph;
-            $paragraph['processed']  = false;
         }
         foreach($workspaceParagraphs as $pos => $paragraph){
             if(array_key_exists($paragraph['origin'], $assoc)){
