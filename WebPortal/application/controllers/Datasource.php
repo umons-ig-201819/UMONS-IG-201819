@@ -34,6 +34,7 @@ class Datasource extends CI_Controller {
         if(!empty($sourceID) && array_key_exists($sourceID, $options)){
             $url = get_user_workspace($this->session->UserID,$sourceID);
         }
+        print_r($url);
 
         $data = array(
             'selected'          => $sourceID,
