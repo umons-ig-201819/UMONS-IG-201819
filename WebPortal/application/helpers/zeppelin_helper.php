@@ -134,7 +134,7 @@ if(!function_exists('synchronize_workspace')){
         }
         $assoc = array();
         foreach($originalParagraphs as $pos => $paragraph){
-            $originalParagraphs['processed'] = false; 
+            $originalParagraphs[$pos]['processed'] = false; 
             $assoc[$paragraph['id']] = &$paragraph;
         }
         foreach($workspaceParagraphs as $pos => $paragraph){
