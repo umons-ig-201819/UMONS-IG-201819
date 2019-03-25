@@ -137,6 +137,7 @@ if(!function_exists('synchronize_workspace')){
             $assoc[$paragraph['id']]['process'] = false; 
             $assoc[$paragraph['id']] = $paragraph;
         }
+    print_r($assoc);
         foreach($workspaceParagraphs as $pos => $paragraph){
             if(array_key_exists($paragraph['origin'], $assoc)){
                 // Paragraph does not more exists inside original note => remove it
