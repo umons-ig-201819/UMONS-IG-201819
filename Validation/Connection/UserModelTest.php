@@ -9,7 +9,6 @@ class UserModelTest extends TestCase{
         $userModel = null;
     }
     protected function setUp(){
-        echo "setUp()\n";
         $this->userModel = new UserModel();
     }
     protected function tearDown(){
@@ -17,10 +16,7 @@ class UserModelTest extends TestCase{
     }
    
     public function testAuthentification(){
-        print("testAuthentification");
         $res = $this->userModel->authentification("acools","test");
-        print("result");
-        print_r($res);
         $this->assertEquals($res,false);// fake test
     }
     public function testGetUserRoles(){
