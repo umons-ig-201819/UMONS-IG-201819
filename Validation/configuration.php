@@ -12,6 +12,9 @@ define("BASEPATH",__WEB_DIR__.'/system/');
 define("APPPATH",__WEB_DIR__.'/application/');
 define("VIEWPATH",APPPATH.'/views/');
 
+define('ICONV_ENABLED',false);
+define('MB_ENABLED',false);
+
 function load_model($name){
     require_once(__WEB_DIR__."/application/models/$name.php");
 }
