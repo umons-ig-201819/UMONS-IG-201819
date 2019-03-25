@@ -45,7 +45,7 @@ include_once(BASEPATH."libraries/Session/Session.php");
 
 echo "Loading ci_controller instance:\n";
 echo new CI_Controller();
-print_r(CI_Controller::get_instance());
+CI_Controller::get_instance();
 echo "done\n";
 
 
