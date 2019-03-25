@@ -73,6 +73,7 @@ if(!function_exists('create_paragraph')){
          $result        = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID/paragraph", true, $context),true);
          $paragraphID   = $result['body'];
          $paragraph     = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID/paragraph/$paragraphID"),true);
+ print_r($paragraph);
          $paragraph     = $paragraph['body']['paragraphs'];
          $paragraph['note'] = $noteID;
          foreach($paragraph as $key => $value){
@@ -128,19 +129,16 @@ if(!function_exists('synchronize_workspace')){
         if(is_null($originalParagraphs)){
             $originalParagraphs = list_paragraphs($originalID);
         }
-echo "AVANT\n";
         foreach($workspaceParagraphs as $pos => $paragraph){
             if(!array_key_exists('origin', $paragraph)){
                 $workspaceParagraphs[$pos]['origin'] = explode('_',$paragraph['title'])[0];
             }
         }
-print_r($workspaceParagraphs);
         $assoc = array();
         foreach($originalParagraphs as $pos => $paragraph){
             $assoc[$paragraph['id']] = $paragraph;
             $assoc[$paragraph['id']]['process'] = false; 
         }
-print_r($assoc);
         foreach($workspaceParagraphs as $pos => $paragraph){
             echo "$pos: \n"; print_r($paragraph);
             if(! array_key_exists($paragraph['origin'], $assoc)){
@@ -150,8 +148,6 @@ print_r($assoc);
             }else{
                 $assoc[$paragraph['origin']]['process'] = true;
                 $original       = $assoc[$paragraph['origin']];
-print_r($assoc[$paragraph['origin']]);
-echo "$original[id]: ".(array_key_exists('dateStarted', $original)?'dateStarted':'').', '.(array_key_exists('dateCreated', $original)?'dateCreated':'')."\n";
                 $originDate     = empty($original['dateStarted']) ? $original['dateCreated'] : $original['dateStarted'];
                 $paragraphDate  = empty($paragraph['dateStarted']) ? $paragraph['dateCreated'] : $paragraph['dateStarted'];
                 $originDate     = intval($originDate);
