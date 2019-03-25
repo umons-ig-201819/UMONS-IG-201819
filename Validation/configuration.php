@@ -34,6 +34,17 @@ $router =& load_class('Router', 'core');
 $router->class='FakeController';
 $router->method='index';
 
+class FakeCI{
+  public $libraries = array(); 
+};
+
+$fakeCI = new FakeCI();
+
+function &get_instance(){
+    global $fakeCI;
+    return $fakeCI;
+}
+
 echo 'Loader: ';
 $loader = &load_class('Loader', 'core');
 echo $loader->library('Session');
