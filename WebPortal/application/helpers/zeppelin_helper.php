@@ -98,7 +98,8 @@ if(!function_exists('delete_paragraph')){
 
 if(!function_exists('run_async_paragraph')){
     function run_async_paragraph($noteID,$paragraphID){
-        file_get_contents(ZEPPELIN_URL."/api/notebook/job/$noteID/$paragraphID");
+        // FIXME feature disabled because of time ... ?
+        // file_get_contents(ZEPPELIN_URL."/api/notebook/job/$noteID/$paragraphID");
     }
 }
 
