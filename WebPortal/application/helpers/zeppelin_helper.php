@@ -148,6 +148,7 @@ print_r($assoc);
             }else{
                 $assoc[$paragraph['origin']]['process'] = true;
                 $original       = $assoc[$paragraph['origin']];
+                print_r($original);
                 $originDate     = empty($original['dateStarted']) ? $original['dateCreated'] : $original['dateStarted'];
                 $paragraphDate  = empty($paragraph['dateStarted']) ? $paragraph['dateCreated'] : $paragraph['dateStarted'];
                 $originDate     = intval($originDate);
