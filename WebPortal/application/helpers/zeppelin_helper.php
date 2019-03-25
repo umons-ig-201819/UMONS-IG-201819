@@ -129,12 +129,12 @@ if(!function_exists('synchronize_workspace')){
             $originalParagraphs = list_paragraphs($originalID);
         }
         foreach($workspaceParagraphs as $pos => $paragraph){
+            echo "$pos:\n";print_r($paragraph);
             if(!array_key_exists('origin', $paragraph))
                 $workspaceParagraphs[$pos]['origin'] = explode('_',$paragraph['title'])[0];
         }
         $assoc = array();
         foreach($originalParagraphs as $pos => $paragraph){
-            echo "$pos:\n";print_r($paragraph);
             $assoc[$paragraph['id']] = $paragraph;
             $assoc[$paragraph['id']]['process'] = false; 
         }
