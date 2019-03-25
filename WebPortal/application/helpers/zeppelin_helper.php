@@ -134,7 +134,7 @@ if(!function_exists('synchronize_workspace')){
         }
         $assoc = array();
         foreach($originalParagraphs as $pos => $paragraph){
-            $assoc[$paragraph['id']]['processed'] = false; 
+            $assoc[$paragraph['id']]['process'] = false; 
             $assoc[$paragraph['id']] = $paragraph;
         }
         foreach($workspaceParagraphs as $pos => $paragraph){
@@ -143,7 +143,7 @@ if(!function_exists('synchronize_workspace')){
                 delete_paragraph($workspaceNoteID,$paragraph['id']);
                 unset($workspaceParagraphs[$pos]);
             }else{
-                $assoc[$paragraph['origin']]['processed'] = true;
+                $assoc[$paragraph['origin']]['process'] = true;
                 $original       = $assoc[$paragraph['origin']];
                 $originDate     = empty($original['dateStarted']) ? $original['dateCreated'] : $original['dateStarted'];
                 $paragraphDate  = empty($paragraph['dateStarted']) ? $paragraph['dateCreated'] : $paragraph['dateStarted'];
@@ -162,7 +162,7 @@ if(!function_exists('synchronize_workspace')){
         }
     print_r($assoc);
         foreach($assoc as $id => $value){
-            if(!$value['processed']){
+            if(!$value['process']){
                 // Add newly created paragraphs (exist in original but not in workspace)
                 $new = create_paragraph($workspaceNoteID,"${originalID}_".$value['id'],$value['text']);
                 array_push($workspaceParagraphs,$new);
