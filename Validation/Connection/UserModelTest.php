@@ -9,7 +9,9 @@ class UserModelTest extends TestCase{
         $userModel = null;
     }
     protected function setUp(){
+        echo "setUp()\n";
         $this->userModel = new UserModel();
+        print_r($this->userModel);
     }
     protected function tearDown(){
         $this->userModel = null;
