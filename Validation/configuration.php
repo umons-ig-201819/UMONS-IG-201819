@@ -45,7 +45,9 @@ $method = $router->method;
 if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$router->directory.$class.'.php')){
     $e404 = true;print("\$e404 is false because of 1\n");
 }else{
+    echo "Loading\n";
     require_once(APPPATH.'controllers/'.$router->directory.$class.'.php');
+    echo "Loaded\n";
     
     if ( ! class_exists($class, FALSE) OR $method[0] === '_' OR method_exists('CI_Controller', $method)){
         $e404 = true;print("\$e404 is false because of 2\n");
@@ -62,8 +64,7 @@ if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$router->directory.$cl
     }
 }
 
-if ($e404)
-{
+if ($e404){
     print("\$e404 was set to true\n");
     if ( ! empty($router->routes['404_override'])){
         print("test route overriding\n");
