@@ -30,7 +30,7 @@ require_once(__VALIDATION_DIR__.'/Common.php');
 load_class('Exceptions','../../Validation/');
 load_class('Utf8', 'core');
 $router =& load_class('Router', 'core');
-$router->class='FakeController';
+$router->class='../../../Validation/FakeController';
 $router->method='index';
 
 try{
