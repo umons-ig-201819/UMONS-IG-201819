@@ -26,14 +26,88 @@ function load_controller($name){
 // Rewrite show404 from CI_Exception class to prevent exit
 #require_once(__WEB_DIR__.'/system/core/Common.php');
 require_once(__VALIDATION_DIR__.'/Common.php');
-require_once(__VALIDATION_DIR__.'/FakeController.php');
-include_once(BASEPATH."core/Controller.php");
+
 
 load_class('Exceptions','../../Validation/');
 load_class('Utf8', 'core');
 $router =& load_class('Router', 'core');
 $router->class='../../../Validation/FakeController';
 $router->method='index';
+
+
+
+
+
+
+
+
+
+
+
+
+$e404 = false;
+$class = ucfirst($router->class);
+$method = $router->method;
+
+if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$router->directory.$class.'.php')){
+    $e404 = true;print("\$e404 is false because of 1\n");
+}else{
+    require_once(APPPATH.'controllers/'.$router->directory.$class.'.php');
+    
+    if ( ! class_exists($class, FALSE) OR $method[0] === '_' OR method_exists('CI_Controller', $method)){
+        $e404 = true;print("\$e404 is false because of 2\n");
+    } elseif (method_exists($class, '_remap'))  {
+        $params = array($method, array_slice($URI->rsegments, 2));
+        $method = '_remap';
+    } elseif ( ! method_exists($class, $method)) {
+        $e404 = true;print("\$e404 is false because of 3\n");
+    } elseif ( ! is_callable(array($class, $method))) {
+        $reflection = new ReflectionMethod($class, $method);
+        if ( ! $reflection->isPublic() OR $reflection->isConstructor()){
+            $e404 = true;print("\$e404 is false because of 4\n");
+        }
+    }
+}
+
+if ($e404)
+{
+    print("\$e404 was set to true\n");
+    if ( ! empty($router->routes['404_override'])){
+        print("test route overriding\n");
+        if (sscanf($router->routes['404_override'], '%[^/]/%s', $error_class, $error_method) !== 2){
+            $error_method = 'index';
+        }
+        
+        $error_class = ucfirst($error_class);
+        
+        if ( ! class_exists($error_class, FALSE)) {
+            if (file_exists(APPPATH.'controllers/'.$router->directory.$error_class.'.php')) {
+                require_once(APPPATH.'controllers/'.$router->directory.$error_class.'.php');
+                $e404 = ! class_exists($error_class, FALSE);
+            } elseif ( ! empty($router->directory) && file_exists(APPPATH.'controllers/'.$error_class.'.php')) {
+                require_once(APPPATH.'controllers/'.$error_class.'.php');
+                if (($e404 = ! class_exists($error_class, FALSE)) === FALSE) {
+                    $router->directory = '';
+                }
+            }
+        } else  {
+            print("set \$e404 to false\n");
+            $e404 = FALSE;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 echo "To find: ".APPPATH.'controllers/'.$RTR->directory.$router->class.".php\n";
