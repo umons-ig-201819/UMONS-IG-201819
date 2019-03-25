@@ -26,17 +26,16 @@ class Register extends CI_Controller {
             $this->load->helper(array('form', 'url'));
             $this->load->library('form_validation');
             
-            $this->form_validation->set_rules('login', 'login', 'trim|required|min_length[5]|max_length[12]');
-            $this->form_validation->set_rules('firstname', 'Lirstname', 'trim|required|min_length[5]|max_length[12]');
-            $this->form_validation->set_rules('lastname', 'Lastname', 'trim|required|min_length[5]|max_length[12]');
+            $this->form_validation->set_rules('login', 'login', 'trim|required|min_length[4]|max_length[12]');
+            $this->form_validation->set_rules('firstname', 'firstname', 'trim|required|min_length[2]|max_length[12]');
+            $this->form_validation->set_rules('lastname', 'lastname', 'trim|required|min_length[2]|max_length[12]');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
             $this->form_validation->set_rules('password', 'mot de passe', 'trim|required|min_length[8]',
                 array('required' => 'You must provide a %s.'));
             $this->form_validation->set_rules('confirm_mdp', 'Password Confirmation', 'trim|required|min_length[8]');
  
             list($resultatRegister,$errorTextorID) = $this->UserModel->addUser($data);
-            if (!$resultatRegister) $data2 = array('error' => $errorTextorID);
-            
+            if (!$resultatRegister) $data2 = array('error' => $errorTextorID);            
             
             $this->load->view('header');
             if ($this->form_validation->run() == FALSE)
@@ -48,10 +47,6 @@ class Register extends CI_Controller {
                 $this->load->view('connection');
             }
             $this->load->view('footer');
-                     
- 
-            
-
   
         }
         else

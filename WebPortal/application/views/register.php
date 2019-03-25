@@ -24,20 +24,35 @@
         	<fieldset>
         	<legend> Informations d'inscription :  </legend>
         		<article>
-        		 	<label >Nom d'utilisateur : </label><input type="text" name="login" value="<?php echo set_value('login');?>"><br><br>
-      	       	<label >Sexe : </label>
+        		 	<label >Nom d'utilisateur (Login) : </label>
+        		 	<input type="text" name="login" value="<?php echo set_value('login');?>">
+        		 	<font color = 'red'>* champs obligatoire</font><br><br>
+      	       		<label >Sexe : </label>
                 		<input type="radio" name="gender" value="man"> Homme&nbsp;&nbsp;
         				<input type="radio" name="gender" value="female"> Femme&nbsp;&nbsp;
         				<input type="radio" name="gender" value="other"> autre<br><br>
-                	<label >Nom : </label><input type="text" name="lastname" value="<?php echo set_value('lastname');?>"><br><br>
-                	<label >Pr&eacute;nom : </label><input type="text" name="firstname" value="<?php echo set_value('firstname');?>"><br><br>
-                	<label >Date de naissance : </label><input type="date" name="birthdate" ><br><br>
-                	<label >E-mail : </label><input type="text" name="email" ><br><br>
-                	<label >Num&eacute;ro de t&eacute;l&eacute;phone : </label><input type="text" name="phone"><br><br>
-                	<label >Num&eacute;ro de GSM : </label><input type="text" name="mobile" ><br><br>
-		  	 		<label >Mot de passe :</label><input type="password" id="mdp" name="password" placeholder="Votre mot de passe" value="default" />
-        			<input type="password" id="confirm_mdp" name="confirm_mdp" placeholder="Confirmation du mot de passe" value="default" /> <br><br>
-            		<input type="submit" name="registering"><input type="reset">		
+                	<label >Nom : </label>
+                	<input type="text" name="lastname" value="<?php echo set_value('lastname');?>">
+                	<font color = 'red'>* champs obligatoire</font><br><br>
+                	<label >Pr&eacute;nom : </label>
+                	<input type="text" name="firstname" value="<?php echo set_value('firstname');?>">
+                	<font color = 'red'>* champs obligatoire</font><br><br>
+                	<label >Date de naissance : </label>
+                	<input type="date" name="birthdate" ><br><br>
+                	<label >E-mail : </label>
+                	<input type="text" name="email" value="<?php echo set_value('email');?>" ><br><br>
+                	<label >Num&eacute;ro de t&eacute;l&eacute;phone : </label>
+                	<input type="text" name="phone" value="<?php echo set_value('phone');?>">&nbsp
+                	<label >Num&eacute;ro de GSM : </label>
+                	<input type="text" name="mobile" value="<?php echo set_value('mobile');?>"><br><br>
+		  	 		<label >Mot de passe : </label>
+		  	 		<input type="password" id="mdp" name="password" placeholder="Votre mot de passe" value="<?php echo set_value('password');?>"/>
+		  	 		<font color = 'red'>* champs obligatoire</font>
+        			<input type="password" id="confirm_mdp" name="confirm_mdp" placeholder="Confirmation du mot de passe" value="default"/>
+        			<font color = 'red'>* champs obligatoire</font><br><br>
+            		<input type="submit" value="Cr&eacute;er le compte" name="registering">
+            		<label >Conseiller : </label>
+                	<input type="checkbox" name="advice" unchecked ><br><br>	
         		</article>
         	</fieldset>
         	</form>
