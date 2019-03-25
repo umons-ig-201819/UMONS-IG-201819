@@ -143,6 +143,7 @@ if(!function_exists('synchronize_workspace')){
                 delete_paragraph($workspaceNoteID,$paragraph['id']);
                 unset($workspaceParagraphs[$pos]);
             }else{
+                $assoc[$paragraph['origin']]['processed'] = true;
                 $original       = $assoc[$paragraph['origin']];
                 $originDate     = empty($original['dateStarted']) ? $original['dateCreated'] : $original['dateStarted'];
                 $paragraphDate  = empty($paragraph['dateStarted']) ? $paragraph['dateCreated'] : $paragraph['dateStarted'];
