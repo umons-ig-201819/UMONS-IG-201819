@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['server_ip']    = getHostByName(getHostName());
+$config['server_ip']    = '192.168.2.168';//getHostByName(getHostName());
 $config['base_url']     = 'http://' . (preg_match('/^192.168.2.\\d+$/',$config['server_ip']) ? $config['server_ip'] : 'localhost/');
 
 /*
