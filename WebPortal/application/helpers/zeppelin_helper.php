@@ -73,8 +73,7 @@ if(!function_exists('create_paragraph')){
          $result        = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID/paragraph", true, $context),true);
          $paragraphID   = $result['body'];
          $paragraph     = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID/paragraph/$paragraphID"),true);
- print_r($paragraph);
-         $paragraph     = $paragraph['body']['paragraphs'];
+         $paragraph     = $paragraph['body'];
          $paragraph['note'] = $noteID;
          foreach($paragraph as $key => $value){
              if(preg_match('/^date/', $key)){
@@ -140,7 +139,6 @@ if(!function_exists('synchronize_workspace')){
             $assoc[$paragraph['id']]['process'] = false; 
         }
         foreach($workspaceParagraphs as $pos => $paragraph){
-            echo "$pos: \n"; print_r($paragraph);
             if(! array_key_exists($paragraph['origin'], $assoc)){
                 // Paragraph does not more exists inside original note => remove it
                 delete_paragraph($workspaceNoteID,$paragraph['id']);
