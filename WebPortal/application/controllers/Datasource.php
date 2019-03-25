@@ -29,7 +29,7 @@ class Datasource extends CI_Controller {
         
         if(!preg_match('/^[0-9a-zA-Z]+$/', $sourceID)) $sourceID = '';
         
-        $url = null;
+        $url = array();
         
         if(!empty($sourceID) && array_key_exists($sourceID, $options)){
             $url = get_user_workspace($this->session->UserID,$sourceID);

@@ -13,8 +13,8 @@ echo form_fieldset_close();
 echo form_close();
 		?>
 	</article>
-	<?php if(isset($url) && !empty($url)): ?>
+	<?php foreach($url as $zeppelin_link): ?>
 	<!--  sandbox="allow-plugins allow-scripts allow-same-origin"  --> 
-	<iframe id="table_view" width="100%" height="500px" src="<?=$url;?>" scrolling="yes"></iframe>
-	<?php endif; ?>
+	<iframe id="table_view" width="100%" height="500px" src="<?=$zeppelin_link;?>" scrolling="yes"></iframe>
+	<?php endforeach; ?>
 </section>
