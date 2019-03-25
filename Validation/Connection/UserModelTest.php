@@ -11,14 +11,14 @@ class UserModelTest extends TestCase{
     protected function setUp(){
         echo "setUp()\n";
         $this->userModel = new UserModel();
-        print_r($this->userModel);
     }
     protected function tearDown(){
         $this->userModel = null;
     }
    
     public function testAuthentification(){
-        $this->userModel->authentification("acools","test");
+        $res = $this->userModel->authentification("acools","test");
+        assertEquals($res,false);// fake test
     }
     /*
     public function testGetUserRoles(){
