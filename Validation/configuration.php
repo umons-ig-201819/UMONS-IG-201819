@@ -26,6 +26,8 @@ function load_controller($name){
 // Rewrite show404 from CI_Exception class to prevent exit
 #require_once(__WEB_DIR__.'/system/core/Common.php');
 require_once(__VALIDATION_DIR__.'/Common.php');
+require_once(__VALIDATION_DIR__.'/FakeController.php');
+include_once(BASEPATH."core/Controller.php");
 
 load_class('Exceptions','../../Validation/');
 load_class('Utf8', 'core');
@@ -33,7 +35,6 @@ $router =& load_class('Router', 'core');
 $router->class='../../../Validation/FakeController';
 $router->method='index';
 
-include_once(__VALIDATION_DIR__.'/FakeController.php');
 
 echo "To find: ".APPPATH.'controllers/'.$RTR->directory.$router->class.".php\n";
 echo "File exists ? ".( file_exists(APPPATH.'controllers/'.$RTR->directory.$router->class.'.php') ?  "Oui" : "Non")."\n";
