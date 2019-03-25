@@ -11,7 +11,6 @@ define('ENVIRONMENT', 'development');
 define("BASEPATH",__WEB_DIR__.'/system/');
 define("APPPATH",__WEB_DIR__.'/application/');
 define("VIEWPATH",APPPATH.'/views/');
-define("UTF8_ENABLED",true);
 
 function load_model($name){
     require_once(__WEB_DIR__."/application/models/$name.php");
@@ -26,6 +25,7 @@ function load_controller($name){
 require_once(__VALIDATION_DIR__.'/Common.php');
 
 load_class('Exceptions','../../Validation/');
+load_class('Utf8', 'core');
 $router =& load_class('Router', 'core');
 print_r($router->routes);
 
