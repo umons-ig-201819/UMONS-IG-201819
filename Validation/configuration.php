@@ -25,6 +25,8 @@ function load_controller($name){
 require_once(__VALIDATION_DIR__.'/Common.php');
 
 load_class('Exceptions','../../Validation/');
+$router =& load_class('Router', 'core');
+print_r($router->$routes);
 
 try{
     include_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
