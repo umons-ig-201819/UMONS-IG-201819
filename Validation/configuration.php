@@ -46,7 +46,7 @@ if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$router->directory.$cl
     $e404 = true;print("\$e404 is false because of 1\n");
 }else{
     echo "Loading\n";
-    require_once(APPPATH.'controllers/'.$router->directory.$class.'.php');
+    include_once(APPPATH.'controllers/'.$router->directory.$class.'.php');
     echo "Loaded\n";
     
     if ( ! class_exists($class, FALSE) OR $method[0] === '_' OR method_exists('CI_Controller', $method)){
