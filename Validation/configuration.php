@@ -35,7 +35,8 @@ $router->class='FakeController';
 $router->method='index';
 
 echo 'Loader: ';
-echo load_class('Loader', 'core');
+$loader = &load_class('Loader', 'core');
+echo $loader->library('Session');
 echo "\n";
 
 
