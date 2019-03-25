@@ -141,6 +141,7 @@ print_r($workspaceParagraphs);
         }
 print_r($assoc);
         foreach($workspaceParagraphs as $pos => $paragraph){
+            echo "$pos\n";
             if(array_key_exists($paragraph['origin'], $assoc)){
                 // Paragraph does not more exists inside original note => remove it
                 delete_paragraph($workspaceNoteID,$paragraph['id']);
