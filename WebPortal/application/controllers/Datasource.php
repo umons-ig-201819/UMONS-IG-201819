@@ -2,79 +2,16 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Datasource extends CI_Controller {
-    public const ZEPPELIN_URL = 'http://192.168.2.168/zeppelin';#'http://192.168.2.169:8080';
     public function __construct(){
         parent::__construct();
         $this->load->model('DataSourceModel');
+        $this->load->helper('zeppelin');
     }
     /*
      https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/interpreter.html
      https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/notebook.html
      */
-    private function createNoteIfNotExists($notesList=null){
-        if(is_null($notesList)){
-            $notesList = json_decode(file_get_contents(self::ZEPPELIN_URL.'/api/notebook'),true);
-        }
-        $notesList = $notesList['body'];
-        $name = "user/work-".$this->session->UserID;
-        foreach($notesList as $note){
-            if($note['name']==$name) return $note['id'];
-        }
-        $headers = array('http' =>
-            array(
-                'method'  => 'POST',
-                'header'  => 'Content-Type: application/x-www-form-urlencoded',
-                'content' => '{"name": "'.$name.'"}'
-            )
-        );
-        $context  = stream_context_create($headers);
-        $result = json_decode(file_get_contents(self::ZEPPELIN_URL.'/api/notebook', true, $context),true);
-        return $result['body'];
-    }
-    private function listParagraphs($noteID){
-        $information = json_decode(file_get_contents(self::ZEPPELIN_URL."/api/notebook/$noteID"),true);
-        $information = $information['body']['paragraphs'];
-        $result      = array();
-        foreach($information as $paragraph){
-            $tmp = array();
-            $tmp['title'] = array_key_exists('title',$paragraph) ? $paragraph['title'] : '' ;
-            $tmp['text']  = array_key_exists('text' ,$paragraph) ? $paragraph['text' ] : '' ;
-            $tmp['id']    = array_key_exists('id'   ,$paragraph) ? $paragraph['id' ]   : '' ;
-            array_push($result,$tmp);
-        }
-        return $result;
-    }
-    private function getWorkingCopy($originNote,$notesList=null){// Must have access to $sourceID
-        if(is_null($notesList)){
-            $notesList = json_decode(file_get_contents(self::ZEPPELIN_URL.'/api/notebook'),true);
-        }
-        $workingNote = $this->createNoteIfNotExists($notesList);
-        $paragraphs  = $this->listParagraphs($workingNote);
-        $paragraphID = null;
-        foreach($paragraphs as $paragraph){
-            if($paragraph['title'] == $originNote)
-                $paragraphID = $paragraph['id'];
-        }
-        if(is_null($paragraphID)){
-            // Create a copy of the first paragraph of the $originNote to $workingNote entitled with the $originNote identifier
-            $source = $this->listParagraphs($originNote);
-            $headers = array('http' =>
-                array(
-                    'method'  => 'POST',
-                    'header'  => 'Content-Type: application/x-www-form-urlencoded',
-                    'content' => '{"title": "'.$originNote.'", "text": "'.preg_replace('/"/','\\"',$source[0]['text']).'"}'// TODO check if dubble-quotes (") is properly handled
-                )
-            );
-            print('@'.$headers['http']['content'].'@');
-            $context      = stream_context_create($headers);
-            $result      = json_decode(file_get_contents(self::ZEPPELIN_URL."/api/notebook/$workingNote/paragraph", true, $context),true);
-            $paragraphID = $result['body'];
-        }else{
-            // TODO Update (only if... outdated)
-            // file_get_contents(self::ZEPPELIN_URL."/api/notebook/job/$workingNote/$paragraphID");
-        }
-        return self::ZEPPELIN_URL."/#/notebook/$workingNote/paragraph/$paragraphID?asIframe";
-    }
+    
     public function index($sourceID=''){
         $sources = $this->DataSourceModel->getAccessibleDataSources($this->session->UserID);
         
@@ -92,12 +29,12 @@ class Datasource extends CI_Controller {
         
         if(!preg_match('/^[0-9a-zA-Z]+$/', $sourceID)) $sourceID = '';
         
-        $url = null;
+        $url = array();
         
         if(!empty($sourceID) && array_key_exists($sourceID, $options)){
-            $url = $this->getWorkingCopy($sourceID);
+            $url = get_user_workspace($this->session->UserID,$sourceID);
         }
-
+        
         $data = array(
             'selected'          => $sourceID,
             'url'               => $url,
