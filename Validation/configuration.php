@@ -31,8 +31,10 @@ require_once(__VALIDATION_DIR__.'/Common.php');
 load_class('Exceptions','../../Validation/');
 load_class('Utf8', 'core');
 $router =& load_class('Router', 'core');
-$router->class='../../../Validation/FakeController';
+$router->class='FakeController';
 $router->method='index';
+$bck = $router->directory;
+$router->directory = '../../../Validation/';
 
 print("debugging\n");
 
@@ -48,7 +50,7 @@ if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$router->directory.$cl
     echo "Loading\n";
     include_once(BASEPATH."core/Controller.php");
     echo "CI_Controller done\n";
-    echo "directory directory ".$router->directory."\n";
+    echo "directory ".$router->directory."\n";
     include_once(APPPATH.'controllers/'.$router->directory.$class.'.php');
     echo "Loaded\n";
     
