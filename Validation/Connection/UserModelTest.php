@@ -17,10 +17,12 @@ class UserModelTest extends TestCase{
     }
    
     public function testAuthentification(){
+        print("testAuthentification");
         $res = $this->userModel->authentification("acools","test");
+        print("result");
+        print_r($res);
         $this->assertEquals($res,false);// fake test
     }
-    /*
     public function testGetUserRoles(){
         $this->userModel->getUserRoles(1);
         // assertEquals(?)   
@@ -187,7 +189,7 @@ class UserModelTest extends TestCase{
     public function testDeleteAdvice(){
         $this->userModel->deleteAdvice();
         // assertEquals(?)
-    }*/
+    }
 }
 
 
