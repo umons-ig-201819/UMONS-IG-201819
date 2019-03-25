@@ -34,14 +34,7 @@ $router =& load_class('Router', 'core');
 $router->class='../../../Validation/FakeController';
 $router->method='index';
 
-
-
-
-
-
-
-
-
+print("debugging\n");
 
 
 
@@ -95,10 +88,10 @@ if ($e404)
             $e404 = FALSE;
         }
     }
-}
+}else print("\$e404 still set to false\n");
 
 
-
+print("end debugging\n");
 
 
 
