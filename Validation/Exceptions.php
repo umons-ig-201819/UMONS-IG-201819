@@ -80,7 +80,6 @@ class CI_Exceptions {
      */
     public function show_404($page = '', $log_error = TRUE)
     {
-        debug_print_backtrace();
         print($page);
         if (is_cli())
         {
