@@ -160,6 +160,7 @@ if(!function_exists('synchronize_workspace')){
                 }
             }
         }
+    print_r($assoc);
         foreach($assoc as $id => $value){
             if(!$value['processed']){
                 // Add newly created paragraphs (exist in original but not in workspace)
