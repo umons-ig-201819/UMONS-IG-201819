@@ -47,14 +47,8 @@ function &get_instance(){
 
 echo 'Loader: ';
 $loader = &load_class('Loader', 'core');
-echo $loader->library('Session');
+$loader->library('Session');
 echo "\n";
-
-
-echo 'Session: ';
-echo load_class('Session', 'libraries');
-echo "\n";
-
 
 
 $bck = $router->directory;
