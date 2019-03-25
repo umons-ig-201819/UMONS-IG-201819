@@ -129,8 +129,7 @@ if(!function_exists('synchronize_workspace')){
             $originalParagraphs = list_paragraphs($originalID);
         }
         foreach($workspaceParagraphs as $paragraph){
-            if(!array_key_exists('origin', $paragraph))
-                $paragraph['origin']    = explode('_',$paragraph['title'])[0];
+            $paragraph['origin']    = explode('_',$paragraph['title'])[0];
         }
         print_r($workspaceParagraphs);
         $assoc = array();
