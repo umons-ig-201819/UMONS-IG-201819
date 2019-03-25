@@ -4,7 +4,7 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if(defined('ZEPPELIN_URL')){
+if(!defined('ZEPPELIN_URL')){
     define('ZEPPELIN_URL','http://192.168.2.168/zeppelin'); #'http://192.168.2.169:8080';
 }
     
