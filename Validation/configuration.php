@@ -46,6 +46,8 @@ if (empty($class) OR ! file_exists(APPPATH.'controllers/'.$router->directory.$cl
     $e404 = true;print("\$e404 is false because of 1\n");
 }else{
     echo "Loading\n";
+    include_once(BASEPATH."core/Controller.php");
+    echo "CI_Controller done\n";
     include_once(APPPATH.'controllers/'.$router->directory.$class.'.php');
     echo "Loaded\n";
     
