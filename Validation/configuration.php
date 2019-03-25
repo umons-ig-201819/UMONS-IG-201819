@@ -30,7 +30,9 @@ require_once(__VALIDATION_DIR__.'/Common.php');
 load_class('Exceptions','../../Validation/');
 load_class('Utf8', 'core');
 $router =& load_class('Router', 'core');
+$router->routes['default_controller']='FakeController';
 print_r($router->routes);
+print_r($router);
 
 try{
     include_once(__WEB_DIR__.'/system/core/CodeIgniter.php');
