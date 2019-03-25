@@ -80,6 +80,7 @@ class CI_Exceptions {
      */
     public function show_404($page = '', $log_error = TRUE)
     {
+        debug_print_backtrace();
         if (is_cli())
         {
             $heading = 'Not Found';
