@@ -130,8 +130,9 @@ if(!function_exists('synchronize_workspace')){
         }
 echo "AVANT\n";
         foreach($workspaceParagraphs as $pos => $paragraph){
-            if(!array_key_exists('origin', $paragraph))
+            if(!array_key_exists('origin', $paragraph)){
                 $workspaceParagraphs[$pos]['origin'] = explode('_',$paragraph['title'])[0];
+            }
         }
 print_r($workspaceParagraphs);
         $assoc = array();
@@ -141,7 +142,7 @@ print_r($workspaceParagraphs);
         }
 print_r($assoc);
         foreach($workspaceParagraphs as $pos => $paragraph){
-            echo "$pos\n";
+            echo "$pos: \n"; print_r($paragraph);
             if(array_key_exists($paragraph['origin'], $assoc)){
                 // Paragraph does not more exists inside original note => remove it
                 delete_paragraph($workspaceNoteID,$paragraph['id']);
