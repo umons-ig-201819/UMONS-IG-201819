@@ -33,6 +33,8 @@ $router =& load_class('Router', 'core');
 $router->class='../../../Validation/FakeController';
 $router->method='index';
 
+include_once(__VALIDATION_DIR__.'/FakeController.php');
+
 echo "To find: ".APPPATH.'controllers/'.$RTR->directory.$router->class.".php\n";
 echo "File exists ? ".( file_exists(APPPATH.'controllers/'.$RTR->directory.$router->class.'.php') ?  "Oui" : "Non")."\n";
 
