@@ -136,7 +136,7 @@ if(!function_exists('synchronize_workspace')){
         foreach($originalParagraphs as $pos => $paragraph){
             $assoc[$paragraph['id']]['process'] = false; 
             $assoc[$paragraph['id']] = $paragraph;
-echo $assoc[$paragraph['id']]."\n";
+echo $paragraph['id']."\n";
 print_r($assoc[$paragraph['id']]);
         }
 print_r($assoc);
