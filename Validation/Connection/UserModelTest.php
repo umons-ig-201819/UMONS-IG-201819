@@ -18,7 +18,7 @@ class UserModelTest extends TestCase{
    
     public function testAuthentification(){
         $res = $this->userModel->authentification("acools","test");
-        assertEquals($res,false);// fake test
+        $this->assertEquals($res,false);// fake test
     }
     /*
     public function testGetUserRoles(){
