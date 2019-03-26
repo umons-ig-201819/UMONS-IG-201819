@@ -716,7 +716,7 @@ class UserModel extends CI_Model {
 	{
 		if(is_null($userid)) return NULL;
 		$filter['user_id']=$userid;
-		return $this->get_advices($filter);		
+		return $this->getAdvices($filter);		
 	}
 	
 	/**
@@ -731,7 +731,7 @@ class UserModel extends CI_Model {
 	{
 		if(is_null($userid)) return NULL;
 		$filter['advisor_id']=$userid; 		
-		return $this->get_advices($filter);		
+		return $this->getAdvices($filter);		
 	}	
 	
 	//-------------------------------------------------------------
