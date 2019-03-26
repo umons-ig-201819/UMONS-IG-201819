@@ -21,17 +21,18 @@ class UserModelTest extends TestCase{
     }
     
    
-    public function testAuthentification2(){
+    public function testAuthentification2()
+    {
         $res = $this->userModel->authentification("as","t");
         $this->assertEquals($res,false);
     }
     
     
-    /*public function testGetUserRoles(){
+    public function testGetUserRoles(){
         $res=$this->userModel->getUserRoles("1");
         echo $res;
         $this->assertEquals($res["id"],"3");
-    }*/
+    }
     
     public function testGetRoles(){
         $res=$this->userModel->getRoles();
