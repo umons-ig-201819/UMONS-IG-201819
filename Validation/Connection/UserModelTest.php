@@ -31,13 +31,10 @@ class UserModelTest extends TestCase{
     public function testGetUserRoles()
     {
         $res=$this->userModel->getUserRoles("1");
-        //print_r ($res);
+
         $this->assertEquals($res[0]["id"],"3");
         
-        /*while ($row = mysql_fetch_array($res, MYSQL_NUM)) 
-        {
-            $this->assertEquals($row[0],"3");
-        }*/
+        
         
     }
     
@@ -49,13 +46,17 @@ class UserModelTest extends TestCase{
         
     }
     
-    /*
+    
     public function testGetUserRights(){
-        $this->userModel->getUserRights(1);
+        $res=$this->userModel->getUserRights("1");
+        $this->assertEquals($res[0]["id"],"5");
+        $this->assertEquals($res[1]["id"],"3");
+        $this->assertEquals($res[2]["id"],"6");
         // assertEquals(?)
     }
-    
-    public function testGetRights(){
+    /*
+    public function testGetRights()
+    {
         $this->userModel->getRights();
         // assertEquals(?)
     }
