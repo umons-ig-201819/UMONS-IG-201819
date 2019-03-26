@@ -77,10 +77,9 @@ class UserModelTest extends TestCase{
     public function testGetRight()
     {
         $res=$this->userModel->getRight("1");
-        print_r ($res);
-        $this->assertEquals($res[0]["id"],"5");
-        $this->assertEquals($res[1]["id"],"2");
-        $this->assertEquals($res[2]["id"],"4");
+        //print_r ($res);
+        $this->assertEquals($res["id"],"5");
+        
     }
     
     public function testGetUser(){
