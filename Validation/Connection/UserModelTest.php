@@ -22,10 +22,10 @@ class UserModelTest extends TestCase{
     
     
     
-    public function testAuthentification(){
+    /*public function testAuthentification(){
         $res = $this->userModel->authentification("as","t");
         $this->assertEquals($res,false);
-    }
+    }*
     
     
     /*public function testGetUserRoles(){
