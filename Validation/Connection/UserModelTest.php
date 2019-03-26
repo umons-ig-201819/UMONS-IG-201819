@@ -188,19 +188,19 @@ class UserModelTest extends TestCase{
     }
     
     public function testUpdateRole(){
-        $res=$this->userModel->updateRole("9","Aurélie");
+        $res=$this->userModel->updateRole("12","Aurélie");
         $this->assertEquals($res,true);
         // assertEquals(?)
     }
     
     public function testUpdateRight(){
-        $res=$this->userModel->updateRight("8","Aurélie","vert");
+        $res=$this->userModel->updateRight("11","Aurélie","vert");
         $this->assertEquals($res,true);
         // assertEquals(?)
     }
     
     public function testUpdateAdvice(){
-        $res=$this->userModel->updateAdvice("1","2",NULL,"vive l'europe");
+        $res=$this->userModel->updateAdvice("8","2",NULL,"vive l'europe");
         $this->assertEquals($res,true);
         // assertEquals(?)
     }
