@@ -7,10 +7,7 @@ class Datasource extends CI_Controller {
         $this->load->model('DataSourceModel');
         $this->load->helper('zeppelin');
     }
-    /*
-     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/interpreter.html
-     https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/notebook.html
-     */
+
     
     public function index($sourceID=''){
         $sources = $this->DataSourceModel->getAccessibleDataSources($this->session->UserID);

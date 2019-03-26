@@ -4,6 +4,11 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/*
+ https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/interpreter.html
+ https://zeppelin.apache.org/docs/0.8.1/usage/rest_api/notebook.html
+ */
+
 if(!defined('ZEPPELIN_URL')){
     define('ZEPPELIN_URL','http://192.168.2.168/zeppelin'); #'http://192.168.2.169:8080';
 }
@@ -98,8 +103,171 @@ if(!function_exists('delete_paragraph')){
 
 if(!function_exists('run_async_paragraph')){
     function run_async_paragraph($noteID,$paragraphID){
-        // FIXME feature disabled because of time ... ?
-        // file_get_contents(ZEPPELIN_URL."/api/notebook/job/$noteID/$paragraphID");
+        file_get_contents(ZEPPELIN_URL."/api/notebook/job/$noteID/$paragraphID");
+    }
+}
+
+if(!function_exists('create_csv_source')){
+    function create_csv_source($nodeName,$interpreterName,$path){// TODO specify that one per user
+        // Create interpreter
+        $json =   '{
+    "name": "'.$interpreterName.'",
+    "group": "jdbc",
+    "properties": {
+        "default.url":{"name":"default.url","value":"jdbc:relique:csv:'.dirname($path).'?suppressHeaders\u003dfalse\u0026useQuotes\u003dtrue\u0026separator\u003d%2C\u0026fileExtension\u003d.csv\u0026ignoreNonParseableLines\u003dtrue","type":"string"},
+        "default.driver":{"name":"default.driver","value":"org.relique.jdbc.csv.CsvDriver","type":"string"},
+        "zeppelin.jdbc.principal":{"name":"zeppelin.jdbc.principal","value":"","type":"string"},
+        "default.completer.ttlInSeconds":{"name":"default.completer.ttlInSeconds","value":"120","type":"number"},
+        "default.password":{"name":"default.password","value":"","type":"password"},
+        "default.completer.schemaFilters":{"name":"default.completer.schemaFilters","value":"","type":"textarea"},
+        "default.splitQueries":{"name":"default.splitQueries","value":false,"type":"checkbox"},
+        "default.user":{"name":"default.user","value":"root","type":"string"},
+        "zeppelin.jdbc.concurrent.max_connection":{"name":"zeppelin.jdbc.concurrent.max_connection","value":"10","type":"number"},
+        "common.max_count":{"name":"common.max_count","value":"1000","type":"number"},
+        "default.precode":{"name":"default.precode","value":"","type":"textarea"},
+        "zeppelin.jdbc.auth.type":{"name":"zeppelin.jdbc.auth.type","value":"","type":"string"},
+        "default.statementPrecode":{"name":"default.statementPrecode","value":"","type":"string"},
+        "zeppelin.jdbc.concurrent.use":{"name":"zeppelin.jdbc.concurrent.use","value":true,"type":"checkbox"},
+        "zeppelin.jdbc.keytab.location":{"name":"zeppelin.jdbc.keytab.location","value":"","type":"string"},
+        "zeppelin.jdbc.interpolation":{"name":"zeppelin.jdbc.interpolation","value":false,"type":"checkbox"}
+    },
+    "interpreterGroup": [
+        {
+            "name":"sql",
+            "class":"org.apache.zeppelin.jdbc.JDBCInterpreter",
+            "defaultInterpreter":false,
+            "editor":{"language":"sql","editOnDblClick":false,"completionSupport":true}
+        }
+    ],
+    "dependencies": [
+        {"groupArtifactVersion":"net.sourceforge.csvjdbc:csvjdbc:1.0.34","local":false}
+    ],
+    option": {
+        "remote":true,
+        "port":-1,
+        "perNote":"shared",
+        "perUser":"shared",
+        "isExistingProcess":false,
+        "setPermission":false,
+        "owners":[],
+        "isUserImpersonate":false
+    }
+}';
+        $headers = array('http' =>
+            array(
+                'method'  => 'POST',
+                'header'  => 'Content-Type: application/x-www-form-urlencoded',
+                'content' => '{"name": "'.$name.'"}'
+            )
+        );
+        $context  = stream_context_create($headers);
+        $result = json_decode(file_get_contents(ZEPPELIN_URL.'/api/interpreter/setting', true, $context),true);
+        
+        // Create initial note
+        $json = '{
+"name": "'.$nodeName.'",
+"paragraphs": [
+    {
+      "title": "query",
+      "text": "%'.$interpreterName.'
+SELECT * FROM '.preg_replace('/\.(.+)$/','',basename($path)).';"
+    }
+]
+}';
+        $headers = array('http' =>
+            array(
+                'method'  => 'POST',
+                'header'  => 'Content-Type: application/x-www-form-urlencoded',
+                'content' => $json
+            )
+        );
+        $context  = stream_context_create($headers);
+        $result = json_decode(file_get_contents(ZEPPELIN_URL.'/api/notebook', true, $context),true);
+        return $result['body'];
+    }
+}
+
+if(!function_exists('create_access_source')){
+    function create_access_source($nodeName,$interpreterName,$path){
+        // Create interpreter
+$json =   '{
+    "name": "'.$interpreterName.'",
+    "group": "jdbc",
+    "properties": {
+        "default.url":{"name":"default.url","value":"jdbc:ucanaccess://'.$path.';memory\u003dfalse","type":"string"},
+        "default.driver":{"name":"default.driver","value":"net.ucanaccess.jdbc.UcanaccessDriver","type":"string"},
+        "zeppelin.jdbc.principal":{"name":"zeppelin.jdbc.principal","value":"","type":"string"},
+        "default.completer.ttlInSeconds":{"name":"default.completer.ttlInSeconds",
+        "value":"120","type":"number"},
+        "default.password":{"name":"default.password","value":"","type":"password"},
+        "default.completer.schemaFilters":{"name":"default.completer.schemaFilters","value":"","type":"textarea"},
+        "default.splitQueries":{"name":"default.splitQueries","value":false,"type":"checkbox"},
+        "default.user":{"name":"default.user","value":"root","type":"string"},
+        "zeppelin.jdbc.concurrent.max_connection":{"name":"zeppelin.jdbc.concurrent.max_connection","value":"10","type":"number"},
+        "common.max_count":{"name":"common.max_count","value":"1000","type":"number"},
+        "default.precode":{"name":"default.precode","value":"","type":"textarea"},
+        "zeppelin.jdbc.auth.type":{"name":"zeppelin.jdbc.auth.type","value":"","type":"string"},
+        "default.statementPrecode":{"name":"default.statementPrecode","value":"","type":"string"},
+        "zeppelin.jdbc.concurrent.use":{"name":"zeppelin.jdbc.concurrent.use","value":true,"type":"checkbox"},
+        "zeppelin.jdbc.keytab.location":{"name":"zeppelin.jdbc.keytab.location","value":"","type":"string"},
+        "zeppelin.jdbc.interpolation":{"name":"zeppelin.jdbc.interpolation","value":false,"type":"checkbox"}
+    },
+    "interpreterGroup": [
+        {
+            "name":"sql",
+            "class":"org.apache.zeppelin.jdbc.JDBCInterpreter",
+            "defaultInterpreter":false,
+            "editor":{"language":"sql","editOnDblClick":false,"completionSupport":true}
+        }
+    ],
+    "dependencies": [
+        {"groupArtifactVersion":"net.sf.ucanaccess:ucanaccess:3.0.1","local":false}
+    ],
+    option": {
+        "remote":true,
+        "port":-1,
+        "perNote":"shared",
+        "perUser":"shared",
+        "isExistingProcess":false,
+        "setPermission":false,
+        "owners":[],
+        "isUserImpersonate":false
+    }
+}';
+        $headers = array('http' =>
+            array(
+                'method'  => 'POST',
+                'header'  => 'Content-Type: application/x-www-form-urlencoded',
+                'content' => '{"name": "'.$name.'"}'
+            )
+        );
+        $context  = stream_context_create($headers);
+        $result = json_decode(file_get_contents(ZEPPELIN_URL.'/api/interpreter/setting', true, $context),true);
+        
+        // Get tables list
+        $tables = trim(shell_exec('mdb-tables -1 "'.$path.'"'));
+        
+        // Create initial note
+        $json = '{
+"name": "'.$nodeName.'",
+"paragraphs": [
+    {
+      "title": "query",
+      "text": "%'.$interpreterName.'
+SELECT * FROM '.implode(',',$tables).';"
+    }
+]
+}';
+        $headers = array('http' =>
+            array(
+                'method'  => 'POST',
+                'header'  => 'Content-Type: application/x-www-form-urlencoded',
+                'content' => $json
+            )
+        );
+        $context  = stream_context_create($headers);
+        $result = json_decode(file_get_contents(ZEPPELIN_URL.'/api/notebook', true, $context),true);
+        return $result['body'];
     }
 }
 
