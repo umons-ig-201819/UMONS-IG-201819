@@ -128,7 +128,8 @@ class UserModelTest extends TestCase{
     
     public function testGetUserAdvices(){
         $res=$this->userModel->getUserAdvices("1");
-        print_r ($res);
+        $this->assertEquals($res[0]["id"],"3");
+        //print_r ($res);
         // assertEquals(?)
     }
     
