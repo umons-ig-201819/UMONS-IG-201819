@@ -16,12 +16,21 @@ class UserModelTest extends TestCase{
     }
    
     public function testAuthentification(){
-        $res = $this->userModel->authentification("acools","test");
-        $this->assertEquals($res,false);// fake test
+        $res = $this->userModel->authentification("DurandJ","test");     
+        $this->assertEquals($res["id"],"1");
     }
+    
+    
+    
+    public function testAuthentification(){
+        $res = $this->userModel->authentification("as","t");
+        $this->assertEquals($res,false);
+    }
+    
+    
     public function testGetUserRoles(){
         $this->userModel->getUserRoles(1);
-        // assertEquals(?)   
+        $this->assertEquals(?)   
     }
     
     public function testGetRoles(){
