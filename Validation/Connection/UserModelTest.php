@@ -137,7 +137,7 @@ class UserModelTest extends TestCase{
         print_r ($res);
         // assertEquals(?)
     }
-    
+    /*
     //--------INSERTION----------
     
     public function testAddUser(){
