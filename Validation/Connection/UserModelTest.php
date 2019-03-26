@@ -156,22 +156,26 @@ class UserModelTest extends TestCase{
     
     public function testAddRole(){
         $res=$this->userModel->addRole("acools","bleus");
-        print_r ($res);
+        //print_r ($res);
+        $this->assertNotEquals($res,false);
         // assertEquals(?)
     }
-    /*
+    
     public function testAddRight(){
-        $res=$this->userModel->addRight();
+        $res=$this->userModel->addRight("acools","bleus");
+        $this->assertNotEquals($res,false);
         // assertEquals(?)
     }
     
     public function testAddRoleRight(){
-        $res=$this->userModel->addRoleRight();
+        $res=$this->userModel->addRoleRight("1","5");
+        $this->assertEquals($res,true);
         // assertEquals(?)
     }
     
     public function testAddAdvice(){
-        $res=$this->userModel->addAdvice();
+        $res=$this->userModel->addAdvice("1","2","vive les bleus");
+        $this->assertNotEquals($res,false);
         // assertEquals(?)
     }
     
@@ -179,65 +183,75 @@ class UserModelTest extends TestCase{
     
     public function testUpdateUser(){
         $res=$this->userModel->updateUser();
+        $this->assertEquals($res,true);
         // assertEquals(?)
     }
     
     public function testUpdateRole(){
-        $res=$this->userModel->updateRole();
+        $res=$this->userModel->updateRole("9","Aurélie");
+        $this->assertEquals($res,true);
         // assertEquals(?)
     }
     
     public function testUpdateRight(){
-        $res=$this->userModel->updateRight();
+        $res=$this->userModel->updateRight("8","Aurélie","vert");
+        $this->assertEquals($res,true);
         // assertEquals(?)
     }
     
     public function testUpdateAdvice(){
-        $res=$this->userModel->updateAdvice();
+        $res=$this->userModel->updateAdvice("1","2",NULL,"vive l'europe");
+        $this->assertEquals($res,true);
         // assertEquals(?)
     }
     
     //-------DELETE------
     
     public function testDeleteUser(){
-        $res=$this->userModel->deleteUser();
+        $res=$this->userModel->deleteUser(NULL);
+        $this->assertNotEquals($res,true);
         // assertEquals(?)
     }
     
     public function testDeleteUserRole(){
-        $res=$this->userModel->deleteUserRole();
-        // assertEquals(?)
+        $res=$this->userModel->deleteUserRole("1","5");
+        $this->assertEquals($res,true);
     }
     
     public function testDeleteUserAllRole(){
-        $res=$this->userModel->deleteUserAllRole();
-        // assertEquals(?)
+        $res=$this->userModel->deleteUserAllRole("");
+        $this->assertEquals($res,false);
     }
     
     public function testDeleteRole(){
-        $res=$this->userModel->deleteRole();
+        $res=$this->userModel->deleteRole("9");
+        $this->assertEquals($res,true);
         // assertEquals(?)
     }
     
     public function testDeleteRight(){
-        $res=$this->userModel->deleteRight();
+        $res=$this->userModel->deleteRight("8");
+        $this->assertEquals($res,true);
         // assertEquals(?)
     }
     
     public function testDeleteRoleRight(){
-        $res=$this->userModel->deleteRoleRight();
+        $res=$this->userModel->deleteRoleRight("1","5");
+        $this->assertEquals($res,true);
         // assertEquals(?)
     }
     
     public function testDeleteRoleAllRight(){
-        $res=$this->userModel->deleteRoleAllRight();
+        $res=$this->userModel->deleteRoleAllRight("");
+        $this->assertEquals($res,false);
         // assertEquals(?)
     }
     
     public function testDeleteAdvice(){
-        $res=$this->userModel->deleteAdvice();
+        $res=$this->userModel->deleteAdvice("2");
+        $this->assertEquals($res,true);
         // assertEquals(?)
-    }*/
+    }
 }
 
 
