@@ -42,7 +42,7 @@ class UserModelTest extends TestCase{
     {
         $res=$this->userModel->getRoles();
         print_r ($res);
-        $this->assertEquals($res[0][0],"3");
+        $this->assertEquals($res[0]["id"],"3");
         
     }
     
