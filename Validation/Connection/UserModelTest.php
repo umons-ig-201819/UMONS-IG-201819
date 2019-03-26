@@ -29,7 +29,7 @@ class UserModelTest extends TestCase{
     
     public function testGetUserRoles(){
         $res=$this->userModel->getUserRoles(1);
-        $this->assertEquals($res["name"],"gestionnaire");
+        $this->assertEquals($res["name"],"agriculteur");
     }
     
     /*public function testGetRoles(){
