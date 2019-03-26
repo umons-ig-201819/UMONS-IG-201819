@@ -30,13 +30,15 @@ class UserModelTest extends TestCase{
     
     public function testGetUserRoles(){
         $res=$this->userModel->getUserRoles("1");
-        echo $res[0];
+       //echo $res[0];
         $this->assertEquals($res[0],"3");
     }
     
-    public function testGetRoles(){
+    public function testGetRoles()
+    {
         $res=$this->userModel->getRoles();
-        $this->assertEquals($res["id"][0],"3");
+        $this->assertEquals($res[0][0],"3");
+        
     }
     
     /*
