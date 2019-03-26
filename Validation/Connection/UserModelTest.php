@@ -139,12 +139,12 @@ class UserModelTest extends TestCase{
         //print_r ($res);
         // assertEquals(?)
     }
-    /*
+    
     //--------INSERTION----------
     
     public function testAddUser(){
         $res=$this->userModel->addUser();
-        // assertEquals(?)
+        $this->assertEquals($res,false);
     }
     
     public function testAddUserRole(){
