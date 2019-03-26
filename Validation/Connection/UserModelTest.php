@@ -104,22 +104,26 @@ class UserModelTest extends TestCase{
         $this->assertEquals($res,false);
     }
     
-    /*
+    
     public function testGetUsersFromRole(){
-        $res=$this->userModel->getUsersFromRole();
-        // assertEquals(?)
-    }*/
+        $res=$this->userModel->getUsersFromRole("1");
+        print_r ($res);
+        //$this->assertEquals($res,false);
+        
+        
+    }
     
     public function testGetAdvice(){
         $res=$this->userModel->getAdvice("1");
         $this->assertEquals($res["user_id"],"2");
     }
-    /*
+    
     public function testGetAdvices(){
         $res=$this->userModel->getAdvices();
         // assertEquals(?)
     }
     
+    /*
     public function testGetUserAdvices(){
         $res=$this->userModel->getUserAdvices();
         // assertEquals(?)
