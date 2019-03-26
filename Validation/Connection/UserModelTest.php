@@ -183,7 +183,7 @@ class UserModelTest extends TestCase{
     
     public function testUpdateUser(){
         $res=$this->userModel->updateUser();
-        $this->assertEquals($res,true);
+        $this->assertEquals($res,false);
         // assertEquals(?)
     }
     
