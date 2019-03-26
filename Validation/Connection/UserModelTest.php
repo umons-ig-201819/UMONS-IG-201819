@@ -28,7 +28,7 @@ class UserModelTest extends TestCase{
     }
     
     
-    public function testGetUserRoles(){
+    /*public function testGetUserRoles(){
         $this->userModel->getUserRoles(1);
         $this->assertEquals(?)   
     }
@@ -194,7 +194,7 @@ class UserModelTest extends TestCase{
     public function testDeleteAdvice(){
         $this->userModel->deleteAdvice();
         // assertEquals(?)
-    }
+    }*/
 }
 
 
