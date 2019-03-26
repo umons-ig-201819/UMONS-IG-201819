@@ -96,12 +96,12 @@ class UserModelTest extends TestCase{
     
     public function testLoginIsFree(){
         $res=$this->userModel->loginIsFree("acools");
-        $this->assertEquals($res,"true");
+        $this->assertEquals($res,true);
     }
     
     public function testLoginIsFree2(){
         $res=$this->userModel->loginIsFree("DurandJ");
-        $this->assertEquals($res,"false");
+        $this->assertEquals($res,false);
     }
     
     /*
