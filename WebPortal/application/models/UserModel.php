@@ -508,7 +508,7 @@ class UserModel extends CI_Model {
 	public function loginIsFree($login)
 	{
 		if(empty($login)) return false;
-		$logtest=$this->get_users(array("login" => $login));
+		$logtest=$this->getUsers(array("login" => $login));
 		if(count($logtest)>0) return false;
 		return true;		
 	}
@@ -524,7 +524,7 @@ class UserModel extends CI_Model {
 	public function getUsersFromRole($roleid)
 	{
 		if(empty($roleid)) return NULL;
-		return $this->get_users(array("role" => intval($roleid)));
+		return $this->getUsers(array("role" => intval($roleid)));
 	}
 	
 	/**
@@ -794,7 +794,7 @@ class UserModel extends CI_Model {
 		
 		if( ! $this->db->query($sql, array($lastname, $firstname, $birthdate, $email, $phone, $mobile, $gender, $login, $password, $visible, $advice)) )
 		{
-		    return array(FALSE,'Erreur d\'ecriture à la DB' );
+		    return array(FALSE,'Erreur d\'ecriture ï¿½ la DB' );
 		}
 		
 	//	return $this->db->insert_id();
