@@ -128,14 +128,15 @@ class UserModelTest extends TestCase{
     
     public function testGetUserAdvices(){
         $res=$this->userModel->getUserAdvices("1");
-        $this->assertEquals($res["id"],"3");
-        //print_r ($res);
+        //$this->assertEquals($res["id"],"3");
+        print_r ($res);
         // assertEquals(?)
     }
     
     public function testGetAdvisorAdvices(){
         $res=$this->userModel->getAdvisorAdvices("1");
-        print_r ($res);
+        $this->assertEquals($res["id"],"3");
+        //print_r ($res);
         // assertEquals(?)
     }
     /*
