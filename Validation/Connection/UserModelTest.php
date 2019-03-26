@@ -107,9 +107,8 @@ class UserModelTest extends TestCase{
     
     public function testGetUsersFromRole(){
         $res=$this->userModel->getUsersFromRole("2");
-        //$this->assertEquals($res[0]["id"],"3");
-        print_r ($res);
-        $this->assertEquals($res,false);
+        //print_r ($res);
+        $this->assertEquals($res["id"],"4");
         
         
     }
