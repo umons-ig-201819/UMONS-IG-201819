@@ -31,7 +31,8 @@ class UserModelTest extends TestCase{
     public function testGetUserRoles()
     {
         $res=$this->userModel->getUserRoles("1");
-        print_r ($res);
+        //print_r ($res);
+        $this->assertEquals($res[0]["id"],"3");
         
         /*while ($row = mysql_fetch_array($res, MYSQL_NUM)) 
         {
@@ -43,7 +44,7 @@ class UserModelTest extends TestCase{
     public function testGetRoles()
     {
         $res=$this->userModel->getRoles();
-        print_r ($res);
+        //print_r ($res);
         $this->assertEquals($res[0]["id"],"3");
         
     }
