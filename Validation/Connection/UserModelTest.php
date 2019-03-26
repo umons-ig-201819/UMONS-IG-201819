@@ -146,17 +146,20 @@ class UserModelTest extends TestCase{
         $res=$this->userModel->addUser();
         $this->assertEquals($res,false);
     }
-    /*
-    public function testAddUserRole(){
-        $res=$this->userModel->addUserRole();
+    
+    public function testAddUserRole()
+    {
+        $res=$this->userModel->addUserRole("1","5");
+        $this->assertEquals($res,true);
         // assertEquals(?)   
     }
     
     public function testAddRole(){
-        $res=$this->userModel->addRole();
+        $res=$this->userModel->addRole("acools","bleus");
+        print_r ($res);
         // assertEquals(?)
     }
-    
+    /*
     public function testAddRight(){
         $res=$this->userModel->addRight();
         // assertEquals(?)
