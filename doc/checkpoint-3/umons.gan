@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2019-02-25" view-index="0" gantt-divider-location="1002" resource-divider-location="300" version="2.8.10" locale="fr">
+    <description/>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd10" name="ID" width="74" order="0"/>
+        <field id="tpd9" name="Prédécesseurs" width="140" order="1"/>
+        <field id="tpd3" name="Nom" width="562" order="2"/>
+        <field id="tpd4" name="Date de début" width="107" order="3"/>
+        <field id="tpd5" name="Date de fin" width="100" order="4"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nom" width="210" order="0"/>
+        <field id="1" name="Rôle par défaut" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="Histoire 1 - préparation" color="#8cb6ce" meeting="false" start="2019-02-05" duration="26" complete="13" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+            <depend id="8" type="2" difference="0" hardness="Strong"/>
+            <depend id="10" type="2" difference="0" hardness="Strong"/>
+            <depend id="11" type="2" difference="0" hardness="Strong"/>
+            <depend id="12" type="2" difference="0" hardness="Strong"/>
+            <task id="34" name="Obtenir coordonnées clients" color="#8cb6ce" meeting="false" start="2019-02-05" duration="1" complete="100" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+                <depend id="30" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="30" name="Discussion avec le client" color="#8cb6ce" meeting="false" start="2019-02-06" duration="1" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+                <depend id="32" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="32" name="Choix technologique" color="#8cb6ce" meeting="false" start="2019-02-07" duration="3" complete="100" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+                <depend id="33" type="2" difference="0" hardness="Strong"/>
+                <depend id="37" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="33" name="Environnement de développement" color="#8cb6ce" meeting="false" start="2019-02-12" duration="3" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+                <depend id="3" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="37" name="Préparation matérielle" color="#8cb6ce" meeting="false" start="2019-02-12" duration="21" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+                <depend id="65" type="2" difference="0" hardness="Strong"/>
+            </task>
+        </task>
+        <task id="3" name="Histoire 2 - connexion" color="#8cb6ce" meeting="false" start="2019-02-22" duration="20" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+            <depend id="13" type="2" difference="0" hardness="Strong"/>
+            <depend id="14" type="2" difference="0" hardness="Strong"/>
+            <task id="59" name="Tests de connexion" color="#8cb6ce" meeting="false" start="2019-02-22" duration="10" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="62" name="Conception BDD" color="#8cb6ce" meeting="false" start="2019-02-22" duration="5" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+                <depend id="70" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="63" name="Connexion Backend" color="#8cb6ce" meeting="false" start="2019-02-22" duration="6" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+                <depend id="84" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="65" name="Ajout d'une source de données (PostgreSQL)" color="#8cb6ce" meeting="false" start="2019-03-13" duration="1" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="68" name="Test de création de compte" color="#8cb6ce" meeting="false" start="2019-03-08" duration="10" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="69" name="Création de compte Backend" color="#8cb6ce" meeting="false" start="2019-02-26" duration="6" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="70" name="Implémentation BDD" color="#8cb6ce" meeting="false" start="2019-03-01" duration="3" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="71" name="Intégration de la source de données dans le portail" color="#8cb6ce" meeting="false" start="2019-02-26" duration="6" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="8" name="Histoire 3 - droits" color="#8cb6ce" meeting="false" start="2019-03-13" duration="18" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+            <depend id="13" type="2" difference="0" hardness="Strong"/>
+            <depend id="14" type="2" difference="0" hardness="Strong"/>
+            <task id="84" name="Gestion des droits (backend)" color="#8cb6ce" meeting="false" start="2019-03-13" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="86" name="Gestion des droits (frontend)" color="#8cb6ce" meeting="false" start="2019-03-13" duration="12" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="87" name="Tests des droits" color="#8cb6ce" meeting="false" start="2019-03-22" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="88" name="Gestion des sources fichiers (csv, access)" color="#8cb6ce" meeting="false" start="2019-03-13" duration="6" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="93" name="Connexion (frontend)" color="#8cb6ce" meeting="false" start="2019-03-13" duration="5" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="95" name="Création de compte (frontend)" color="#8cb6ce" meeting="false" start="2019-03-13" duration="5" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="10" name="Histoire 4 - données" color="#8cb6ce" meeting="false" start="2019-03-19" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+            <depend id="13" type="2" difference="0" hardness="Strong"/>
+            <depend id="14" type="2" difference="0" hardness="Strong"/>
+            <task id="107" name="Ajout d'un fichier de données (backend)" color="#8cb6ce" meeting="false" start="2019-03-19" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="110" name="Test de l'ajout d'un fichier de données" color="#8cb6ce" meeting="false" start="2019-03-19" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="111" name="Ajout d'un fichier de données (frontend)" color="#8cb6ce" meeting="false" start="2019-03-19" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="114" name="Intégration des sources fichiers" color="#8cb6ce" meeting="false" start="2019-03-19" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="11" name="Histoire 5 - graphiques" color="#8cb6ce" meeting="false" start="2019-04-02" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+            <depend id="13" type="2" difference="0" hardness="Strong"/>
+            <depend id="14" type="2" difference="0" hardness="Strong"/>
+            <task id="116" name="Gestion des graphiques dans Zeppelin" color="#8cb6ce" meeting="false" start="2019-04-02" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="118" name="Intégration des graphiques (backend)" color="#8cb6ce" meeting="false" start="2019-04-02" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="119" name="Intégration des graphiques (frontend)" color="#8cb6ce" meeting="false" start="2019-04-02" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="120" name="Validation (tests) des graphiques" color="#8cb6ce" meeting="false" start="2019-04-02" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="12" name="Histoire 6 - scientifique" color="#8cb6ce" meeting="false" start="2019-04-16" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+            <depend id="13" type="2" difference="0" hardness="Strong"/>
+            <depend id="14" type="2" difference="0" hardness="Strong"/>
+            <task id="115" name="Ajout d'une source REST (implémentation serveur REST) + Jenkins" color="#8cb6ce" meeting="false" start="2019-04-16" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="121" name="Création d'un projet scientifique et requête de droits (backend)" color="#8cb6ce" meeting="false" start="2019-04-16" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="123" name="Création d'un projet scientifique et requête de droits (frontend)" color="#8cb6ce" meeting="false" start="2019-04-16" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="124" name="Tests des droits de projets scientifiques" color="#8cb6ce" meeting="false" start="2019-04-16" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="13" name="Histoire 7 - Webservice" color="#8cb6ce" meeting="false" start="2019-05-01" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+            <task id="126" name="Implémentation API Backend REST d'accès aux données" color="#8cb6ce" meeting="false" start="2019-05-01" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="127" name="Sortie frontend REST d'accès aux données" color="#8cb6ce" meeting="false" start="2019-05-01" duration="11" complete="0" thirdDate="2019-05-01" thirdDate-constraint="0" expand="true"/>
+            <task id="129" name="Intégration de la source REST" color="#8cb6ce" meeting="false" start="2019-05-01" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="131" name="Tests de l'API REST" color="#8cb6ce" meeting="false" start="2019-05-01" duration="11" complete="0" thirdDate="2019-05-01" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="14" name="Histoire 8 - responssive" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+            <task id="132" name="Adaptation responssive des graphiques" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="136" name="Adaptation responssive de l'upload de fichiers" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-05-01" thirdDate-constraint="0" expand="true"/>
+            <task id="133" name="Adaptation responssive des frontend" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="137" name="Tests d'intégration responssive" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-05-01" thirdDate-constraint="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+</project>
