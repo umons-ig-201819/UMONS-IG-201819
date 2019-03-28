@@ -116,19 +116,23 @@ if(!function_exists('delete_paragraph')){
 
 if(!function_exists('run_async_paragraph')){
     function run_async_paragraph($noteID,$paragraphID){
-        file_get_contents(ZEPPELIN_URL."/api/notebook/job/$noteID/$paragraphID");
+        $headers = array('http' => array( 'method'  => 'POST' ) );
+        $context  = stream_context_create($headers);
+        file_get_contents(ZEPPELIN_URL."/api/notebook/job/$noteID/$paragraphID",true,$context);
     }
 }
 
 if(!function_exists('run_sync_paragraph')){
     function run_sync_paragraph($noteID,$paragraphID){
-        file_get_contents(ZEPPELIN_URL."/api/notebook/run/$noteID/$paragraphID");
+        $headers = array('http' => array( 'method'  => 'POST' ) );
+        $context  = stream_context_create($headers);
+        file_get_contents(ZEPPELIN_URL."/api/notebook/run/$noteID/$paragraphID",true,$context);
     }
 }
 
 if(!function_exists('run_paragraph')){
     function run_paragraph($noteID,$paragraphID){
-        run_sync_paragraph($noteID,$paragraphID);
+        run_async_paragraph($noteID,$paragraphID);
     }
 }
 
