@@ -7,6 +7,12 @@
     		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     	<![endif]-->
     	<link rel="stylesheet" type="text/css" media="only screen" href="<?=site_url('css/styles.css');?>" />
+    	<style type="text/css">
+    	alert-warning: {
+    	   visibility: hidden;
+    	   display: none;
+    	}
+    	</style>
     </head>
     <body>
     	<header id="main_header">
