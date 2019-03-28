@@ -85,9 +85,6 @@ if(!function_exists('create_paragraph')){
                 'content' => '{"title": "'.$name.'", "text": "'.preg_replace('/"/','\\"',$textContent).'"'.$results.'}'
             )
         );
-        echo "$name:\n";
-        print_r($headers);
-        echo "\n\n\n";
         $context       = stream_context_create($headers);
         $result        = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID/paragraph", true, $context),true);
         $paragraphID   = $result['body'];
@@ -117,7 +114,7 @@ if(!function_exists('delete_paragraph')){
 
 if(!function_exists('run_async_paragraph')){
     function run_async_paragraph($noteID,$paragraphID){
-        file_get_contents(ZEPPELIN_URL."/api/notebook/job/$noteID/$paragraphID");
+        print_r(file_get_contents(ZEPPELIN_URL."/api/notebook/job/$noteID/$paragraphID"));
     }
 }
 
