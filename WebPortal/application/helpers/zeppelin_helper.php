@@ -132,7 +132,7 @@ if(!function_exists('run_sync_paragraph')){
 
 if(!function_exists('run_paragraph')){
     function run_paragraph($noteID,$paragraphID){
-        run_async_paragraph($noteID,$paragraphID);
+        // run_async_paragraph($noteID,$paragraphID); FIXME uncomment, disabled temporary
     }
 }
 
