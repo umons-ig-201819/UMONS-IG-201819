@@ -8,7 +8,7 @@
     	<![endif]-->
     	<link rel="stylesheet" type="text/css" media="only screen" href="<?=site_url('css/styles.css');?>" />
     	<style type="text/css">
-        	.alert-warning: {
+        	.alert-warning {
         	   visibility: hidden;
         	   display: none;
         	}
