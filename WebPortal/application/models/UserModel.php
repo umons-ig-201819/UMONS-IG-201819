@@ -776,7 +776,7 @@ class UserModel extends CI_Model {
 		$login=$user['login'];
 		$password=sha1($user['password']);
 
-		if(!$this->login_is_free($login)) return array(FALSE,'Login d&eacute;j&agrave; exitant' );
+		if(!$this->login_is_free($login)) return array(FALSE,'Login d&eacute;j&agrave; existant' );
 				
 			
 		$sql = "INSERT INTO utilisateur 
