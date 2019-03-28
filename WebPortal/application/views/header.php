@@ -8,10 +8,10 @@
     	<![endif]-->
     	<link rel="stylesheet" type="text/css" media="only screen" href="<?=site_url('css/styles.css');?>" />
     	<style type="text/css">
-    	alert-warning: {
-    	   visibility: hidden;
-    	   display: none;
-    	}
+        	.alert-warning: {
+        	   visibility: hidden;
+        	   display: none;
+        	}
     	</style>
     </head>
     <body>
