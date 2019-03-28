@@ -116,7 +116,19 @@ if(!function_exists('delete_paragraph')){
 
 if(!function_exists('run_async_paragraph')){
     function run_async_paragraph($noteID,$paragraphID){
-        print_r(file_get_contents(ZEPPELIN_URL."/api/notebook/job/$noteID/$paragraphID"));
+        file_get_contents(ZEPPELIN_URL."/api/notebook/job/$noteID/$paragraphID");
+    }
+}
+
+if(!function_exists('run_async_paragraph')){
+    function run_sync_paragraph($noteID,$paragraphID){
+        file_get_contents(ZEPPELIN_URL."/api/notebook/run/$noteID/$paragraphID");
+    }
+}
+
+if(!function_exists('run_paragraph')){
+    function run_paragraph($noteID,$paragraphID){
+        run_sync_paragraph($noteID,$paragraphID);
     }
 }
 
@@ -336,10 +348,10 @@ if(!function_exists('synchronize_workspace')){
                     // original paragraph content is more recent, need to update old paragraph
                     $fields = array('text' => $original['text']);
                     update_paragraph($workspaceNoteID,$paragraph['id'],$fields);
-                    run_async_paragraph($workspaceNoteID, $paragraph['id']);
+                    run_paragraph($workspaceNoteID, $paragraph['id']);
                 }elseif($paragraphDate < date('Ymd',time()-24*60*60)){
                     // update paragraph result (re-run)
-                    run_async_paragraph($workspaceNoteID, $paragraph['id']);
+                    run_paragraph($workspaceNoteID, $paragraph['id']);
                 }
             }
         }
@@ -348,7 +360,7 @@ if(!function_exists('synchronize_workspace')){
                 // Add newly created paragraphs (exist in original but not in workspace)
                 $new = create_paragraph($workspaceNoteID,"${originalID}_".$value['id'],$value['text'],$value['results']);
                 array_push($workspaceParagraphs,$new);
-                run_async_paragraph($workspaceNoteID, $new['id']);
+                run_paragraph($workspaceNoteID, $new['id']);
             }
         }
     }
