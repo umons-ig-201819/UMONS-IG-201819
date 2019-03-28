@@ -1,35 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css"
-    	href="<?php echo base_url(); ?>assets/css/style.css">
-    <script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/home.js"></script>
-    <title>Portail AWE</title>
-    </head>
-    
-    <body>    
-    <?php include ("header.php")?>
-    <!-- INSCRIPTION ELEVEUR : s'inscrit lui-même. -->
-
 <section>
-    	<article><h1>Inscription</h1></article>
-<br><aside>Remarque : les inscriptions ne peuvent &ecirc;tre faites manuellement que pour la cr&eacute;ation de comptes &eacute;leveurs. 
-Pour les autres types d'inscriptions (par ex. : scientifiques, conseillers), vous pouvez nous contacter <a href="#">ici</a>. </aside><br>
-
-</section>
-
-<section class="column middle">
-	<form action="#" method="POST" onSubmit="return inscriptionValidate(this)">
-	<fieldset>
-	<legend> Informations d'inscription :  </legend>
-		<article>
-	       	<br><label >sexe : </label><br>
+    <article><h1>Inscription</h1></article>
+    <?= form_open('register'); ?>
+    <fieldset>
+    <legend> Informations d'inscription :  </legend>
+           	<br><label >sexe : </label><br>
         		<input type="radio" name="gender" value="man"> Homme&nbsp;&nbsp;
-				<input type="radio" name="gender" value="female"> Femme&nbsp;&nbsp;
-				<input type="radio" name="gender" value="other"> autre<br><br>
-	
+    			<input type="radio" name="gender" value="female"> Femme&nbsp;&nbsp;
+    			<input type="radio" name="gender" value="other"> autre<br><br>
+    
         	<label >Nom : </label><br>
         		<input type="text" name="lastname" required><br><br>
         	<label >Pr&eacute;nom : </label><br>
@@ -42,20 +20,15 @@ Pour les autres types d'inscriptions (par ex. : scientifiques, conseillers), vou
         		<input type="text" name="tel1" required><br><br>
         	<label >Num&eacute;ro de GSM : </label><br>
         		<input type="text" name="tel2" required><br><br>
- 
+    
     		<label >Nom d'utilisateur :</label><br>
     			<input type="text" name="login" required><br><br>
-
-		<label >Mot de passe :</label> <br>
-		<input type="password" id="mdp" name="mdp" placeholder="Votre mot de passe" required/><br><br>
-		<input type="password" id="confirm_mdp" name="confirm_mdp" placeholder="Confirmation du mot de passe" required/> <br><br>
-
-    	<input type="submit"><input type="reset">				
-		</article>
-	</fieldset>
-	</form>
-</section>
     
-    <?php include ("footer.php")?>
-    </body>
-</html>
+    	<label >Mot de passe :</label> <br>
+    	<input type="password" id="mdp" name="mdp" placeholder="Votre mot de passe" required/><br><br>
+    	<input type="password" id="confirm_mdp" name="confirm_mdp" placeholder="Confirmation du mot de passe" required/> <br><br>
+    
+    	<input type="submit"><input type="reset">				
+    </fieldset>
+    </form>
+</section>
