@@ -54,7 +54,8 @@ if(!function_exists('list_paragraphs')){
         foreach($information as $paragraph){
             $tmp = array( 'note'  => $noteID );
             $tmp['title']          = array_key_exists('title'       ,$paragraph) ? $paragraph['title']          : '' ;
-            $tmp['text']           = array_key_exists('text'        ,$paragraph) ? $paragraph['text' ]          : '' ;
+            $tmp['text']           = array_key_exists('text'        ,$paragraph) ? $paragraph['text']           : '' ;
+            $tmp['results']        = array_key_exists('results'     ,$paragraph) ? $paragraph['results']        : '' ;
             $tmp['id']             = array_key_exists('id'          ,$paragraph) ? $paragraph['id' ]            : '' ;
             $tmp['dateCreated']    = array_key_exists('dateCreated' ,$paragraph) ? strtotime($paragraph['dateCreated' ])   : '' ;
             $tmp['dateStarted']    = array_key_exists('dateStarted' ,$paragraph) ? strtotime($paragraph['dateStarted' ])   : '' ;
@@ -65,27 +66,30 @@ if(!function_exists('list_paragraphs')){
 }
 
 if(!function_exists('create_paragraph')){
-    function create_paragraph($noteID,$name,$content){
-         // Create a copy of the first paragraph of the $originNote to $workingNote entitled with the $originNote identifier
-         $headers = array(
-             'http' => array(
-                 'method'  => 'POST',
-                 'header'  => 'Content-Type: application/x-www-form-urlencoded',
-                 'content' => '{"title": "'.$name.'", "text": "'.preg_replace('/"/','\\"',$content).'"}'
-             )
-         );
-         $context       = stream_context_create($headers);
-         $result        = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID/paragraph", true, $context),true);
-         $paragraphID   = $result['body'];
-         $paragraph     = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID/paragraph/$paragraphID"),true);
-         $paragraph     = $paragraph['body'];
-         $paragraph['note'] = $noteID;
-         foreach($paragraph as $key => $value){
-             if(preg_match('/^date/', $key)){
-                 $paragraph[$key] = strtotime($value);
-             }
-         }
-         return $paragraph;
+    function create_paragraph($noteID,$name,$textContent,$resultJSON=''){
+        if(!empty($resultJSON)){
+            $resultJSON = ", \"results\": $resultJSON";
+        }
+        // Create a copy of the first paragraph of the $originNote to $workingNote entitled with the $originNote identifier
+        $headers = array(
+            'http' => array(
+                'method'  => 'POST',
+                'header'  => 'Content-Type: application/x-www-form-urlencoded',
+                'content' => '{"title": "'.$name.'", "text": "'.preg_replace('/"/','\\"',$textContent).'"'.$resultJSON.'}'
+            )
+        );
+        $context       = stream_context_create($headers);
+        $result        = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID/paragraph", true, $context),true);
+        $paragraphID   = $result['body'];
+        $paragraph     = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID/paragraph/$paragraphID"),true);
+        $paragraph     = $paragraph['body'];
+        $paragraph['note'] = $noteID;
+        foreach($paragraph as $key => $value){
+            if(preg_match('/^date/', $key)){
+                $paragraph[$key] = strtotime($value);
+            }
+        }
+        return $paragraph;
     }
 }
 
@@ -333,7 +337,7 @@ if(!function_exists('synchronize_workspace')){
         foreach($assoc as $id => $value){
             if(!$value['process']){
                 // Add newly created paragraphs (exist in original but not in workspace)
-                $new = create_paragraph($workspaceNoteID,"${originalID}_".$value['id'],$value['text']);
+                $new = create_paragraph($workspaceNoteID,"${originalID}_".$value['id'],$value['text'],$value['results']);
                 array_push($workspaceParagraphs,$new);
                 run_async_paragraph($workspaceNoteID, $new['id']);
             }
