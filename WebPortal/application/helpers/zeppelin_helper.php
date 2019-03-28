@@ -55,10 +55,17 @@ if(!function_exists('list_paragraphs')){
             $tmp = array( 'note'  => $noteID );
             $tmp['title']          = array_key_exists('title'       ,$paragraph) ? $paragraph['title']          : '' ;
             $tmp['text']           = array_key_exists('text'        ,$paragraph) ? $paragraph['text']           : '' ;
-            $tmp['results']        = array_key_exists('results'     ,$paragraph) ? $paragraph['results']        : '' ;
+            $tmp['results']        = array_key_exists('config'      ,$paragraph) ? $paragraph['config']         : '' ;
             $tmp['id']             = array_key_exists('id'          ,$paragraph) ? $paragraph['id' ]            : '' ;
             $tmp['dateCreated']    = array_key_exists('dateCreated' ,$paragraph) ? strtotime($paragraph['dateCreated' ])   : '' ;
             $tmp['dateStarted']    = array_key_exists('dateStarted' ,$paragraph) ? strtotime($paragraph['dateStarted' ])   : '' ;
+            if(!empty($tmp['results'])){
+                if(array_key_exists('results',$tmp['results'])){
+                    $tmp['results'] = $tmp['results']['results'];
+                }else{
+                    $tmp['results']='';
+                }
+            }
             array_push($result,$tmp);
         }
         return $result;
