@@ -68,7 +68,7 @@ if(!function_exists('list_paragraphs')){
 if(!function_exists('create_paragraph')){
     function create_paragraph($noteID,$name,$textContent,$results=''){
         if(!empty($results)){
-            $results = ", \"results\": ".json_encode($results);
+            $results = ", \"config\": {\"enabled\":\"true\", \"results\": ".json_encode($results).'}';
         }
         // Create a copy of the first paragraph of the $originNote to $workingNote entitled with the $originNote identifier
         $headers = array(
