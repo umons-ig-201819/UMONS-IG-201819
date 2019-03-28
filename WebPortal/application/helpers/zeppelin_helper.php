@@ -66,16 +66,16 @@ if(!function_exists('list_paragraphs')){
 }
 
 if(!function_exists('create_paragraph')){
-    function create_paragraph($noteID,$name,$textContent,$resultJSON=''){
-        if(!empty($resultJSON)){
-            $resultJSON = ", \"results\": $resultJSON";
+    function create_paragraph($noteID,$name,$textContent,$results=''){
+        if(!empty($results)){
+            $results = ", \"results\": ".json_encode($results);
         }
         // Create a copy of the first paragraph of the $originNote to $workingNote entitled with the $originNote identifier
         $headers = array(
             'http' => array(
                 'method'  => 'POST',
                 'header'  => 'Content-Type: application/x-www-form-urlencoded',
-                'content' => '{"title": "'.$name.'", "text": "'.preg_replace('/"/','\\"',$textContent).'"'.$resultJSON.'}'
+                'content' => '{"title": "'.$name.'", "text": "'.preg_replace('/"/','\\"',$textContent).'"'.$results.'}'
             )
         );
         $context       = stream_context_create($headers);
