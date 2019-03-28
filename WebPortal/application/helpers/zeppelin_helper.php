@@ -120,7 +120,7 @@ if(!function_exists('run_async_paragraph')){
     }
 }
 
-if(!function_exists('run_async_paragraph')){
+if(!function_exists('run_sync_paragraph')){
     function run_sync_paragraph($noteID,$paragraphID){
         file_get_contents(ZEPPELIN_URL."/api/notebook/run/$noteID/$paragraphID");
     }
