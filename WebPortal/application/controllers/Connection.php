@@ -6,9 +6,14 @@ class Connection extends CI_Controller {
         parent::__construct();
         $this->load->model('UserModel');
     }
+    
+    
     public function logout(){
         $this->session->sess_destroy();
-        $this->index();
+        redirect('/');
+ /*       $this->load->view('header');
+        $this->load->view('home');
+        $this->load->view('footer');*/
     }
     public function index(){
         $data = array();
