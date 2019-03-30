@@ -312,7 +312,7 @@ class ProjectModel extends CI_Model
 								ON u.ut_id=p.p_id_createur)";
         
             /*
-             * SELECT u.ut_nom, u.ut_prenom, up.up_role_pour_ce_projet, up.up_gestion, u2.ut_nom, u2.ut_prenom, 'CREATEUR' as C
+             * "SELECT u.ut_nom, u.ut_prenom, up.up_role_pour_ce_projet, up.up_gestion, u2.ut_nom, u2.ut_prenom, 'CREATEUR' as C
                     FROM utilisateur u
                     	JOIN utilisateur_projet up
                         	ON up_id_participant = ut_id
@@ -320,7 +320,7 @@ class ProjectModel extends CI_Model
                         	ON up_id_projet = p_id
                         JOIN utilisateur u2
                         	ON p_id_createur = u2.ut_id
-                    WHERE p_id = 14
+                    WHERE p_id = $projID"
              * */
             
             
