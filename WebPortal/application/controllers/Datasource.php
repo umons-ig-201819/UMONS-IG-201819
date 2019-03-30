@@ -4,19 +4,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Datasource extends CI_Controller {
     public function __construct(){
         parent::__construct();
-        //$this->load->model('DataSourceModel');
+        $this->load->model('DataSourceModel');
+        $this->load->helper('zeppelin');
     }
-    public function index($sourceID=-1){
-        $sourceID = intval($sourceID);
-                
+
+    
+    public function index($sourceID=''){
+        $sources = $this->DataSourceModel->getAccessibleDataSources($this->session->UserID);
+        
         $options = array(
-            '0'         => 'Veuillez s&eacute;lectionner une source',
+            ''         => 'Veuillez s&eacute;lectionner une source',
         );
+        
+        foreach($sources as $source){
+            $options[$source['url']] = $source['name'];
+        }
+        
+        if(empty($sourceID) && !empty($this->input->post('datasource'))){
+            $sourceID = $this->input->post('datasource');
+        }
+        
+        if(!preg_match('/^[0-9a-zA-Z]+$/', $sourceID)) $sourceID = '';
+        
+        $url = array();
+        
+        if(!empty($sourceID) && array_key_exists($sourceID, $options)){
+            $url = get_user_workspace($this->session->UserID,$sourceID);
+        }
         
         $data = array(
             'selected'          => $sourceID,
-            'notebook_table'    => 'http://192.168.2.169:8080/#/notebook/2E6UBUUT8',
-            'notebook_graph'    => 'http://192.168.2.169:8080/#/notebook/2E6UBUUT8/paragraph/20190217-060926_1012400790?asIframe',
+            'url'               => $url,
             'options'           => $options
         );
         
@@ -29,12 +47,14 @@ class Datasource extends CI_Controller {
             $userID                         = $this->session->UserID;
             $path_parts                     = pathinfo($_FILES["datafile"]["name"]);
             
-            $config['upload_path']          = "/var/nfs/general/$userID/";
-            $config['allowed_types']        = 'csv|mdb|accdb';
-            $config['max_size']             = 100;
-            $config['file_ext_tolower']     = true;
-            $config['detect_mime']          = true;
-            $config['file_name']            = dechex(time()).'.'.strtolower($path_parts['extension']);
+            $config = array(
+                'upload_path'          => "/var/nfs/general/$userID/",
+                'allowed_types'        => 'csv|mdb|accdb',
+                'max_size'             => 100,
+                'file_ext_tolower'     => true,
+                'detect_mime'          => true,
+                'file_name'            => dechex(time()).'.'.strtolower($path_parts['extension'])
+            );
             
             $this->load->library('upload', $config);
             

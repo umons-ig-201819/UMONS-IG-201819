@@ -311,7 +311,52 @@ class ProjectModel extends CI_Model
 								LEFT JOIN utilisateur AS u
 								ON u.ut_id=p.p_id_createur)";
         
-        
+            /*
+             * SELECT u.ut_nom, u.ut_prenom, up.up_role_pour_ce_projet, up.up_gestion, u2.ut_nom, u2.ut_prenom, 'CREATEUR' as C
+                    FROM utilisateur u
+                    	JOIN utilisateur_projet up
+                        	ON up_id_participant = ut_id
+                        JOIN projet p
+                        	ON up_id_projet = p_id
+                        JOIN utilisateur u2
+                        	ON p_id_createur = u2.ut_id
+                    WHERE p_id = 14
+             * */
+            
+            
+            /*"SELECT DISTINCT
+             u.ut_id AS member_id,
+             u.ut_nom AS member_lastname,
+             u.ut_prenom as member_firstname,
+             IF(up.up_id_participant=u.ut_id,up.up_role_pour_ce_projet,NULL) AS role,
+             IF(up.up_id_participant=u.ut_id,up.up_gestion,0) AS manage
+             FROM utilisateur AS u
+             JOIN utilisateur_projet AS up
+             ON up.up_id_participant=u.ut_id
+             WHERE
+             up.up_id_projet = 14
+             OR 14 IN (SELECT p.p_id
+             FROM projet AS p
+             LEFT JOIN utilisateur AS u
+             ON u.ut_id=p.p_id_createur)"*/
+            
+            /*
+             * "SELECT DISTINCT
+					u.ut_id AS member_id,
+                    u.ut_nom AS member_lastname,
+                    u.ut_prenom as member_firstname,
+                IF(p.p_id_createur=u.ut_id,1,0) AS project_owner
+                FROM utilisateur AS u
+                JOIN projet AS p
+                ON p.p_id_createur=u.ut_id
+				WHERE
+					p.p_id=14 
+                
+                	OR 14 IN (SELECT utilisateur_projet.up_id_projet
+								FROM utilisateur_projet
+								LEFT JOIN utilisateur AS u
+								ON u.ut_id=utilisateur_projet.up_id_participant)"
+             * */
         
         /*"SELECT
 					u.ut_id AS member_id,
@@ -424,6 +469,8 @@ class ProjectModel extends CI_Model
               WHERE
 				up.up_id_participant = $userID
 				OR $userID IN (SELECT p.p_id_createur FROM projet)";
+        
+
         
         /*"SELECT DISTINCT     
                     p_id AS project_id,
