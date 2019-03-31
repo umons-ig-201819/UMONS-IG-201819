@@ -24,7 +24,20 @@ class UserModelTest extends TestCase{
     }
     
     public function testAddUser2(){
-        $res=$this->userModel->addUser('Cools','Aurélie','1994-02-03', 'cools.aurelie@hotmail.com', '0498837255', 0, 'coa', 'test',1,1);
+       
+        
+        $lastname="Cools";
+        $firstname="Aurélie";
+        $birthdate='1994-02-03';
+        $email = 'cools.aurelie@hotmail.com';
+        $phone =  '0498837255';
+        $mobile='0498837255';
+        $gender= 0;
+        $login= 'COA';
+        $visible=1;
+        $advice=1;
+        $password=sha1("test");
+        $res=$this->userModel->addUser($lastname, $firstname, $birthdate, $email, $phone, $mobile, $gender, $login, $password, $visible, $advice);
         print_r($res);
        // $this->assertEquals($res,true);
        
