@@ -38,7 +38,7 @@ class UserModelTest extends TestCase{
         $user['advice']=1;
         $user['password']=sha1("test");
         $res=$this->userModel->addUser($user);
-       // $this->assertEquals($res,true);
+        $this->assertEquals($res,[true, $user]);
        
     }
     
