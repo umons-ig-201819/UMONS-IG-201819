@@ -8,19 +8,82 @@ class UserModelTest extends TestCase{
         parent::__construct();
         $userModel = null;
     }
+    
+    public function getId()
+    {
+        
+        $sql="SELECT
+				ut_id
+				FROM utilisateurs
+				ORDER BY DESC ut_id ";
+        $query = $this->db->query($sql);
+        $id=$query->result_array([0]["id"]);
+        
+        return $id;
+    }	
+    
+    
+    
     protected function setUp(){
         $this->userModel = new UserModel();
+        
+        $res=$this->userModel->addUser();
+        
+        $lastid = $this->userModel->getId();
+        print_r($lastid);
+        
     }
+    
     protected function tearDown(){
         $this->userModel = null;
     }
+   /*
+    
+    
+    //--------INSERTION----------
+    public function testAddUser(){
+        $this->assertEquals($res,false);
+    }
    
+    
+    public function testAddUserRole()
+    {
+        $res=$this->userModel->addUserRole("1","5");
+        $this->assertEquals($res,true);
+        // assertEquals(?)   
+    }
+    
+    public function testAddRole(){
+        $res=$this->userModel->addRole("acools","bleus");
+        //print_r ($res);
+        $this->assertNotEquals($res,false);
+        // assertEquals(?)
+    }
+    
+    public function testAddRight(){
+        $res=$this->userModel->addRight("acools","bleus");
+        $this->assertNotEquals($res,false);
+        // assertEquals(?)
+    }
+    
+    public function testAddRoleRight(){
+        $res=$this->userModel->addRoleRight("1","5");
+        $this->assertEquals($res,true);
+        // assertEquals(?)
+    }
+    
+    public function testAddAdvice(){
+        $res=$this->userModel->addAdvice("1","2","vive les bleus");
+        $this->assertNotEquals($res,false);
+        // assertEquals(?)
+    }
+    
     public function testAuthentification(){
-        $res = $this->userModel->authentification("DurandJ","test");     
+        $res = $this->userModel->authentification("DurandJ","test");
         $this->assertEquals($res["id"],"1");
     }
     
-   
+    
     public function testAuthentification2()
     {
         $res = $this->userModel->authentification("as","t");
@@ -31,7 +94,7 @@ class UserModelTest extends TestCase{
     public function testGetUserRoles()
     {
         $res=$this->userModel->getUserRoles("1");
-
+        
         $this->assertEquals($res[0]["id"],"3");
         
         
@@ -52,15 +115,14 @@ class UserModelTest extends TestCase{
         $this->assertEquals($res[0]["id"],"5");
         $this->assertEquals($res[1]["id"],"3");
         $this->assertEquals($res[2]["id"],"6");
-       
+        
     }
     
     public function testGetRights()
     {
         $res=$this->userModel->getRights();
         $this->assertEquals($res[0]["id"],"7");
-        
-        // assertEquals(?)
+
     }
     
     public function testRoleRights()
@@ -69,8 +131,6 @@ class UserModelTest extends TestCase{
         $this->assertEquals($res[0]["id"],"5");
         $this->assertEquals($res[1]["id"],"3");
         $this->assertEquals($res[2]["id"],"6");
-        
-        // assertEquals(?)
     }
     
     
@@ -89,11 +149,11 @@ class UserModelTest extends TestCase{
         // assertEquals(?)
     }
     
-   /* public function testGetUsers(){
-        $res=$this->userModel->getUsers();
-        $this->assertEquals($res[0]["id"],"5");
-    }*/
-    
+    /* public function testGetUsers(){
+     $res=$this->userModel->getUsers();
+     $this->assertEquals($res[0]["id"],"5");
+     }*/
+    /*
     public function testLoginIsFree(){
         $res=$this->userModel->loginIsFree("acools");
         $this->assertEquals($res,true);
@@ -130,54 +190,15 @@ class UserModelTest extends TestCase{
         $res=$this->userModel->getUserAdvices("2");
         //$this->assertEquals($res["id"],"3");
         $this->assertEquals($res[0]["id"],"1");
- 
+        
     }
     
     public function testGetAdvisorAdvices(){
         $res=$this->userModel->getAdvisorAdvices("1");
         $this->assertEquals($res[0]["id"],"3");
         //print_r ($res);
-        // assertEquals(?)
     }
     
-    //--------INSERTION----------
-    
-    public function testAddUser(){
-        $res=$this->userModel->addUser();
-        $this->assertEquals($res,false);
-    }
-    
-    public function testAddUserRole()
-    {
-        $res=$this->userModel->addUserRole("1","5");
-        $this->assertEquals($res,true);
-        // assertEquals(?)   
-    }
-    
-    public function testAddRole(){
-        $res=$this->userModel->addRole("acools","bleus");
-        //print_r ($res);
-        $this->assertNotEquals($res,false);
-        // assertEquals(?)
-    }
-    
-    public function testAddRight(){
-        $res=$this->userModel->addRight("acools","bleus");
-        $this->assertNotEquals($res,false);
-        // assertEquals(?)
-    }
-    
-    public function testAddRoleRight(){
-        $res=$this->userModel->addRoleRight("1","5");
-        $this->assertEquals($res,true);
-        // assertEquals(?)
-    }
-    
-    public function testAddAdvice(){
-        $res=$this->userModel->addAdvice("1","2","vive les bleus");
-        $this->assertNotEquals($res,false);
-        // assertEquals(?)
-    }
     
     //-------UPDATE------
     
@@ -254,6 +275,6 @@ class UserModelTest extends TestCase{
     }
 }
 
-
+*/
     
 
