@@ -173,17 +173,20 @@ class UserModelTest extends TestCase{
         $this->assertEquals($res["user_id"],$lastiduser);
     }
     
-    /*
+    
     public function testGetAdvices(){
         $res=$this->userModel->getAdvices();
+        
+        print_r($res);
         $this->assertEquals($res[1]["id"],"1");
+        
     }
     
     public function testGetUserAdvices(){
         $res=$this->userModel->getUserAdvices("2");
         $this->assertEquals($res[0]["id"],"1");
         
-    }*/
+    }
     
     public function testGetAdvisorAdvices(){
         $res=$this->userModel->getAdvisorAdvices("1");
@@ -214,7 +217,7 @@ class UserModelTest extends TestCase{
         $user['password']="";
       
         $res=$this->userModel->updateUser($user);
-        print_r($res);
+      
         $this->assertEquals($res,true);
     }
     

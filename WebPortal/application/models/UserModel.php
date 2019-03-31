@@ -1074,8 +1074,6 @@ class UserModel extends CI_Model {
 		
 		if($first) return false;
 		
-		print_r($this->db->query($sql, $params));
-		
 		if( ! $this->db->query($sql, $params) ) return false;
 		else return true;
 		
