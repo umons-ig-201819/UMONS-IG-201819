@@ -6,7 +6,6 @@ class UserModelTest extends TestCase{
     private $userModel;
     public function __construct(){
         parent::__construct();
-        $this->load->database();
         $userModel = null;
     }
     
