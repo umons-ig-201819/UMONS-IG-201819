@@ -42,7 +42,7 @@ class UserModelTest extends TestCase{
         $this->assertEquals($res,[1, $lastid]);
        
     }
-    /*
+    
     public function testAddRole(){
         $res=$this->userModel->addRole("bigboss","le meilleur");
         $this->assertNotEquals($res,false);
@@ -93,7 +93,7 @@ class UserModelTest extends TestCase{
         $this->assertEquals($res,false);
     }
     
-    /*
+    
     public function testGetUserRoles()
     {
         $res=$this->userModel->getUserRoles("1");
@@ -148,7 +148,7 @@ class UserModelTest extends TestCase{
      $res=$this->userModel->getUsers();
      $this->assertEquals($res[0]["id"],"5");
      }*/
-    /*
+    
     public function testLoginIsFree(){
         $res=$this->userModel->loginIsFree("acools");
         $this->assertEquals($res,true);
@@ -162,7 +162,6 @@ class UserModelTest extends TestCase{
     
     public function testGetUsersFromRole(){
         $res=$this->userModel->getUsersFromRole("2");
-        //print_r ($res);
         $this->assertEquals($res[0]["id"],"4");
         
         
@@ -176,14 +175,11 @@ class UserModelTest extends TestCase{
     public function testGetAdvices(){
         $res=$this->userModel->getAdvices();
         $this->assertEquals($res[1]["id"],"1");
-        //print_r ($res);
-        // assertEquals(?)
     }
     
     
     public function testGetUserAdvices(){
         $res=$this->userModel->getUserAdvices("2");
-        //$this->assertEquals($res["id"],"3");
         $this->assertEquals($res[0]["id"],"1");
         
     }
@@ -191,7 +187,6 @@ class UserModelTest extends TestCase{
     public function testGetAdvisorAdvices(){
         $res=$this->userModel->getAdvisorAdvices("1");
         $this->assertEquals($res[0]["id"],"3");
-        //print_r ($res);
     }
     
     
@@ -204,19 +199,19 @@ class UserModelTest extends TestCase{
     }
     
     public function testUpdateRole(){
-        $res=$this->userModel->updateRole("12","Aurélie");
+        $res=$this->userModel->updateRole($lastidrole,"Aurélie");
         $this->assertEquals($res,true);
         // assertEquals(?)
     }
     
     public function testUpdateRight(){
-        $res=$this->userModel->updateRight("11","Aurélie","vert");
+        $res=$this->userModel->updateRight($lastiddroit,"Aurélie","vert");
         $this->assertEquals($res,true);
         // assertEquals(?)
     }
-    
+    /*
     public function testUpdateAdvice(){
-        $res=$this->userModel->updateAdvice("8","2",NULL,"vive l'europe");
+        $res=$this->userModel->updateAdvice("8","4",NULL,"vive l'europe");
         $this->assertEquals($res,true);
         // assertEquals(?)
     }
