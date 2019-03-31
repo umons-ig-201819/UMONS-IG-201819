@@ -23,7 +23,7 @@ class UserModelTest extends TestCase{
         $this->assertEquals($res,false);
     }
     
-    public function testAddUser2(){
+   /* public function testAddUser2(){
        
         
         $user['lastname']="Cools";
