@@ -24,6 +24,14 @@ class UserModelTest extends TestCase{
         $res=$this->userModel->addUser();
         $lastid = $this->userModel->getId();
         print_r($lastid);
+        print_r($lastid);
+        print_r($lastid);
+        print_r($lastid);
+        print_r($lastid);
+        print_r($lastid);
+        print_r($lastid);
+        
+        
         $this->assertEquals($res,false);
     }
    
