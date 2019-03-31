@@ -84,10 +84,9 @@ class UserModelTest extends TestCase{
     public function testAuthentification()
     {
         $lastid = $this->userModel->getId();
-        print_r($lastid);
-        
+ 
         $res=$this->userModel->authentification("COA","test");
-        print_r($res);
+
         $this->assertEquals($res["id"],$lastid);
     }
     
@@ -133,7 +132,7 @@ class UserModelTest extends TestCase{
         $this->assertEquals($res[2]["id"],"6");
     }
     
-    /*
+    
     public function testGetRight()
     {
         
@@ -173,8 +172,10 @@ class UserModelTest extends TestCase{
     }
     
     public function testGetAdvice(){
-        $res=$this->userModel->getAdvice("1");
-        $this->assertEquals($res["user_id"],"2");
+        $lastiduser = $this->userModel->getId();
+        $lastid = $this->userModel->getIdConseil();
+        $res=$this->userModel->getAdvice($lastid);
+        $this->assertEquals($res["user_id"],$lastiduser);
     }
     
     public function testGetAdvices(){
@@ -214,13 +215,11 @@ class UserModelTest extends TestCase{
         $lastiddroit=$this->userModel->getIdRight();
         $res=$this->userModel->updateRight($lastiddroit,"Aurélie","vert");
         $this->assertEquals($res,true);
-        // assertEquals(?)
     }
     /*
     public function testUpdateAdvice(){
         $res=$this->userModel->updateAdvice("8","4",NULL,"vive l'europe");
         $this->assertEquals($res,true);
-        // assertEquals(?)
     }
     
     //-------DELETE------

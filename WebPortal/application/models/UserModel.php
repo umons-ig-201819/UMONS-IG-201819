@@ -1421,4 +1421,20 @@ class UserModel extends CI_Model {
 	    $lastiddroit=$id[0]["d_id"];
 	    return $lastiddroit;
 	}	
+	
+	// function for tests : get id droit
+	public function getIdConseil()
+	{
+	    
+	    $sql="SELECT
+				c_id,
+                c_id_utilisateur,
+                c_id_conseiller
+				FROM conseil
+				ORDER BY c_id DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastidconseil=$id[0]["c_id"];
+	    return $lastidconseil;
+	}
 }
