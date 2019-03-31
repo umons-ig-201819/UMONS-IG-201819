@@ -273,8 +273,8 @@ class UserModelTest extends TestCase{
         $this->assertEquals($res,true);
         // assertEquals(?)
     }
+    */
 }
 
-*/
-    
 
+    
