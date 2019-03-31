@@ -176,15 +176,24 @@ class UserModelTest extends TestCase{
     
     public function testGetAdvices(){
         $res=$this->userModel->getAdvices();
-        
-        print_r($res);
-        $this->assertEquals($res[1]["id"],"1");
-        
+        $lastid = $this->userModel->getIdConseil();
+        $lastiduser = $this->userModel->getId();
+        $this->assertEquals($res[0]["id"],$lastid);
+        $this->assertEquals($res[0]["user_id"],$lastiduser);
+        $this->assertEquals($res[0]["advisor_id"],"4");
+        $this->assertEquals($res[1]["id"],"3");
+        $this->assertEquals($res[1]["user_id"],"5");
+        $this->assertEquals($res[1]["advisor_id"],"1");
+        $this->assertEquals($res[2]["id"],"4");
+        $this->assertEquals($res[2]["user_id"],"5");
+        $this->assertEquals($res[2]["advisor_id"],"2");
     }
     
     public function testGetUserAdvices(){
-        $res=$this->userModel->getUserAdvices("2");
-        $this->assertEquals($res[0]["id"],"1");
+        $res=$this->userModel->getUserAdvices("5");
+        print_r($res);
+        $this->assertEquals($res[0]["id"],"3");
+        $this->assertEquals($res[1]["id"],"4");
         
     }
     
