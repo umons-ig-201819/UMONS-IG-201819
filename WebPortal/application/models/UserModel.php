@@ -796,9 +796,9 @@ class UserModel extends CI_Model {
 		{
 		    return array(FALSE,'Erreur d\'ecriture � la DB' );
 		}
-		print_r($user);
+		print_r($user); 
 	//	return $this->db->insert_id();
-		//print_r($this->db->insert_id());
+		print_r($this->db->insert_id());
 		return array(TRUE,$this->db->insert_id());
 	}
 		
