@@ -132,7 +132,7 @@ class UserModelTest extends TestCase{
         $this->assertEquals($res[2]["id"],"6");
     }
     
-    
+    /*
     public function testGetRight()
     {
         
