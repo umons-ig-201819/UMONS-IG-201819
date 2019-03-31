@@ -199,6 +199,8 @@ class UserModelTest extends TestCase{
     
     public function testUpdateUser2(){
        
+        $lastiduser = $this->userModel->getId();
+        $user['id']=$lastiduser;
         $user['lastname']="";
         $user['firstname']="";
         $user['birthdate']='';
