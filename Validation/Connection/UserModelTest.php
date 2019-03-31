@@ -135,9 +135,10 @@ class UserModelTest extends TestCase{
     
     public function testGetRight()
     {
-        
+        //SELECT LAST_INSERT_ID();
         $res=$this->userModel->getRight("1");
-        $this->assertEquals($res[0]["id"],"2");
+        print_r($res);
+        $this->assertEquals($res["id"],"2");
         //$this->assertEquals($res[0]["id"],"4");
         
     }
@@ -178,6 +179,7 @@ class UserModelTest extends TestCase{
         $this->assertEquals($res["user_id"],$lastiduser);
     }
     
+    /*
     public function testGetAdvices(){
         $res=$this->userModel->getAdvices();
         $this->assertEquals($res[1]["id"],"1");
@@ -188,7 +190,7 @@ class UserModelTest extends TestCase{
         $res=$this->userModel->getUserAdvices("2");
         $this->assertEquals($res[0]["id"],"1");
         
-    }
+    }*/
     
     public function testGetAdvisorAdvices(){
         $res=$this->userModel->getAdvisorAdvices("1");
