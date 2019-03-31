@@ -487,7 +487,6 @@ class ProjectModel extends CI_Model
                      up.up_id_participant = $userID
                      OR $userID IN (SELECT p.p_id_createur FROM projet)";
         
-
         if (! is_null($filter)) {
             $first = true;
             $operator = ' OR ';
