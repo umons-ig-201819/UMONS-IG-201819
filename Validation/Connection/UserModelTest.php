@@ -250,7 +250,7 @@ class UserModelTest extends TestCase{
     public function testDeleteUserAllRole2(){
         $lastid = $this->userModel->getId();
         $res=$this->userModel->deleteUserAllRole($lastid);
-        $this->assertEquals($res,false);
+        $this->assertEquals($res,true);
     }
     
     public function testDeleteRoleRight()
@@ -275,7 +275,7 @@ class UserModelTest extends TestCase{
     
     public function testDeleteRole(){
         $lastidrole = $this->userModel->getIdRole();
-        $res=$this->userModel->deleteRole($lstidrole);
+        $res=$this->userModel->deleteRole($lastidrole);
         $this->assertEquals($res,true);
     }
    
