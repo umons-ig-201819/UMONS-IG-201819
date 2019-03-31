@@ -40,7 +40,7 @@ class UserModelTest extends TestCase{
     //--------INSERTION----------
     public function testAddUser(){
         $res=$this->userModel->addUser();
-        $lastid = $this->userModelTest->getId();
+        $lastid = $this->getId();
         print_r($lastid);
         $this->assertEquals($res,false);
     }
