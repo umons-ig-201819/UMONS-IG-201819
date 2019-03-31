@@ -199,12 +199,14 @@ class UserModelTest extends TestCase{
     }
     
     public function testUpdateRole(){
+        $lastidrole=$this->userModel->getIdRole();
         $res=$this->userModel->updateRole($lastidrole,"Aurélie");
         $this->assertEquals($res,true);
         // assertEquals(?)
     }
     
     public function testUpdateRight(){
+        $lastiddroit=$this->userModel->getIdRight();
         $res=$this->userModel->updateRight($lastiddroit,"Aurélie","vert");
         $this->assertEquals($res,true);
         // assertEquals(?)
