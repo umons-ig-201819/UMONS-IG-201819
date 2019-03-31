@@ -1387,8 +1387,8 @@ class UserModel extends CI_Model {
 				FROM utilisateur
 				ORDER BY ut_id DESC";
 	    $query = $this->db->query($sql);
-	    $id=$query->result_array([0]["ut_id"]);
-	    
-	    return $id;
+	    $id=$query->result_array();
+	    $lastid=$id[0]["ut_id"];
+	    return $lastid;
 	}	
 }
