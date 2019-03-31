@@ -1385,7 +1385,7 @@ class UserModel extends CI_Model {
 	    $sql="SELECT
 				ut_id
 				FROM utilisateurs
-				ORDER BY DESC ut_id ";
+				ORDER BY ut_id DESC";
 	    $query = $this->db->query($sql);
 	    $id=$query->result_array([0]["id"]);
 	    
