@@ -1422,7 +1422,7 @@ class UserModel extends CI_Model {
 	    return $lastiddroit;
 	}	
 	
-	// function for tests : get id droit
+	// function for tests : get id conseil
 	public function getIdConseil()
 	{
 	    
