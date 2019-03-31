@@ -281,13 +281,12 @@ class ProjectModel extends CI_Model
      *
      * @param $projID project id  
      * @param $filter is optional and is an array containing search criterions   
-     * @param $filter['id'] is the project id
-     * @param $filter['member_id'] is the id of a member of the project
      * @param $filter['member_lastname'] is the lastname of a member
      * @param $filter['member_firstname'] is the firstname of a member
      * @param $filter['member_role'] is the role of a member
      * @param $filter['member_gestion'] means 1 or 0 (if the participant may not manage the project)
-     * @param $filter['project_owner'] means 1 or 0 (if the participant is not the owner of the project)
+     * @param $filter['owner_lastname'] is the lastname of the project's owner
+     * @param $filter['owner_firstname'] is the firstname of the project's owner
 	 * @param $and is optional and is an boolean which is FALSE (default behavior) for processing teh search query with OR operators and TRUE for AND operators
 	 
 	 * @return an array of members for a project (name ascending order)
@@ -297,7 +296,23 @@ class ProjectModel extends CI_Model
     {
         if (is_null($projID))
             return NULL;
-            $sql = "SELECT DISTINCT
+            $sql = "SELECT  u.ut_nom AS member_lastname, 
+                            u.ut_prenom AS member_firstname, 
+                            up.up_role_pour_ce_projet AS member_role, 
+                            up.up_gestion AS member_gestion, 
+                            u2.ut_nom AS owner_lastname, 
+                            u2.ut_prenom AS owner_firstname
+                    FROM utilisateur u
+                    	JOIN utilisateur_projet up
+                        	ON up_id_participant = ut_id
+                        JOIN projet p
+                        	ON up_id_projet = p_id
+                        JOIN utilisateur u2
+                        	ON p_id_createur = u2.ut_id
+                    WHERE p_id = $projID";
+        
+            /*
+             * SELECT DISTINCT
 					u.ut_id AS member_id,
                     u.ut_nom AS member_lastname,
                     u.ut_prenom as member_firstname
@@ -309,22 +324,10 @@ class ProjectModel extends CI_Model
 				OR $projID IN (SELECT p.p_id
 								FROM projet AS p
 								LEFT JOIN utilisateur AS u
-								ON u.ut_id=p.p_id_createur)";
-        
-            /*
-             * "SELECT u.ut_nom, u.ut_prenom, up.up_role_pour_ce_projet, up.up_gestion, u2.ut_nom, u2.ut_prenom, 'CREATEUR' as C
-                    FROM utilisateur u
-                    	JOIN utilisateur_projet up
-                        	ON up_id_participant = ut_id
-                        JOIN projet p
-                        	ON up_id_projet = p_id
-                        JOIN utilisateur u2
-                        	ON p_id_createur = u2.ut_id
-                    WHERE p_id = $projID"
-             * */
+								ON u.ut_id=p.p_id_createur)
+             */
             
-            
-            /*"SELECT DISTINCT
+            /* "SELECT DISTINCT
              u.ut_id AS member_id,
              u.ut_nom AS member_lastname,
              u.ut_prenom as member_firstname,
@@ -358,16 +361,6 @@ class ProjectModel extends CI_Model
 								ON u.ut_id=utilisateur_projet.up_id_participant)"
              * */
         
-        /*"SELECT
-					u.ut_id AS member_id,
-                    u.ut_nom AS member_lastname,
-                    u.ut_prenom as member_firstname,
-					up_role_pour_ce_projet AS member_role,
-					up_gestion AS manage_project
-                FROM utilisateur AS u                
-                JOIN utilisateur_projet
-                ON u.ut_id=up_id_participant 
-				WHERE up_id_projet=?";*/
 
         $params = array();
         //$params[] = $projID;
@@ -386,7 +379,7 @@ class ProjectModel extends CI_Model
                     } else {
                         $sql .= $operator;
                     }
-                    $sql .= 'p_nom LIKE ?';
+                    $sql .= 'u.ut_nom LIKE ?';
                     $params[] = '%' . $v . '%';
                 }
 
@@ -397,7 +390,29 @@ class ProjectModel extends CI_Model
                     } else {
                         $sql .= $operator;
                     }
-                    $sql .= 'p_prenom LIKE ?';
+                    $sql .= 'u.ut_prenom LIKE ?';
+                    $params[] = '%' . $v . '%';
+                }
+                
+                if ($k == 'owner_lastname') {
+                    if ($first) {
+                        $sql .= ' AND ( ';
+                        $first = false;
+                    } else {
+                        $sql .= $operator;
+                    }
+                    $sql .= 'u2.ut_nom LIKE ?';
+                    $params[] = '%' . $v . '%';
+                }
+                
+                if ($k == 'owner_firstname') {
+                    if ($first) {
+                        $sql .= ' AND ( ';
+                        $first = false;
+                    } else {
+                        $sql .= $operator;
+                    }
+                    $sql .= 'u2.ut_nom LIKE ?';
                     $params[] = '%' . $v . '%';
                 }
 
@@ -408,7 +423,7 @@ class ProjectModel extends CI_Model
                     } else {
                         $sql .= $operator;
                     }
-                    $sql .= 'up_role_pour_ce_projet LIKE ?';
+                    $sql .= 'up.up_role_pour_ce_projet LIKE ?';
                     $params[] = '%' . $v . '%';
                 }
 
@@ -419,7 +434,7 @@ class ProjectModel extends CI_Model
                     } else {
                         $sql .= $operator;
                     }
-                    $sql .= 'up_gestion = ?';
+                    $sql .= 'up.up_gestion = ?';
                     $params[] = $v;
                 }
             }
@@ -438,11 +453,11 @@ class ProjectModel extends CI_Model
      *
      * @param $userID the id of the user         
      * @param $filter is optional and is an array containing search criterions
-     * @param $filter['project_id'] is the id of a member of the project
-     * @param $filter['project_name'] is the lastname of a member
-     * @param $filter['project_date_start'] is the firstname of a member
-     * @param $filter['project_date_end'] is the role of a member
-     * @param $filter['project_role'] means 1 or 0 (if the participant may not manage the project)
+     * @param $filter['project_id'] is the id of the project
+     * @param $filter['project_name'] is the name of the project
+     * @param $filter['project_date_start'] is the date when the project start
+     * @param $filter['project_date_end'] is the date when the project end
+     * @param $filter['project_role'] is the role of the member for the project
      * @param $filter['project_gestion'] means 1 or 0 (if the participant may not manage the project)
      * @param $filter['project_owner'] means 1 or 0 (if the participant is not the owner of the project)
 	 * @param $and is optional and is an boolean which is FALSE (default behavior) for processing teh search query with OR operators and TRUE for AND operators
@@ -458,36 +473,20 @@ class ProjectModel extends CI_Model
         $params = array();
         
         $sql = "SELECT DISTINCT
-				p.p_id AS id,
-                p.p_nom AS name,
-                p.p_date_start AS date_start,
-                p.p_date_end AS date_end,
-                IF(p_id_createur=$userID,1,0) AS project_owner
-              FROM projet AS p
-              JOIN utilisateur_projet AS up
-              ON up.up_id_projet = p.p_id
-              WHERE
-				up.up_id_participant = $userID
-				OR $userID IN (SELECT p.p_id_createur FROM projet)";
+                        p.p_id AS id,
+                        p.p_nom AS name,
+                        p.p_date_start AS date_start,
+                        p.p_date_end AS date_end,
+                        IF(p_id_createur=$userID,1,0) AS project_owner,
+                        IF(up.up_id_participant=$userID,up.up_role_pour_ce_projet,NULL) AS project_role,
+                        IF(up.up_id_participant=$userID,up.up_gestion,0) AS project_gestion
+                 FROM projet AS p
+                    JOIN utilisateur_projet AS up
+                    ON up.up_id_projet = p.p_id
+                 WHERE
+                     up.up_id_participant = $userID
+                     OR $userID IN (SELECT p.p_id_createur FROM projet)";
         
-
-        
-        /*"SELECT DISTINCT     
-                    p_id AS project_id,
-                    p_nom AS project_name,
-                    p_date_start AS project_date_start,
-                    p_date_end AS project_date_end,
-                    up.up_role_pour_ce_projet AS role_for_project,
-                    up.up_gestion AS manage_project,
-                    IF(p_id_createur=$userID,1,0) AS project_owner
-              FROM projet
-              LEFT JOIN utilisateur_projet AS up
-              ON up.up_id_projet=p_id
-              WHERE up.up_id_participant =$userID OR p_id_createur= $userID";*/
-
-        //$params[] = $userID;
-        //$params[] = $userID;
-        //$params[] = $userID;
 
         if (! is_null($filter)) {
             $first = true;
@@ -497,6 +496,17 @@ class ProjectModel extends CI_Model
 
             foreach ($filter as $k => $v) {
 
+                if ($k == 'project_id') {
+                    if ($first) {
+                        $sql .= ' AND ( ';
+                        $first = false;
+                    } else {
+                        $sql .= $operator;
+                    }
+                    $sql .= 'p.p_id)=?';
+                    $params[] = $v;
+                }
+                
                 if ($k == 'project_name') {
                     if ($first) {
                         $sql .= ' AND ( ';
@@ -504,7 +514,7 @@ class ProjectModel extends CI_Model
                     } else {
                         $sql .= $operator;
                     }
-                    $sql .= 'p_nom LIKE ?';
+                    $sql .= 'p.p_nom LIKE ?';
                     $params[] = '%' . $v . '%';
                 }
 
@@ -515,7 +525,18 @@ class ProjectModel extends CI_Model
                     } else {
                         $sql .= $operator;
                     }
-                    $sql .= 'DATE(p_date_end)=?';
+                    $sql .= 'DATE(p.p_date_end)=?';
+                    $params[] = $v;
+                }
+                
+                if ($k == 'project_date_start') {
+                    if ($first) {
+                        $sql .= ' AND ( ';
+                        $first = false;
+                    } else {
+                        $sql .= $operator;
+                    }
+                    $sql .= 'DATE(p.p_date_start)=?';
                     $params[] = $v;
                 }
 
