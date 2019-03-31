@@ -36,7 +36,7 @@ class UserModelTest extends TestCase{
         $user['login']= 'COA';
         $user['visible']=1;
         $user['advice']=1;
-        $user['password']=sha1("test");
+        $user['password']="test";
         $res=$this->userModel->addUser($user);
         $lastid = $this->userModel->getId();
         $this->assertEquals($res,[1, $lastid]);
@@ -83,9 +83,10 @@ class UserModelTest extends TestCase{
     
     public function testAuthentification()
     {
-        $res = $this->userModel->authentification("COA","test");
         $lastid = $this->userModel->getId();
         print_r($lastid);
+        
+        $res=$this->userModel->authentification("COA","test");
         print_r($res);
         $this->assertEquals($res["id"],$lastid);
     }
