@@ -27,25 +27,25 @@ class UserModelTest extends TestCase{
     protected function setUp(){
         $this->userModel = new UserModel();
         
-        $res=$this->userModel->addUser();
         
-        $lastid = $this->userModel->getId();
-        print_r($lastid);
         
     }
     
     protected function tearDown(){
         $this->userModel = null;
     }
-   /*
+   
     
     
     //--------INSERTION----------
     public function testAddUser(){
+        $res=$this->userModel->addUser();
+        $lastid = $this->userModel->getId();
+        print_r($lastid);
         $this->assertEquals($res,false);
     }
    
-    
+    /*
     public function testAddUserRole()
     {
         $res=$this->userModel->addUserRole("1","5");
