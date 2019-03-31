@@ -60,6 +60,7 @@ class UserModelTest extends TestCase{
      // vérifier que COA a bien le bon rôle 
     
     public function testAddAdvice(){
+        $lastid = $this->userModel->getId();
         $res=$this->userModel->addAdvice($lastid,"4","Dormez bien");
         $this->assertNotEquals($res,false);
     }
@@ -67,6 +68,7 @@ class UserModelTest extends TestCase{
     
     
     public function testAuthentification(){
+        $lastid = $this->userModel->getId();
         $res = $this->userModel->authentification("COA","test");
         $this->assertEquals($res["id"],$lastid);
     }
