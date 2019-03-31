@@ -127,7 +127,7 @@ class UserModelTest extends TestCase{
     {
         //SELECT LAST_INSERT_ID();
         $res=$this->userModel->getRight("1");
-        print_r($res);
+  
         $this->assertEquals($res["id"],"2");
         //$this->assertEquals($res[0]["id"],"4");
         
@@ -141,9 +141,14 @@ class UserModelTest extends TestCase{
     
     public function testGetUsers()
     {
-         $res=$this->userModel->getUsers();
-        print_r($res);
-        //$this->assertEquals($res[0]["id"],"5");
+        $lastid = $this->userModel->getId();
+        $res=$this->userModel->getUsers();
+    
+        $this->assertEquals($res[0]["id"],$lastid);
+        $this->assertEquals($res[1]["id"],5);
+        $this->assertEquals($res[2]["id"],1);
+        $this->assertEquals($res[9]["id"],2);
+        
      }
     
     public function testLoginIsFree(){
