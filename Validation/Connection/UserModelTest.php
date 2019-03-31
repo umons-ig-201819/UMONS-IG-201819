@@ -83,7 +83,7 @@ class UserModelTest extends TestCase{
     
     public function testAuthentification(){
         $lastid = $this->userModel->getId();
-        $res = $this->userModel->authentification("COA","test");
+        $res = $this->userModel->authentification("COA","c4033bff94b567a190e33faa551f411caef444f2");
         $this->assertEquals($res["id"],$lastid);
     }
     
@@ -132,10 +132,11 @@ class UserModelTest extends TestCase{
     
     public function testGetRight()
     {
-        $res=$this->userModel->getRight("1");
-        //print_r ($res);
-        $this->assertEquals($res["id"],"5");
         
+        $res=$this->userModel->getRight("1");
+        print_r ($res);
+        $this->assertEquals($res[0]["id"],"2");
+        $this->assertEquals($res[0]["id"],"4");
     }
     
     public function testGetUser(){
