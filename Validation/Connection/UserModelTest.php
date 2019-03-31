@@ -81,9 +81,10 @@ class UserModelTest extends TestCase{
     
     
     
-    public function testAuthentification(){
+    public function testAuthentification()
+    {
+        $res = $this->userModel->authentification("COA","test");
         $lastid = $this->userModel->getId();
-        $res = $this->userModel->authentification("COA","c4033bff94b567a190e33faa551f411caef444f2");
         $this->assertEquals($res["id"],$lastid);
     }
     
