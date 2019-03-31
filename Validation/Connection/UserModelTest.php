@@ -207,6 +207,7 @@ class UserModelTest extends TestCase{
         $user['password']="";
       
         $res=$this->userModel->updateUser($user);
+        print_r($res);
         $this->assertEquals($res,true);
     }
     
