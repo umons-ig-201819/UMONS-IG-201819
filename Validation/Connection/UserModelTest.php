@@ -83,7 +83,7 @@ class UserModelTest extends TestCase{
     
     public function testAuthentification()
     {
-        $res = $this->userModel->authentification("DurandJ","test");
+        $res = $this->userModel->authentification("COA","test");
         $lastid = $this->userModel->getId();
         print_r($res);
         $this->assertEquals($res["id"],$lastid);
