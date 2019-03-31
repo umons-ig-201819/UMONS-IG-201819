@@ -1391,4 +1391,32 @@ class UserModel extends CI_Model {
 	    $lastid=$id[0]["ut_id"];
 	    return $lastid;
 	}	
+	
+	// function for tests : get id role
+	public function getIdRole()
+	{
+	    
+	    $sql="SELECT
+				r_id
+				FROM role
+				ORDER BY r_id DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastidrole=$id[0]["r_id"];
+	    return $lastidrole;
+	}	
+	
+	// function for tests : get id droit
+	public function getIdRight()
+	{
+	    
+	    $sql="SELECT
+				d_id
+				FROM droit
+				ORDER BY d_id DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastiddroit=$id[0]["d_id"];
+	    return $lastiddroit;
+	}	
 }
