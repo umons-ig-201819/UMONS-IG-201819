@@ -24,7 +24,7 @@ class UserModelTest extends TestCase{
     }
     
     public function testAddUser2(){
-        $res=$this->userModel->addUser("","Cools","Aurélie","1994-02-03", "cools.aurelie@hotmail.com", "0498837255", "0", "coa", "test","1","1");
+        $res=$this->userModel->addUser("Cools","Aurelie","1994-02-03", "cools.aurelie@hotmail.com", "0498837255", "0", "coa", "test","1","1");
         print_r($res);
        // $this->assertEquals($res,true);
        
