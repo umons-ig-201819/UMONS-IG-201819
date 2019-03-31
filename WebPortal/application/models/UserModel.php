@@ -798,8 +798,7 @@ class UserModel extends CI_Model {
 		}
 		
 	//	return $this->db->insert_id();
-		//print_r($this->db->insert_id());
-		print_r(array(TRUE,$this->db->insert_id()));
+		
 		return array(TRUE,$this->db->insert_id());
 	
 	}
