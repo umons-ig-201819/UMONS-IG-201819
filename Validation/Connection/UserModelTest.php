@@ -10,26 +10,8 @@ class UserModelTest extends TestCase{
         $userModel = null;
     }
     
-    public function getId()
-    {
-        
-        $sql="SELECT
-				ut_id
-				FROM utilisateurs
-				ORDER BY DESC ut_id ";
-        $query = $this->db->query($sql);
-        $id=$query->result_array([0]["id"]);
-        
-        return $id;
-    }	
-    
-    
-    
     protected function setUp(){
         $this->userModel = new UserModel();
-        
-        
-        
     }
     
     protected function tearDown(){
@@ -41,7 +23,7 @@ class UserModelTest extends TestCase{
     //--------INSERTION----------
     public function testAddUser(){
         $res=$this->userModel->addUser();
-        $lastid = $this->getId();
+        $lastid = $this->userModel->getId();
         print_r($lastid);
         $this->assertEquals($res,false);
     }
