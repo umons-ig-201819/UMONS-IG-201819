@@ -6,7 +6,7 @@
     	<!--[if lt IE 9]>
     		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     	<![endif]-->
-    	<link rel="stylesheet" type="text/css" media="only screen" href="<?=site_url('css/styles.css');?>" />
+    	<link rel="stylesheet" type="text/css" media="only screen" href="<?php echo base_url(); ?>assets/css/style.css" />
     	<style type="text/css">
         	.alert-warning {
         	   visibility: hidden;
