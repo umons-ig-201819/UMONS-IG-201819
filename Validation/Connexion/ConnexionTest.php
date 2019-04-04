@@ -11,6 +11,8 @@ class ConnexionTest extends PHPUnit_Framework_TestCase
      * @var Connexion
      */
     private $connexion;
+    
+    //test
 
     /**
      * Prepares the environment before running a test.
