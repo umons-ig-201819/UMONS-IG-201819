@@ -1,5 +1,6 @@
 <section>
-	<article><h1>Inscription</h1></article>
+	<article>
+		<h1>Inscription</h1>
         <?php if(isset($error)):?>
 		<p id="error"><font color ='red'><?= $error; ?></font></p>
 		<?php endif; ?>
@@ -37,5 +38,6 @@
     		<font color = 'red'>* champs obligatoire</font>
 	</fieldset>
 	</form>
+	</article>
 </section>
 
