@@ -38,7 +38,7 @@ class Profil extends CI_Controller {
         }
         // TODO update infos
         
-        $data = array(
+        $allowed = array(
             'lastname'  => 'lastname',
             'firstname' => 'firstname',
             'birthdate' => 'birthdate', // TODO check db type
@@ -72,6 +72,35 @@ class Profil extends CI_Controller {
         // TODO update rights
     }
     public function password($userID=null){
-        // TODO update rights
+        if($userID != $this->session->UserID){ // TODO and get right
+            $userID = intval($this->session->UserID);
+            if(!array_key_exists('EDIT_USER'/*TODO correct right (edit user) */,$this->UserModel->getUserRights($this->session->UserID))){
+                $userID = $this->session->UserID;
+            }
+        }else{
+            $userID = $this->session->UserID;
+        }
+        // TODO update infos
+
+        $data['password'] = $this->input->post('password');
+
+        $data['user_id'] = $userID;
+   //     $data['id'] = $userID;
+        
+  //      echo 'ici'.$userID.' '. $data['id'];
+        $this->UserModel->updateUser($data);
+        
+        $this->load->view('header');
+        $data = $this->UserModel->getUser($this->session->UserID);
+        $data['username']       = $data['login'];
+        $data['user_id']        = $data['id'];
+        $data['sharing']        = $data['visible'];
+        $data['advise']         = $data['advise'] = 1;
+ //       $data['editable_login'] = $editable_login;
+        foreach($data as $key => $value)
+        $data[$key] = html_escape($value);
+        $this->load->view('profil',$data);
+        $this->load->view('footer');
+
     }
 }

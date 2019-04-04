@@ -23,7 +23,7 @@
                 </div>
                 	<h2> Page principale</h2>
                 	 <img src="<?php echo base_url(); ?>assets/images/top_commercial.png" alt="top commercial!" name="commercial" />
-            </div>
+ <!--           </div>     -->
     		<nav>
     			<ul>
     			<li><a href="<?php echo site_url("home"); ?>">Accueil</a></li>
@@ -39,4 +39,5 @@
               <!--     <li><a href="?php echo site_url("connection/register"); ?>">Inscription</a></li>        -->              
     			</ul>
     		</nav>
+    		</div>
     	</header>

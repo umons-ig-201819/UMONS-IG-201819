@@ -1,10 +1,15 @@
 <section>
+<article>
 	<h1>Mon profil</h1>
 	<a href="<?=site_url("profil/remove/$user_id");?>">Supprimer mon profil</a>
 	<article id="account_information">
 		<?php
 echo form_open("profil/update/$user_id");
 echo form_fieldset('Donn&eacute;es personnelles');
+echo '<p>';
+echo form_label('Login','username');
+echo form_input('username',$username,'id="username"'.($editable_login?'':' readonly="readonly" style="background-color:lightgrey"' ));
+echo '</p>';
 echo '<p>';
     echo form_label('Nom','lastname');
     echo form_input('lastname',$lastname,'id="lastname"');
@@ -19,10 +24,11 @@ echo '<p>';
 echo '</p>';
 echo '<p>';
     echo form_label('Sexe');
-    echo form_radio('gender','1',$gender, 'id="gender_enabled"').form_label('Homme','gender_enabled');
-    echo form_radio('gender','0',!$gender, 'id="gender_disabled"').form_label('Femme','gender_disabled');
+    echo form_radio('gender','1',$gender == 1, 'id="gender_enabled"').form_label('Homme','gender_enabled');
+    echo form_radio('gender','0',$gender == 0, 'id="gender_enabled"').form_label('Femme','gender_enabled');
+    echo form_radio('gender','2',$gender == 2, 'id="gender_enabled"').form_label('Autre','gender_enabled');
     
-    echo form_input('gender',$gender,'id="gender"');/*** TODO input type to radio (HTML5) **/
+//    echo form_input('gender',$gender,'id="gender"');/*** TODO input type to radio (HTML5) **/
 echo '</p>';
 echo '<p>';
     echo form_label('Adresse email','email');// email
@@ -36,17 +42,21 @@ echo '<p>';
     echo form_label('G.S.M.','mobile');
     echo '<input type="mobile" name="mobile" value="'.$mobile.'" id="mobile">';
 echo '</p>';
-echo '<p>';
-    echo form_label('Login','username');
-    echo form_input('username',$username,'id="username"'.($editable_login?'':' readonly="readonly"'));
-echo '</p>';
 echo form_submit('action', 'Modifier');
+echo form_fieldset_close();
+echo form_close();
 
-echo '<p>';
+echo form_open("profil/password/$user_id");
+echo form_fieldset('Changement du mot de passe');
+/*echo '<p>';
     echo '<a href="'.site_url("profil/password/$user_id").'">Modifier mon mot de passe</a>';
     echo '<a href="'.site_url("profil/data/$user_id").'">Modifier mon mot de passe</a>';
+echo '</p>';*/
+echo '<p>';
+    echo form_label('Mot de passe','motdepasse');
+    echo '<input type="text" name="password" >';
 echo '</p>';
-
+echo form_submit('action', 'Modifier');
 echo form_fieldset_close();
 echo form_close();
 		?>	
@@ -66,11 +76,11 @@ echo '<p>';
     echo form_radio('advise','1',$advise === 0, 'id="advise_enabled"').form_label('Accepter','advise_enabled');
     echo form_radio('advise','0',!$advise, 'id="advise_disabled"').form_label('Refuser','advise_disabled');
 echo '</p>';
-echo '<p>';
-    echo form_label('En connaissance du R.G.P.D., j\'accepte que Wallesmart utilise mes données &agrave; des fins statistiques.');
+/*echo '<p>';
+   echo form_label('En connaissance du R.G.P.D., j\'accepte que Wallesmart utilise mes données &agrave; des fins statistiques.');
     echo form_radio('gdpr','1',$gdpr, 'id="gdpr_enabled"').form_label('Accepter','gdpr_enabled');
     echo form_radio('gdpr','0',!$gdpr, 'id="gdpr_disabled"').form_label('Refuser','gdpr_disabled');
-echo '</p>';
+echo '</p>';*/
 echo form_submit('action', 'Modifier');
 echo form_fieldset_close();
 echo form_close();
