@@ -1,4 +1,4 @@
-<section>
+<section id="top_page">
 	<h1>Bienvenue !</h1>
 	<h2> Vous etes bien sur la page principale</h2>	
 	<aside>

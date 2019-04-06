@@ -116,6 +116,11 @@ section
      justify-content: space-between;
 }
 
+#top_page
+{
+	 flex-wrap: wrap;	
+}
+
 
 article, aside
 {
@@ -124,7 +129,7 @@ article, aside
 
 article
 {
-    margin-right: 20px;
+ 
     flex: 3;
      border-style: solid;
 	border-width: 1px;
