@@ -1,66 +1,97 @@
 /* HEADER */
 
-header 
+/*Tout est encadré pour l'instant pour mieux comprendre le flex*/
+
+body  /* Couleur de fond pour l'ensemble */
 {
-	background-image: url("../images/top_commercial.png");
-	background-repeat: no-repeat;
-	background-size: 100% 100%;
+	background-color: #c6eaae;
+}
+
+#bloc_page /*Marge pour l'ensemble de la page*/
+{
+    width: 95%;
+    margin: auto;
+}
+
+h1 /*Style général pour les titres h1*/
+{
+	font-size: 2.5em; 
+    font-weight: normal;
+   	text-align: center;
+   	border-style: solid;
+	border-width: 1px;	
+}
+
+h2
+{
+	border-style: solid;
+	border-width: 1px;	
+}
+
+
+header
+{
+	//background-image: url("../images/top_commercial2.png");
+	//background-repeat: no-repeat;
+	//background-position: top left;
 	
 	border-style: solid;
   	border-width: 1px;
 }
 
-header #main_header
+#logo /* Contient les items img, h1, et nav*/
 {
+	border-style: solid;
+	border-width: 1px;
 	display: flex;
-	justify-content: space-between;	
-	align-items : center;
+    align-items: center;
 }
 
-header h1
+#logo img
 {
-    font-size: 2.5em; 
-    font-weight: normal;
-   
-    border-style: solid;
+	border-style: solid;
+	border-width: 1px;
+    width: 100px;
+    height: 100px;    
+}
+
+#logo h1 /*Modification du flex du titre*/
+{
+	flex : 3;	
+}
+
+#logo nav
+{ 
+	background-color: rgba(0,0,100,0.6);
+  	border-style: solid;
 	border-width: 1px;	
 	flex : 1;
 }
 
 
-header nav
-{ 
-	display:flex;
-	 justify-content: space-around;
-  background-color: rgba(0,0,100,0.6);
-  border-style: solid;
-	border-width: 1px;
-}
-
-header nav a 
+header nav a  /*Couleur du texte de nav*/
 {  
+  	color : white;   
+}
+header nav li
+{
+	width : 90px;
+	padding: 12px 0px;
 	border-style: solid;
 	border-width: 1px;
-  	color : white;
-  	text-align: center;
-  	padding: 14px 16px;
-  	flex : 1;
+	text-align: center;
+	color : white;   
 }
+nav ul
 
-header nav h2
 {
-    font-weight: normal;   
-    border-style: solid;
-	border-width: 1px;
-	color : white;
-	flex : 1;
+    list-style-type: none;
+    padding: 5px 5px;	
+    display: flex;    
+    justify-content: space-around;
 }
 
 
-body 
-{
-	background-color: #c6eaae;
-}
 
 aside
 {
@@ -74,31 +105,11 @@ aside
     font-size: 0.9em;
 }
 
-#logo
-{
-	display: flex;
-    flex-direction: row;
-    align-items: center;
-}
 
-#logo img
-{
-    width: 100px;
-    height: 100px;
-}
 
-nav ul
 
-{
-    list-style-type: none;
-    display: flex;
-}
 
-#titre_principal
-{
-    display: flex;
-    flex-direction: column;
-}
+
 
 section
 {
