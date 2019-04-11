@@ -135,6 +135,12 @@ article
 	border-width: 1px;
 }
 
+article img
+{
+    margin-left: 20px;
+}
+
+
 @media (max-width: 660px) 
 {
     header h1
