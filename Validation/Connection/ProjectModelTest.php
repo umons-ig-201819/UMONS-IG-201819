@@ -19,6 +19,7 @@ public function __construct()
         $project['pDate_end']="2030-01-01";
         $project['pDescription']="2019-01-01";
         $res=$this->projectModel->addProject($userId,$project);
+        print_r($res);
         $this->assertNotEquals($res,false);
     }
     /**
