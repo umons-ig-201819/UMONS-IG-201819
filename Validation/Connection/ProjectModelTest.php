@@ -2,7 +2,7 @@
 use PHPUnit\Framework\TestCase;
 require_once(__DIR__.'/../configuration.php');
 load_model('DataSourceModel');
-class DataSourceModelTest extends TestCase{
+class ProjectModelTest extends TestCase{
 public function __construct()
     {
         parent::__construct();
