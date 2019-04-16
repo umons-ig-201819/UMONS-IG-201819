@@ -8,6 +8,15 @@ public function __construct()
         parent::__construct();
         $projectModel = null;
     }
+    
+protected function setUp(){
+        $this->projectModel = new ProjectModel();
+    }
+    
+protected function tearDown(){
+        $this->projectModel = null;
+    }
+    
     // -------------------------------------------------------------
     // -------------------- INSERT ---------------------------------
     // -------------------------------------------------------------
