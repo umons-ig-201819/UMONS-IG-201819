@@ -23,6 +23,7 @@ class DataSourceModelTest extends TestCase{
 
     public function testAddDataSourceApp(){
         $res=$this->dataSourceModel->addDataSourceApp("1");
+        print_r($res);
         $this->assertNotEquals($res,false);
     }
 /**
