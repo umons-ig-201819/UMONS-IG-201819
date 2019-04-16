@@ -1,12 +1,12 @@
 <?php
 use PHPUnit\Framework\TestCase;
 require_once(__DIR__.'/../configuration.php');
-load_model('DataSourceModel');
+load_model('ProjectModel');
 class ProjectModelTest extends TestCase{
 public function __construct()
     {
         parent::__construct();
-        $dataSourceModel = null;
+        $projectModel = null;
     }
     // -------------------------------------------------------------
     // -------------------- INSERT ---------------------------------
