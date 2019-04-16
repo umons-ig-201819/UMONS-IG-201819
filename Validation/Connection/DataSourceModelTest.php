@@ -22,7 +22,7 @@ class DataSourceModelTest extends TestCase{
     //-------------------------------------------------------------
 
     public function testAddDataSourceApp(){
-        $res=$this->dataSourceModel->addDataSource("1");
+        $res=$this->dataSourceModel->addDataSourceApp("1");
         $this->assertNotEquals($res,false);
     }
 /**
@@ -32,7 +32,7 @@ class DataSourceModelTest extends TestCase{
         $dataSource['appli']=0;
         $dataSource['config']=NULL;
         $dataSource['visible']=2;
-        $res=$this->dataSourceModel->addUser("1",$dataSource);
+        $res=$this->dataSourceModel->addDataSourceApp("1",$dataSource);
         $this->assertNotEquals($res,false);
     }
 
