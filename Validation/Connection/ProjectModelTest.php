@@ -168,14 +168,14 @@ public function __construct()
     {
         $userProject['role']="aide";
         $userProject['manage']="1";
-        $res=$this->projectModel->updaterProjects("1", "1", $userProject);
+        $res=$this->projectModel->updateUserProjects("1", "1", $userProject);
         $this->assertEquals($res,true);
     }
     public function testUpdateUserProject1()
     {
-        $res=$this->projectModel->updaterProjects("1", "1");
+        $res=$this->projectModel->updateUserProjects("1", "1");
         $this->assertEquals($res,true);
     }
-    
-}*/
+   }
+   */
 }
