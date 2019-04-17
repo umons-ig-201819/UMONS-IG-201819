@@ -52,11 +52,13 @@ protected function tearDown(){
     // -------------------------------------------------------------
     /**
     * getProject() this method returns a project based on its id
+    */
     public function testGetProject()
     {
-        $res=$this->projectModel->getProject("1");
+        $res=$this->projectModel->getProject(1);
         $this->assertNotEquals($res["id"],NULL);
     }
+    /**
     * getProjects() this method returns a project based on its id
     public function testGetProjects()
     {
