@@ -28,10 +28,7 @@ protected function tearDown(){
         $project['pDate_end']='2030-01-01';
         $project['pDescription']='2019-01-01';
         $res=$this->projectModel->addProject($userId,$project);
-        print "hello";
-        print_r($res);
-        print $res;
-        $this->assertNotEquals($res[1],false);
+        $this->assertNotEquals($res[0],NULL);
     }
     /**
     public function testAddProject1()
