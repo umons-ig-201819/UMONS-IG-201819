@@ -47,8 +47,8 @@ class DataSourceModelTest extends TestCase{
 */
     public function testAddFileUser(){
         $dataSourceUser['read']="test";
-        $dataSourceUser['modify']="test";
-        $dataSourceUser['remove']="test";
+        $dataSourceUser['modify']=0;
+        $dataSourceUser['remove']=0;
         $dataSourceUser['askAccess']=1;
         $res=$this->dataSourceModel->addFileUser(1,1,$dataSourceUser);
         $this->assertEquals($res,true);
