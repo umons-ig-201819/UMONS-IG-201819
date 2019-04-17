@@ -41,7 +41,7 @@ protected function tearDown(){
     {
         $userProject['role_p']="test40";
         $userProject['gestion']=1;
-        $res=$this->projectModel->addUserProject(2,1,$userProject);
+        $res=$this->projectModel->addUserProject(2,2,$userProject);
         $this->assertEquals($res,true);
     }
     // -------------------------------------------------------------
@@ -57,6 +57,7 @@ protected function tearDown(){
     }
     /**
     * getProjects() this method returns a project based on its id
+    */
     public function testGetProjects()
     {
         $filter['id']="1";
@@ -70,13 +71,16 @@ protected function tearDown(){
         $res=$this->projectModel->getProjects($filter,$and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
+    /**
     public function testGetProjects1()
     {
         $and=false;
         $res=$this->projectModel->getProjects($and);
         $this->assertNotEquals($res[0]["id"],NULL);
         }
+    
     * getProjectMembers() this method returns the members of a project based on its id
+    */
     public function testGetProjectMembers()
     {
         $filter['member_lastname']="Durand";
@@ -89,12 +93,14 @@ protected function tearDown(){
         $res=$this->projectModel->getProjectMembers("1",$filter,$and);
         $this->assertNotEquals($res[0]["member_lastname"],NULL);
     }
+    /**
     public function getProjectMembers1()
     {
         $and=false;
         $res=$this->projectModel->getProjectMembers("1",$and);
         $this->assertNotEquals($res[0]["member_lastname"],NULL);
     }
+    */
     public function testGetUserProjects()
     {
         $filter['project_id']="1";
@@ -108,6 +114,7 @@ protected function tearDown(){
         $res=$this->projectModel->getUserProjects("1", $filter, $and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
+    /**
     public function testGetUserProjects1()
     {
         $and=false;
@@ -118,25 +125,32 @@ protected function tearDown(){
     // -------------------- DELETE ---------------------------------
     // -------------------------------------------------------------
     * deleteProject() delete a project based on its id
+    */
     public function deleteProject()
     {
         $res=$this->projectModel->deleteProject("1");
         $this->assertEquals($res,true);
     }
+    /**
      * deleteUserProject() remove a project for a specific user
+     */
     public function testDeleteUserProject()
     {
         $and=false;
         $res=$this->projectModel->deleteUserProject("1", "1",$and);
         $this->assertEquals($res,true);
     }
+    /**
      * deleteAllProjectsUser() remove all projects for a specific user
+     */
     public function testDeleteAllProjectsUser()
     {
         $res=$this->projectModel->deleteAllProjectsUser("1");
         $this->assertEquals($res,true);
     }
+    /**
      * deleteAllUsersProject() remove all users for a specific project
+     */
     public function testDeleteAllUsersProject()
     {
         $res=$this->projectModel->deleteAllUsersProject("1");
@@ -145,7 +159,9 @@ protected function tearDown(){
     // -------------------------------------------------------------
     // -------------------- UPDATE ---------------------------------
     // -------------------------------------------------------------
+    /**
      * updateProject() is a method for updating a project
+     */
     public function testUpdateProject()
     {
         $project['id']="1";
@@ -156,6 +172,7 @@ protected function tearDown(){
         $res=$this->projectModel->updateProject("1", "1", $project);
         $this->assertEquals($res,true);
     }
+    /**
     public function testUpdateProject1()
     {
         $project['id']="1";
@@ -177,6 +194,7 @@ protected function tearDown(){
         $this->assertEquals($res,true);
     }
      * updateUserProject() is a method for updating a project
+     */
     public function testUpdateUserProject()
     {
         $userProject['role']="aide";
@@ -184,6 +202,7 @@ protected function tearDown(){
         $res=$this->projectModel->updateUserProjects("1", "1", $userProject);
         $this->assertEquals($res,true);
     }
+    /**
     public function testUpdateUserProject1()
     {
         $res=$this->projectModel->updateUserProjects("1", "1");
