@@ -53,7 +53,7 @@ class DataSourceModelTest extends TestCase{
         $res=$this->dataSourceModel->addFileUser(1,1,$dataSourceUser);
         $this->assertEquals($res,true);
     }
-/**
+
     //-------------------------------------------------------------
    	//-------------------- DELETE ---------------------------------
    	//-------------------------------------------------------------
@@ -62,7 +62,7 @@ class DataSourceModelTest extends TestCase{
         $res=$this->dataSourceModel->deleteDataSource("1");
         $this->assertEquals($res,true);
     }
-
+/**
     public function testDeleteUserDataSource()
     {
         $res=$this->dataSourceModel->deleteUserDataSource("1","1");
