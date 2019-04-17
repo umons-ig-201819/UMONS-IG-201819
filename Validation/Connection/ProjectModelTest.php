@@ -31,7 +31,7 @@ protected function tearDown(){
         print "hello";
         print_r($res);
         print $res;
-        $this->assertNotEquals($res,false);
+        $this->assertNotEquals($res[1],false);
     }
     /**
     public function testAddProject1()
