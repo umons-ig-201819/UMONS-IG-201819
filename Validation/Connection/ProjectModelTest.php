@@ -22,11 +22,11 @@ protected function tearDown(){
     // -------------------------------------------------------------
     public function testAddProject()
     {
-        $userId="3";
+        $userId=3;
         $project['pName']="test30";
-        $project['pDate_start']="test31";
-        $project['pDate_end']="2030-01-01";
-        $project['pDescription']="2019-01-01";
+        $project['pDate_start']='test31';
+        $project['pDate_end']='2030-01-01';
+        $project['pDescription']='2019-01-01';
         $res=$this->projectModel->addProject($userId,$project);
         print "hello";
         print_r($res);
