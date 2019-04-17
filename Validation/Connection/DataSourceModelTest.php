@@ -46,7 +46,7 @@ class DataSourceModelTest extends TestCase{
     }
 */
     public function testAddFileUser(){
-        $dataSourceUser['read']="test";
+        $dataSourceUser['read']=0;
         $dataSourceUser['modify']=0;
         $dataSourceUser['remove']=0;
         $dataSourceUser['askAccess']=1;
