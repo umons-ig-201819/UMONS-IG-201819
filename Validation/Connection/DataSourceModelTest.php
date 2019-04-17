@@ -31,7 +31,7 @@ class DataSourceModelTest extends TestCase{
 */
     public function testAddDataSourceApp2(){
         $dataSource['name']="test";
-        $dataSource['url']="test";
+        $dataSource['url']='test40';
         $dataSource['appli']=0;
         $dataSource['config']=NULL;
         $dataSource['visible']=2;
