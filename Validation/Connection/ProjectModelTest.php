@@ -22,7 +22,7 @@ protected function tearDown(){
     // -------------------------------------------------------------
     public function testAddProject()
     {
-        $userId="1";
+        $userId="3";
         $project['pName']="test30";
         $project['pDate_start']="test31";
         $project['pDate_end']="2030-01-01";
