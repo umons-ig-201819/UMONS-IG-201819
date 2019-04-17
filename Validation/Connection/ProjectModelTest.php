@@ -44,7 +44,7 @@ protected function tearDown(){
     {
         $userProject['role_p']="test40";
         $userProject['gestion']=1;
-        $res=$this->projectModel->addUserProject(1,3,$userProject);
+        $res=$this->projectModel->addUserProject(2,1,$userProject);
         $this->assertEquals($res,true);
     }
     // -------------------------------------------------------------
