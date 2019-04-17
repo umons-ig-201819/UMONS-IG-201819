@@ -22,7 +22,7 @@ protected function tearDown(){
     // -------------------------------------------------------------
     public function testAddProject()
     {
-        $userId=3;
+        $userId=4;
         $project['pName']="test30";
         $project['pDate_start']='test31';
         $project['pDate_end']='2030-01-01';
@@ -39,16 +39,18 @@ protected function tearDown(){
         $res=$this->projectModel->addProject("1");
         $this->assertNotEquals($res,false);
     }
+    */
     public function testAddUserProject()
     {
         $userProject['role_p']="test40";
-        $userProject['gestion']="1";
-        $res=$this->projectModel->addUserProject("1","1",$userProject);
+        $userProject['gestion']=1;
+        $res=$this->projectModel->addUserProject(1,1,$userProject);
         $this->assertEquals($res,true);
     }
     // -------------------------------------------------------------
     // -------------------- SELECT ---------------------------------
     // -------------------------------------------------------------
+    /**
     * getProject() this method returns a project based on its id
     public function testGetProject()
     {
