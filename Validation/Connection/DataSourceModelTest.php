@@ -35,16 +35,16 @@ class DataSourceModelTest extends TestCase{
         $dataSource['appli']=0;
         $dataSource['config']=NULL;
         $dataSource['visible']=2;
-        $res=$this->dataSourceModel->addDataSourceApp("1",$dataSource);
-        $this->assertNotEquals($res,false);
-    }
-/**
-    public function testAddDataSourceProject(){
-        $askAccess=1;
-        $res=$this->dataSourceModel->addDataSourceProject("1","1",$askAccess);
+        $res=$this->dataSourceModel->addDataSourceApp(1,$dataSource);
         $this->assertNotEquals($res,false);
     }
 
+    public function testAddDataSourceProject(){
+        $askAccess=1;
+        $res=$this->dataSourceModel->addDataSourceProject(1,1,$askAccess);
+        $this->assertNotEquals($res,false);
+    }
+/**
     public function testAddFileUser(){
         $dataSourceUser['read']="test";
         $dataSourceUser['modify']="test";
