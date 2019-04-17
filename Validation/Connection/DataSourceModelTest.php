@@ -20,7 +20,7 @@ class DataSourceModelTest extends TestCase{
     //-------------------------------------------------------------
     //-------------------- INSERT ---------------------------------
     //-------------------------------------------------------------
-
+/**
     public function testAddDataSourceApp(){
         $res=$this->dataSourceModel->addDataSourceApp("1");
         print "test";
@@ -28,7 +28,7 @@ class DataSourceModelTest extends TestCase{
         print $res;
         $this->assertNotEquals($res,false);
     }
-/**
+*/
     public function testAddDataSourceApp2(){
         $dataSource['name']="test";
         $dataSource['url']="test";
@@ -38,7 +38,7 @@ class DataSourceModelTest extends TestCase{
         $res=$this->dataSourceModel->addDataSourceApp("1",$dataSource);
         $this->assertNotEquals($res,false);
     }
-
+/**
     public function testAddDataSourceProject(){
         $askAccess=1;
         $res=$this->dataSourceModel->addDataSourceProject("1","1",$askAccess);
