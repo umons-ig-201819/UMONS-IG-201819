@@ -174,13 +174,13 @@ class DataSourceModelTest extends TestCase{
         $res=$this->dataSourceModel->getDataSources($filter,$and);
         $this->assertEquals($res[0]["id"],NULL);
     }
-
+/**
     public function testGetDataSources1(){
         $and = false;
         $res=$this->dataSourceModel->getDataSources($and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
-
+*/
     public function testGetAccessibleDataSources(){
         $res=$this->dataSourceModel->getAccessibleDataSources(1);
         $this->assertEquals($res[0]["id"],NULL);
