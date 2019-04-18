@@ -105,8 +105,8 @@ class Profil extends CI_Controller {
 
         $data['password'] = $this->input->post('password');
 
-        $data['user_id'] = $userID;
-   //     $data['id'] = $userID;
+   //     $data['user_id'] = $userID;
+        $data['id'] = $userID;
         
   //      echo 'ici'.$userID.' '. $data['id'];
         $this->UserModel->updateUser($data);
