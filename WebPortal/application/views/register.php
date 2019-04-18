@@ -4,6 +4,7 @@
         <?php if(isset($error)):?>
 		<p id="error"><font color ='red'><?= $error; ?></font></p>
 		<?php endif; ?>
+		<?php echo validation_errors(); ?>		
 		
 <?= form_open('register'); ?>
 <fieldset>
