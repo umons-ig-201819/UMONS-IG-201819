@@ -128,7 +128,7 @@ protected function tearDown(){
     */
     public function deleteProject()
     {
-        $res=$this->projectModel->deleteProject(1);
+        $res=$this->projectModel->deleteProject(3);
         $this->assertEquals($res,true);
     }
     /**
@@ -137,7 +137,7 @@ protected function tearDown(){
     public function testDeleteUserProject()
     {
         $and=false;
-        $res=$this->projectModel->deleteUserProject(1, 1,$and);
+        $res=$this->projectModel->deleteUserProject(3, 3,$and);
         $this->assertEquals($res,true);
     }
     /**
@@ -145,7 +145,7 @@ protected function tearDown(){
      */
     public function testDeleteAllProjectsUser()
     {
-        $res=$this->projectModel->deleteAllProjectsUser(1);
+        $res=$this->projectModel->deleteAllProjectsUser(3);
         $this->assertEquals($res,true);
     }
     /**
@@ -153,7 +153,7 @@ protected function tearDown(){
      */
     public function testDeleteAllUsersProject()
     {
-        $res=$this->projectModel->deleteAllUsersProject(1);
+        $res=$this->projectModel->deleteAllUsersProject(3);
         $this->assertEquals($res,true);
     }
     // -------------------------------------------------------------
