@@ -63,8 +63,8 @@ protected function tearDown(){
         $filter['id']="1";
         $filter['project_name']="test50";
         $filter['project_description']="test51";
-        $filter['date_start']="2019-01-01";
-        $filter['date_end']="2030-01-01";
+        $filter['date_start']='2019-01-01';
+        $filter['date_end']='2030-01-01';
         $filter['owner_lastname']="Durand";
         $filter['owner_firstname']="Jean";
         $and=false;
@@ -86,11 +86,11 @@ protected function tearDown(){
         $filter['member_lastname']="Durand";
         $filter['member_firstname']="Jean";
         $filter['member_role']="propriétaire du terrain";
-        $filter['member_gestion']="0";
+        $filter['member_gestion']=0;
         $filter['owner_lastname']="vanderelst";
         $filter['owner_firstname']="Nadine";
         $and=false;
-        $res=$this->projectModel->getProjectMembers("1",$filter,$and);
+        $res=$this->projectModel->getProjectMembers(1,$filter,$and);
         $this->assertNotEquals($res[0]["member_lastname"],NULL);
     }
     /**
@@ -103,15 +103,15 @@ protected function tearDown(){
     */
     public function testGetUserProjects()
     {
-        $filter['project_id']="1";
+        $filter['project_id']=1;
         $filter['project_name']="détection des chaleurs par podomètre";
-        $filter['project_date_start']="2018-12-02";
-        $filter['project_date_end']="2020-01-01";
+        $filter['project_date_start']='2018-12-02';
+        $filter['project_date_end']='2020-01-01';
         $filter['project_role']="aide";
-        $filter['project_gestion']="1";
-        $filter['project_owner']='2';
+        $filter['project_gestion']=1;
+        $filter['project_owner']=2;
         $and=false;
-        $res=$this->projectModel->getUserProjects("1", $filter, $and);
+        $res=$this->projectModel->getUserProjects(1, $filter, $and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
     /**
@@ -128,7 +128,7 @@ protected function tearDown(){
     */
     public function deleteProject()
     {
-        $res=$this->projectModel->deleteProject("1");
+        $res=$this->projectModel->deleteProject(1);
         $this->assertEquals($res,true);
     }
     /**
@@ -137,7 +137,7 @@ protected function tearDown(){
     public function testDeleteUserProject()
     {
         $and=false;
-        $res=$this->projectModel->deleteUserProject("1", "1",$and);
+        $res=$this->projectModel->deleteUserProject(1, 1,$and);
         $this->assertEquals($res,true);
     }
     /**
@@ -145,7 +145,7 @@ protected function tearDown(){
      */
     public function testDeleteAllProjectsUser()
     {
-        $res=$this->projectModel->deleteAllProjectsUser("1");
+        $res=$this->projectModel->deleteAllProjectsUser(1);
         $this->assertEquals($res,true);
     }
     /**
@@ -153,7 +153,7 @@ protected function tearDown(){
      */
     public function testDeleteAllUsersProject()
     {
-        $res=$this->projectModel->deleteAllUsersProject("1");
+        $res=$this->projectModel->deleteAllUsersProject(1);
         $this->assertEquals($res,true);
     }
     // -------------------------------------------------------------
@@ -164,12 +164,12 @@ protected function tearDown(){
      */
     public function testUpdateProject()
     {
-        $project['id']="1";
+        $project['id']=1;
         $project['pname']="détection des chaleurs par podomètre";
         $project['pdescription']="Etude de corrélation entre l'activité physique des ";
-        $project['pdate_start']="2018-12-02";
-        $project['pdate_end']="2020-01-01";
-        $res=$this->projectModel->updateProject("1", "1", $project);
+        $project['pdate_start']='2018-12-02';
+        $project['pdate_end']='2020-01-01';
+        $res=$this->projectModel->updateProject(1, 1, $project);
         $this->assertEquals($res,true);
     }
     /**
@@ -198,8 +198,8 @@ protected function tearDown(){
     public function testUpdateUserProject()
     {
         $userProject['role']="aide";
-        $userProject['manage']="1";
-        $res=$this->projectModel->updateUserProjects("1", "1", $userProject);
+        $userProject['manage']=1;
+        $res=$this->projectModel->updateUserProjects(1, 1, $userProject);
         $this->assertEquals($res,true);
     }
     /**
