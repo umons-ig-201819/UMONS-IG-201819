@@ -156,7 +156,7 @@ class DataSourceModelTest extends TestCase{
 
     public function testGetDataSource(){
         $res=$this->dataSourceModel->getDataSource(1);
-        $this->assertNot Equals($res["id"],NULL);
+        $this->assertNotEquals($res["id"],NULL);
     }
 
     public function testGetOwnedDataSources(){
