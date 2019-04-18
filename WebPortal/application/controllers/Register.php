@@ -33,8 +33,8 @@ class Register extends CI_Controller {
             $this->form_validation->set_rules('email', 'Email', 'trim|valid_email');
             $this->form_validation->set_rules('password', 'mot de passe', 'trim|required|min_length[4]',
                 array('required' => 'You must provide a %s.'));
-            $this->form_validation->set_rules('confirm_mdp', 'Password Confirmation', 'trim|required|min_length[4]');
-    
+            $this->form_validation->set_rules('confirm_mdp', 'Password Confirmation', 'matches[password]');
+            
             $this->load->view('header');
             if ($this->form_validation->run() == FALSE)
             {
