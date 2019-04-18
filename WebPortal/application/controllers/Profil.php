@@ -83,11 +83,12 @@ class Profil extends CI_Controller {
             
             //      echo 'ici'.$userID.' '. $data['id'];
             $this->UserModel->deleteUser($userID);
-            
-            $this->load->view('header');
+            $this->session->sess_destroy();
+            redirect('/');
+ /*         $this->load->view('header');
             $this->load->view('home');
             $this->load->view('footer');
-         
+  */       
     }
     public function data($userID=null){
         // TODO update rights
