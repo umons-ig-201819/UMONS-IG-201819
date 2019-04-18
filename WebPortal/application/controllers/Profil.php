@@ -85,7 +85,7 @@ class Profil extends CI_Controller {
             $this->UserModel->deleteUser($userID);
             
             $this->load->view('header');
-            $this->load->view('home',$data);
+            $this->load->view('home');
             $this->load->view('footer');
          
     }
