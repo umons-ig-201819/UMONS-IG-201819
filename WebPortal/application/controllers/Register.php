@@ -42,13 +42,12 @@ class Register extends CI_Controller {
             $this->load->view('header');
             if ($this->form_validation->run() == FALSE)
             {
-                list($resultatRegister,$errorTextorID) = $this->UserModel->addUser($data);
-                if (!$resultatRegister) $data2 = array('error' => $errorTextorID);   
                 $this->load->view('register',$data2);
             }
             else
             {
-
+                list($resultatRegister,$errorTextorID) = $this->UserModel->addUser($data);
+                if (!$resultatRegister) $data2 = array('error' => $errorTextorID);   
                 $this->load->view('connection');
             }
             $this->load->view('footer');
