@@ -8,12 +8,12 @@ class Profil extends CI_Controller {
         $this->load->model('UserModel');
     }
     public function index($userID=null){
-        if(is_null($userID)) $userID = $this->session->UserID;
+//        if(is_null($userID)) $userID = $this->session->UserID;
         $editable_login = FALSE;
-        if($userID != $this->session->UserID){
+/*        if($userID != $this->session->UserID){
             // TODO get right to change user personal info
             $editable_login = TRUE;
-        }
+        }*/
         $data                   = $this->UserModel->getUser($this->session->UserID);
         $data['username']       = $data['login'];
         $data['user_id']        = $data['id'];
@@ -67,7 +67,6 @@ class Profil extends CI_Controller {
         // TODO remove all data sources (and references) owned by user
         // TODO remove user info and link to this user (ex: advisor)
         // then disconnect
-        {
             if($userID != $this->session->UserID){ // TODO and get right
                 $userID = intval($this->session->UserID);
                 if(!array_key_exists('EDIT_USER'/*TODO correct right (edit user) */,$this->UserModel->getUserRights($this->session->UserID))){
@@ -86,14 +85,7 @@ class Profil extends CI_Controller {
             $this->load->view('header');
             $this->load->view('home',$data);
             $this->load->view('footer');
-                
-        }
-        
-        
-        
-        
-        
-        
+         
     }
     public function data($userID=null){
         // TODO update rights
