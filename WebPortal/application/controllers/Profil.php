@@ -78,11 +78,11 @@ class Profil extends CI_Controller {
                 $userID = $this->session->UserID;
             }
             
-            $data['userid'] = $userID;
+            //$data['userid'] = $userID;
             //     $data['id'] = $userID;
             
             //      echo 'ici'.$userID.' '. $data['id'];
-            $this->UserModel->deleteUser($data);
+            $this->UserModel->deleteUser($userID);
             
             $this->load->view('header');
             $this->load->view('home',$data);
