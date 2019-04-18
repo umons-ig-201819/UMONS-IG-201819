@@ -115,7 +115,7 @@ class Profil extends CI_Controller {
         $data['user_id']        = $data['id'];
         $data['sharing']        = $data['visible'];
         $data['advise']         = $data['advise'] = 1;
-        $data['editable_login'] = $editable_login;
+ //     $data['editable_login'] = $editable_login;
         foreach($data as $key => $value)
         $data[$key] = html_escape($value);
         $this->load->view('profil',$data);
