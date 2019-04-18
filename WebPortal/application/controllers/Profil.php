@@ -9,7 +9,7 @@ class Profil extends CI_Controller {
     }
     public function index($userID=null){
 //        if(is_null($userID)) $userID = $this->session->UserID;
-        $editable_login = FALSE;
+//        $editable_login = FALSE;
 /*        if($userID != $this->session->UserID){
             // TODO get right to change user personal info
             $editable_login = TRUE;
@@ -19,7 +19,7 @@ class Profil extends CI_Controller {
         $data['user_id']        = $data['id'];
         $data['sharing']        = $data['visible'];
         $data['advise']         = $data['advise'] = 1;
-        $data['editable_login'] = $editable_login;
+//        $data['editable_login'] = $editable_login;
         foreach($data as $key => $value)
             $data[$key] = html_escape($value);
         
@@ -72,15 +72,17 @@ class Profil extends CI_Controller {
                 if(!array_key_exists('EDIT_USER'/*TODO correct right (edit user) */,$this->UserModel->getUserRights($this->session->UserID))){
                     $userID = $this->session->UserID;
                 }
-            }else{
+            }
+            else
+            {
                 $userID = $this->session->UserID;
             }
             
-            $data['user_id'] = $userID;
+            $data['userid'] = $userID;
             //     $data['id'] = $userID;
             
             //      echo 'ici'.$userID.' '. $data['id'];
-            $this->UserModel->updateUser($data);
+            $this->UserModel->deleteUser($data);
             
             $this->load->view('header');
             $this->load->view('home',$data);
