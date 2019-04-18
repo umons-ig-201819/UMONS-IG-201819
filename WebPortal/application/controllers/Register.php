@@ -43,7 +43,12 @@ class Register extends CI_Controller {
             else
             {
                 list($resultatRegister,$errorTextorID) = $this->UserModel->addUser($data);
-                if (!$resultatRegister) $data2 = array('error' => $errorTextorID);   
+                if (!$resultatRegister) 
+                {
+                    $data['error'] = $errorTextorID;
+                    $this->load->view('register',$data);
+                }
+                else
                 $this->load->view('connection');
             }
             $this->load->view('footer');
@@ -52,7 +57,7 @@ class Register extends CI_Controller {
         else
         {
         $this->load->view('header');
-        $this->load->view('register',$data2);
+        $this->load->view('register',$data);
         $this->load->view('footer');
         }
     }

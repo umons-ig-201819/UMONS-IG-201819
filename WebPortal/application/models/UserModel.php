@@ -811,7 +811,7 @@ class UserModel extends CI_Model {
 	    $sqllogin = "SELECT ut_login FROM utilisateur WHERE ut_login = '$login'";
 	    $loginExist = $this->db->query($sqllogin);
 	    $row = $loginExist->row();
-	    if (!empty ($row)) return FALSE;
+	    if (!empty ($row)) return FALSE;    //FALSE if login already exists
 	    else return TRUE;
 	    
 	}
