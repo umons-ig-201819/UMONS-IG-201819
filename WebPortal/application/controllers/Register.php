@@ -38,7 +38,7 @@ class Register extends CI_Controller {
             $this->load->view('header');
             if ($this->form_validation->run() == FALSE)
             {
-                $this->load->view('register',$data2);
+                $this->load->view('register',$data);
             }
             else
             {
