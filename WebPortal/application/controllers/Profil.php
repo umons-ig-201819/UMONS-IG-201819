@@ -9,10 +9,10 @@ class Profil extends CI_Controller {
     }
     public function index($userID=null){
         if(is_null($userID)) $userID = $this->session->UserID;
-        $editable_login = false;
+        $editable_login = FALSE;
         if($userID != $this->session->UserID){
             // TODO get right to change user personal info
-            $editable_login = True;
+            $editable_login = TRUE;
         }
         $data                   = $this->UserModel->getUser($this->session->UserID);
         $data['username']       = $data['login'];
@@ -67,6 +67,33 @@ class Profil extends CI_Controller {
         // TODO remove all data sources (and references) owned by user
         // TODO remove user info and link to this user (ex: advisor)
         // then disconnect
+        {
+            if($userID != $this->session->UserID){ // TODO and get right
+                $userID = intval($this->session->UserID);
+                if(!array_key_exists('EDIT_USER'/*TODO correct right (edit user) */,$this->UserModel->getUserRights($this->session->UserID))){
+                    $userID = $this->session->UserID;
+                }
+            }else{
+                $userID = $this->session->UserID;
+            }
+            
+            $data['user_id'] = $userID;
+            //     $data['id'] = $userID;
+            
+            //      echo 'ici'.$userID.' '. $data['id'];
+            $this->UserModel->updateUser($data);
+            
+            $this->load->view('header');
+            $this->load->view('home',$data);
+            $this->load->view('footer');
+                
+        }
+        
+        
+        
+        
+        
+        
     }
     public function data($userID=null){
         // TODO update rights
@@ -96,7 +123,7 @@ class Profil extends CI_Controller {
         $data['user_id']        = $data['id'];
         $data['sharing']        = $data['visible'];
         $data['advise']         = $data['advise'] = 1;
- //       $data['editable_login'] = $editable_login;
+        $data['editable_login'] = $editable_login;
         foreach($data as $key => $value)
         $data[$key] = html_escape($value);
         $this->load->view('profil',$data);
