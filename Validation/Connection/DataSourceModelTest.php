@@ -62,7 +62,7 @@ class DataSourceModelTest extends TestCase{
         $res=$this->dataSourceModel->deleteDataSource("1");
         $this->assertEquals($res,true);
     }
-/**
+
     public function testDeleteUserDataSource()
     {
         $res=$this->dataSourceModel->deleteUserDataSource("1","1");
@@ -109,7 +109,7 @@ class DataSourceModelTest extends TestCase{
         $res=$this->dataSourceModel->updateDataSource("1","1",$dataSource);
         $this->assertEquals($res,true);
     }
-
+/**
     public function testUpdateDataSource1(){
         $res=$this->dataSourceModel->updateDataSource("1","1");
         $this->assertEquals($res,true);
@@ -129,7 +129,7 @@ class DataSourceModelTest extends TestCase{
         $res=$this->dataSourceModel->updateDataSource("1");
         $this->assertEquals($res,true);
     }
-
+*/
     public function testUpdateDataSourceUser(){
         $dataSourceUser['read']="testDataSourceUser";
         $dataSourceUser['modify']="testDataSource";
@@ -138,12 +138,12 @@ class DataSourceModelTest extends TestCase{
         $res=$this->dataSourceModel->updateDataSourceUser("1","1",$dataSourceUser);
         $this->assertEquals($res,true);
     }
-
+/**
      public function testUpdateDataSourceUser1(){
          $res=$this->dataSourceModel->updateDataSourceUser("1","1");
          $this->assertEquals($res,true);
     }
-
+*/
     public function testUpdateDataSourceProject(){
         $askAccess="1";
         $res=$this->dataSourceModel->updateDataSourceUser("1","1",$askAccess);
@@ -202,13 +202,13 @@ class DataSourceModelTest extends TestCase{
         $res=$this->dataSourceModel->getUserDataSources("1",$filter,$and);
         $this->assertNotEquals($res[0]["id_file"],NULL);
     }
-
+/**
     public function testGetUserDataSources1(){
         $and=false;
         $res=$this->dataSourceModel->getUserDataSources("1",$and);
         $this->assertNotEquals($res[0]["id_file"],NULL);
     }
-
+*/
     public function testGetDataSourceUsers(){
         $filter['user_name'] = "test2";
         $filter['user_firstName']="test3";
@@ -218,13 +218,13 @@ class DataSourceModelTest extends TestCase{
         $res=$this->dataSourceModel->getDataSourceUsers("3",$filter,$and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
-
+/**
     public function testGetDataSourceUsers1(){
         $and = false;
         $res=$this->dataSourceModel->getDataSourceUsers("1",$and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
-
+*/
     public function testGetProjectDataSources(){
         $filter['file_name']="test10";
         $filter['file_url']="test11";
@@ -238,13 +238,13 @@ class DataSourceModelTest extends TestCase{
         $res=$this->dataSourceModel->getProjectDataSources("1",$filter,$and);
         $this->assertNotEquals($res[0]["id_fichier"],NULL);
     }
-
+/**
     public function testGetProjectDataSources1(){
         $and = false;
         $res=$this->dataSourceModel->getProjectDataSources("1",$and);
         $this->assertNotEquals($res[0]["id_fichier"],NULL);
     }
-
+*/
     public function testGetDataSourceProjects(){
         $filter['project_name'] = "test20";
         $filter['ask_access'] = 1;
@@ -253,7 +253,7 @@ class DataSourceModelTest extends TestCase{
         $res=$this->dataSourceModel->getDataSourceProjects("1",$filter,$and);
         $this->assertEquals($res[0]["id_fichier"],NULL);
     }
-
+/**
     public function testGetDataSourceProjects1(){
         $and=false;
         $res=$this->dataSourceModel->getDataSourceProjects("1",$and);
