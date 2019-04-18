@@ -78,7 +78,7 @@ class DataSourceModelTest extends TestCase{
     public function testDeleteAllDataSourcesUser()
     {
         $res=$this->dataSourceModel->deleteAllDataSourcesUser(1);
-        $this->assertEquals($res[,true);
+        $this->assertEquals($res,true);
     }
 
     public function testDeleteAllUsersDataSource(){
