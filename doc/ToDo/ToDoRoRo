@@ -8,6 +8,8 @@ FrontEnd:
 - Mettre en responsive les graphiques
 - Amélioré le supprimer le code
 - Modifier l'affichage des champs incorrect (Suppression cadres rouges)
+- Placer les sources sources de données sous forme de tableau
+- modifier le modèle pour les autorisations par ressources?
 
 BackEnd
 - Nombre d'inscrits
@@ -18,3 +20,4 @@ BackEnd
 - Mettre le mot de passe en étoiles
 - Ajouter les conditions de création - mot de passe confirm
 - Traduire le 'form_validation_lang.php
+- Création des droits d'accès
