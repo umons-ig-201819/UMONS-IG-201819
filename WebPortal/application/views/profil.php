@@ -73,7 +73,7 @@ echo '<p>';
     echo form_radio('sharing','1',$sharing === 2, 'id="sharing_allow"').form_label('Autoriser','sharing_allow');
 echo '</p>';
 echo '<p>';
-    echo form_label('Recevoir les requêtes d\'accès aux données (si le partage n\'est pas d\'office autorisé).');
+    echo form_label('Recevoir des propositions de conseils');
     echo form_radio('advise','1',$advise === 0, 'id="advise_enabled"').form_label('Accepter','advise_enabled');
     echo form_radio('advise','0',!$advise, 'id="advise_disabled"').form_label('Refuser','advise_disabled');
 echo '</p>';
