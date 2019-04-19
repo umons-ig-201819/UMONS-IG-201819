@@ -10,7 +10,7 @@
 <fieldset>
 <legend> Informations d'inscription :  </legend>
 	 	<label >Nom d'utilisateur (Login) : </label>
-	 	<input type="text" name="login" style="border-color:red" value="<?php echo set_value('login');?>">
+	 	<input type="text" name="login" style="border-color:darkblue" value="<?php echo set_value('login');?>">
 	 	<font color = 'red'>*</font><br><br>
    		<label >Sexe : </label>
     		<input type="radio" name="gender" value="1" <?php echo set_radio('gender',1,TRUE);?>> Homme&nbsp;&nbsp;
@@ -36,7 +36,7 @@
 			<input type="password" id="confirm_mdp" name="confirm_mdp" style="border-color:red" placeholder="Confirmation du mot de passe" value="<?php echo set_value('confirm_mdp');?>"/>
 			<font color = 'red'>*</font><br><br>
     		<input type="submit" value="Cr&eacute;er le compte" name="registering"><br><br>
-    		<font color = 'red'>* champs obligatoire</font>
+    		<font color = 'darkblue'>* champs obligatoire</font>
 	</fieldset>
 	</form>
 	</article>
