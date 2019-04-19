@@ -1,5 +1,5 @@
-<section>
-    <article><h1>Inscription</h1></article>
+<section id="top_page">
+    <h1>Inscription</h1>
     <?= form_open('register'); ?>
     <fieldset>
     <legend> Informations d'inscription :  </legend>
