@@ -1,0 +1,20 @@
+To Do List François Michael
+
+FrontEnd:
+- Images en responsive
+- Corriger bouton données/application
+- Aligner les champs de saisies à l'inscription
+- Aligner les champs de saisies à la connexion
+- Mettre en responsive les graphiques
+- Amélioré le supprimer le code
+- Modifier l'affichage des champs incorrect (Suppression cadres rouges)
+
+BackEnd
+- Nombre d'inscrits
+- Nombre de visite par jour?
+- Ajouter au controler la confirmation de la suppression du profil
+- Ajouter une page de confirmation de création de compte
+- Confirmation de confirmation de la modification de données
+- Mettre le mot de passe en étoiles
+- Ajouter les conditions de création - mot de passe confirm
+- Traduire le 'form_validation_lang.php
