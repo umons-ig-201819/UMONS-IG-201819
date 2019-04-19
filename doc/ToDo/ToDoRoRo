@@ -21,3 +21,5 @@ BackEnd
 - Ajouter les conditions de création - mot de passe confirm
 - Traduire le 'form_validation_lang.php
 - Création des droits d'accès
+- Par défaut, on a le droit citoyen
+- Dans mon profil, afficher mes droits

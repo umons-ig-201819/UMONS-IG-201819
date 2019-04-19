@@ -36,7 +36,7 @@ header
 	border-radius: 5px;
 	border-style: solid;
   	border-width: 1px;
-  	  box-shadow: 0px 2px 5px #1c1a19;
+  	 box-shadow: 0px 2px 5px #1c1a19;
 }
 
 #logo /* Contient les items img, h1, et nav*/
@@ -62,7 +62,7 @@ header
 {
 	flex : 3;	
 	color: white;
-	}
+}
 
 #logo nav
 { 	
@@ -135,9 +135,12 @@ article
 	border-width: 1px;
 }
 
+
+
 article img
 {
-    margin-left: 20px;
+    
+    max-width: 100%;
 }
 
 
