@@ -734,6 +734,19 @@ class UserModel extends CI_Model {
 		return $this->getAdvices($filter);		
 	}	
 	
+	/**
+	 * getNumberFromRole() is a method to return the number of user with the specific role Id	 
+	 * @param $roleId contains the role id from which we want to know the number of user	 
+	 * @return the integer value of the number of user with the role
+	 */	
+	public function getNumberFromRole($roleId)
+	{
+	$sql="SELECT COUNT(*) FROM utilisateur_role WHERE ur_id_role = $roleId";	
+	$query = $this->db->query($sql);
+	$number=$query->fetch();	
+	return $number;
+	}
+	
 	//-------------------------------------------------------------
 	//-------------------- INSERT ---------------------------------
 	//-------------------------------------------------------------
