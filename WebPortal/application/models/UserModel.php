@@ -743,7 +743,7 @@ class UserModel extends CI_Model {
 	{
 	$sql="SELECT COUNT(*) FROM utilisateur_role WHERE ur_id_role = $roleId";	
 	$query = $this->db->query($sql);
-	$number=$query->fetch();	
+	$number=$query->fetchColumn();	
 	return $number;
 	}
 	
