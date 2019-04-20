@@ -90,6 +90,8 @@ echo form_open("profil/roles/$user_id");
 echo form_fieldset('Mon r&ocirc;le');
 echo '<p>';
 echo ("$test");
+echo ("$roleName");
+echo ("$test2");
 echo '</p>';
 echo form_fieldset_close();
 echo form_close();

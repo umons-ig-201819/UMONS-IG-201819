@@ -11,17 +11,16 @@ BackEnd
 - Ajouter au controler la confirmation de la suppression du profil ?
 - Ajouter une page de confirmation de création de compte -mi
 - Confirmation de la modification de données -mi
-- Mettre le mot de passe en étoiles -fr + Ines?
+
 - Ajouter les conditions de création - mot de passe confirm -mi
 - Traduire le 'form_validation_lang.php -fr
 - Création des droits d'accès	- ?
 - Par défaut, on a le droit citoyen
 - Dans mon profil, afficher mes droits -fr
 
-
-
 Done
 - Gérer le texte autour de l'image -fr
 - Corriger bouton données/application -fr
 - Mettre en responsive les graphiques -fr
 - Nombre d'inscrits -fr
+- Mettre le mot de passe en étoiles -fr
