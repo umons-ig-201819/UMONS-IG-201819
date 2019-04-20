@@ -741,7 +741,7 @@ class UserModel extends CI_Model {
 	 */	
 	public function getNumberFromRole($roleId)
 	{
-	$sql="SELECT COUNT(*) FROM utilisateur_role WHERE ur_id_role = $roleId";	
+	$sql="SELECT * FROM utilisateur_role WHERE ur_id_role = $roleId";	
 	$query = $this->db->query($sql);
 	$number=$query->num_rows();	
 	return $number;
