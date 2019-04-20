@@ -20,11 +20,11 @@
     	<header>         
                 <div id="logo">
                 	<img src="<?php echo base_url(); ?>assets/images/logo_awe_asbl.png" alt="Logo Principal AWE!" />
-                	<h1> Portail de l'association wallonne de l'&eacute;levage </h1>
+                	<h1> Portail de l'Association Wallonne de l'&Eacute;levage </h1>
             		<nav>    		
             			<ul>
             				<li><a href="<?php echo site_url("home"); ?>">Accueil</a></li>
-                            <li><a href="<?php echo site_url("help"); ?>">Help</a></li>
+                            <li><a href="<?php echo site_url("help"); ?>">&Acirc; propos</a></li>
                             <?php if(isset($this->session->UserID)): ?>
                             <li><a href="<?php echo site_url("connection/logout"); ?>">D&eacute;connexion</a></li>
                             <li><a href="<?php echo site_url("profil"); ?>">Mon profil</a></li>
