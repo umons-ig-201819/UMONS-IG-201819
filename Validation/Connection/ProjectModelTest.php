@@ -199,7 +199,7 @@ protected function tearDown(){
     {
         $userProject['role']="aide";
         $userProject['manage']=1;
-        $res=$this->projectModel->updateUserProjects(1, 1, $userProject);
+        $res=$this->projectModel->updateUserProject(1, 1, $userProject);
         $this->assertEquals($res,true);
     }
     /**
