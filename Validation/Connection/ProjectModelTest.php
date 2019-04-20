@@ -28,18 +28,29 @@ protected function tearDown(){
         $project['pDate_end']='2030-01-01';
         $project['pDescription']='2019-01-01';
         $res=$this->projectModel->addProject($userId,$project);
-        $this->assertEquals($res[0],NULL);
+        $this->assertNotEquals($res[0],NULL);
     }
-    /**
+    
     public function testAddProject1()
     {
-        $res=$this->projectModel->addProject("1");
+        $userId=4;
+        $project['pName']="test32";
+        $project['pDate_start']='test33';
+        $project['pDate_end']='2030-01-01';
+        $res=$this->projectModel->addProject($userId,$project);
         $this->assertNotEquals($res,false);
     }
-    */
+    
     public function testAddUserProject()
     {
         $userProject['role_p']="test40";
+        $userProject['gestion']=1;
+        $res=$this->projectModel->addUserProject(3,2,$userProject);
+        $this->assertEquals($res,true);
+    }
+    
+     public function testAddUserProject1()
+    {
         $userProject['gestion']=1;
         $res=$this->projectModel->addUserProject(3,2,$userProject);
         $this->assertEquals($res,true);
@@ -72,13 +83,6 @@ protected function tearDown(){
         $this->assertEquals($res[0]["id"],NULL);
     }
     /**
-    public function testGetProjects1()
-    {
-        $and=false;
-        $res=$this->projectModel->getProjects($and);
-        $this->assertNotEquals($res[0]["id"],NULL);
-        }
-    
     * getProjectMembers() this method returns the members of a project based on its id
     */
     public function testGetProjectMembers()
@@ -94,12 +98,6 @@ protected function tearDown(){
         $this->assertNotEquals($res[0]["member_lastname"],NULL);
     }
     /**
-    public function getProjectMembers1()
-    {
-        $and=false;
-        $res=$this->projectModel->getProjectMembers("1",$and);
-        $this->assertNotEquals($res[0]["member_lastname"],NULL);
-    }
     
     public function testGetUserProjects()
     {
@@ -115,12 +113,6 @@ protected function tearDown(){
         $this->assertNotEquals($res[0]["id"],NULL);
     }
     
-    public function testGetUserProjects1()
-    {
-        $and=false;
-        $res=$this->projectModel->getUserProjects("1", $and);
-        $this->assertNotEquals($res[0]["id"],NULL);
-    }
     // -------------------------------------------------------------
     // -------------------- DELETE ---------------------------------
     // -------------------------------------------------------------
@@ -128,8 +120,17 @@ protected function tearDown(){
     */
     public function deleteProject()
     {
-        $res=$this->projectModel->deleteProject(3);
-        $this->assertEquals($res,true);
+        $filter['id']="1";
+        $filter['project_name']="test";
+        $filter['project_description']="test";
+        $filter['date_start']='2019-01-01';
+        $filter['date_end']='2030-01-01';
+        $filter['owner_lastname']="test";
+        $filter['owner_firstname']="test";
+        $and=false;
+        $res=$this->projectModel->getProjects($filter,$and);
+        $resu=$this->projectModel->deleteProject($res[0]["id"]);
+        $this->assertEquals($resu,true);
     }
     /**
      * deleteUserProject() remove a project for a specific user
@@ -145,6 +146,7 @@ protected function tearDown(){
      */
     public function testDeleteAllProjectsUser()
     {
+        
         $res=$this->projectModel->deleteAllProjectsUser(3);
         $this->assertEquals($res,true);
     }
@@ -153,8 +155,17 @@ protected function tearDown(){
      */
     public function testDeleteAllUsersProject()
     {
-        $res=$this->projectModel->deleteAllUsersProject(3);
-        $this->assertEquals($res,true);
+        $filter['id']="1";
+        $filter['project_name']="test";
+        $filter['project_description']="test";
+        $filter['date_start']='2019-01-01';
+        $filter['date_end']='2030-01-01';
+        $filter['owner_lastname']="test";
+        $filter['owner_firstname']="test";
+        $and=false;
+        $res=$this->projectModel->getProjects($filter,$and);
+        $resu=$this->projectModel->deleteAllUsersProject($res[0]["id"]);
+        $this->assertEquals($resu,true);
     }
     // -------------------------------------------------------------
     // -------------------- UPDATE ---------------------------------
@@ -164,50 +175,40 @@ protected function tearDown(){
      */
     public function testUpdateProject()
     {
+        $filter['id']="1";
+        $filter['project_name']="test";
+        $filter['project_description']="test";
+        $filter['date_start']='2019-01-01';
+        $filter['date_end']='2030-01-01';
+        $filter['owner_lastname']="test";
+        $filter['owner_firstname']="test";
+        $and=false;
+        $res=$this->projectModel->getProjects($filter,$and);
         $project['id']=1;
         $project['pname']="détection des chaleurs par podomètre";
         $project['pdescription']="Etude de corrélation entre l'activité physique des ";
         $project['pdate_start']='2018-12-02';
         $project['pdate_end']='2020-01-01';
-        $res=$this->projectModel->updateProject(1, 2, $project);
-        $this->assertEquals($res,true);
+        $resu=$this->projectModel->updateProject($res[0]["id"], 2, $project);
+        $this->assertEquals($resu,true);
     }
     /**
-    public function testUpdateProject1()
-    {
-        $project['id']="1";
-        $project['pname']="détection des chaleurs par podomètre";
-        $project['pdescription']="Etude de corrélation entre l'activité physique des ";
-        $project['pdate_start']="2018-12-02";
-        $project['pdate_end']="2020-01-01";
-        $res=$this->projectModel->updateProject("1", $project);
-        $this->assertEquals($res,true);
-    }
-    public function testUpdateProject2()
-    {
-        $res=$this->projectModel->updateProject("1", "1");
-        $this->assertEquals($res,true);
-    }
-    public function testUpdateProject3()
-    {
-        $res=$this->projectModel->updateProject("1");
-        $this->assertEquals($res,true);
-    }
      * updateUserProject() is a method for updating a project
      */
     public function testUpdateUserProject()
     {
+        $filter['id']="1";
+        $filter['project_name']="test";
+        $filter['project_description']="test";
+        $filter['date_start']='2019-01-01';
+        $filter['date_end']='2030-01-01';
+        $filter['owner_lastname']="test";
+        $filter['owner_firstname']="test";
+        $and=false;
+        $res=$this->projectModel->getProjects($filter,$and);
         $userProject['role']="aide";
         $userProject['manage']=1;
-        $res=$this->projectModel->updateUserProject(1, 1, $userProject);
-        $this->assertEquals($res,true);
+        $resu=$this->projectModel->updateUserProject(1, $res[0]["id"], $userProject);
+        $this->assertEquals($resu,true);
     }
-    /**
-    public function testUpdateUserProject1()
-    {
-        $res=$this->projectModel->updateUserProjects("1", "1");
-        $this->assertEquals($res,true);
-    }
-   }
-   */
 }
