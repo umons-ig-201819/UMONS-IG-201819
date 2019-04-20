@@ -127,8 +127,7 @@ class Profil extends CI_Controller {
     
     public function roles($userID=null){
         // TODO update rights
-        $data= $this->UserModel->getUser($this->session->UserID);
-        $data['roles'] = $this->UserModel->getUserRoles($this->session->UserID);
-        $this->load->view('profil',$data);
+        $dataRoles = $this->UserModel->getUserRoles($this->session->UserID);
+        $this->load->view('profil',$dataRoles);
     }
 }
