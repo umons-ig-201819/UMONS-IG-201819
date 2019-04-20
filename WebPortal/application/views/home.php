@@ -2,9 +2,9 @@
 	<h1>Bienvenue !</h1>
 	<h2> Vous etes bien sur la page principale</h2>	
 	<aside>
-		<h3>Nombre d'agriculteurs inscrits</h3>
+		<h3>Nombre d'agriculteurs inscrits: <?php echo ("$numberAgri");?></h3>
 		<h3>Nombre de visites par jour</h3>
-		<?php echo ("home/index/$numberAgri");?>
+		
 	</aside>
 </section>
 <section>	

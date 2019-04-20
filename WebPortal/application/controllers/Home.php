@@ -10,7 +10,7 @@ class Home extends CI_Controller {
 
     public function index(){
         $this->load->view('header');
-        $data['numberAgri'] = $this->UserModel->getNumberFromRole(4);
+        $data['numberAgri'] = $this->UserModel->getNumberFromRole(3);
         $this->load->view('home',$data);
         $this->load->view('footer');
     }
