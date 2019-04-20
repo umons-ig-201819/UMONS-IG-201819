@@ -28,7 +28,7 @@
                             <?php if(isset($this->session->UserID)): ?>
                             <li><a href="<?php echo site_url("connection/logout"); ?>">D&eacute;connexion</a></li>
                             <li><a href="<?php echo site_url("profil"); ?>">Mon profil</a></li>
-                            <li><a href="<?php echo site_url("datasource"); ?>">Mes donn&eacute;es/applications</a></li>
+                            <li><a href="<?php echo site_url("datasource"); ?>">Mes donn&eacute;es</a></li>
                             <?php else: ?>
                             <li><a href="<?php echo site_url("connection"); ?>">Connexion</a></li>
                             <?php endif; ?>
