@@ -123,6 +123,10 @@ class Profil extends CI_Controller {
         $data[$key] = html_escape($value);
         $this->load->view('profil',$data);
         $this->load->view('footer');
-
+    }
+    
+    public function roles($userID=null){
+        // TODO update rights
+        $data['roles'] = $this->UserModel->getNumberFromRole($this->session->UserID);
     }
 }
