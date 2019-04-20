@@ -20,15 +20,14 @@ class DataSourceModelTest extends TestCase{
     //-------------------------------------------------------------
     //-------------------- INSERT ---------------------------------
     //-------------------------------------------------------------
-/**
+
     public function testAddDataSourceApp(){
-        $res=$this->dataSourceModel->addDataSourceApp("1");
-        print "test";
-        print_r($res);
-        print $res;
+        $dataSource['name']="test";
+        $dataSource['visible']=2;
+        $res=$this->dataSourceModel->addDataSourceApp(2,$dataSource);
         $this->assertNotEquals($res,false);
     }
-*/
+
     public function testAddDataSourceApp1(){
         $dataSource['name']="test";
         $dataSource['url']='test40';
@@ -59,20 +58,41 @@ class DataSourceModelTest extends TestCase{
    	//-------------------------------------------------------------
 
     public function testDeleteDataSource(){
-        $res=$this->dataSourceModel->deleteDataSource(1);
-        $this->assertEquals($res,true);
+        $and = false;
+        $filter['file_name']="test";
+        $filter['file_url']="2ECQ";
+        $filter['application']=1;
+        $filter['visible']=1;
+        $filter['add_date']='1980-01-01 00:00:00';
+        $res=$this->dataSourceModel->getDataSources($filter,$and);
+        $resu=$this->dataSourceModel->deleteDataSource($res[0]["id"]);
+        $this->assertEquals($resu,true);
     }
 
     public function testDeleteUserDataSource()
     {
-        $res=$this->dataSourceModel->deleteUserDataSource(1,1);
-        $this->assertEquals($res,true);
+        $and = false;
+        $filter['file_name']="test";
+        $filter['file_url']="2ECQ";
+        $filter['application']=1;
+        $filter['visible']=1;
+        $filter['add_date']='1980-01-01 00:00:00';
+        $res=$this->dataSourceModel->getDataSources($filter,$and);
+        $resu=$this->dataSourceModel->deleteUserDataSource(1,$res[0]|"id"]);
+        $this->assertEquals($resu,true);
     }
 
     public function testDeleteDataSourceProject()
     {
-        $res=$this->dataSourceModel->deleteDataSourceProject(1,1);
-        $this->assertEquals($res,true);
+        $and = false;
+        $filter['file_name']="test";
+        $filter['file_url']="2ECQ";
+        $filter['application']=1;
+        $filter['visible']=1;
+        $filter['add_date']='1980-01-01 00:00:00';
+        $res=$this->dataSourceModel->getDataSources($filter,$and);
+        $resu=$this->dataSourceModel->deleteDataSourceProject($res[0]["id"],1);
+        $this->assertEquals($resu,true);
     }
 
     public function testDeleteAllDataSourcesUser()
@@ -82,13 +102,27 @@ class DataSourceModelTest extends TestCase{
     }
 
     public function testDeleteAllUsersDataSource(){
-        $res=$this->dataSourceModel->deleteAllUsersDataSource(1);
-        $this->assertEquals($res,true);
+        $and = false;
+        $filter['file_name']="test";
+        $filter['file_url']="2ECQ";
+        $filter['application']=1;
+        $filter['visible']=1;
+        $filter['add_date']='1980-01-01 00:00:00';
+        $res=$this->dataSourceModel->getDataSources($filter,$and);
+        $resu=$this->dataSourceModel->deleteAllUsersDataSource($res[0]["id"]);
+        $this->assertEquals($resu,true);
     }
 
     public function testDeleteAllProjectsDataSource(){
-        $res=$this->dataSourceModel->deleteAllProjectsDataSource(1);
-        $this->assertEquals($res,true);
+        $and = false;
+        $filter['file_name']="test";
+        $filter['file_url']="2ECQ";
+        $filter['application']=1;
+        $filter['visible']=1;
+        $filter['add_date']='1980-01-01 00:00:00';
+        $res=$this->dataSourceModel->getDataSources($filter,$and);
+        $resu=$this->dataSourceModel->deleteAllProjectsDataSource($res[0]["id"]);
+        $this->assertEquals($resu,true);
     }
 
     public function testDeleteAllDataSourcesProject(){
@@ -101,49 +135,64 @@ class DataSourceModelTest extends TestCase{
    	//-------------------------------------------------------------
 
     public function testUpdateDataSource(){
+        $and = false;
+        $filter['file_name']="test";
+        $filter['file_url']="2ECQ";
+        $filter['application']=1;
+        $filter['visible']=1;
+        $filter['add_date']='1980-01-01 00:00:00';
+        $res=$this->dataSourceModel->getDataSources($filter,$and);
         $dataSource['name']="testDataSourceModel";
         $dataSource['url']="testDataSource";
         $dataSource['appli']=1;
         $dataSource['config']="";
         $dataSource['visible']="";
-        $res=$this->dataSourceModel->updateDataSource(1,1,$dataSource);
-        $this->assertEquals($res,true);
+        $resu=$this->dataSourceModel->updateDataSource($res[0]["id"],1,$dataSource);
+        $this->assertEquals($resu,true);
     }
-/**
+
     public function testUpdateDataSource1(){
-        $res=$this->dataSourceModel->updateDataSource(1,1);
-        $this->assertEquals($res,true);
-    }
-
-    public function testUpdateDataSource2(){
-        $dataSource['name']="";
-        $dataSource['url']="";
-        $dataSource['appli']=1;
-        $dataSource['config']="";
+        $and = false;
+        $filter['file_name']="test";
+        $filter['file_url']="2ECQ";
+        $filter['application']=1;
+        $filter['visible']=1;
+        $filter['add_date']='1980-01-01 00:00:00';
+        $res=$this->dataSourceModel->getDataSources($filter,$and);
+        $dataSource['name']="testDataSourceModel";
         $dataSource['visible']="";
-        $res=$this->dataSourceModel->updateDataSource("1",$dataSource);
-        $this->assertEquals($res,true);
+        $resu=$this->dataSourceModel->updateDataSource($res[0]["id"],1,$dataSource);
+        $this->assertEquals($resu,true);
     }
 
-    public function testUpdateDataSource3(){
-        $res=$this->dataSourceModel->updateDataSource("1");
-        $this->assertEquals($res,true);
-    }
-*/
     public function testUpdateDataSourceUser(){
+        $and = false;
+        $filter['file_name']="test";
+        $filter['file_url']="2ECQ";
+        $filter['application']=1;
+        $filter['visible']=1;
+        $filter['add_date']='1980-01-01 00:00:00';
+        $res=$this->dataSourceModel->getDataSources($filter,$and);
         $dataSourceUser['read']="testDataSourceUser";
         $dataSourceUser['modify']="testDataSource";
         $dataSourceUser['remove']="testDataSource";
         $dataSourceUser['askAccess']=1;
-        $res=$this->dataSourceModel->updateDataSourceUser(1,1,$dataSourceUser);
-        $this->assertEquals($res,true);
+        $resu=$this->dataSourceModel->updateDataSourceUser($res[0]["id"],1,$dataSourceUser);
+        $this->assertEquals($resu,true);
     }
-/**
+
      public function testUpdateDataSourceUser1(){
-         $res=$this->dataSourceModel->updateDataSourceUser("1","1");
+         $and = false;
+        $filter['file_name']="test";
+        $filter['file_url']="2ECQ";
+        $filter['application']=1;
+        $filter['visible']=1;
+        $filter['add_date']='1980-01-01 00:00:00';
+        $res=$this->dataSourceModel->getDataSources($filter,$and);
+         $res=$this->dataSourceModel->updateDataSourceUser($res[0]["id"],1);
          $this->assertEquals($res,true);
     }
-*/
+
     /**
     *Il n'y a pas de données dans fichier_projet
     public function testUpdateDataSourceProject(){
@@ -176,13 +225,13 @@ class DataSourceModelTest extends TestCase{
         $res=$this->dataSourceModel->getDataSources($filter,$and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
-/**
+
     public function testGetDataSources1(){
         $and = false;
         $res=$this->dataSourceModel->getDataSources($and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
-*/
+
     public function testGetAccessibleDataSources(){
         $res=$this->dataSourceModel->getAccessibleDataSources(1);
         $this->assertNotEquals($res[0]["id"],NULL);
@@ -209,7 +258,7 @@ class DataSourceModelTest extends TestCase{
 /**
     public function testGetUserDataSources1(){
         $and=false;
-        $res=$this->dataSourceModel->getUserDataSources("1",$and);
+        $res=$this->dataSourceModel->getUserDataSources(1,$and);
         $this->assertNotEquals($res[0]["id_file"],NULL);
     }
 */
@@ -228,7 +277,7 @@ class DataSourceModelTest extends TestCase{
 /**
     public function testGetDataSourceUsers1(){
         $and = false;
-        $res=$this->dataSourceModel->getDataSourceUsers("1",$and);
+        $res=$this->dataSourceModel->getDataSourceUsers(1,$and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
 */
@@ -251,7 +300,7 @@ class DataSourceModelTest extends TestCase{
 /**
     public function testGetProjectDataSources1(){
         $and = false;
-        $res=$this->dataSourceModel->getProjectDataSources("1",$and);
+        $res=$this->dataSourceModel->getProjectDataSources(1,$and);
         $this->assertNotEquals($res[0]["id_fichier"],NULL);
     }
 */
@@ -269,7 +318,7 @@ class DataSourceModelTest extends TestCase{
 /**
     public function testGetDataSourceProjects1(){
         $and=false;
-        $res=$this->dataSourceModel->getDataSourceProjects("1",$and);
+        $res=$this->dataSourceModel->getDataSourceProjects(1,$and);
         $this->assertEquals($res[0]["id_fichier"],NULL);
     }
     */
