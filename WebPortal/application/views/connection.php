@@ -16,12 +16,14 @@ else:
         echo '<p>';
         ?><article><?php 
             echo form_label('Identifiant','username');
+            echo "\t";
             echo form_input('username',$this->input->post('username',TRUE),'id="username" required="required"');
         ?></article><?php 
         echo '</p>';
         echo '<p>';
         ?><article><?php 
             echo form_label('Mot de passe','password');
+            echo "\t";
             echo form_password('password','','id="password" required="required"');
         ?></article><?php 
         echo '</p>';
