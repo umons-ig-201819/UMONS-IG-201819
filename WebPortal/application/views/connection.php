@@ -1,5 +1,3 @@
-<section>
-	<article>
 		<h1>Connexion</h1>
 <?php
 if(isset($this->session->UserID)):
@@ -10,22 +8,26 @@ else:
         if(isset($error)):
 ?>
 		<p id="error">Erreur de login/mot de passe.</p>
-<?php
-        endif;
+<?php endif;
+        ?><section><?php        
         echo form_open('connection');
+      
         echo form_fieldset('Informations de connexion&nbsp;:');
         echo '<p>';
+        ?><article><?php 
             echo form_label('Identifiant','username');
             echo form_input('username',$this->input->post('username',TRUE),'id="username" required="required"');
+        ?></article><?php 
         echo '</p>';
         echo '<p>';
+        ?><article><?php 
             echo form_label('Mot de passe','password');
             echo form_password('password','','id="password" required="required"');
+        ?></article><?php 
         echo '</p>';
         echo form_submit('action', 'Se connecter');
         echo form_fieldset_close();
         echo form_close();
 endif;
 ?>
-	</article>
 </section>
