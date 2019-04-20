@@ -1,15 +1,12 @@
 To Do List François Michael
 
 FrontEnd:
-- Corriger bouton données/application -fr
 - Aligner les champs de saisies à l'inscription -mi
 - Aligner les champs de saisies à la connexion -mi
-- Mettre en responsive les graphiques -fr
 - Amélioré le supprimer le profil -mi
 - Modifier l'affichage des champs incorrect (Suppression cadres rouges) -mi
 
 BackEnd
-- Nombre d'inscrits -fr (demander à Virgi)
 - Nombre de visite par jour? -> demander à JS
 - Ajouter au controler la confirmation de la suppression du profil ?
 - Ajouter une page de confirmation de création de compte -mi
@@ -21,5 +18,10 @@ BackEnd
 - Par défaut, on a le droit citoyen
 - Dans mon profil, afficher mes droits -fr
 
+
+
 Done
 - Gérer le texte autour de l'image -fr
+- Corriger bouton données/application -fr
+- Mettre en responsive les graphiques -fr
+- Nombre d'inscrits -fr (demander à Virgi)
