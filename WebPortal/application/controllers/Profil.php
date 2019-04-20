@@ -23,6 +23,7 @@ class Profil extends CI_Controller {
         foreach($data as $key => $value)
             $data[$key] = html_escape($value);
         
+        
         $this->load->view('header');
         $this->load->view('profil',$data);
         $this->load->view('footer');
@@ -125,9 +126,9 @@ class Profil extends CI_Controller {
         $this->load->view('footer');
     }
     
-    public function roles($userID=null){
-        // TODO update rights
-        $dataRoles = $this->UserModel->getUserRoles($this->session->UserID);
-        $this->load->view('profil',$dataRoles);
+    public function roles(){
+       // TODO update rights
+       $dataRoles = $this->UserModel->getUserRoles($this->session->UserID);       
+       $this->load->view('profil',$dataRoles);
     }
 }

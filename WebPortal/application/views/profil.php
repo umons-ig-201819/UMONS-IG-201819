@@ -85,16 +85,16 @@ echo form_submit('action', 'Modifier');
 echo form_fieldset_close();
 echo form_close();
 
+
+echo form_open("profil/roles/$user_id");
 echo form_fieldset('Mon r&ocirc;le');
 echo '<p>';
-
-foreach($dataRoles as $arr) 
-{
+foreach($dataRoles as $arr) {
     echo $arr[0];
 }
 echo '</p>';
 echo form_fieldset_close();
-
+echo form_close();
 
 		?>
 	</article>
