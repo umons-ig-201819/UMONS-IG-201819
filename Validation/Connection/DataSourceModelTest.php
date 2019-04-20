@@ -144,12 +144,14 @@ class DataSourceModelTest extends TestCase{
          $this->assertEquals($res,true);
     }
 */
+    /**
+    *Il n'y a pas de données dans fichier_projet
     public function testUpdateDataSourceProject(){
         $askAccess="1";
         $res=$this->dataSourceModel->updateDataSourceUser(1,1,$askAccess);
         $this->assertEquals($res,true);
     }
-
+*/
     //-------------------------------------------------------------
    	//-------------------- SELECT ---------------------------------
    	//-------------------------------------------------------------
