@@ -78,7 +78,7 @@ class DataSourceModelTest extends TestCase{
         $filter['visible']=1;
         $filter['add_date']='1980-01-01 00:00:00';
         $res=$this->dataSourceModel->getDataSources($filter,$and);
-        $resu=$this->dataSourceModel->deleteUserDataSource(1,$res[0]|"id"]);
+        $resu=$this->dataSourceModel->deleteUserDataSource(1,$res[0]["id"]);
         $this->assertEquals($resu,true);
     }
 
