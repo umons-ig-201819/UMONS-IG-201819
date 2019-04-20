@@ -4,6 +4,7 @@
 	<aside>
 		<h3>Nombre d'agriculteurs inscrits</h3>
 		<h3>Nombre de visites par jour</h3>
+		<?php echo form_open("home/index/$numberAgri");?>
 	</aside>
 </section>
 <section>	
