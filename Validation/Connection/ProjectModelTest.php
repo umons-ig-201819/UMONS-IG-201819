@@ -41,7 +41,7 @@ protected function tearDown(){
     {
         $userProject['role_p']="test40";
         $userProject['gestion']=1;
-        $res=$this->projectModel->addUserProject(3,1,$userProject);
+        $res=$this->projectModel->addUserProject(3,2,$userProject);
         $this->assertEquals($res,true);
     }
     // -------------------------------------------------------------
@@ -137,7 +137,7 @@ protected function tearDown(){
     public function testDeleteUserProject()
     {
         $and=false;
-        $res=$this->projectModel->deleteUserProject(3,1,$and);
+        $res=$this->projectModel->deleteUserProject(3,2,$and);
         $this->assertEquals($res,true);
     }
     /**
