@@ -160,11 +160,14 @@ class DataSourceModelTest extends TestCase{
         $filter['add_date']='1980-01-01 00:00:00';
         $res=$this->dataSourceModel->getDataSources($filter,$and);
         $dataSource['name']="testDataSourceModel";
-        $dataSource['visible']="";
+        $dataSource['url']="testDataSource";
+        $dataSource['appli']=1;
+        $dataSource['config']="test";
+        $dataSource['visible']="test";
         $resu=$this->dataSourceModel->updateDataSource($res[0]["id"],1,$dataSource);
         $this->assertEquals($resu,true);
     }
-
+    
     public function testUpdateDataSourceUser(){
         $and = false;
         $filter['file_name']="test";
