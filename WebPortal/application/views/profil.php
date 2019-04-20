@@ -54,7 +54,7 @@ echo form_fieldset('Changement du mot de passe');
 echo '</p>';*/
 echo '<p>';
     echo form_label('Nouveau mot de passe','motdepasse');
-    echo '<input type="text" name="password" >';
+    echo '<input type="password" name="password" >';
 echo '</p>';
 echo form_submit('action', 'Modifier');
 echo form_fieldset_close();
