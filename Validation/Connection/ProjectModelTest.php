@@ -164,12 +164,12 @@ protected function tearDown(){
      */
     public function testUpdateProject()
     {
-        $project['id']=2;
+        $project['id']=1;
         $project['pname']="détection des chaleurs par podomètre";
         $project['pdescription']="Etude de corrélation entre l'activité physique des ";
         $project['pdate_start']='2018-12-02';
         $project['pdate_end']='2020-01-01';
-        $res=$this->projectModel->updateProject(1, 1, $project);
+        $res=$this->projectModel->updateProject(1, 2, $project);
         $this->assertEquals($res,true);
     }
     /**
