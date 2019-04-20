@@ -1,7 +1,6 @@
 To Do List François Michael
 
 FrontEnd:
-- Gérer le texte autour de l'image -fr
 - Corriger bouton données/application -fr
 - Aligner les champs de saisies à l'inscription -mi
 - Aligner les champs de saisies à la connexion -mi
@@ -21,3 +20,6 @@ BackEnd
 - Création des droits d'accès	- ?
 - Par défaut, on a le droit citoyen
 - Dans mon profil, afficher mes droits -fr
+
+Done
+- Gérer le texte autour de l'image -fr

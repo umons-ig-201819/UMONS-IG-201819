@@ -89,7 +89,7 @@ nav ul /*Gestion des déplacements des boutons*/
     padding: 5px 5px;	
     display: flex;    
     flex-wrap: wrap;
-    justify-content: spac	e-around;
+    justify-content: space-around;
 }
 
 aside
@@ -110,15 +110,19 @@ aside
 
 
 section
-{
-    display: flex;
+{ 
     margin-bottom: 20px;
     justify-content: space-between;
+      border-style: solid;
+	border-width: 1px;
+	clear : left;
+	
 }
 
 #top_page
 {
-	 flex-wrap: wrap;	
+	display : flex;
+	flex-wrap: wrap;	
 }
 
 
@@ -127,20 +131,36 @@ article, aside
     text-align: justify;
 }
 
-article
+h3
 {
- 
-    flex: 3;
-     border-style: solid;
+	border-style: solid;
 	border-width: 1px;
 }
 
+article
+{	 
+    border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	
+}
+
+.TextWrap
+{
+	
+	float: left;
+	margin : 10px;
+}
 
 
 article img
-{
-    
-    max-width: 100%;
+{    
+    max-width: 25%;
+     min-width: 25%;
+    max-height: 25%;
+    border-style: solid;
+	border-width: 1px;
+
 }
 
 
