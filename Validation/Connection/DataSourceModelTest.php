@@ -29,13 +29,13 @@ class DataSourceModelTest extends TestCase{
         $this->assertNotEquals($res,false);
     }
 */
-    public function testAddDataSourceApp2(){
+    public function testAddDataSourceApp1(){
         $dataSource['name']="test";
         $dataSource['url']='test40';
         $dataSource['appli']=0;
         $dataSource['config']=NULL;
         $dataSource['visible']=2;
-        $res=$this->dataSourceModel->addDataSourceApp(1,$dataSource);
+        $res=$this->dataSourceModel->addDataSourceApp(2,$dataSource);
         $this->assertNotEquals($res,false);
     }
 /**
