@@ -53,7 +53,7 @@ echo form_fieldset('Changement du mot de passe');
     echo '<a href="'.site_url("profil/data/$user_id").'">Modifier mon mot de passe</a>';
 echo '</p>';*/
 echo '<p>';
-    echo form_label('Mot de passe','motdepasse');
+    echo form_label('Nouveau mot de passe','motdepasse');
     echo '<input type="text" name="password" >';
 echo '</p>';
 echo form_submit('action', 'Modifier');
