@@ -86,9 +86,9 @@ echo form_fieldset_close();
 echo form_close();
 
 echo form_open("profil/roles/$user_id");
-echo form_fieldset('Mon rôle');
+echo form_fieldset('Mon r&ocirc;le');
 echo '<p>';
-echo ("roles");
+echo ("$roles");
 echo '</p>';
 echo form_fieldset_close();
 echo form_close();
