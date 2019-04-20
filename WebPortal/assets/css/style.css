@@ -36,7 +36,7 @@ header
 	border-radius: 5px;
 	border-style: solid;
   	border-width: 1px;
-  	 box-shadow: 0px 2px 5px #1c1a19;
+  	box-shadow: 0px 2px 5px #1c1a19;
 }
 
 #logo /* Contient les items img, h1, et nav*/
@@ -155,11 +155,10 @@ article
 article img
 {    
     max-width: 25%;
-     min-width: 25%;
+     min-width: 200px;
     max-height: 25%;
     border-style: solid;
 	border-width: 1px;
-
 }
 
 

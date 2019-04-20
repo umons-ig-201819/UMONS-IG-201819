@@ -20,7 +20,7 @@
 	</article>	
 </section>
 <section>
-	<h2>Info du de la semaine</h2>	
+	<h2>Info de la semaine</h2>	
 	<article>
 		<h3>
 		<img  src="<?php echo base_url(); ?>assets/images/crops.jpg" class="TextWrap" alt="IMAGE " />
