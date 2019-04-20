@@ -164,7 +164,7 @@ protected function tearDown(){
      */
     public function testUpdateProject()
     {
-        $project['id']=1;
+        $project['id']=2;
         $project['pname']="détection des chaleurs par podomètre";
         $project['pdescription']="Etude de corrélation entre l'activité physique des ";
         $project['pdate_start']='2018-12-02';
