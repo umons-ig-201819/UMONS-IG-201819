@@ -28,7 +28,7 @@ protected function tearDown(){
         $project['pDate_end']='2030-01-01';
         $project['pDescription']='2019-01-01';
         $res=$this->projectModel->addProject($userId,$project);
-        $this->assertNotEquals($res[0],NULL);
+        $this->assertEquals($res[0],NULL);
     }
     /**
     public function testAddProject1()
@@ -69,7 +69,7 @@ protected function tearDown(){
         $filter['owner_firstname']="Jean";
         $and=false;
         $res=$this->projectModel->getProjects($filter,$and);
-        $this->assertNotEquals($res[0]["id"],NULL);
+        $this->assertEquals($res[0]["id"],NULL);
     }
     /**
     public function testGetProjects1()
