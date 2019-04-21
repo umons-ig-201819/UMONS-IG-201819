@@ -209,12 +209,12 @@ class DataSourceModelTest extends TestCase{
    	//-------------------------------------------------------------
 
     public function testGetDataSource(){
-        $res=$this->dataSourceModel->getDataSource(18);
+        $res=$this->dataSourceModel->getDataSource(20);
         $this->assertNotEquals($res["id"],NULL);
     }
 
     public function testGetOwnedDataSources(){
-        $res=$this->dataSourceModel->getOwnedDataSources(18);
+        $res=$this->dataSourceModel->getOwnedDataSources(20);
         $this->assertEquals($res["id"],NULL);
     }
 
@@ -231,7 +231,7 @@ class DataSourceModelTest extends TestCase{
 
     public function testGetDataSources1(){
         $and = false;
-        $res=$this->dataSourceModel->getDataSources(NULL,$and);
+        $res=$this->dataSourceModel->getDataSources(" ",$and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
 
