@@ -63,7 +63,7 @@ protected function tearDown(){
     */
     public function testGetProject()
     {
-        $res=$this->projectModel->getProject(1);
+        $res=$this->projectModel->getProject("1");
         $this->assertNotEquals($res["id"],NULL);
     }
     /**
