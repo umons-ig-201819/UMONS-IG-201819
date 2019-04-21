@@ -52,7 +52,7 @@ protected function tearDown(){
      public function testAddUserProject1()
     {
         $userProject['gestion']=1;
-        $res=$this->projectModel->addUserProject(5,2,$userProject);
+        $res=$this->projectModel->addUserProject(6,1,$userProject);
         $this->assertEquals($res,true);
     }
     // -------------------------------------------------------------
