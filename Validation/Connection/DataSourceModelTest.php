@@ -220,7 +220,7 @@ class DataSourceModelTest extends TestCase{
 
     public function testGetDataSources(){
         $and = false;
-        $filter['file_name']="test1";
+        $filter['file_name']="test";
         $filter['file_url']="test40";
         $filter['application']=0;
         $filter['visible']=2;
