@@ -21,64 +21,7 @@ class DataSourceModel extends CI_Model{
         
     }
 
-    //////////////////////////////////////////FAILED///////////////////////////////////////////////////////
-    ///////////////////////BECAUSE GETVISIBILITY DON T GIVE THE GOOD VALUE/////////////////////////////////
-     /*/**
-     * addFileUser() is a method for adding a data source for a user
-     *      
-     * @param $fileID (required) is the id of a data source
-     * @param $userID (required) is the id of a user
-     * @param $fileUser (required) is an array containing the informations the types of access has a user for a data source
-     * @param $fileUser ['read'] (required) means if a user may read a data source or not (0) = default
-     * @param $fileUser ['modify'] (required) means if a user may modify a data source or not (0) = default
-     * @param $fileUser ['remove'] (required) means if a user may remove a data source or not (0) = default
-     * @param $fileUser ['askaccess'] (required) means if an access request is refused (2), if it is accepted (1) or if the request is made (0) = default
-     
-     * @return TRUE if insert succeeded and FALSE if not
-     */
-    /*public function addFileUser($fileID,$userID,$fileUser)
-     {
-     if(empty($fileID)) return false;
-     if(empty($userID)) return false;
-     
-     $visible=$this->getVisibility($fileID);
-     
-     $sql = "INSERT INTO utilisateur_fichier
-     (uf_id_invite, uf_id_fichier, uf_lire, uf_modifier, uf_effacer,uf_demande_acces, uf_demande_date)
-     VALUES (?,?,?,?,?,?,NOW())";
-     
-     $fuRead='0'; 		if(isset($fileUser['read'])) 			$fuRead=intval($fileUser['read']);
-     $fuModify='0';		if(isset($fileUser['modify']))			$fuModify=intval($fileUser['modify']);
-     $fuRemove='0';		if(isset($fileUser['remove']))			$fuRemove=intval($fileUser['remove']);
-     
-     if( ! $this->db->query($sql, array(intval($userID), intval($fileID), $fuRead, $fuModify, $fuRemove, intval($visible))) )
-     {
-     return false;
-     }
-     
-     return true;
-     
-     }
-     /**
-     * getVisibility() this method returns a file based on its id
-     
-     * @param $fileID file id
-     
-     * @return a file the informations about the data source
-     * <br> $response['visible'] default visibility attribute of data source (0=hidden, 1=visible, 2=on demand)
-     
-     */
-    
-     /*public function getVisibility($fileID)
-     {
-     
-     $sql='SELECT f_visible_awe AS visible FROM fichierappli WHERE f_id=?';
-     $query = $this->db->query($sql,intval($fileID));
-     $visible = $query->result();
-     
-     return intval($visible);
-     }*/
-    
+         
     //-------------------------------------------------------------
     //-------------------- INSERT ---------------------------------
     //-------------------------------------------------------------
@@ -146,40 +89,43 @@ class DataSourceModel extends CI_Model{
 	}
 
 	/**
-	 * addFileUser() is a method to add a data source for a user
+     * addFileUser() is a method for adding a data source for a user
+     *      
+     * @param $fileID (required) is the id of a data source
+     * @param $userID (required) is the id of a user
+     * @param $fileUser (required) is an array containing the informations the types of access has a user for a data source
+     * @param $fileUser ['read'] (required) means if a user may read a data source or not (0) = default
+     * @param $fileUser ['modify'] (required) means if a user may modify a data source or not (0) = default
+     * @param $fileUser ['remove'] (required) means if a user may remove a data source or not (0) = default
 
-	 * @param $dataSourceID (required) is the id of a data source
-	 * @param $userID (required) is the id of a user
-	 * @param $dataSourceUser (required) is an array containing the informations of the type of access has a user for a data source
-	 * @param $dataSourceUser ['read'] (required) means if a user may read a data source or not (0) = default
-	 * @param $dataSourceUser ['modify'] (required) means if a user may modify a data source or not (0) = default
-	 * @param $dataSourceUser ['remove'] (required) means if a user may remove a data source or not (0) = default
-	 * @param $dataSourceUser ['askaccess'] (required) means if an access request is refused (2), if it is accepted (1) or if the request is made (0) = default
-	 
-	 * @return TRUE if insert succeeded and FALSE if not
-	 */
-	public function addFileUser($dataSourceID,$userID,$dataSourceUser)
-	{
-	    if(empty($dataSourceID)) return false;
-	    if(empty($userID)) return false;
-		
-		$sql = "INSERT IGNORE INTO utilisateur_fichier
-					(uf_id_invite, uf_id_fichier, uf_lire, uf_modifier, uf_effacer, uf_demande_acces, uf_demande_date)
-					VALUES (?,?,?,?,?,?,NOW())";
-		
-		$fuRead='0'; 		if(isset($dataSourceUser['read'])) 			    $fuRead=intval($dataSourceUser['read']);
-		$fuModify='0';		if(isset($dataSourceUser['modify']))			$fuModify=intval($dataSourceUser['modify']);
-		$fuRemove='0';		if(isset($dataSourceUser['remove']))			$fuRemove=intval($dataSourceUser['remove']);
-		$askAccess = '0';   if(isset($dataSourceUser['askaccess']))         $askAccess=intval($dataSourceUser['askaccess']);
-		
-		if( ! $this->db->query($sql, array(intval($userID), intval($dataSourceID), intval($fuRead), intval($fuModify), intval($fuRemove), intval($askAccess))) )
-		{
-			return false;
-		}
-		
-		return true;
-		
-	}
+     * @return TRUE if insert succeeded and FALSE if not
+     */
+    public function addFileUser($fileID,$userID,$fileUser)
+     {
+     if(empty($fileID)) return false;
+     if(empty($userID)) return false;
+          
+     $sql="SELECT f_visible_awe FROM fichierappli WHERE f_id=$fileID";
+     $result = $this->db->query($sql);
+     $visible = $result->row_array();
+     $access = intval($visible['f_visible_awe']);
+          
+     $sql = "INSERT INTO utilisateur_fichier
+     (uf_id_invite, uf_id_fichier, uf_lire, uf_modifier, uf_effacer,uf_demande_acces, uf_demande_date)
+     VALUES (?,?,?,?,?,?,NOW())";
+     
+     $fuRead='0'; 		if(isset($fileUser['read'])) 			$fuRead=intval($fileUser['read']);
+     $fuModify='0';		if(isset($fileUser['modify']))			$fuModify=intval($fileUser['modify']);
+     $fuRemove='0';		if(isset($fileUser['remove']))			$fuRemove=intval($fileUser['remove']);
+     
+     if( ! $this->db->query($sql, array(intval($userID), intval($fileID), $fuRead, $fuModify, $fuRemove,$access)) )
+     {
+     return false;
+     }
+     
+     return true;
+     
+     }
 	
 	//-------------------------------------------------------------
 	//-------------------- DELETE ---------------------------------
