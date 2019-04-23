@@ -63,24 +63,28 @@ class DataSourceModel extends CI_Model{
 	}
 		
 	/**
-	 * addFileProject() is a method to link a data source to a project
+	 * addDataSourceProject() is a method to link a data source to a project
 	 
 	 * @param $dataSourceID (required) is the id of a data source
 	 * @param $projectID (required) is the id of the project
-	 * @param $askAccess (required) means if an access request is refused (2), if it is accepted (1) or if it is made (0) = default
 	 
 	 * @return TRUE if insert succeeded and FALSE if not
 	 */
-	public function addDataSourceProject($dataSourceID,$projectID,$askAccess)
+	public function addDataSourceProject($dataSourceID,$projID)
 	{
 		if(empty($dataSourceID)) return false;
-		if(empty($projectID)) return false;
+		if(empty($projID)) return false;
+		
+		$sql="SELECT f_visible_awe FROM fichierappli WHERE f_id=$dataSourceID";
+		$result = $this->db->query($sql);
+		$visible = $result->row_array();
+		$access = intval($visible['f_visible_awe']);
 			
 		$sql = "INSERT INTO fichier_projet
 					(fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
 					VALUES (?,?,?,NOW())";
 			
-		if( ! $this->db->query($sql, array(intval($dataSourceID), intval($projID), intval($askAccess))) )
+		if( ! $this->db->query($sql, array(intval($dataSourceID), intval($projID), $access)) )
 		{
 			return false;
 		} 
@@ -89,7 +93,7 @@ class DataSourceModel extends CI_Model{
 	}
 
 	/**
-     * addFileUser() is a method for adding a data source for a user
+     * addDataSourceUser() is a method for adding a data source for a user
      *      
      * @param $fileID (required) is the id of a data source
      * @param $userID (required) is the id of a user
@@ -100,12 +104,12 @@ class DataSourceModel extends CI_Model{
 
      * @return TRUE if insert succeeded and FALSE if not
      */
-    public function addFileUser($fileID,$userID,$fileUser)
+	public function addDataSourceUser($dataSourceID,$userID,$fileUser)
      {
-     if(empty($fileID)) return false;
-     if(empty($userID)) return false;
+        if(empty($dataSourceID)) return false;
+        if(empty($userID)) return false;
           
-     $sql="SELECT f_visible_awe FROM fichierappli WHERE f_id=$fileID";
+     $sql="SELECT f_visible_awe FROM fichierappli WHERE f_id=$dataSourceID";
      $result = $this->db->query($sql);
      $visible = $result->row_array();
      $access = intval($visible['f_visible_awe']);
@@ -118,7 +122,7 @@ class DataSourceModel extends CI_Model{
      $fuModify='0';		if(isset($fileUser['modify']))			$fuModify=intval($fileUser['modify']);
      $fuRemove='0';		if(isset($fileUser['remove']))			$fuRemove=intval($fileUser['remove']);
      
-     if( ! $this->db->query($sql, array(intval($userID), intval($fileID), $fuRead, $fuModify, $fuRemove,$access)) )
+     if( ! $this->db->query($sql, array(intval($userID), intval($dataSourceID), $fuRead, $fuModify, $fuRemove,$access)) )
      {
      return false;
      }
@@ -454,7 +458,6 @@ class DataSourceModel extends CI_Model{
 	//-------------------------------------------------------------
     //-------------------- SELECT ---------------------------------
     //-------------------------------------------------------------
-	
 
 	/**
      * getDataSource() this method returns a data source based on its id
@@ -894,7 +897,7 @@ class DataSourceModel extends CI_Model{
 				ON a.f_id = utilisateur_fichier.uf_id_fichier
                 JOIN utilisateur 
                 ON utilisateur_fichier.uf_id_invite = utilisateur.ut_id
-				WHERE (a.f_visible_awe = 0 OR a.f_visible_awe = 1) AND uf_id_fichier = ?";
+				WHERE uf_id_fichier = ?";
 		
 		$params = array();
 		$params[]=intval($dataSourceID);
