@@ -59,7 +59,7 @@ class Datasource extends CI_Controller {
             
             $this->load->library('upload', $config);
             
-            if(!$this->upload->do_upload('userfile')){
+            if(!$this->upload->do_upload('datafile')){
                 $error = array('error' => $this->upload->display_errors());
                 // $this->load->view('upload_form', $error);
             }else{
