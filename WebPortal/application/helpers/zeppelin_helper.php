@@ -171,7 +171,7 @@ if(!function_exists('create_csv_source')){
     "dependencies": [
         {"groupArtifactVersion":"net.sourceforge.csvjdbc:csvjdbc:1.0.34","local":false}
     ],
-    option": {
+    "option": {
         "remote":true,
         "port":-1,
         "perNote":"shared",
@@ -254,7 +254,7 @@ $json =   '{
     "dependencies": [
         {"groupArtifactVersion":"net.sf.ucanaccess:ucanaccess:3.0.1","local":false}
     ],
-    option": {
+    "option": {
         "remote":true,
         "port":-1,
         "perNote":"shared",
