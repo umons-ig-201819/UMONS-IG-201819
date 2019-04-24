@@ -98,6 +98,13 @@ class Datasource extends CI_Controller {
         $this->load->view('upload', array('error' => $error));
         $this->load->view('footer');
     }
+    public function manage(){
+        $userID = $this->session->UserID;
+        $data   = $this->DataSourceModel->getOwnedDataSources($userID);
+        $this->load->view('header');
+        $this->load->view('mysources',$data);
+        $this->load->view('footer');
+    }
     public function addAdvisor($advisorID=null){
     
     }
