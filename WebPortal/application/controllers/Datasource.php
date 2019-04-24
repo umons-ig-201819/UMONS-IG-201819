@@ -66,7 +66,6 @@ class Datasource extends CI_Controller {
                 $error = array('error' => $this->upload->display_errors());
             }else{
                 $data = array('upload_data' => $this->upload->data());
-                print_r($data);
                 $error = $data;
                 $data['upload_data']['file_ext'] = strtolower($data['upload_data']['file_ext']);
                 if(strlen($data['upload_data']['file_ext'])>0){
