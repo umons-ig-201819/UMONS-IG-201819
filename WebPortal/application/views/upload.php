@@ -1,7 +1,7 @@
 <section>
 	<h1>Mes fichiers et applications</h1>
 	<?php if(! is_null($error)): ?>
-		<?php if(! array_key_exists('error', $error)): ?>
+		<?php if(array_key_exists('error', $error)): ?>
 	<article class="error"><p><?=$error['error'];?></p></article>
 		<?php else: ?>
 	<article class="success"><p>Le fichier a bien &eacute;t&eacute; envoy&eacute;.</p></article>
