@@ -143,7 +143,7 @@ if(!function_exists('create_csv_source')){
     "name": "'.$interpreterName.'",
     "group": "jdbc",
     "properties": {
-        "default.url":{"name":"default.url","value":"jdbc:relique:csv:'.dirname($path).'?suppressHeaders\u003dfalse\u0026useQuotes\u003dtrue\u0026separator\u003d%2C\u0026fileExtension\u003d.csv\u0026ignoreNonParseableLines\u003dtrue","type":"string"},
+        "default.url":{"name":"default.url","value":"jdbc:relique:csv:'.dirname($path).'/?suppressHeaders\u003dfalse\u0026useQuotes\u003dtrue\u0026separator\u003d%2C\u0026fileExtension\u003d.csv\u0026ignoreNonParseableLines\u003dtrue","type":"string"},
         "default.driver":{"name":"default.driver","value":"org.relique.jdbc.csv.CsvDriver","type":"string"},
         "zeppelin.jdbc.principal":{"name":"zeppelin.jdbc.principal","value":"","type":"string"},
         "default.completer.ttlInSeconds":{"name":"default.completer.ttlInSeconds","value":"120","type":"number"},
@@ -185,7 +185,7 @@ if(!function_exists('create_csv_source')){
         $headers = array('http' =>
             array(
                 'method'  => 'POST',
-                'header'  => 'Content-Type: application/x-www-form-urlencoded',
+                'header'  => "Content-Type: application/json",//'Content-Type: application/x-www-form-urlencoded',
                 'content' => $json
             )
         );
