@@ -92,7 +92,7 @@ class Datasource extends CI_Controller {
          * file_ext
          * 
          */
-        
+        // FIXME path used is /var/nfs/general of web server instead of /nfs/shared of zeppelin
         
         $this->load->view('header');
         $this->load->view('upload', array('error' => $error));
@@ -105,7 +105,19 @@ class Datasource extends CI_Controller {
         $this->load->view('mysources',array('data' => $data));
         $this->load->view('footer');
     }
-    public function addAdvisor($advisorID=null){
-    
+    public function remove($sourceID){
+        // TODO check permission for each function...
+        $userID = $this->session->UserID;
+        $source = $this->DataSourceModel->getDataSource($sourceID);
+        $name   = $source['url'];
+        $this->DataSourceModel->deleteDataSource($sourceID);
+        delete_note($source);
+        // TODO         "user/data-$userID-$name" get note info to get name and then file name beacause $name is the zeppelin identifer
+        array_map('unlink', glob("/nfs/shared/$userID/$name.*"));
+        $this->manage();
     }
+    public function addAdvisor($advisorID=null){
+        
+    }
+    
 }

@@ -12,7 +12,7 @@ echo '</p>';
 echo form_fieldset_close();
 echo form_close();
 		?>
-		<p><a href="<?php echo site_url("datasource/addSource"); ?>">Ajouter un fichier de donn&eacute;es</a></p>
+		<p><a href="<?=site_url("datasource/addSource"); ?>">Ajouter un fichier de donn&eacute;es</a></p>
 	</article>
 	<?php foreach($url as $zeppelin_link): ?>
 	<!--  sandbox="allow-plugins allow-scripts allow-same-origin"  --> 

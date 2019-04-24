@@ -114,6 +114,18 @@ if(!function_exists('delete_paragraph')){
     }
 }
 
+if(!function_exists('delete_note')){
+    function delete_note($noteID){
+        $headers = array('http' =>
+            array(
+                'method'  => 'DELETE'
+            )
+        );
+        $context  = stream_context_create($headers);
+        file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID",true,$context);
+    }
+}
+
 if(!function_exists('run_async_paragraph')){
     function run_async_paragraph($noteID,$paragraphID){
         $headers = array('http' => array( 'method'  => 'POST' ) );

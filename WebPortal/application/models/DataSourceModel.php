@@ -163,7 +163,7 @@ class DataSourceModel extends CI_Model{
 	 */
 	public function deleteUserDataSource($userID, $dataSourceID)
     {
-        if(empty($dataSourceID)) return false;
+        if(empty($userID)) return false;
         if(empty($dataSourceID)) return false;
         
 		$sql="DELETE FROM utilisateur_fichier WHERE uf_id_fichier=? AND uf_id_invite=?";
