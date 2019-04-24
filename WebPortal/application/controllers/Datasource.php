@@ -43,6 +43,7 @@ class Datasource extends CI_Controller {
         $this->load->view('footer');
     }
     public function addSource(){
+        $error = null;
         if($this->input->post('action')){
             $userID                         = $this->session->UserID;
             $path_parts                     = pathinfo($_FILES["datafile"]["name"]);
@@ -58,19 +59,19 @@ class Datasource extends CI_Controller {
             
             $this->load->library('upload', $config);
             
-            /*
             if(!$this->upload->do_upload('userfile')){
                 $error = array('error' => $this->upload->display_errors());
-                $this->load->view('upload_form', $error);
+                // $this->load->view('upload_form', $error);
             }else{
                 $data = array('upload_data' => $this->upload->data());
-                $this->load->view('upload_success', $data);
-            }*/
+                print_r($data);
+                $error = 'success';
+            }
         }
         
         
         $this->load->view('header');
-        $this->load->view('upload');
+        $this->load->view('upload', array('error' => $error));
         $this->load->view('footer');
     }
     public function addAdvisor($advisorID=null){
