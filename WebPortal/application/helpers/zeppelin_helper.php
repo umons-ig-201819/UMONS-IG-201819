@@ -191,7 +191,7 @@ if(!function_exists('create_csv_source')){
         );
         $context  = stream_context_create($headers);
         $result = json_decode(file_get_contents(ZEPPELIN_URL.'/api/interpreter/setting', true, $context),true);
-        print r($result);
+        print_r($result);
         // Create initial note
         $json = '{
 "name": "'.$nodeName.'",
