@@ -64,13 +64,34 @@ class Datasource extends CI_Controller {
             
             if(!$this->upload->do_upload('datafile')){
                 $error = array('error' => $this->upload->display_errors());
-                // $this->load->view('upload_form', $error);
             }else{
                 $data = array('upload_data' => $this->upload->data());
                 print_r($data);
-                $error = 'success';
+                $error = $data;
+                $data['upload_data']['file_ext'] = strtolower($data['upload_data']['file_ext']);
+                if(strlen($data['upload_data']['file_ext'])>0){
+                    $data['upload_data']['file_ext'] = substr($data['upload_data']['file_ext'],1);// remove initial dot (.)
+                }
+                $nodeName = "user/data-$userID-".$data['upload_data']['raw_name'];
+                $path = $data['upload_data']['full_path'];
+                if($data['upload_data']['file_ext'] == 'csv'){
+                    print_r(create_csv_source($nodeName,"csv-$userID",$path));
+                }elseif($data['upload_data']['file_ext'] == 'mdb' || $data['upload_data']['file_ext'] == 'accdb'){
+                    create_access_source($nodeName,"access-$userID-".$data['upload_data']['raw_name'],$path);
+                }
+                // no else because already checked by CodeIgniter
+                $this->DataSourceModel->addDataSourceApp($userID, array(
+                    'name'      => $data['upload_data']['client_name'],
+                    'visible'   => 0,
+                    'url'       => TODO
+                ));
             }
         }
+        /*
+         * Array ( [upload_data] => Array ( [file_name] => 5cc0a9ff.csv [file_type] => text/plain [file_path] => /var/nfs/general/2/ [full_path] => /var/nfs/general/2/5cc0a9ff.csv [raw_name] => 5cc0a9ff [orig_name] => 5cc0a9ff.csv [client_name] => test.csv [file_ext] => .csv [file_size] => 0.03 [is_image] => [image_width] => [image_height] => [image_type] => [image_size_str] => ) ) 
+         * file_ext
+         * 
+         */
         
         
         $this->load->view('header');

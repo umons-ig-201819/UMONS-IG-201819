@@ -186,7 +186,7 @@ if(!function_exists('create_csv_source')){
             array(
                 'method'  => 'POST',
                 'header'  => 'Content-Type: application/x-www-form-urlencoded',
-                'content' => '{"name": "'.$name.'"}'
+                'content' => $json
             )
         );
         $context  = stream_context_create($headers);
@@ -267,7 +267,7 @@ $json =   '{
             array(
                 'method'  => 'POST',
                 'header'  => 'Content-Type: application/x-www-form-urlencoded',
-                'content' => '{"name": "'.$name.'"}'
+                'content' => $json
             )
         );
         $context  = stream_context_create($headers);
