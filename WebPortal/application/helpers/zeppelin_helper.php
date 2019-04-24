@@ -189,6 +189,7 @@ if(!function_exists('create_csv_source')){
                 'content' => $json
             )
         );
+        print_r($headers);
         $context  = stream_context_create($headers);
         print_r(file_get_contents(ZEPPELIN_URL.'/api/interpreter/setting', true, $context));
         $result = json_decode(file_get_contents(ZEPPELIN_URL.'/api/interpreter/setting', true, $context),true);
