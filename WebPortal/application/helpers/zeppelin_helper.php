@@ -80,8 +80,6 @@ if(!function_exists('create_paragraph')){
             $results = ", \"config\": { \"results\": ".json_encode($results).'}';
         }
         // Create a copy of the first paragraph of the $originNote to $workingNote entitled with the $originNote identifier
-        echo "\$textContent"; print_r($textContent); echo "\n<br>\n";
-        echo "\$results"; print_r($results); echo "\n<br>\n";
         $headers = array(
             'http' => array(
                 'method'  => 'POST',
