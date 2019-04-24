@@ -75,7 +75,7 @@ if(!function_exists('list_paragraphs')){
 if(!function_exists('create_paragraph')){
     function create_paragraph($noteID,$name,$textContent,$results=''){
         if(empty($results)){
-            $result = '';
+            $results = '';
         }else{
             $results = ", \"config\": { \"results\": ".json_encode($results).'}';
         }
