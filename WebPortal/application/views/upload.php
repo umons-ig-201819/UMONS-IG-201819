@@ -1,7 +1,7 @@
 <section>
 	<h1>Mes fichiers et applications</h1>
 	<?php if(! is_null($error)): ?>
-	<article class="error"><?=$error;?></article>
+	<article class="error"><?php print_r($error); ?></article>
 	<?php endif; ?>
 	<article>
 		<h2>Ajouter une source de données (fichier csv, accdb ou mdb)</h2>
