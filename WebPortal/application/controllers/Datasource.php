@@ -56,6 +56,9 @@ class Datasource extends CI_Controller {
                 'detect_mime'          => true,
                 'file_name'            => dechex(time()).'.'.strtolower($path_parts['extension'])
             );
+            if(!file_exists($config['upload_path'])){
+                mkdir($config['upload_path']);
+            }
             
             $this->load->library('upload', $config);
             
