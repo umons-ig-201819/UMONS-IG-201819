@@ -102,7 +102,7 @@ class Datasource extends CI_Controller {
         $userID = $this->session->UserID;
         $data   = $this->DataSourceModel->getOwnedDataSources($userID);
         $this->load->view('header');
-        $this->load->view('mysources',$data);
+        $this->load->view('mysources',array(data => $data));
         $this->load->view('footer');
     }
     public function addAdvisor($advisorID=null){
