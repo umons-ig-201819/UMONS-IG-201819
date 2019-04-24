@@ -83,7 +83,7 @@ class Datasource extends CI_Controller {
                 $this->DataSourceModel->addDataSourceApp($userID, array(
                     'name'      => $data['upload_data']['client_name'],
                     'visible'   => 0,
-                    'url'       => TODO
+                    'url'       => $url
                 ));
             }
         }
