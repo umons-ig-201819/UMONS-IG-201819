@@ -73,10 +73,11 @@ class Datasource extends CI_Controller {
                 }
                 $nodeName = "user/data-$userID-".$data['upload_data']['raw_name'];
                 $path = $data['upload_data']['full_path'];
+                $url = null;
                 if($data['upload_data']['file_ext'] == 'csv'){
-                    print_r(create_csv_source($nodeName,"csv-$userID",$path));
+                    $url = create_csv_source($nodeName,"csv-$userID",$path);
                 }elseif($data['upload_data']['file_ext'] == 'mdb' || $data['upload_data']['file_ext'] == 'accdb'){
-                    create_access_source($nodeName,"access-$userID-".$data['upload_data']['raw_name'],$path);
+                    $url = create_access_source($nodeName,"access-$userID-".$data['upload_data']['raw_name'],$path);
                 }
                 // no else because already checked by CodeIgniter
                 $this->DataSourceModel->addDataSourceApp($userID, array(

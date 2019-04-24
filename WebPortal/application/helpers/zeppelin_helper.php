@@ -266,7 +266,7 @@ $json =   '{
         $headers = array('http' =>
             array(
                 'method'  => 'POST',
-                'header'  => 'Content-Type: application/x-www-form-urlencoded',
+                'header'  => "Content-Type: application/json",//'Content-Type: application/x-www-form-urlencoded',
                 'content' => $json
             )
         );
