@@ -80,10 +80,12 @@ if(!function_exists('create_paragraph')){
             $results = ", \"config\": { \"results\": ".json_encode($results).'}';
         }
         // Create a copy of the first paragraph of the $originNote to $workingNote entitled with the $originNote identifier
+        echo "\$textContent"; print_r($textContent); echo "\n<br>\n";
+        echo "\$results"; print_r($results); echo "\n<br>\n";
         $headers = array(
             'http' => array(
                 'method'  => 'POST',
-                'header'  => 'Content-Type: application/x-www-form-urlencoded',
+                'header'  => "Content-Type: application/json",//'Content-Type: application/x-www-form-urlencoded',
                 'content' => '{"title": "'.$name.'", "text": "'.preg_replace('/"/','\\"',$textContent).'"'.$results.'}'
             )
         );
