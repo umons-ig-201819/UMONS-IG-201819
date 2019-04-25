@@ -129,12 +129,13 @@ class Datasource extends CI_Controller {
     public function update($sourceID){
         // TODO check permission for each function...
         $userID = $this->session->UserID;
-        // FIXME if post...
-        $data = array(
-            'name'      => TODO,
-            'visible'   => TODO
-        );
-        $this->DataSourceModel->updateDataSource($sourceID,$userID,$data);
+        if($this->input->post('action')){
+            $data = array(
+                'name'      => $this->input->post('file_name'),
+                'visible'   => $this->input->post('visible')
+            );
+            $this->DataSourceModel->updateDataSource($sourceID,$userID,$data);
+        }
         $this->manage();
     }
     public function advisor($sourceID){

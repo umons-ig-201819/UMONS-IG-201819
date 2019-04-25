@@ -33,8 +33,6 @@ echo '</p>';
 echo form_fieldset_close();
 echo form_close();
 		?>
-		
-		<li><?="$data[file_name] $data[visible] $data[add_date]";?> </li>
 		<?php endforeach; ?>
 	</article>
 	<article>
