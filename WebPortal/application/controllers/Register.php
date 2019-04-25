@@ -47,9 +47,13 @@ class Register extends CI_Controller {
                 {
                     $data['error'] = $errorTextorID;
                     $this->load->view('register',$data);
+                    echo "<script>alert('Inscription échouée</script>";
                 }
                 else
-                $this->load->view('connection');
+                {
+                    echo "<script>alert('Inscription réussie</script>";
+                    $this->load->view('connection');
+                }
             }
             $this->load->view('footer');
   
