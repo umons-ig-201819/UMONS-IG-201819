@@ -1,6 +1,7 @@
 <section>
 	<article>
 		<h1>Gestion de mes sources de donn&eacute;es</h1>
+		<?php print_r($source); ?>
 		<?php foreach($source as $data):
 echo form_open("datasource/update/$data[id]");
 echo form_fieldset(htmlentities($data['file_name']));
