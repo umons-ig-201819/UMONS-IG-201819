@@ -87,18 +87,11 @@ class Profil extends CI_Controller {
             {
                 $userID = $this->session->UserID;
             }
-            
-            //$data['userid'] = $userID;
-            //     $data['id'] = $userID;
-            
-            //      echo 'ici'.$userID.' '. $data['id'];
+            $this->UserModel->deleteUserAllRole($userID);
             $this->UserModel->deleteUser($userID);
             $this->session->sess_destroy();
             redirect('/');
- /*         $this->load->view('header');
-            $this->load->view('home');
-            $this->load->view('footer');
-  */       
+    
     }
     public function data($userID=null){
         // TODO update rights
@@ -136,7 +129,7 @@ class Profil extends CI_Controller {
         //     $data['editable_login'] = $editable_login;
         foreach($data as $key => $value)
         $data[$key] = html_escape($value);
-        
+                
         if ($this->form_validation->run() == FALSE)
         {
             $this->load->view('profil',$data);
@@ -150,8 +143,9 @@ class Profil extends CI_Controller {
                 echo "<script charset='ISO-8859-1'>alert('Changement de MDP échouée')</script>";
             }
             else
-            {
+            {   
                 echo "<script charset='ISO-8859-1'>alert('Changement réussie')</script>";
+                $this->load->view('profil',$data);
             }
         }
  
