@@ -748,7 +748,7 @@ class DataSourceModel extends CI_Model{
 	     $sourceID     = intval($sourceID);
 	     $advisorID    = intval($advisorID);
 	     //  0=demande effectuee, 1=OK, 2=refus
-	     $sql = "UPDATE `utilisateur_fichier` SET `uf_demande_acces`=0 WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
+	     $sql = "UPDATE `utilisateur_fichier` SET `uf_demande_acces`=2 WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
 	     $this->db->query($sql);
 	 }
 	 public function revokeAccess($sourceID, $advisorID){
