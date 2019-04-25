@@ -21,10 +21,10 @@ class Connection extends CI_Controller {
             
             $data = $this->UserModel->authentification($this->input->post('username'),$this->input->post('password'));
             if($data !== false){
-                alert('Connexion r&eacute;ussie');
+                echo "<script>alert('Connexion r&eacute;ussie')</script>";
                 $this->session->set_userdata('UserID', $data['id']);
             }else{
-                alert('Erreur de connexion');
+                echo "<script>alert('Erreur de connexion')</script>";
                 $data = array('error' => true);
             }
         }
