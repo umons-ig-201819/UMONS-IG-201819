@@ -24,8 +24,6 @@ else:
         echo '<p>';
         ?><article class="connexion"><?php 
                 echo form_label('Mot de passe','password');
-                ?></article>
-                <article class="connexion"><?php 
                 echo form_password('password','','id="password" required="required"');
             ?></article><?php 
         echo '</p>';
