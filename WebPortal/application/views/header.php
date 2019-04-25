@@ -24,7 +24,7 @@
             		<nav>    		
             			<ul>
             				<li><a href="<?php echo site_url("home"); ?>">Accueil</a></li>
-                            <li><a href="<?php echo site_url("help"); ?>">&Acirc; propos</a></li>
+                            <li><a href="<?php echo site_url("help"); ?>">&Agrave; propos</a></li>
                             <?php if(isset($this->session->UserID)): ?>
                             <li><a href="<?php echo site_url("connection/logout"); ?>">D&eacute;connexion</a></li>
                             <li><a href="<?php echo site_url("profil"); ?>">Mon profil</a></li>
