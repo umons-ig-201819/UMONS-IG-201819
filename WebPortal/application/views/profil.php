@@ -1,6 +1,6 @@
 <section>
 	<h1>Mon profil</h1>
-	<article></article>
+	<article> </article>
 	<aside class="supprimer"><a href="<?=site_url("profil/remove/$user_id");?>">Supprimer mon profil</a></aside>
 	<article id="account_information">
 		<?php
@@ -57,7 +57,7 @@ echo '<p>';
     echo form_label('Nouveau mot de passe','motdepasse');
     echo '<input type="password" name="password" >';
     echo form_label('Confirmation du mot de passe','motdepasseconfirm');
-    echo '<input type="passwordconfirm" name="passwordconfirm" >';
+    echo '<input type="password" name="passwordconfirm" >';
 echo '</p>';
 echo form_submit('action', 'Modifier');
 echo form_fieldset_close();
