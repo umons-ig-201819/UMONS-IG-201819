@@ -1,4 +1,5 @@
 <section>
+<?php print_r($source);?>
 	<h1>Acc&egrave;s de projets sur <?=htmlentities($source['file_name']);?></h1>
 	<article>
 	<?php if(!empty($error)): ?>
