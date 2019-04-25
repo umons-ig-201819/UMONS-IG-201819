@@ -36,7 +36,7 @@
 			<input type="password" id="confirm_mdp" name="confirm_mdp" placeholder="Confirmation du mot de passe" value="<?php echo set_value('confirm_mdp');?>"/>
 			<font color = 'red'>*</font><br><br>
     		<input type="submit" value="Cr&eacute;er le compte" name="registering"><br><br>
-    		<font color = 'darkblue'>* champs obligatoire</font>
+    		<font color = 'red'>* champs obligatoire</font>
 	</fieldset>
 	</form>
 	</article>
