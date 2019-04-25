@@ -530,6 +530,43 @@ class DataSourceModel extends CI_Model{
         return $ownerFiles;
     
 	}
+	
+	public function searchDataSources($filter = NULL, $and = false) {
+	    $conditions = '';
+	    $prep = array();
+	    if(!is_null($filter)){
+	        $and = $and ? 'AND' : 'OR';
+	        if(array_key_exists('owner',$filter)){
+	            $conditions .= "$and utilisateur.ut_login LIKE ?";
+	            array_push($prep,"%$filter[owner]%");
+	        }
+	        if(array_key_exists('name',$filter)){
+	            $conditions .= "$and fichierappli.f_nom LIKE ?";
+	            array_push($prep,"%$filter[name]%");
+	        }
+	        if(!empty($conditions)) $conditions = substr($conditions,strlen($and));
+	    }
+	    $sql = 'SELECT
+    	    f_id AS id,
+    	    f_nom AS file_name,
+    	    f_url AS file_url,
+    	    f_appli AS application,
+    	    f_config AS confiduration_file,
+    	    f_dateajout AS add_date,
+    	    f_id_proprio AS ownerID,
+    	    f_visible_awe AS visible,
+            utilisateur.ut_login AS login
+	    FROM fichierappli, utilisateur
+	    WHERE fichierappli.f_id_proprio = utilisateur.ut_id';
+	    if(!empty($conditions)){
+	        $sql = "$sql AND ($conditions) ORDER BY file_name";
+	        $query = $this->db->query($sql, $prep);
+	        return $query->result_array();
+	    }
+	    $sql = "$sql ORDER BY file_name";
+	    $query = $this->db->query($sql);
+	    return $query->result_array();
+	}
  	
 	/**
 	* getDataSources() is a method for searching data sources in the database

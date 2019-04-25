@@ -132,6 +132,12 @@ class Datasource extends CI_Controller {
         $this->DataSourceModel->revokeAccess($sourceID,$userID);
         $this->manage();
     }
+    public function ask($sourceID){
+        // TODO check permission for each function...
+        $userID = $this->session->UserID;
+        $this->DataSourceModel->askAccess($sourceID,$userID);
+        $this->manage();
+    }
     
     public function remove($sourceID){
         // TODO check permission for each function...

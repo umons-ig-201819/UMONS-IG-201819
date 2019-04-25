@@ -28,8 +28,15 @@ class Search extends CI_Controller {
         $this->load->view('footer');
     }
     public function datasource(){
+        $result = array();
+        if($this->input->post('action')){
+            $filter = array();
+            if(!empty($this->input->post('owner'))) $filter['owner']=$this->input->post('owner');
+            if(!empty($this->input->post('name'))) $filter['file_name']=$this->input->post('name');
+            $result = $this->UserModel->searchDataSources($filter,true);
+        }
         $this->load->view('header');
-        $this->load->view('search_datasource');
+        $this->load->view('search_datasource',array('result' => $result));
         $this->load->view('footer');
     }
 }
