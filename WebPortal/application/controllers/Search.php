@@ -23,7 +23,6 @@ class Search extends CI_Controller {
             if(!empty($this->input->post('mobile'))) $filter['mobile']=$this->input->post('mobile');
             $result = $this->UserModel->getUsers($filter,true);
         }
-        print_r($result);
         $this->load->view('header');
         $this->load->view('search_user',array('result' => $result));
         $this->load->view('footer');

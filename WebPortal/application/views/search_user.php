@@ -42,7 +42,10 @@
 		echo form_close();
 ?>		
 	<article>
+		<ul>
 		<?php foreach($result as $data): ?>
+			<li><?=htmlentities($data['firstname']).' '.htmlentities($data['lastname']).'&nbsp;: '.htmlentities($data['login']);?></li>
 		<?php endforeach; ?>
+		</ul>
 	</article>
 </section>
