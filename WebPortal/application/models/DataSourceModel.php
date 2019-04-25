@@ -681,8 +681,8 @@ class DataSourceModel extends CI_Model{
 				FROM fichierappli, utilisateur_fichier
 				WHERE utilisateur_fichier.uf_id_fichier=fichierappli.f_id AND utilisateur_fichier.uf_demande_acces=1 AND utilisateur_fichier.uf_id_invite=?";
 	    $query = $this->db->query($sql, array($advisorID));
-	    $files =$query->row_array();
-	    return $files;
+	    $result=$query->result_array();
+	    return $result;
 	}
 	public function getAdvisors($sourceID){
 	    $sourceID = intval($sourceID);
@@ -698,8 +698,8 @@ class DataSourceModel extends CI_Model{
                 AND utilisateur_fichier.uf_id_fichier = ?
         ";
 	    $query = $this->db->query($sql, array($sourceID));
-	    $files =$query->row_array();
-	    return $files;
+	    $result=$query->result_array();
+	    return $result;
 	}
 	 public function addAdvisor($sourceID, $advisorID){
 	     $sourceID     = intval($sourceID);
