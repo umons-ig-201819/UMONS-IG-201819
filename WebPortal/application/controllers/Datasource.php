@@ -101,10 +101,20 @@ class Datasource extends CI_Controller {
     public function manage(){
         $userID = $this->session->UserID;
         $data   = $this->DataSourceModel->getOwnedDataSources($userID);
+        $access = $this->DataSourceModel->getAccessDataSources($userID);
         $this->load->view('header');
-        $this->load->view('mysources',array('data' => $data));
+        $this->load->view('mysources',array('data' => $data, 'access' => $access));
         $this->load->view('footer');
     }
+    public function revoke($sourceID){
+        // TODO check permission for each function...
+        $userID = $this->session->UserID;
+        $this->DataSourceModel->revokeAccess($sourceID,$userID);
+        $this->manage();
+    }
+    
+    
+    
     public function remove($sourceID){
         // TODO check permission for each function...
         $userID = $this->session->UserID;
@@ -116,6 +126,38 @@ class Datasource extends CI_Controller {
         array_map('unlink', glob("/nfs/shared/$userID/$name.*"));
         $this->manage();
     }
+    public function update($sourceID){
+        // TODO check permission for each function...
+        $userID = $this->session->UserID;
+        // FIXME if post...
+        $data = array(
+            'name'      => TODO,
+            'visible'   => TODO
+        );
+        $this->DataSourceModel->updateDataSource($sourceID,$userID,$data);
+        $this->manage();
+    }
+    public function advisor($sourceID){
+        // TODO check permission for each function...
+        $userID     = $this->session->UserID;
+        $source     = $this->DataSourceModel->getDataSource($sourceID);
+        $advisors   = $this->DataSourceModel->getAdvisors($sourceID);
+        // TODO if modification (state), update
+        $this->load->view('header');
+        $this->load->view('datasource_advisor',array('source' => $source, 'advisors' => $advisors));
+        $this->load->view('footer');
+        
+        // addDataSourceUser($sourceID,$advisorID, array('read'=>1))
+    }
+    public function project($sourceID){
+        // TODO check permission for each function...
+        $userID = $this->session->UserID;
+        $source = $this->DataSourceModel->getDataSource($sourceID);
+        $this->load->view('header');
+        $this->load->view('datasource_project',array('source' => $source));
+        $this->load->view('footer');
+    }
+    
     public function addAdvisor($advisorID=null){
         
     }

@@ -667,8 +667,81 @@ class DataSourceModel extends CI_Model{
         $dataSources=$query->result_array();
 
         return $dataSources;
+	}
+	public function getAccessDataSources($advisorID){
+	    $advisorID = intval($advisorID);
+	    $sql="SELECT
+					f_id AS id,
+					f_nom AS file_name,
+					f_url AS url,
+					f_appli AS application,
+                    f_config AS configuration,
+                    f_visible_awe AS visible,
+                    f_dateajout AS add_date
+				FROM fichierappli, utilisateur_fichier
+				WHERE utilisateur_fichier.uf_id_fichier=fichierappli.f_id AND utilisateur_fichier.uf_demande_acces=1 AND utilisateur_fichier.uf_id_invite=?";
+	    $query = $this->db->query($sql, array($advisorID));
+	    $files =$query->row_array();
+	    return $files;
+	}
+	public function getAdvisors($sourceID){
+	    $sourceID = intval($sourceID);
+	    $sql="
+            SELECT
+                utilisateur.ut_id                       AS userid,
+                utilisateur.ut_login                    AS username,
+                utilisateur.ut_nom                      AS firstname,
+                utilisateur.ut_prenom                   AS lastname,
+                utilisateur_fichier.uf_demande_acces    AS state
+            FROM utilisateur, utilisateur_fichier
+            WHERE utilisateur_fichier.uf_id_invite = utilisateur.ut_id
+                AND utilisateur_fichier.uf_id_fichier = ?
+        ";
+	    $query = $this->db->query($sql, array($sourceID));
+	    $files =$query->row_array();
+	    return $files;
+	}
+	 public function addAdvisor($sourceID, $advisorID){
+	     $sourceID     = intval($sourceID);
+	     $advisorID    = intval($advisorID);
+	     //  0=demande effectuee, 1=OK, 2=refus
+	     $sql = "
+            INSERT INTO `utilisateur_fichier`(`uf_id_invite`, `uf_id_fichier`, `uf_lire`, `uf_modifier`, `uf_effacer`, `uf_demande_acces`, `uf_demande_date`)
+	       VALUES ($advisorID, $sourceID, 1, 0, 0, 1, NOW());"
+	       ;
+	       $this->db->query($sql);
 	 }
-	
+	 public function askAccess($sourceID, $userID){
+	     $sourceID     = intval($sourceID);
+	     $userID       = intval($userID);
+	     //  0=demande effectuee, 1=OK, 2=refus
+	     $sql = "
+            INSERT INTO `utilisateur_fichier`(`uf_id_invite`, `uf_id_fichier`, `uf_lire`, `uf_modifier`, `uf_effacer`, `uf_demande_acces`, `uf_demande_date`)
+	       VALUES ($userID, $sourceID, 1, 0, 0, 0, NOW());"
+	       ;
+	       $this->db->query($sql);
+	 }
+	 public function acceptAccess($sourceID, $advisorID){
+	     $sourceID     = intval($sourceID);
+	     $advisorID    = intval($advisorID);
+	     //  0=demande effectuee, 1=OK, 2=refus
+	     $sql = "UPDATE `utilisateur_fichier` SET `uf_demande_acces`=1 WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
+	     $this->db->query($sql);
+	 }
+	 public function refuseAccess($sourceID, $advisorID){
+	     $sourceID     = intval($sourceID);
+	     $advisorID    = intval($advisorID);
+	     //  0=demande effectuee, 1=OK, 2=refus
+	     $sql = "UPDATE `utilisateur_fichier` SET `uf_demande_acces`=1 WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
+	     $this->db->query($sql);
+	 }
+	 public function revokeAccess($sourceID, $advisorID){
+	     $sourceID     = intval($sourceID);
+	     $advisorID    = intval($advisorID);
+	     //  0=demande effectuee, 1=OK, 2=refus
+	     $sql = "DELETE FROM `utilisateur_fichier` WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
+	     $this->db->query($sql);
+	 }
 	 public function getAccessibleDataSources($userID){
 	     $userID = intval($userID);
 	     $sql = "
@@ -695,7 +768,7 @@ class DataSourceModel extends CI_Model{
 	     ";
 	     $query = $this->db->query($sql);
 	     $dataSources=$query->result_array();
-	     
+	     // TODO project still valid => add 'AND end_date >= now'
 	     return $dataSources;
 	 }
 	 
