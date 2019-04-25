@@ -2,7 +2,12 @@
 	<h1>Mon profil</h1>
 	<?php echo validation_errors(); ?>	
 	<aside>
-	<a href="<?=site_url("profil/remove/$user_id");?>">Supprimer mon profil</a>
+	<?php
+	echo form_open("profil/remove/$user_id");
+	echo form_submit('action', 'Supprimer mon compte');
+	echo form_close();
+	?>
+<!--  	<a href=" <//?= //site_url("profil/remove/$user_id");?//>">Supprimer mon profil</a> -->
 	</aside>
 </section>
 <section>
