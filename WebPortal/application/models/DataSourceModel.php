@@ -758,7 +758,7 @@ class DataSourceModel extends CI_Model{
 	     $sourceID        = intval($sourceID);
 	     $advisorUsername = trim($advisorUsername);
 	     $sql = "
-            INSERT INTO `utilisateur_fichier`(`uf_id_invite`, `uf_id_fichier`, `uf_lire`, `uf_modifier`, `uf_effacer`, `uf_demande_acces`, `uf_demande_date`)
+            INSERT IGNORE INTO `utilisateur_fichier`(`uf_id_invite`, `uf_id_fichier`, `uf_lire`, `uf_modifier`, `uf_effacer`, `uf_demande_acces`, `uf_demande_date`)
             SELECT utilisateur.ut_id, $sourceID, 1, 0, 0, 1, NOW()
             FROM utilisateur
             WHERE utilisateur.ut_login = ? ";
@@ -770,7 +770,7 @@ class DataSourceModel extends CI_Model{
 	     $userID       = intval($userID);
 	     //  0=demande effectuee, 1=OK, 2=refus
 	     $sql = "
-            INSERT INTO `utilisateur_fichier`(`uf_id_invite`, `uf_id_fichier`, `uf_lire`, `uf_modifier`, `uf_effacer`, `uf_demande_acces`, `uf_demande_date`)
+            INSERT IGNORE INTO  `utilisateur_fichier`(`uf_id_invite`, `uf_id_fichier`, `uf_lire`, `uf_modifier`, `uf_effacer`, `uf_demande_acces`, `uf_demande_date`)
 	       VALUES ($userID, $sourceID, 1, 0, 0, 0, NOW());"
 	       ;
 	     echo $sql;
