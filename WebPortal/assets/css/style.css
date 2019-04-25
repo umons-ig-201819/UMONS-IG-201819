@@ -146,7 +146,11 @@ article
 
 .connexion
 {
-	border-style: none;	
+	list-style-type: none;
+    padding: 5px 5px;	
+    display: flex;    
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .TextWrap

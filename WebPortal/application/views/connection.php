@@ -15,7 +15,7 @@ else:
         echo form_fieldset('Informations de connexion&nbsp;:');
         echo '<p>'; 
         ?>
-        	<ul>
+        	<ul class="connexion">
         	<li><?php echo form_label('Identifiant','username'); ?></li> 
             <li><?php echo form_input('username',$this->input->post('username',TRUE),'id="username" required="required"'); ?></li>
         <?php 
