@@ -75,10 +75,7 @@ class DataSourceModel extends CI_Model{
 		if(empty($dataSourceID)) return false;
 		if(empty($projID)) return false;
 		
-		$sql="SELECT f_visible_awe FROM fichierappli WHERE f_id=$dataSourceID";
-		$result = $this->db->query($sql);
-		$visible = $result->row_array();
-		$access = intval($visible['f_visible_awe']);
+		$access = $this->getVisibility($dataSourceID);
 			
 		$sql = "INSERT INTO fichier_projet
 					(fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
@@ -109,10 +106,7 @@ class DataSourceModel extends CI_Model{
         if(empty($dataSourceID)) return false;
         if(empty($userID)) return false;
           
-     $sql="SELECT f_visible_awe FROM fichierappli WHERE f_id=$dataSourceID";
-     $result = $this->db->query($sql);
-     $visible = $result->row_array();
-     $access = intval($visible['f_visible_awe']);
+     $access = $this->getVisibility($dataSourceID);
           
      $sql = "INSERT INTO utilisateur_fichier
      (uf_id_invite, uf_id_fichier, uf_lire, uf_modifier, uf_effacer,uf_demande_acces, uf_demande_date)
@@ -459,6 +453,24 @@ class DataSourceModel extends CI_Model{
     //-------------------- SELECT ---------------------------------
     //-------------------------------------------------------------
 
+	/**
+     * getVisibility() this method returns a data source based on its id
+     
+     * @param $dataSourceID data source id
+     
+     * @return the value of the visibility of a data source with its informations
+
+     */
+    public function getVisibility($dataSourceID)
+    {
+    $sql="SELECT f_visible_awe FROM fichierappli WHERE f_id=$dataSourceID";
+    $result = $this->db->query($sql);
+    $visible = $result->row_array();
+    $access = intval($visible['f_visible_awe']);
+    
+    return $access;
+    }
+	
 	/**
      * getDataSource() this method returns a data source based on its id
      
