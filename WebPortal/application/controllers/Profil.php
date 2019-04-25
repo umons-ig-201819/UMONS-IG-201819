@@ -127,6 +127,16 @@ class Profil extends CI_Controller {
         $this->form_validation->set_rules('passwordconfirm', 'Password Confirmation', 'matches[password]');
         
         $this->load->view('header');
+        
+        $data = $this->UserModel->getUser($this->session->UserID);
+        $data['username']       = $data['login'];
+        $data['user_id']        = $data['id'];
+        $data['sharing']        = $data['visible'];
+        $data['advise']         = $data['advise'] = 1;
+        //     $data['editable_login'] = $editable_login;
+        foreach($data as $key => $value)
+        $data[$key] = html_escape($value);
+        
         if ($this->form_validation->run() == FALSE)
         {
             $this->load->view('profil',$data);
@@ -145,7 +155,7 @@ class Profil extends CI_Controller {
             }
         }
  
-        $data = $this->UserModel->getUser($this->session->UserID);
+ /*       $data = $this->UserModel->getUser($this->session->UserID);
         $data['username']       = $data['login'];
         $data['user_id']        = $data['id'];
         $data['sharing']        = $data['visible'];
@@ -153,7 +163,7 @@ class Profil extends CI_Controller {
  //     $data['editable_login'] = $editable_login;
         foreach($data as $key => $value)
         $data[$key] = html_escape($value);
-        $this->load->view('profil',$data);
+        $this->load->view('profil',$data);*/
         $this->load->view('footer');
     }
     

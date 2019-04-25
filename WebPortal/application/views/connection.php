@@ -10,7 +10,7 @@ else:
 		<p id="error"><font color="red">Erreur de login/mot de passe.</font></p>
 <?php endif;
         ?><section><?php        
-        echo form_open('connection');   
+        echo form_open('connection');
         echo form_fieldset('Informations de connexion&nbsp;:');
         echo '<p>'; 
         ?>
