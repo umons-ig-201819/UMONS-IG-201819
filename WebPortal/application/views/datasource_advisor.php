@@ -15,9 +15,7 @@
     		'2'   => 'Refus&eacute;'
 		);
 		$selected = $data['state'];
-		
-		echo "SELCTED #$selected#";
-		
+				
 		echo '<p>';
 		echo form_label('Source');
 		echo form_hidden('advisorid',$data['userid']);
