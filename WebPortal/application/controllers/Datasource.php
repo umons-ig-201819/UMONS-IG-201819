@@ -100,8 +100,7 @@ class Datasource extends CI_Controller {
     }
     public function manage(){
         $userID = $this->session->UserID;
-        $data   = $this->DataSourceModel->getOwnedDataSources($userID);
-        print_r($data);
+        $data   = $this->DataSourceModel->getPersonalDataSources($userID);
         $access = $this->DataSourceModel->getAccessDataSources($userID);
         $this->load->view('header');
         $this->load->view('mysources',array('source' => $data, 'access' => $access));

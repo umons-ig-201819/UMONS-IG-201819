@@ -668,6 +668,22 @@ class DataSourceModel extends CI_Model{
 
         return $dataSources;
 	}
+	public function getPersonalDataSources($userID){
+	    $userID = intval($userID);
+	    $sql="SELECT
+					f_id AS id,
+					f_nom AS file_name,
+					f_url AS url,
+					f_appli AS application,
+                    f_config AS configuration,
+                    f_visible_awe AS visible,
+                    f_dateajout AS add_date
+				FROM fichierappli
+                WHERE f_id_proprio=?";
+	    $query = $this->db->query($sql, array($userID));
+	    $result=$query->result_array();
+	    return $result;
+	}
 	public function getAccessDataSources($advisorID){
 	    $advisorID = intval($advisorID);
 	    $sql="SELECT
@@ -682,7 +698,6 @@ class DataSourceModel extends CI_Model{
 				WHERE utilisateur_fichier.uf_id_fichier=fichierappli.f_id AND utilisateur_fichier.uf_demande_acces=1 AND utilisateur_fichier.uf_id_invite=?";
 	    $query = $this->db->query($sql, array($advisorID));
 	    $result=$query->result_array();
-	    echo "DS"; print_r($result);
 	    return $result;
 	}
 	public function getAdvisors($sourceID){
