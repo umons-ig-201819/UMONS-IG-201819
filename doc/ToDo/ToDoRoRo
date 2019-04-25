@@ -1,10 +1,9 @@
 To Do List François Michael
 
 FrontEnd:
-- Aligner les champs de saisies à l'inscription -mi
-- Aligner les champs de saisies à la connexion -mi
+
 - Amélioré le supprimer le profil -mi
-- Modifier l'affichage des champs incorrect (Suppression cadres rouges) -mi
+
 
 BackEnd
 - Nombre de visite par jour? -> demander à JS
@@ -24,3 +23,7 @@ Done
 - Mettre en responsive les graphiques -fr
 - Nombre d'inscrits -fr
 - Mettre le mot de passe en étoiles -fr
+
+- Modifier l'affichage des champs incorrect (Suppression cadres rouges) -mi
+- Aligner les champs de saisies à l'inscription -mi
+- Aligner les champs de saisies à la connexion -mi

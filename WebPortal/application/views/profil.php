@@ -1,7 +1,8 @@
 <section>
 	<h1>Mon profil</h1>
-	<article><br></article>
 	<aside class="supprimer"><a href="<?=site_url("profil/remove/$user_id");?>">Supprimer mon profil</a></aside>
+</section>
+<section>
 	<article id="account_information">
 		<?php
 echo form_open("profil/update/$user_id");
