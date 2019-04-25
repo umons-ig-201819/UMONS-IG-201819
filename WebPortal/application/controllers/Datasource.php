@@ -140,14 +140,17 @@ class Datasource extends CI_Controller {
     public function advisor($sourceID){
         // TODO check permission for each function...
         $userID     = $this->session->UserID;
-        $source     = $this->DataSourceModel->getDataSource($sourceID);
-        $advisors   = $this->DataSourceModel->getAdvisors($sourceID);
+        
         if($this->input->post('action')){
             $state      = $this->input->post('state');
             $advisorID  = $this->input->post('advisorid');
             if($state == '1') $this->DataSourceModel->acceptAccess($sourceID, $advisorID);
             else $this->DataSourceModel->refuseAccess($sourceID, $advisorID);
         }
+        
+        $source     = $this->DataSourceModel->getDataSource($sourceID);
+        $advisors   = $this->DataSourceModel->getAdvisors($sourceID);
+        
         $this->load->view('header');
         $this->load->view('datasource_advisor',array('source' => $source, 'advisors' => $advisors));
         $this->load->view('footer');
