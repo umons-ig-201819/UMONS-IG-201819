@@ -1,6 +1,6 @@
 <section>
 	<h1>Mon profil</h1>
-	<article> </article>
+	<article><br></article>
 	<aside class="supprimer"><a href="<?=site_url("profil/remove/$user_id");?>">Supprimer mon profil</a></aside>
 	<article id="account_information">
 		<?php
