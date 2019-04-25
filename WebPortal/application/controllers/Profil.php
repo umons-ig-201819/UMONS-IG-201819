@@ -118,11 +118,33 @@ class Profil extends CI_Controller {
 
    //     $data['user_id'] = $userID;
         $data['id'] = $userID;
+
         
-  //      echo 'ici'.$userID.' '. $data['id'];
-        $this->UserModel->updateUser($data);
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('password', 'mot de passe', 'trim|required|min_length[4]',
+            array('required' => 'You must provide a %s.'));
+        $this->form_validation->set_rules('passwordconfirm', 'Password Confirmation', 'matches[password]');
         
         $this->load->view('header');
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->load->view('profil',$data);
+        }
+        else
+        {
+            $resultatUpdatePassword =  $this->UserModel->updateUser($data);
+            if (!$resultatUpdatePassword)
+            {
+                $this->load->view('profil',$data);
+                echo "<script>alert('Changement de MDP échouée')</script>";
+            }
+            else
+            {
+                echo "<script>alert('Changement réussie')</script>";
+            }
+        }
+ 
         $data = $this->UserModel->getUser($this->session->UserID);
         $data['username']       = $data['login'];
         $data['user_id']        = $data['id'];
