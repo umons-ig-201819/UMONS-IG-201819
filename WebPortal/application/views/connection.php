@@ -15,6 +15,7 @@ else:
         echo form_fieldset('Informations de connexion&nbsp;:');
         echo '<p>'; 
         ?>
+        	<ul>
         	<li><?php echo form_label('Identifiant','username'); ?></li> 
             <li><?php echo form_input('username',$this->input->post('username',TRUE),'id="username" required="required"'); ?></li>
         <?php 
@@ -22,7 +23,8 @@ else:
         echo '<p>';
         ?>
             <li><?php echo form_label('Mot de passe','password'); ?></li> 
-            <li><?php echo form_password('password','','id="password" required="required"'); ?></li> 
+            <li><?php echo form_password('password','','id="password" required="required"'); ?></li>
+            </ul> 
         <?php 
         echo '</p>';
         echo form_submit('action', 'Se connecter');
