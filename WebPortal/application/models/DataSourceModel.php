@@ -721,6 +721,21 @@ class DataSourceModel extends CI_Model{
 	    $result=$query->result_array();
 	    return $result;
 	}
+	public function getProjects($sourceID){
+	    $sourceID = intval($sourceID);
+	    $sql="SELECT
+                projet.p_id                     AS id,
+                projet.p_nom                    AS name,
+                projet.p_date_end               AS end_date,
+                fichier_projet.fp_demande_acces AS state
+              FROM projet, fichier_projet
+              WHERE fichier_projet.fp_id_projet = projet.p_id
+                AND fichier_projet.fp_id_fichier = ?
+        ";
+	    $query = $this->db->query($sql, array($sourceID));
+	    $result=$query->result_array();
+	    return $result;
+	}
 	public function getAccessDataSources($advisorID){
 	    $advisorID = intval($advisorID);
 	    $sql="SELECT
@@ -787,6 +802,20 @@ class DataSourceModel extends CI_Model{
 	     $advisorID    = intval($advisorID);
 	     //  0=demande effectuee, 1=OK, 2=refus
 	     $sql = "UPDATE `utilisateur_fichier` SET `uf_demande_acces`=2 WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
+	     $this->db->query($sql);
+	 }
+	 public function acceptAccessProject($sourceID, $projectID){
+	     $sourceID     = intval($sourceID);
+	     $projectID    = intval($projectID);
+	     //  0=demande effectuee, 1=OK, 2=refus
+	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=1 WHERE `fp_id_projet`=$projectID AND `uf_id_fichier`=$sourceID";
+	     $this->db->query($sql);
+	 }
+	 public function refuseAccessProject($sourceID, $projectID){
+	     $sourceID     = intval($sourceID);
+	     $projectID    = intval($projectID);
+	     //  0=demande effectuee, 1=OK, 2=refus
+	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=2 WHERE `fp_id_projet`=$projectID AND `uf_id_fichier`=$sourceID";
 	     $this->db->query($sql);
 	 }
 	 public function revokeAccess($sourceID, $advisorID){

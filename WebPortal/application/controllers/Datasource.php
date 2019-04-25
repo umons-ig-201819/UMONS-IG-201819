@@ -173,10 +173,17 @@ class Datasource extends CI_Controller {
     }
     public function project($sourceID){
         // TODO check permission for each function...
-        $userID = $this->session->UserID;
-        $source = $this->DataSourceModel->getDataSource($sourceID);
+        $userID     = $this->session->UserID;
+        if($this->input->post('action')){
+            $state      = $this->input->post('state');
+            $projectID  = $this->input->post('projectid');
+            if($state == '1') $this->DataSourceModel->acceptAccessProject($sourceID, $projectID);
+            else $this->DataSourceModel->refuseAccessProject($sourceID, $projectID);
+        }
+        $source     = $this->DataSourceModel->getDataSource($sourceID);
+        $projects   = $this->DataSourceModel->getProjects($sourceID);
         $this->load->view('header');
-        $this->load->view('datasource_project',array('source' => $source));
+        $this->load->view('datasource_project',array('source' => $source, 'projects' => $projects,'error' => $this->error, 'success' => $this->success));
         $this->load->view('footer');
     }
 }
