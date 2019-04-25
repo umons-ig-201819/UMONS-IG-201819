@@ -150,6 +150,10 @@ article
     padding: 5px 5px;	
     display: flex;    
     flex-wrap: wrap;
+    justify-content: space-around;
+    display: inline-block;
+  	width: 140px;
+  	text-align: right;
 }
 
 .TextWrap
