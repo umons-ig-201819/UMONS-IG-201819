@@ -707,8 +707,7 @@ class DataSourceModel extends CI_Model{
                     $sql.='f_visible_awe = ?';
                     $params[] = $v ;
                 }
-            }
-            $sql.=' ) ';  	 
+            }	 
         }
         $sql.=' ORDER BY f_dateajout DESC';
 
@@ -1137,7 +1136,6 @@ class DataSourceModel extends CI_Model{
 					$params[] = $v;
 				}			
 			}
-			$sql.=' ) ';
 		}
 			
 		$sql.=' ORDER BY uf_demande_date DESC';		
@@ -1298,7 +1296,6 @@ class DataSourceModel extends CI_Model{
     					$params[] = $v;
     				}			
     			}
-			$sql.=' )';
 		}
 			
 		$sql.=' ORDER BY a.f_dateajout DESC';		
@@ -1389,7 +1386,6 @@ class DataSourceModel extends CI_Model{
 					$params[] = $v;
 				}
 			}
-			$sql.=' ) ';
 		}
 			
 		$sql.=' ORDER BY projet.p_date_start DESC';		
@@ -1401,4 +1397,78 @@ class DataSourceModel extends CI_Model{
 	
 	}
 	
+	/**
+	* getUserID() is a method for searching the userID of the last record 
+	* @return userID
+	* @see function for tests
+	*/
+	public function getUserID()
+	{
+	    
+	    $sql="SELECT
+				f_id AS id,
+				f_id_proprio AS owner_id
+               FROM fichierappli
+				ORDER BY f_id_proprio DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastiduser=$id[0]["f_id_proprio"];
+	    return $lastiduser;
+	}	
+	
+	/**
+	* getDataSourceID() is a method for searching the dataSourceID of the last record 
+	* @return dataSourceID
+	* @see function for tests
+	*/
+	public function getDataSourceID()
+	{
+	    
+	    $sql="SELECT
+				f_id AS id,
+				f_id_proprio AS owner_id
+               FROM fichierappli
+				ORDER BY f_id DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastiddatasource=$id[0]["f_id"];
+	    return $lastiddatasource;
+	}
+	/**
+	* getProjetID() is a method for searching the ProjetID of the last record 
+	* @return projetID
+	* @see function for tests
+	*/
+	public function getProjetID()
+	{
+	    
+	    $sql="SELECT
+				fp_id_fichier,
+				fp_id_projet 
+               FROM fichier_projet
+				ORDER BY fp_id_projet DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastidproj=$id[0]["f_id_projet"];
+	    return $lastidproj;
+	}	
+	
+	/**
+	* getAdvisorID() is a method for searching the advisorID of the last record 
+	* @return advisorID
+	* @see function for tests
+	*/
+	public function getAdvisorID()
+	{
+	    
+	    $sql="SELECT
+				uf_id_invite AS id_invite,
+				uf_id_fichier AS id
+               FROM utilisateur_fichier
+				ORDER BY uf_id_fichier DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastidadvisor=$id[0]["uf_id_fichier"];
+	    return $lastidadvisor;
+	}
 }
