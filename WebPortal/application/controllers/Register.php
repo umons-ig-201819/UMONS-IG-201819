@@ -47,11 +47,11 @@ class Register extends CI_Controller {
                 {
                     $data['error'] = $errorTextorID;
                     $this->load->view('register',$data);
-                    echo "<script>alert('Inscription échouée')</script>";
+                    echo "<script charset='ISO-8859-1'>alert('Inscription échouée')</script>";
                 }
                 else
                 {
-                    echo "<script>alert('Inscription réussie en tant que citoyen')</script>";
+                    echo "<script charset='ISO-8859-1'>alert('Inscription réussie en tant que citoyen')</script>";
                     $roleid = '6';
                     $this->UserModel->addUserRole($errorTextorID, $roleid);
                     $this->load->view('connection');

@@ -147,11 +147,11 @@ class Profil extends CI_Controller {
             if (!$resultatUpdatePassword)
             {
                 $this->load->view('profil',$data);
-                echo "<script>alert('Changement de MDP échouée')</script>";
+                echo "<script charset='ISO-8859-1'>alert('Changement de MDP échouée')</script>";
             }
             else
             {
-                echo "<script>alert('Changement réussie')</script>";
+                echo "<script charset='ISO-8859-1'>alert('Changement réussie')</script>";
             }
         }
  
