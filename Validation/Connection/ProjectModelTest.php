@@ -97,8 +97,7 @@ protected function tearDown(){
         $res=$this->projectModel->getProjectMembers(1,$filter,$and);
         $this->assertNotEquals($res[0]["member_lastname"],NULL);
     }
-    /**
-    
+        
     public function testGetUserProjects()
     {
         $filter['project_id']=1;
@@ -116,6 +115,7 @@ protected function tearDown(){
     // -------------------------------------------------------------
     // -------------------- DELETE ---------------------------------
     // -------------------------------------------------------------
+    /**
     * deleteProject() delete a project based on its id
     */
     public function deleteProject()
