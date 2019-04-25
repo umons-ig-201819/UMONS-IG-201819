@@ -170,7 +170,11 @@ class Datasource extends CI_Controller {
     public function addAdvisor($sourceID){
         if($this->input->post('actionadd')){
             $login = $this->input->post('login');
-            print_r($this->DataSourceModel->addAdvisor($sourceID,$login));
+            if($this->DataSourceModel->addAdvisor($sourceID,$login) == '1'){
+                $this->success = 'Conseiller ajout&eacute;';
+            }else{
+                $this->error = 'Conseiller non trouv&eacute;';
+            }
         }
         $this->advisor($sourceID);
     }
