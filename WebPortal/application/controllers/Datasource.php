@@ -136,6 +136,7 @@ class Datasource extends CI_Controller {
         // TODO check permission for each function...
         $userID = $this->session->UserID;
         $this->DataSourceModel->askAccess($sourceID,$userID);
+        $this->success = 'Demande envoy&eacute;';
         $this->manage();
     }
     
@@ -150,7 +151,6 @@ class Datasource extends CI_Controller {
         $this->DataSourceModel->deleteDataSource($sourceID);
         delete_note($zeppelinID);
         array_map('unlink', glob("/var/nfs/general/$userID/$name.*"));
-        $this->success = 'Demande envoy&eacute;';
         $this->manage();
     }
     public function advisor($sourceID){
