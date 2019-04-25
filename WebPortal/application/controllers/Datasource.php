@@ -111,7 +111,7 @@ class Datasource extends CI_Controller {
         $data   = $this->DataSourceModel->getPersonalDataSources($userID);
         $access = $this->DataSourceModel->getAccessDataSources($userID);
         $this->load->view('header');
-        $this->load->view('mysources',array('source' => $data, 'access' => $access));
+        $this->load->view('mysources',array('source' => $data, 'access' => $access,'error' => $this->error, 'success' => $this->success));
         $this->load->view('footer');
     }
     public function update($sourceID){
@@ -150,6 +150,7 @@ class Datasource extends CI_Controller {
         $this->DataSourceModel->deleteDataSource($sourceID);
         delete_note($zeppelinID);
         array_map('unlink', glob("/var/nfs/general/$userID/$name.*"));
+        $this->success = 'Demande envoy&eacute;';
         $this->manage();
     }
     public function advisor($sourceID){

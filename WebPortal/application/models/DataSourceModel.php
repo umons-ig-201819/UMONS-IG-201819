@@ -773,7 +773,6 @@ class DataSourceModel extends CI_Model{
             INSERT IGNORE INTO  `utilisateur_fichier`(`uf_id_invite`, `uf_id_fichier`, `uf_lire`, `uf_modifier`, `uf_effacer`, `uf_demande_acces`, `uf_demande_date`)
 	       VALUES ($userID, $sourceID, 1, 0, 0, 0, NOW());"
 	       ;
-	     echo $sql;
 	       $this->db->query($sql);
 	 }
 	 public function acceptAccess($sourceID, $advisorID){
