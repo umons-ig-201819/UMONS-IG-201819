@@ -21,7 +21,7 @@ class Connection extends CI_Controller {
             
             $data = $this->UserModel->authentification($this->input->post('username'),$this->input->post('password'));
             if($data !== false){
-                echo "<script charset='UTF-8'>alert('Connexion réussie')</script>";
+                echo "<script charset=\"UTF-8\">alert('Connexion réussie')</script>";
                 $this->session->set_userdata('UserID', $data['id']);
             }else{
                 echo "<script>alert('Erreur de connexion')</script>";
