@@ -1,7 +1,7 @@
 <section>
 	<article>
 		<h1>Gestion de mes sources de donn&eacute;es</h1>
-		<?php foreach($data as $source):
+		<?php foreach($source as $data):
 echo form_open("datasource/update/$data[id]");
 echo form_fieldset(htmlentities($data['file_name']));
 echo '<p>';
@@ -40,7 +40,7 @@ echo form_close();
 	<article>
 		<h1>Gestion des sources auxquelles j'ai acc&egrave;s</h1>
 		<ul>
-		<?php foreach($data as $access): ?>
+		<?php foreach($access as $data): ?>
 		<li><?=htmlentities($data['file_name']);?> <a href="<?=site_url("datasource/revoke/$data[id]"); ?>">Supprimer</a></li>
 		
 		<?php endforeach; ?>

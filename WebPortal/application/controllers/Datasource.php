@@ -103,7 +103,7 @@ class Datasource extends CI_Controller {
         $data   = $this->DataSourceModel->getOwnedDataSources($userID);
         $access = $this->DataSourceModel->getAccessDataSources($userID);
         $this->load->view('header');
-        $this->load->view('mysources',array('data' => $data, 'access' => $access));
+        $this->load->view('mysources',array('source' => $data, 'access' => $access));
         $this->load->view('footer');
     }
     public function revoke($sourceID){
