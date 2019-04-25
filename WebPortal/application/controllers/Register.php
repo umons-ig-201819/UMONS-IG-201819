@@ -51,8 +51,7 @@ class Register extends CI_Controller {
                 }
                 else
                 {
-                    echo "<script>alert('Inscription réussie
-en tant que citoyen')</script>";
+                    echo "<script>alert('Inscription réussie en tant que citoyen')</script>";
                     $roleid = '6';
                     $this->UserModel->addUserRole($errorTextorID, $roleid);
                     $this->load->view('connection');
