@@ -1,5 +1,6 @@
-<section>
+<section id="top_page">
 	<h1>Mon profil</h1>
+	<?php echo validation_errors(); ?>	
 	<aside>
 	<a href="<?=site_url("profil/remove/$user_id");?>">Supprimer mon profil</a>
 	</aside>

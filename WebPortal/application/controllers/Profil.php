@@ -102,17 +102,16 @@ class Profil extends CI_Controller {
             if(!array_key_exists('EDIT_USER'/*TODO correct right (edit user) */,$this->UserModel->getUserRights($this->session->UserID))){
                 $userID = $this->session->UserID;
             }
-        }else{
-            $userID = $this->session->UserID;
-        }
+            }else{
+                $userID = $this->session->UserID;
+            }
         // TODO update infos
 
         $data['password'] = $this->input->post('password');
 
    //     $data['user_id'] = $userID;
         $data['id'] = $userID;
-
-        
+     
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         $this->form_validation->set_rules('password', 'mot de passe', 'trim|required|min_length[4]',
