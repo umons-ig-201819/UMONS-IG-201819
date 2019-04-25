@@ -1,5 +1,11 @@
 <section>
 	<article>
+	<?php if(!empty($error)): ?>
+	<p class="error"><?=$error;?></p>
+	<?php endif; ?>
+	<?php if(!empty($success)): ?>
+	<p class="success"><?=$success;?></p>
+	<?php endif; ?>
 		<h1>Gestion de mes sources de donn&eacute;es</h1>
 		<?php foreach($source as $data):
 echo form_open("datasource/update/$data[id]");
