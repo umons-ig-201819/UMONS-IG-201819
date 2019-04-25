@@ -145,8 +145,8 @@ class Datasource extends CI_Controller {
         if($this->input->post('action')){
             $state      = $this->input->post('state');
             $advisorID  = $this->input->post('advisorid');
-            if($state == '1') acceptAccess($sourceID, $advisorID);
-            else refuseAccess($sourceID, $advisorID);
+            if($state == '1') $this->DataSourceModel->acceptAccess($sourceID, $advisorID);
+            else $this->DataSourceModel->refuseAccess($sourceID, $advisorID);
         }
         $this->load->view('header');
         $this->load->view('datasource_advisor',array('source' => $source, 'advisors' => $advisors));
