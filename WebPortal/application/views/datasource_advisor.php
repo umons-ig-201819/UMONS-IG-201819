@@ -1,7 +1,27 @@
 <section>
 	<h1>Conseillers sur <?=htmlentities($source['name']);?></h1>
 	<article>
-	<p>TODO ajouter un conseiller</p>
+	<?php if(!empty($error)): ?>
+	<p class="error"><?=$error;?></p>
+	<?php endif; ?>
+	<?php if(!empty($success)): ?>
+	<p class="success"><?=$success;?></p>
+	<?php endif; ?>
+	<?php
+		echo form_open("datasource/addAdvisor/$source[id]");
+		echo form_fieldset('Ajouter un conseiller');
+				
+		echo '<p>';
+		echo form_label("Nom d'utilisateur du conseiller",'login');
+		echo form_input('login','','id="login"');
+		echo form_submit('actionadd', 'Ajouter');
+		echo '</p>';
+		
+		echo form_fieldset_close();
+		echo form_close();
+		?>
+	</article>
+	<article>
 	<ul>
 	<?php foreach($advisors as $data): ?>
 		<li> 

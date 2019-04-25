@@ -2,10 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Datasource extends CI_Controller {
+    private $error,$succes;
     public function __construct(){
         parent::__construct();
         $this->load->model('DataSourceModel');
         $this->load->helper('zeppelin');
+        $this->error = '';
+        $this->succes = '';
     }
 
     
@@ -106,6 +109,18 @@ class Datasource extends CI_Controller {
         $this->load->view('mysources',array('source' => $data, 'access' => $access));
         $this->load->view('footer');
     }
+    public function update($sourceID){
+        // TODO check permission for each function...
+        $userID = $this->session->UserID;
+        if($this->input->post('action')){
+            $data = array(
+                'name'      => $this->input->post('file_name'),
+                'visible'   => $this->input->post('visible')
+            );
+            $this->DataSourceModel->updateDataSource($sourceID,$userID,$data);
+        }
+        $this->manage();
+    }
     public function revoke($sourceID){
         // TODO check permission for each function...
         $userID = $this->session->UserID;
@@ -126,18 +141,6 @@ class Datasource extends CI_Controller {
         array_map('unlink', glob("/nfs/shared/$userID/$name.*"));
         $this->manage();
     }
-    public function update($sourceID){
-        // TODO check permission for each function...
-        $userID = $this->session->UserID;
-        if($this->input->post('action')){
-            $data = array(
-                'name'      => $this->input->post('file_name'),
-                'visible'   => $this->input->post('visible')
-            );
-            $this->DataSourceModel->updateDataSource($sourceID,$userID,$data);
-        }
-        $this->manage();
-    }
     public function advisor($sourceID){
         // TODO check permission for each function...
         $userID     = $this->session->UserID;
@@ -153,10 +156,8 @@ class Datasource extends CI_Controller {
         $advisors   = $this->DataSourceModel->getAdvisors($sourceID);
         
         $this->load->view('header');
-        $this->load->view('datasource_advisor',array('source' => $source, 'advisors' => $advisors));
+        $this->load->view('datasource_advisor',array('source' => $source, 'advisors' => $advisors,'error' => $this->error, 'success' => $this->success));
         $this->load->view('footer');
-        
-        // addDataSourceUser($sourceID,$advisorID, array('read'=>1))
     }
     public function project($sourceID){
         // TODO check permission for each function...
@@ -166,9 +167,11 @@ class Datasource extends CI_Controller {
         $this->load->view('datasource_project',array('source' => $source));
         $this->load->view('footer');
     }
-    
-    public function addAdvisor($advisorID=null){
-        
+    public function addAdvisor($sourceID){
+        if($this->input->post('actionadd')){
+            $login = $this->input->post('login');
+            print_r($this->DataSourceModel->addAdvisor($login));
+        }
+        $this->advisor($sourceID);
     }
-    
 }
