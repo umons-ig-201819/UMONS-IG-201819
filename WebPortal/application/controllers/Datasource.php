@@ -136,7 +136,7 @@ class Datasource extends CI_Controller {
         // TODO check permission for each function...
         $userID = $this->session->UserID;
         $this->DataSourceModel->askAccess($sourceID,$userID);
-        $this->success = 'Demande envoy&eacute;';
+        $this->success = 'Demande envoy&eacute;e';
         $this->manage();
     }
     
