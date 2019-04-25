@@ -142,7 +142,12 @@ class Datasource extends CI_Controller {
         $userID     = $this->session->UserID;
         $source     = $this->DataSourceModel->getDataSource($sourceID);
         $advisors   = $this->DataSourceModel->getAdvisors($sourceID);
-        // TODO if modification (state), update
+        if($this->input->post('action')){
+            $state      = $this->input->post('state');
+            $advisorID  = $this->input->post('advisorid');
+            if($state == '1') acceptAccess($sourceID, $advisorID);
+            else refuseAccess($sourceID, $advisorID);
+        }
         $this->load->view('header');
         $this->load->view('datasource_advisor',array('source' => $source, 'advisors' => $advisors));
         $this->load->view('footer');
