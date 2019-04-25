@@ -107,7 +107,7 @@ class Profil extends CI_Controller {
             }
         // TODO update infos
 
-        $data['password'] = $this->input->post('password');
+
 
    //     $data['user_id'] = $userID;
         $data['id'] = $userID;
@@ -140,6 +140,8 @@ class Profil extends CI_Controller {
         }
         else
         {
+            unset($data);
+            $data['password'] = $this->input->post('password');
             $resultatUpdatePassword =  $this->UserModel->updateUser($data);
             if (!$resultatUpdatePassword)
             {

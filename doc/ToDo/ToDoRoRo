@@ -8,10 +8,8 @@ FrontEnd:
 BackEnd
 - Nombre de visite par jour? -> demander à JS
 - Ajouter au controler la confirmation de la suppression du profil ?
-- Ajouter une page de confirmation de création de compte -mi
 
 
-- Ajouter les conditions de création - mot de passe confirm -mi
 - Traduire le 'form_validation_lang.php -fr
 - Création des droits d'accès	- ?
 - Dans mon profil, afficher mes droits -fr
@@ -28,3 +26,5 @@ Done
 - Aligner les champs de saisies à la connexion -mi
 - Par défaut, on a le droit citoyen -mi
 - Confirmation de la modification de données -mi
+- Ajouter une page de confirmation de création de compte -mi
+- Ajouter les conditions de création - mot de passe confirm -mi
