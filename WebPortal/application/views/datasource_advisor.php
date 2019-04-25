@@ -1,11 +1,8 @@
 <section>
-<?php
-print_r($source); ?>
 	<h1>Conseillers sur <?=htmlentities($source['name']);?></h1>
 	<article>
 	<p>TODO ajouter un conseiller</p>
 	<ul>
-	<?php print_r($advisors); ?>
 	<?php foreach($advisors as $data): ?>
 		<li> 
 		<?php
