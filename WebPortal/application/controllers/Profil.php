@@ -61,7 +61,11 @@ class Profil extends CI_Controller {
         }
         $data['id'] = $userID;
         
-        $this->UserModel->updateUser($data);
+        $resuserupdate = $this->UserModel->updateUser($data);
+        if ($resuserupdate)
+            echo "<script>alert('Modification effectuée')</script>";
+        else 
+            echo "<script>alert('Modification échouée')</script>";
         
         $this->index($userID);
     }

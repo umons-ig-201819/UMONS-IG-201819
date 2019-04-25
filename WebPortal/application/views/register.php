@@ -27,7 +27,7 @@
     	<label >E-mail : </label>
     	<input type="text" name="email" value="<?php echo set_value('email');?>" ><br><br>
     	<label >Num&eacute;ro de t&eacute;l&eacute;phone : </label>
-    	<input type="text" name="phone" value="<?php echo set_value('phone');?>">&nbsp
+    	<input type="text" name="phone" value="<?php echo set_value('phone');?>"><br><br>
     	<label >Num&eacute;ro de GSM : </label>
     	<input type="text" name="mobile" value="<?php echo set_value('mobile');?>"><br><br>
  		<label >Mot de passe : </label>
