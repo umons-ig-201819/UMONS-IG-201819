@@ -14,21 +14,18 @@ else:
       
         echo form_fieldset('Informations de connexion&nbsp;:');
         echo '<p>';
-        ?><article><?php 
             ?><article><?php 
                 echo form_label('Identifiant','username');
-            ?></article><?php
-            ?><article><?php 
+                echo br;
                 echo form_input('username',$this->input->post('username',TRUE),'id="username" required="required"');
-            ?></article><?php
-        ?></article><?php 
+            ?></article><?php 
         echo '</p>';
         echo '<p>';
-        ?><article><?php 
-            echo form_label('Mot de passe','password');
-            echo "\t";
-            echo form_password('password','','id="password" required="required"');
-        ?></article><?php 
+            ?><article><?php 
+                echo form_label('Mot de passe','password');
+                echo br;
+                echo form_password('password','','id="password" required="required"');
+            ?></article><?php 
         echo '</p>';
         echo form_submit('action', 'Se connecter');
         echo form_fieldset_close();
