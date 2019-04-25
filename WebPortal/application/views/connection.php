@@ -13,13 +13,10 @@ else:
         echo form_open('connection');
       
         echo form_fieldset('Informations de connexion&nbsp;:');
-        echo '<p>';
-            ?><article class="connexion"><?php 
-                echo form_label('Identifiant','username');
-                ?></article> 
-                <article class="connexion"><?php 
-                echo form_input('username',$this->input->post('username',TRUE),'id="username" required="required"');
-            ?></article><?php 
+        echo '<p>'; ?>
+        	<li><?php echo form_label('Identifiant','username'); ?></li> 
+            <li><?php echo form_input('username',$this->input->post('username',TRUE),'id="username" required="required"'); ?></li>
+        <?php 
         echo '</p>';
         echo '<p>';
         ?><article class="connexion"><?php 
