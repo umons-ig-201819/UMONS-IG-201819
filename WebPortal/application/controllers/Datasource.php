@@ -91,13 +91,6 @@ class Datasource extends CI_Controller {
                 ));
             }
         }
-        /*
-         * Array ( [upload_data] => Array ( [file_name] => 5cc0a9ff.csv [file_type] => text/plain [file_path] => /var/nfs/general/2/ [full_path] => /var/nfs/general/2/5cc0a9ff.csv [raw_name] => 5cc0a9ff [orig_name] => 5cc0a9ff.csv [client_name] => test.csv [file_ext] => .csv [file_size] => 0.03 [is_image] => [image_width] => [image_height] => [image_type] => [image_size_str] => ) ) 
-         * file_ext
-         * 
-         */
-        // FIXME path used is /var/nfs/general of web server instead of /nfs/shared of zeppelin
-        
         $this->load->view('header');
         $this->load->view('upload', array('error' => $error));
         $this->load->view('footer');
@@ -150,6 +143,8 @@ class Datasource extends CI_Controller {
         $name           = array_pop($name);
         $this->DataSourceModel->deleteDataSource($sourceID);
         delete_note($zeppelinID);
+        print_r(glob("/nfs/shared/$userID/$name.*"));
+        echo "Name is #$name#";
         array_map('unlink', glob("/nfs/shared/$userID/$name.*"));
         $this->manage();
     }
