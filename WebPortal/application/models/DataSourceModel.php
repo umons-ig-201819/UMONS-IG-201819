@@ -725,7 +725,8 @@ class DataSourceModel extends CI_Model{
             SELECT utilisateur.ut_id, $sourceID, 1, 0, 0, 1, NOW()
             FROM utilisateur
             WHERE utilisateur.ut_login = ? ";
-	     return $this->db->query($sql, array($advisorUsername));
+	     $this->db->query($sql, array($advisorUsername));
+	     return $this->db->affected_rows();
 	 }
 	 public function askAccess($sourceID, $userID){
 	     $sourceID     = intval($sourceID);
