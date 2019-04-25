@@ -129,7 +129,12 @@ class Profil extends CI_Controller {
         //     $data['editable_login'] = $editable_login;
         foreach($data as $key => $value)
         $data[$key] = html_escape($value);
-                
+           
+        $dataRoles = $this->UserModel->getUserRoles($this->session->UserID);
+        $firstArray=$dataRoles[0];
+        $data['test']= $firstArray['id'];
+        $data['roleName']= $firstArray['name'];     
+              
         if ($this->form_validation->run() == FALSE)
         {
             $this->load->view('profil',$data);
