@@ -2,13 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Datasource extends CI_Controller {
-    private $error,$succes;
+    private $error,$success;
     public function __construct(){
         parent::__construct();
         $this->load->model('DataSourceModel');
         $this->load->helper('zeppelin');
         $this->error = '';
-        $this->succes = '';
+        $this->success = '';
     }
 
     
@@ -170,7 +170,7 @@ class Datasource extends CI_Controller {
     public function addAdvisor($sourceID){
         if($this->input->post('actionadd')){
             $login = $this->input->post('login');
-            print_r($this->DataSourceModel->addAdvisor($login));
+            print_r($this->DataSourceModel->addAdvisor($sourceID,$login));
         }
         $this->advisor($sourceID);
     }
