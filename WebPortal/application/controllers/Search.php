@@ -12,8 +12,20 @@ class Search extends CI_Controller {
         $this->user();
     }
     public function user(){
+        $result = array();
+        if($this->input->post('action')){
+            $filter = array();
+            if(!empty($this->input->post('lastname'))) $filter['lastname']=$this->input->post('lastname');
+            if(!empty($this->input->post('firstname'))) $filter['firstname']=$this->input->post('firstname');
+            if(!empty($this->input->post('email'))) $filter['email']=$this->input->post('email');
+            if(!empty($this->input->post('login'))) $filter['login']=$this->input->post('login');
+            if(!empty($this->input->post('phone'))) $filter['phone']=$this->input->post('phone');
+            if(!empty($this->input->post('mobile'))) $filter['mobile']=$this->input->post('mobile');
+            $result = $this->UserModel->getUsers($filter,true);
+        }
+        print_r($result);
         $this->load->view('header');
-        $this->load->view('search_user');
+        $this->load->view('search_user',array('result' => $result));
         $this->load->view('footer');
     }
     public function datasource(){

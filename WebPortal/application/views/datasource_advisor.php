@@ -37,7 +37,7 @@
 		$selected = $data['state'];
 				
 		echo '<p>';
-		echo form_label('Source');
+		echo form_label('Source','state');
 		echo form_hidden('advisorid',$data['userid']);
 		echo form_dropdown('state',$options,$selected,'id="state" required="required"');
 		echo form_submit('action', 'Modifier');
