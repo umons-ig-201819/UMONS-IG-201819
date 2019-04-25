@@ -41,6 +41,14 @@ if(!function_exists('create_note_if_not_exists')){
     }
 }
 
+
+if(!function_exists('get_note_information')){
+    function get_note_name($noteID){
+        $information = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID"),true);
+        return $information['body']['name'];
+    }
+}
+
 if(!function_exists('list_paragraphs')){
     /***
      * List all paragraphs of a given node

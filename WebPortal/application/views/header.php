@@ -6,7 +6,7 @@
     	<!--[if lt IE 9]>
     		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     	<![endif]-->
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> <!--  Ajout de la largeur de l'écran pour le dév-->
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> <!--  Ajout de la largeur de l'ï¿½cran pour le dï¿½v-->
     	<link rel="stylesheet" type="text/css" media="only screen" href="<?php echo base_url(); ?>assets/css/style.css" />
     	<style type="text/css">
         	.alert-warning {
@@ -16,7 +16,7 @@
     	</style>
     </head>
     <body>
-    	<div id="bloc_page"> <!-- container page entière -->
+    	<div id="bloc_page"> <!-- container page entiï¿½re -->
     	<header>         
                 <div id="logo">
                 	<img src="<?php echo base_url(); ?>assets/images/logo_awe_asbl.png" alt="Logo Principal AWE!" />
@@ -29,17 +29,19 @@
                             <li><a href="<?php echo site_url("connection/logout"); ?>">D&eacute;connexion</a></li>
                             <li><a href="<?php echo site_url("profil"); ?>">Mon profil</a></li>
                             <li><a href="<?php echo site_url("datasource"); ?>">Mes donn&eacute;es</a></li>
+                            <li><a href="<?php echo site_url("search/user"); ?>">Rechercher un utilisateur</a></li>
+                            <li><a href="<?php echo site_url("search/datasource"); ?>">Rechercher une source de donn&eacute;es</a></li>
                             <?php else: ?>
                             <li><a href="<?php echo site_url("connection"); ?>">Connexion</a></li>
-                            <?php endif; ?>
                             <li><a href="<?php echo site_url("register"); ?>">Inscription</a></li>
+                            <?php endif; ?>
                       <!--     <li><a href="?php echo site_url("connection/register"); ?>">Inscription</a></li>        -->              
             			</ul>
             		</nav>
     			</div>
     	
     			
-    <!--  Ajout de la largeur de l'écran pour le dév-->
+    <!--  Ajout de la largeur de l'ï¿½cran pour le dï¿½v-->
     <div style="background:pink;color:#333;position:fixed;right:0;bottom:0;z-index:99999999;font:1em arial;opacity:.9" id="ld"></div><script>setInterval(function(){if($(window).height()>=$(document).height()){$('#ld').text($(document).width()+' px');}else{$('#ld').text($(document).width()+17+' px');}},150);
 </script>
     	</header>

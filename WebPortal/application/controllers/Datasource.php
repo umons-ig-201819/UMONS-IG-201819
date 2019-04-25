@@ -76,6 +76,7 @@ class Datasource extends CI_Controller {
                 }
                 $nodeName = "user/data-$userID-".$data['upload_data']['raw_name'];
                 $path = $data['upload_data']['full_path'];
+                $path = str_replace('/var/nfs/general/','/nfs/shared/',$path);
                 $url = null;
                 if($data['upload_data']['file_ext'] == 'csv'){
                     $url = create_csv_source($nodeName,"csv-$userID",$path);
@@ -100,6 +101,17 @@ class Datasource extends CI_Controller {
         $this->load->view('header');
         $this->load->view('upload', array('error' => $error));
         $this->load->view('footer');
+    }
+    public function addAdvisor($sourceID){
+        if($this->input->post('actionadd')){
+            $login = $this->input->post('login');
+            if($this->DataSourceModel->addAdvisor($sourceID,$login) == '1'){
+                $this->success = 'Conseiller ajout&eacute;';
+            }else{
+                $this->error = 'Conseiller non trouv&eacute;';
+            }
+        }
+        $this->advisor($sourceID);
     }
     public function manage(){
         $userID = $this->session->UserID;
@@ -128,16 +140,16 @@ class Datasource extends CI_Controller {
         $this->manage();
     }
     
-    
-    
     public function remove($sourceID){
         // TODO check permission for each function...
-        $userID = $this->session->UserID;
-        $source = $this->DataSourceModel->getDataSource($sourceID);
-        $name   = $source['url'];
+        $userID         = $this->session->UserID;
+        $source         = $this->DataSourceModel->getDataSource($sourceID);
+        $zeppelinID     = $source['url'];
+        $name           = get_note_name($zeppelinID);// ex: user/data-2-5cc0b9f1
+        $name           = explode('-',$name);
+        $name           = array_pop($name);
         $this->DataSourceModel->deleteDataSource($sourceID);
-        delete_note($source);
-        // TODO         "user/data-$userID-$name" get note info to get name and then file name beacause $name is the zeppelin identifer
+        delete_note($zeppelinID);
         array_map('unlink', glob("/nfs/shared/$userID/$name.*"));
         $this->manage();
     }
@@ -166,16 +178,5 @@ class Datasource extends CI_Controller {
         $this->load->view('header');
         $this->load->view('datasource_project',array('source' => $source));
         $this->load->view('footer');
-    }
-    public function addAdvisor($sourceID){
-        if($this->input->post('actionadd')){
-            $login = $this->input->post('login');
-            if($this->DataSourceModel->addAdvisor($sourceID,$login) == '1'){
-                $this->success = 'Conseiller ajout&eacute;';
-            }else{
-                $this->error = 'Conseiller non trouv&eacute;';
-            }
-        }
-        $this->advisor($sourceID);
     }
 }
