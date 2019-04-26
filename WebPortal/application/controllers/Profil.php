@@ -140,6 +140,7 @@ class Profil extends CI_Controller {
         }
         else
         {
+            $data2['id'] = $this->session->UserID;
             $data2['password'] = $this->input->post('password');
             $resultatUpdatePassword =  $this->UserModel->updateUser($data2);
             if (!$resultatUpdatePassword)
