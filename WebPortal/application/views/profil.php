@@ -102,7 +102,7 @@ echo form_close();
 echo form_open("profil/roles/$user_id");
 echo form_fieldset('Mon r&ocirc;le');
 echo '<p>';
-echo ("$test"."&nbsp;");
+//echo ("$test"."&nbsp;");
 echo ("$roleName");
 
 echo '</p>';
