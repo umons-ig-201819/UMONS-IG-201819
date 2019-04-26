@@ -140,9 +140,8 @@ class Profil extends CI_Controller {
         }
         else
         {
-            unset($data);
-            $data['password'] = $this->input->post('password');
-            $resultatUpdatePassword =  $this->UserModel->updateUser($data);
+            $data2['password'] = $this->input->post('password');
+            $resultatUpdatePassword =  $this->UserModel->updateUser($data2);
             if (!$resultatUpdatePassword)
             {
                 $this->load->view('profil',$data);
