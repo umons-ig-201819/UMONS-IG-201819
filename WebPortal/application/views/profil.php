@@ -34,6 +34,7 @@ echo '<p>';
 echo '</p>';
 echo '<p>';
     echo form_label('Sexe');
+    echo '<br>';
     echo form_radio('gender','1',$gender == 1, 'id="gender_enabled"').form_label('Homme','gender_enabled');
     echo form_radio('gender','0',$gender == 0, 'id="gender_enabled"').form_label('Femme','gender_enabled');
     echo form_radio('gender','2',$gender == 2, 'id="gender_enabled"').form_label('Autre','gender_enabled');

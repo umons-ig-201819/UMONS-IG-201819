@@ -150,7 +150,7 @@ class Profil extends CI_Controller {
             }
             else
             {   
-                echo "<script charset='ISO-8859-1'>alert('Changement réussie')</script>";
+                echo "<script charset='ISO-8859-1'>alert('Changement réussi')</script>";
                 $this->load->view('profil',$data);
             }
         }
