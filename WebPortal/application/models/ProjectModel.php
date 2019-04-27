@@ -822,4 +822,40 @@ class ProjectModel extends CI_Model
         else
             return true;
     }
+	/**
+	* getUserID() is a method for searching the userID of the last record 
+	* @return userID
+	* @see function for tests
+	*/
+	public function getUserID()
+	{
+	    
+	    $sql="SELECT
+				ut_id AS id,
+               FROM utilisateur
+				ORDER BY ut_id DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastiduser=$id[0]["ut_id"];
+	    return $lastiduser;
+	}	
+	
+	/**
+	* getProjectID() is a method for searching the projectID of the last record 
+	* @return projectID
+	* @see function for tests
+	*/
+	public function getProjectID()
+	{
+	    
+	    $sql="SELECT
+				p_id AS id,
+				FROM projet
+				ORDER BY f_id DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastiddatasource=$id[0]["p_id"];
+	    return $lastiddatasource;
+	}
+	
 }
