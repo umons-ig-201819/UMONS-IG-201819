@@ -708,6 +708,7 @@ class DataSourceModel extends CI_Model{
                     $params[] = $v ;
                 }
             }	 
+	$sql.=' ) ';
         }
         $sql.=' ORDER BY f_dateajout DESC';
 
