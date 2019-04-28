@@ -41,7 +41,7 @@ class DataSourceModelTest extends TestCase{
     }
 
     public function testAddDataSourceProject(){
-        $resu=this->dataSourceModel->getDataSourceID();
+        $resu =$this->dataSourceModel->getDataSourceID();
         $resul=$this->dataSourceModel->getProjetID();
         $res = $this->dataSourceModel->addDataSourceProject($resu,$resul);
         $this->assertNotEquals($res,false);
