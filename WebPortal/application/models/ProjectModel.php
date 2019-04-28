@@ -572,7 +572,8 @@ class ProjectModel extends CI_Model
                     $params[] = $v;
                 }
             }
-            $sql .= ' ) ';
+		if(!($first)){
+            $sql .= ' ) ';}
         }
         $sql .= ' ORDER BY p_date_start DESC';
 
