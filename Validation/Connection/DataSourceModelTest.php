@@ -144,7 +144,7 @@ class DataSourceModelTest extends TestCase{
     }
 
     public function testDeleteAllDataSourcesProject(){
-        $resu=$this->dataSourceModel->getProjectID();
+        $resu=$this->dataSourceModel->getProjetID();
         $res=$this->dataSourceModel->deleteAllDataSourcesProject($resu);
         $this->assertEquals($res,true);
     }
@@ -214,7 +214,7 @@ class DataSourceModelTest extends TestCase{
     public function testUpdateDataSourceProject(){
         $askAccess="1";
         $resu=$this->dataSourceModel->getDataSourceID();
-        $resul=$this->dataSourceModel->getProjectID();
+        $resul=$this->dataSourceModel->getProjetID();
         $res=$this->dataSourceModel->updateDataSourceUser($resu,$resul,$askAccess);
         $this->assertEquals($res,true);
     }
@@ -356,14 +356,14 @@ class DataSourceModelTest extends TestCase{
         $filter['access_state']=1;
         $filter['ask_date']='test15';
         $and=false;
-        $resu=$this->dataSourceModel->getProjectID();
+        $resu=$this->dataSourceModel->getProjetID();
         $res=$this->dataSourceModel->getProjectDataSources($resu,$filter,$and);
         $this->assertNotEquals($res[0]["id_fichier"],NULL);
     }
     
     public function testGetProjectDataSources1(){
         $and = false;
-        $resu=$this->dataSourceModel->getProjectID();
+        $resu=$this->dataSourceModel->getProjetID();
         $res=$this->dataSourceModel->getProjectDataSources($resu,$and);
         $this->assertNotEquals($res[0]["id_fichier"],NULL);
     }
