@@ -266,10 +266,10 @@ class DataSourceModelTest extends TestCase{
     public function testGetDataSources(){
         $and = false;
         $filter['file_name']="test";
-        $filter['file_url']="test40";
+        $filter['file_url']=NULL;
         $filter['application']=0;
         $filter['visible']=2;
-        $filter['add_date']='1980-01-01 00:00:00';
+        $filter['add_date']='2019-04-28 16:28:51';
         $res=$this->dataSourceModel->getDataSources($filter,$and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
@@ -347,7 +347,7 @@ class DataSourceModelTest extends TestCase{
     }
 
     public function testGetProjectDataSources(){
-        $filter['file_name']="test10";
+        $filter['file_name']="test";
         $filter['file_url']="test11";
         $filter['application']="test12";
         $filter['config']="test13";
@@ -369,7 +369,7 @@ class DataSourceModelTest extends TestCase{
     }
 
     public function testGetDataSourceProjects(){
-        $filter['project_name'] = "test20";
+        $filter['project_name'] = "test";
         $filter['ask_access'] = 1;
         $filter['ask_date'] = 'test21';
         $and=false;
