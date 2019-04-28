@@ -102,7 +102,7 @@ protected function tearDown(){
         $res=$this->projectModel->getProjectMembers(1,$filter,$and);
         $this->assertNotEquals($res[0]["member_lastname"],NULL);
     }
-        
+     /**   
     public function testGetUserProjects()
     {
         $filter['project_id']=1;
@@ -116,7 +116,7 @@ protected function tearDown(){
         $res=$this->projectModel->getUserProjects(1, $filter, $and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
-    
+    */
     // -------------------------------------------------------------
     // -------------------- DELETE ---------------------------------
     // -------------------------------------------------------------
