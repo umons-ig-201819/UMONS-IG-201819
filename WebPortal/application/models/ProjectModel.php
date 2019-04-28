@@ -832,7 +832,7 @@ class ProjectModel extends CI_Model
 	{
 	    
 	    $sql="SELECT
-				ut_id AS id
+				ut_id
                FROM utilisateur
 				ORDER BY ut_id DESC";
 	    $query = $this->db->query($sql);
@@ -850,7 +850,7 @@ class ProjectModel extends CI_Model
 	{
 	    
 	    $sql="SELECT
-				p_id AS id
+				p_id
 				FROM projet
 				ORDER BY p_id DESC";
 	    $query = $this->db->query($sql);
