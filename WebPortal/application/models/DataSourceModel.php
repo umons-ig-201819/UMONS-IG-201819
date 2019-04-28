@@ -58,7 +58,8 @@ class DataSourceModel extends CI_Model{
 			return false;
 		}
 		
-		return $this->db->insert_id();
+		return true;
+			//$this->db->insert_id();
 		
 	}
 		
