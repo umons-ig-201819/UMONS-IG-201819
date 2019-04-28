@@ -851,7 +851,7 @@ class ProjectModel extends CI_Model
 	    $sql="SELECT
 				p_id AS id
 				FROM projet
-				ORDER BY f_id DESC";
+				ORDER BY p_id DESC";
 	    $query = $this->db->query($sql);
 	    $id=$query->result_array();
 	    $lastiddatasource=$id[0]["p_id"];
