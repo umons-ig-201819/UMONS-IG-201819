@@ -24,8 +24,8 @@ class DataSourceModelTest extends TestCase{
     public function testAddDataSourceApp(){
         $dataSource['name']="test";
         $dataSource['visible']=2;
-        $resu=this->dataSourceModel->getUserID();
-        $res=$this->dataSourceModel->addDataSourceApp($resu,$dataSource);
+        $resu=$this->dataSourceModel->getUserID();
+        $res =$this->dataSourceModel->addDataSourceApp($resu,$dataSource);
         $this->assertNotEquals($res,false);
     }
 
@@ -35,15 +35,15 @@ class DataSourceModelTest extends TestCase{
         $dataSource['appli']=0;
         $dataSource['config']=NULL;
         $dataSource['visible']=2;
-        $resu=this->dataSourceModel->getUserID();
-        $res=$this->dataSourceModel->addDataSourceApp($resu,$dataSource);
+        $resu=$this->dataSourceModel->getUserID();
+        $res =$this->dataSourceModel->addDataSourceApp($resu,$dataSource);
         $this->assertNotEquals($res,false);
     }
 
     public function testAddDataSourceProject(){
         $resu=this->dataSourceModel->getDataSourceID();
-        $resul=this->dataSourceModel->getProjetID();
-        $res=$this->dataSourceModel->addDataSourceProject($resu,$resul);
+        $resul=$this->dataSourceModel->getProjetID();
+        $res = $this->dataSourceModel->addDataSourceProject($resu,$resul);
         $this->assertNotEquals($res,false);
     }
 
@@ -52,9 +52,9 @@ class DataSourceModelTest extends TestCase{
         $dataSourceUser['modify']=0;
         $dataSourceUser['remove']=0;
         $dataSourceUser['askAccess']=1;
-        $resu=this->dataSourceModel->getDataSourceID();
-        $resul=this->dataSourceModel->getUserID();
-        $res=$this->dataSourceModel->addDataSourceUser($resu,$resul,$dataSourceUser);
+        $resu =$this->dataSourceModel->getDataSourceID();
+        $resul=$this->dataSourceModel->getUserID();
+        $res = $this->dataSourceModel->addDataSourceUser($resu,$resul,$dataSourceUser);
         $this->assertEquals($res,true);
     }
     /**
@@ -244,8 +244,8 @@ class DataSourceModelTest extends TestCase{
     }
     
     public function testGetDataSource(){
-        $resu=this->dataSourceModel->getDataSourceID();
-        $res=$this->dataSourceModel->getDataSource($resu);
+        $resu=$this->dataSourceModel->getDataSourceID();
+        $res =$this->dataSourceModel->getDataSource($resu);
         $this->assertNotEquals($res["id"],NULL);
     }
 
