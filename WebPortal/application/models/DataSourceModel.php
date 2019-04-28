@@ -708,8 +708,9 @@ class DataSourceModel extends CI_Model{
                     $sql.='f_visible_awe = ?';
                     $params[] = $v ;
                 }
+		    $sql.=' ) ';
             }	 
-	$sql.=' ) ';
+	
         }
         $sql.=' ORDER BY f_dateajout DESC';
 
