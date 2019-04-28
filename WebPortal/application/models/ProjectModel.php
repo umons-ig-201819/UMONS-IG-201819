@@ -849,7 +849,7 @@ class ProjectModel extends CI_Model
 	{
 	    
 	    $sql="SELECT
-				p_id AS id,
+				p_id AS id
 				FROM projet
 				ORDER BY f_id DESC";
 	    $query = $this->db->query($sql);
