@@ -465,7 +465,7 @@ class DataSourceModel extends CI_Model{
     {
 	    if(empty($dataSourceID)) return false;
     $sql="SELECT f_visible_awe FROM fichierappli WHERE f_id=?";
-    $result = $this->db->query($sql array($dataSourceID));
+    $result = $this->db->query($sql,array($dataSourceID));
     $visible = $result->row_array();
     $access = intval($visible['f_visible_awe']);
     
