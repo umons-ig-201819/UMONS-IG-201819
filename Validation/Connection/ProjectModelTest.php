@@ -56,7 +56,7 @@ protected function tearDown(){
         $userProject['gestion']=1;
         $userID=$this->projectModel->getUserID();
         $projID=$this->projectModel->getProjectID();
-        $res=$this->projectModel->addUserProject($userID+1,$projID+1,$userProject);
+        $res=$this->projectModel->addUserProject($userID,$projID-1,$userProject);
         $this->assertEquals($res,true);
     }
     // -------------------------------------------------------------
