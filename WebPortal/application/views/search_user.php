@@ -43,7 +43,7 @@
 ?>	
 </section>
 <section>
-	<h1>Modification des roles/h1>
+	<h1>Modification des roles</h1>
 	<article>
 		<ul>
 		<?php foreach($result as $data): ?>

@@ -1,6 +1,6 @@
 <h1>A propos</h1>
 <section>
-<br><br>Ce site a &eacute;t&eacute; d&eacute;velopp&eacute; &agrave; l\'aide du frameWork Codeigniter par : <br><br>
+<br><br>Ce site a &eacute;t&eacute; d&eacute;velopp&eacute; &agrave; l'aide du frameWork Codeigniter par : <br><br>
 
 COOLS Aur&eacute;lie<br>
 GAUTHIER In&egrave;s<br>
