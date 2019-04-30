@@ -201,6 +201,7 @@ class ProjectModel extends CI_Model
 				FROM projet
 				JOIN utilisateur AS u
 				ON u.ut_id=p_id_createur $where ORDER BY p_nom ASC";
+        echo $sql;
         $query = $this->db->query($sql);
         $projects = $query->result_array();
         
