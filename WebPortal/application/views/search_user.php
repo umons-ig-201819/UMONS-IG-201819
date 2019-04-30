@@ -40,7 +40,10 @@
 		
 		echo form_fieldset_close();
 		echo form_close();
-?>		
+?>	
+</section>
+<section>
+	<h1>Modification des roles/h1>
 	<article>
 		<ul>
 		<?php foreach($result as $data): ?>
