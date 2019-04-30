@@ -14,12 +14,12 @@ else:
         echo form_fieldset('Informations de connexion&nbsp;:');
         echo '<p>'; 
         ?>
-        	<label><?php echo form_label('Identifiant','username'); ?></label> 
+        	<label><?php echo form_label('Identifiant : ','username'); ?></label> 
             <?php 
             echo form_input('username',$this->input->post('username',TRUE),'id="username" required="required"');  
             echo '<br>';
             ?>
-            <label><?php echo form_label('Mot de passe','password'); ?></label> 
+            <label><?php echo form_label('Mot de passe : ','password'); ?></label> 
             <?php
             echo form_password('password','','id="password" required="required"');
             echo '<br>';
