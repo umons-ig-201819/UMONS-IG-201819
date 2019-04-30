@@ -40,15 +40,11 @@
 		
 		echo form_fieldset_close();
 		echo form_close();
-?>	
-</section>
-<section>
+?>		
 	<article>
 		<ul>
 		<?php foreach($result as $data): ?>
-			<li><?=htmlentities($data['firstname']).' '.htmlentities($data['lastname']).'&nbsp;: '.htmlentities($data['login']);
-			echo form_fieldset('Modification des roles');
-			?>
+			<li><?=htmlentities($data['firstname']).' '.htmlentities($data['lastname']).'&nbsp;: '.htmlentities($data['login']);?>
 			<?php
 			if(array_key_exists('roles', $data)):
 			    echo '<p>';
