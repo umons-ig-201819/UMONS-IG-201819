@@ -41,6 +41,8 @@
 		echo form_fieldset_close();
 		echo form_close();
 ?>	
+</section>
+<section>
 	<article>
 		<ul>
 		<?php foreach($result as $data): ?>
