@@ -169,7 +169,7 @@ class ProjectModel extends CI_Model
         $query = $this->db->query($sql, array(
             $projID
         ));
-        $project = $query->result_array();
+        $project = $query->row_array();
 
         return $project;
     }
