@@ -181,11 +181,11 @@ class ProjectModel extends CI_Model
         $like  = array('project_name' => 'p_nom','owner_lastname' => 'u.ut_nom','owner_firstname' => 'u.ut_prenom','project_description' => 'p_description');
         foreach($eq as $k => $v){
             if(array_key_exists($k,$filter))
-                $where .= "$and $k = ".$filter[$k];
+                $where .= "$and $v = ".$filter[$k];
         }
         foreach($like as $k => $v){
             if(array_key_exists($k,$filter))
-                $where .= "$and $k = '%".$filter[$k]."%'";
+                $where .= "$and $v = '%".$filter[$k]."%'";
         }
         if(strlen($where)>0){
             $where = ' WHERE '.substr($where, strlen($and));
