@@ -31,6 +31,8 @@ class Search extends CI_Controller {
                 foreach($temp as $t){
                     array_push($res['roles'],$t['id']);
                 }
+                print_r($res);
+                print_r($result);
             }
         }
         $this->load->view('search_user',array('result' => $result));
