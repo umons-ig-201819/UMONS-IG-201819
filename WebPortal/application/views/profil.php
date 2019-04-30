@@ -7,7 +7,7 @@
 	echo form_close();
 	?>
 </section>
-<section>
+<section id="top_page">
 	<article id="account_information">
 		<?php
 echo form_open("profil/update/$user_id");
