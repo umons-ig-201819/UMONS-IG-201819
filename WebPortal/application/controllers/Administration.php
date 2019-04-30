@@ -11,7 +11,7 @@ class Administration extends CI_Controller {
     }
     
     public function index(){
-        if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
+        if(! in_array('MANAGE_PROJECT', $this->session->Rights)){
             $this->forbidden();
             return;
         }
@@ -29,7 +29,7 @@ class Administration extends CI_Controller {
     }
     
     public function removeProject($projectID = -1){
-        if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
+        if(! in_array('MANAGE_PROJECT', $this->session->Rights)){
             $this->forbidden();
             return;
         }
@@ -40,7 +40,7 @@ class Administration extends CI_Controller {
     }
     
     public function removeUser($projectID = -1,$userID){
-        if(!$this-> array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
+        if(! in_array('MANAGE_PROJECT', $this->session->Rights)){
             $this->forbidden();
             return;
         }
@@ -56,7 +56,7 @@ class Administration extends CI_Controller {
     }
     
     public function addProject(){
-        if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
+        if(! in_array('MANAGE_PROJECT', $this->session->Rights)){
             $this->forbidden();
             return;
         }
@@ -79,7 +79,7 @@ class Administration extends CI_Controller {
     }
     
     public function update($projectID = -1, $memberID = -1){
-        if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
+        if(! in_array('MANAGE_PROJECT', $this->session->Rights)){
             $this->forbidden();
             return;
         }
@@ -95,7 +95,7 @@ class Administration extends CI_Controller {
     }
     
     public function project($projectID = -1){
-        if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
+        if(! in_array('MANAGE_PROJECT', $this->session->Rights)){
             $this->forbidden();
             return;
         }
