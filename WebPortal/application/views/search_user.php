@@ -47,7 +47,7 @@
 			<li><?=htmlentities($data['firstname']).' '.htmlentities($data['lastname']).'&nbsp;: '.htmlentities($data['login']);?>
 			<?php
 			if(array_key_exists('roles', $data)){
-			    echo form_dropdown("roles_$data[id]", $roles, $data['roles']);
+			    echo form_dropdown("roles_$data[id]", $roles, $data['roles'],'multiple="multiple"');
 			}
 			?>
 			</li>
