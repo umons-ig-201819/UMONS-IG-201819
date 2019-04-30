@@ -24,6 +24,15 @@ class Search extends CI_Controller {
             $result = $this->UserModel->getUsers($filter,true);
         }
         $this->load->view('header');
+        if(in_array('MANAGE_USERS', $this->session->Rights)){
+            foreach($result as $res){
+                $res['roles'] = array();
+                $temp = $this->UserModel->getUserRoles($res['id']);
+                foreach($temp as $t){
+                    array_push($res['roles'],$t['id']);
+                }
+            }
+        }
         $this->load->view('search_user',array('result' => $result));
         $this->load->view('footer');
     }

@@ -44,7 +44,10 @@
 	<article>
 		<ul>
 		<?php foreach($result as $data): ?>
-			<li><?=htmlentities($data['firstname']).' '.htmlentities($data['lastname']).'&nbsp;: '.htmlentities($data['login']);?></li>
+			<li><?=htmlentities($data['firstname']).' '.htmlentities($data['lastname']).'&nbsp;: '.htmlentities($data['login']);?>
+			<?php if(array_key_exists('roles', $data)): print_r($data['roles']);?>
+			<?php endif; ?>
+			</li>
 		<?php endforeach; ?>
 		</ul>
 	</article>
