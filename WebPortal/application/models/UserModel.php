@@ -1141,6 +1141,19 @@ class UserModel extends CI_Model {
 		
 	}	
 	
+	public function updateUserRoles($userID, $rolesID){
+	    $this->db->query("DELETE FROM utilisateur_role WHERE ur_ir_ut = $userID");
+	    if(empty($rolesID)) return;
+	    $sql = 'INSERT INTO utilisateur_role (ur_id_ut, ur_id_role) VALUES ';
+	    foreach($rolesID as $id){
+	        $id   = intval($id);
+	        $sql .= "($userID,$id), ";
+	    }
+	    $sql = substr($sql,0,strlen($sql)-1);
+	    if($sql[strlen($sql)-1] == ',') $sql = substr($sql,0,strlen($sql)-1);
+	    return $this->db->query($sql);
+	}
+	
 	/**
 	* updateRight() is a method for updating name and/or description of a specific right
 	
