@@ -22,7 +22,7 @@ class Administration extends CI_Controller {
                 $filter['project_description']  = $this->input->post('search');
             }
         }
-        $data = $this->load->ProjectModel->getProjects($filter);
+        $data = $this->ProjectModel->getProjects($filter);
         $this->load->view('header');
         $this->load->view('projects',array('projects' => $data,'success' => $success, 'error' => $error));
         $this->load->view('footer');
@@ -33,8 +33,8 @@ class Administration extends CI_Controller {
             $this->forbidden();
             return;
         }
-        $this->load->ProjectModel->deleteAllUsersProject($projectID);
-        $this->load->ProjectModel->deleteProject($projectID);
+        $this->ProjectModel->deleteAllUsersProject($projectID);
+        $this->ProjectModel->deleteProject($projectID);
         $this->success = 'Le projet a bien &eacute;t&eacute; supprim&eacute;.';
         $this->index();
     }
@@ -44,7 +44,7 @@ class Administration extends CI_Controller {
             $this->forbidden();
             return;
         }
-        $this->load->ProjectModel->deleteUserProject($userID,$projectID);
+        $this->ProjectModel->deleteUserProject($userID,$projectID);
         $this->success = 'Le membre a bien &eacute;t&eacute; supprim&eacute;.';
         $this->project($projectID);
     }
@@ -69,7 +69,7 @@ class Administration extends CI_Controller {
                 'pdate_end'     => $this->input->post('date_end')
             );
             
-            if($this->load->ProjectModel->addProject($userID,$data) === false){
+            if($this->ProjectModel->addProject($userID,$data) === false){
                 $this->error = 'Impossible d\'ajouter le projet.';
             }else{
                 $this->success = 'Projet ajout&eacute;.';
@@ -85,7 +85,7 @@ class Administration extends CI_Controller {
         }
         if($this->input->post('update')){
             $gestion = empty($this->input->post('manage'))? 0 : 1;
-            if($this->load->ProjectModel->updateUserProject($projectID, $memberID, array('manage' => $gestion)) === true){
+            if($this->ProjectModel->updateUserProject($projectID, $memberID, array('manage' => $gestion)) === true){
                 $this->success = 'Modification effectu&eacute;e.';
             }else{
                 $this->success = 'Impossible d\'effectuer cette modification.';
@@ -107,7 +107,7 @@ class Administration extends CI_Controller {
                 'pdate_end'     => $this->input->post('date_end'),
                 'pdescription'  => $this->input->post('project_description')
             );
-            if($this->load->ProjectModel->updateProject($projectID,NULL,$data)===true){
+            if($this->ProjectModel->updateProject($projectID,NULL,$data)===true){
                 $error = 'Projet modifi&eacute;';
             }else{
                 $error = 'Impossible de modifier le projet';
@@ -121,8 +121,8 @@ class Administration extends CI_Controller {
                 $error = 'Impossible d\'ajouter le projet';
             }
         }
-        $project    = $this->load->ProjectModel->getProject($projectID);
-        $scientists = $this->load->ProjectModel->getProjectMembers($projectID);
+        $project    = $this->ProjectModel->getProject($projectID);
+        $scientists = $this->ProjectModel->getProjectMembers($projectID);
         $this->load->view('header');
         $this->load->view('project',array('project' => $project, 'scientists' => $scientists,'success' => $success, 'error' => $error));
         $this->load->view('footer');
