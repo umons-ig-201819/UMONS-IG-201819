@@ -41,23 +41,30 @@ class Administration extends CI_Controller {
     public function addProject(){
         if($this->input->post('addaction')){
             $userID = $this->session->UserID;
-            $data   = array(); // TODO
-            // TODO add project
-            // addProject() 
-            /*
-                'pname'
-                'pdescription'
-                'pdate_start'
-                'pdate_end'
-         */
-            $this->load->ProjectModel->addProject($userID,$data);
+            $data   = array(
+                'pname'         => $this->input->post('project_name'),
+                'pdescription'  => $this->input->post('project_description'),
+                'pdate_start'   => $this->input->post('date_start'),
+                'pdate_end'     => $this->input->post('date_end')
+            );
+            
+            if($this->load->ProjectModel->addProject($userID,$data) === false){
+                $this->error = 'Impossible d\'ajouter le projet.';
+            }else{
+                $this->success = 'Projet ajout&eacute;.';
+            }
         }
         $this->index();
     }
     
     public function update($projectID = -1, $memberID = -1){
         if($this->input->post('update')){
-            // TODO gestion
+            $gestion = empty($this->input->post('manage'))? 0 : 1;
+            if($this->load->ProjectModel->updateUserProject($projectID, $memberID, array('manage' => $gestion)) === true){
+                $this->success = 'Modification effectu&eacute;e.';
+            }else{
+                $this->success = 'Impossible d\'effectuer cette modification.';
+            }
         }
         $this->project($projectID);
     }

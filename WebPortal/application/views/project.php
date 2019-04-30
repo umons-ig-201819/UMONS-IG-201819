@@ -86,6 +86,8 @@
 		));
 		echo '</p>';
 		
+		echo '<p><a href="'.site_url("administration/removeUser/$project[id]/$scientist[member_id]").'">Supprimer du projet l\'utilisateur</a></p>';
+		
 		echo '<p>';
 		echo form_submit('update', 'Modifier');
 		echo '</p>';
