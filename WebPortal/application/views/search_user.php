@@ -2,14 +2,12 @@
 	<h1>Recherche d'un utilisateur</h1>
 <?php
 		echo form_open("search/user");
-		echo form_fieldset('Recherche du login d\'un utilisateur');
-		
+		echo form_fieldset('Critères de recherche d\'utilisateur');
+				
 		echo '<p>';
 		echo form_label("Nom",'lastname');
 		echo form_input('lastname','','id="lastname"');
-		echo '</p>';
-		
-		echo '<p>';
+
 		echo form_label("Pr&eacute;nom",'firstname');
 		echo form_input('firstname','','id="firstname"');
 		echo '</p>';
