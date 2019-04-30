@@ -12,7 +12,7 @@ class Administration extends CI_Controller {
     
     public function index(){
         if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
-            forbidden();
+            $this->forbidden();
             return;
         }
         $filter = array();
@@ -30,7 +30,7 @@ class Administration extends CI_Controller {
     
     public function removeProject($projectID = -1){
         if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
-            forbidden();
+            $this->forbidden();
             return;
         }
         $this->load->ProjectModel->deleteAllUsersProject($projectID);
@@ -40,8 +40,8 @@ class Administration extends CI_Controller {
     }
     
     public function removeUser($projectID = -1,$userID){
-        if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
-            forbidden();
+        if(!$this-> array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
+            $this->forbidden();
             return;
         }
         $this->load->ProjectModel->deleteUserProject($userID,$projectID);
@@ -57,7 +57,7 @@ class Administration extends CI_Controller {
     
     public function addProject(){
         if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
-            forbidden();
+            $this->forbidden();
             return;
         }
         if($this->input->post('addaction')){
@@ -80,7 +80,7 @@ class Administration extends CI_Controller {
     
     public function update($projectID = -1, $memberID = -1){
         if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
-            forbidden();
+            $this->forbidden();
             return;
         }
         if($this->input->post('update')){
@@ -96,7 +96,7 @@ class Administration extends CI_Controller {
     
     public function project($projectID = -1){
         if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
-            forbidden();
+            $this->forbidden();
             return;
         }
         if($this->input->post('action')){
