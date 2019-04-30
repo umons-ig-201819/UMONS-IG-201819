@@ -107,9 +107,6 @@ class Profil extends CI_Controller {
             }
         // TODO update infos
 
-
-
-   //     $data['user_id'] = $userID;
         $data['id'] = $userID;
      
         $this->load->helper(array('form', 'url'));
@@ -154,16 +151,7 @@ class Profil extends CI_Controller {
                 $this->load->view('profil',$data);
             }
         }
- 
- /*       $data = $this->UserModel->getUser($this->session->UserID);
-        $data['username']       = $data['login'];
-        $data['user_id']        = $data['id'];
-        $data['sharing']        = $data['visible'];
-        $data['advise']         = $data['advise'] = 1;
- //     $data['editable_login'] = $editable_login;
-        foreach($data as $key => $value)
-        $data[$key] = html_escape($value);
-        $this->load->view('profil',$data);*/
+        
         $this->load->view('footer');
     }
     

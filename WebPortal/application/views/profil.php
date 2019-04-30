@@ -66,7 +66,7 @@ echo '</p>';*/
 echo '<p>';
     echo form_label('Nouveau mot de passe : ','motdepasse');
     echo '<input type="password" name="password" >';
-    echo form_label('Confirmation du mot de passe : ','motdepasseconfirm');
+    echo form_label('Confirmation : ','motdepasseconfirm');
     echo '<input type="password" name="passwordconfirm" >';
 echo '</p>';
 echo form_submit('action', 'Modifier');
