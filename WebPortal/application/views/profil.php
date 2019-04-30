@@ -1,18 +1,24 @@
 <h1>Mon profil</h1>
 <section id="top_page">
 	<?php
-	echo validation_errors();	
-	if(!(isset($confirmation_suppression))){
-	echo form_open("profil/remove/$user_id");
-	echo form_submit('action', 'Supprimer mon compte',"class='button'", 'name="confirmation_suppression"','value="confirmed_suppression"');
-	echo form_close();
-	}
-	else
+	echo validation_errors();
+	if(($confirmation_suppression)== 0)
 	{
-	echo form_open("profil/remove/$user_id");
-    echo form_submit('action', 'OK',"class='button'", 'name="confirmation_suppression"','value="unconfirmed_suppression"');
-    echo form_close();
+	    echo form_submit('action', 'Supprimer mon compte',"class='button'", 'name="confirmation_suppression"','value="1"');
 	}
+	
+	if(($confirmation_suppression)== 1)
+	{
+	   echo form_submit('action', 'confimer',"class='button'", 'name="confirmation_suppression"','value="2"');
+	}
+	
+	if(($confirmation_suppression)== 2)
+	{
+	    echo form_open("profil/remove/$user_id");
+	    echo form_submit('action', 'confimer',"class='button'", 'name="confirmation_suppression"','value="0"');
+	    echo form_close();
+	}
+	
 	?>
 </section>
 <section>
