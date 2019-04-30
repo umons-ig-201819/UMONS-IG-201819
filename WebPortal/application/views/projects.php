@@ -42,7 +42,7 @@
 	</article>
 	<article>
 		<?php
-		echo form_open("administration/project");
+		echo form_open("administration/projects");
 		echo form_fieldset('Recherche un projet');
 		
 		echo '<p>';
