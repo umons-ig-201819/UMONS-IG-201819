@@ -115,7 +115,7 @@ class Administration extends CI_Controller {
         } elseif($this->input->post('addaction')){
             $login   = $this->input->post('login');
             $gestion = empty($this->input->post('manage'))? 0 : 1;
-            if($this->load->ProjectModel->addUserProject($projectID,NULL,array('login'=>$login, 'gestion' => $gestion))===true){
+            if($this->ProjectModel->addUserProject($projectID,NULL,array('login'=>$login, 'gestion' => $gestion))===true){
                 $error = 'Membre ajout&eacute;';
             }else{
                 $error = 'Impossible d\'ajouter le projet';
