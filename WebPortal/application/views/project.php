@@ -23,7 +23,7 @@
         
         echo '<p>';
         echo form_label('Date de fin','date_end');
-        echo '<input type="date" name="date_end" value="'.htmlentities($project['date_end']).'" id="date_end">';// TODO check Y-m-d
+        echo '<input type="date" name="date_end" value="'.htmlentities($project['project_description']).'" id="date_end">';// TODO check Y-m-d
         echo '</p>';
         
         echo '<p>';
