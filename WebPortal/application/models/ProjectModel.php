@@ -126,6 +126,8 @@ class ProjectModel extends CI_Model
             $roleProject,
             intval($gestion)
         ))) {
+            print_r($this->db->_error_message());
+            print_r($this->db->_error_number());
             return false;
         }
 
