@@ -2,12 +2,14 @@
 	<h1>Recherche d'un utilisateur</h1>
 <?php
 		echo form_open("search/user");
-		echo form_fieldset('Critères de recherche d\'utilisateur');
+		echo form_fieldset('Crit&egrave;res de recherche d\'utilisateur');
 				
 		echo '<p>';
 		echo form_label("Nom",'lastname');
 		echo form_input('lastname','','id="lastname"');
-
+		echo '</p>';
+		
+		echo '<p>';
 		echo form_label("Pr&eacute;nom",'firstname');
 		echo form_input('firstname','','id="firstname"');
 		echo '</p>';
@@ -41,8 +43,11 @@
 ?>		
 	<article>
 		<ul>
-		<?php foreach($result as $data): ?>
-			<li><?=htmlentities($data['firstname']).' '.htmlentities($data['lastname']).'&nbsp;: '.htmlentities($data['login']);?>
+		<?php
+		      $i=0;
+            foreach($result as $data): ?>
+			<li>
+			<?=htmlentities($data['firstname']).' '.htmlentities($data['lastname']).'&nbsp;: '.htmlentities($data['login']);?>
 			<?php
 			if(array_key_exists('roles', $data)):
 			    echo '<p>';
@@ -57,6 +62,10 @@
 			    echo form_dropdown("roles[]", $roles, $data['roles'],'multiple="multiple"');
 			    echo form_submit('updateaction', 'Modifier');
 			    echo form_close();
+			    if ($i < 4)
+			    {
+			    $i++;    
+			    }
 			    echo '</p>';
 			endif;
 			?>
