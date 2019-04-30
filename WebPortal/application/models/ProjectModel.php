@@ -177,15 +177,15 @@ class ProjectModel extends CI_Model
     public function listProjects($filter = NULL, $and = false){
         $where = '';
         $and   = $and ? ' AND': ' OR';
-        $eq    = array('id','date_start','date_end');
-        $like  = array('project_name','owner_lastname','owner_firstname','project_description');
-        foreach($eq as $k){
+        $eq    = array('id' => 'p_id','date_start' => 'p_date_start','date_end' => 'p_date_end');
+        $like  = array('project_name' => 'p_nom','owner_lastname' => 'u.ut_nom','owner_firstname' => 'u.ut_prenom','project_description' => 'p_description');
+        foreach($eq as $k => $v){
             if(array_key_exists($k,$filter))
                 $where .= "$and $k = ".$filter[$k];
         }
-        foreach($like as $k){
+        foreach($like as $k => $v){
             if(array_key_exists($k,$filter))
-                $where .= "$and $k = '%".$filter[$k]."'";
+                $where .= "$and $k = '%".$filter[$k]."%'";
         }
         if(strlen($where)>0){
             $where = ' WHERE '.substr($where, strlen($and));
