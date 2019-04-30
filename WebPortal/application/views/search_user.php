@@ -2,7 +2,7 @@
 	<h1>Recherche d'un utilisateur</h1>
 <?php
 		echo form_open("search/user");
-		echo form_fieldset('Crit&egrave;res de recherche d\'utilisateur');
+		echo form_fieldset('Critegrave;res de recherche d\'utilisateur');
 				
 		echo '<p>';
 		echo form_label("Nom",'lastname');
@@ -45,13 +45,11 @@
 		<ul>
 		<?php
 		      $i=0;
-		      echo '<p>';
             foreach($result as $data): ?>
 			<li>
 			<?=htmlentities($data['firstname']).' '.htmlentities($data['lastname']).'&nbsp;: '.htmlentities($data['login']);?>
 			<?php
 			if(array_key_exists('roles', $data)):
-			if (!($i < 4))
 			    echo '<p>';
 			    echo form_open("search/update/$data[id]");
 			    echo form_hidden('lastname',htmlentities($this->input->post('lastname')));
@@ -64,15 +62,7 @@
 			    echo form_dropdown("roles[]", $roles, $data['roles'],'multiple="multiple"');
 			    echo form_submit('updateaction', 'Modifier');
 			    echo form_close();
-			    if ($i < 4)
-			    {
-			         $i = $i + 1;     
-			    }
-			    else
-			    {
-			        echo '</p>';
-			        $i = 0;
-			    }
+			    echo '</p>';
 			endif;
 			?>
 			</li>
