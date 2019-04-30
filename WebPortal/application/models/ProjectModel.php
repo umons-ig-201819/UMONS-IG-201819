@@ -101,37 +101,22 @@ class ProjectModel extends CI_Model
      */
     public function addUserProject($userID, $projID, $userProject)
     {
-        if (empty($userID))
-            return false;
-        if (empty($projID))
-            return false;
-
-        $gestion = $userProject['gestion'];
-        $roleProject = $userProject['role_project'];
-
+        $userID  = intval($userID);
+        $projID  = intval($projID);
+        $gestion = 0;
+        $role    = NULL;
+        
+        if(array_key_exists('gestion', $userProject))
+            $gestion = intval($userProject['gestion']);
+        
+        if(array_key_exists('role_project', $userProject))
+            $role = intval($userProject['role_project']);
+            
         $sql = "INSERT INTO utilisateur_projet
 				(up_id_participant, up_id_projet, up_role_pour_ce_projet, up_gestion)
-				VALUES (?,?,?,?)";
+				VALUES ($userID,$projID,?,$gestion)";
 
-        $roleProject = NULL;
-        if (isset($userProject['role_project']))
-            $roleProject = $userProject['role_project'];
-        $gestion = '0';
-        if (isset($userProject['gestion']))
-            $gestion = intval($userProject['gestion']);
-
-        if (! $this->db->query($sql, array(
-            intval($userID),
-            intval($projID),
-            $roleProject,
-            intval($gestion)
-        ))) {
-            print_r($this->db->_error_message());
-            print_r($this->db->_error_number());
-            return false;
-        }
-
-        return true;
+        return $this->db->query($sql,array($role));
     }
 
     // -------------------------------------------------------------
