@@ -18,7 +18,7 @@ class Profil extends CI_Controller {
         $data['username']       = $data['login'];
         $data['user_id']        = $data['id'];
         $data['sharing']        = $data['visible'];
-        $data['advise']         = $data['advise'] = 1;
+        $data['advice']         = $data['advice'] = 1;
 //        $data['editable_login'] = $editable_login;
         foreach($data as $key => $value)
             $data[$key] = html_escape($value);
@@ -33,7 +33,8 @@ class Profil extends CI_Controller {
         $this->load->view('profil',$data);
         $this->load->view('footer');
     }
-    public function update($userID=null){
+    public function update($userID=null)
+    {
         if($userID != $this->session->UserID){ // TODO and get right
             $userID = intval($this->session->UserID);
             if(!array_key_exists('EDIT_USER'/*TODO correct right (edit user) */,$this->UserModel->getUserRights($this->session->UserID))){
@@ -69,8 +70,37 @@ class Profil extends CI_Controller {
         
         $this->index($userID);
     }
-    public function rights($userID=null){
-        // TODO update rights
+    public function rights($userID=null)
+    {
+    if($userID != $this->session->UserID)
+        {
+            $userID = intval($this->session->UserID);
+            if(!array_key_exists('EDIT_USER'/*TODO correct right (edit user) */,$this->UserModel->getUserRights($this->session->UserID)))
+            {
+                $userID = $this->session->UserID;
+            }
+        }
+        else
+        {
+            $userID = $this->session->UserID;
+        }
+        // TODO update infos
+        
+        $allowed = array(
+            'sharing'   => 'visible',
+            'advice'    => 'advice'
+        );
+        foreach($allowed as $key => $value){
+            $data[$value] = $this->input->post($key);
+        }
+        $data['id'] = $userID;
+        
+        $resuserupdate = $this->UserModel->updateUser($data);
+        if ($resuserupdate)
+            echo "<script>alert('Modification effectuée')</script>";
+            else
+                echo "<script>alert('Modification échouée')</script>";
+                
         $this->index($userID);
     }
     public function remove($userID=null){
@@ -87,6 +117,8 @@ class Profil extends CI_Controller {
             {
                 $userID = $this->session->UserID;
             }
+            
+            echo 'Deleted successfully.';
             $this->UserModel->deleteUserAllRole($userID);
             $this->UserModel->deleteUser($userID);
             $this->session->sess_destroy();

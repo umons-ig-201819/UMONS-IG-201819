@@ -3,7 +3,7 @@
 	<?php
 	echo validation_errors();
 	echo form_open("profil/remove/$user_id");
-	echo form_submit('action', 'Supprimer mon compte',"class='button'");
+	echo form_submit('action', 'Supprimer mon compte',"class='button'", 'value="confirmed_suppression"');
 	echo form_close();
 	?>
 </section>
