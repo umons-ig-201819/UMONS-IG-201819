@@ -108,6 +108,8 @@ class ProjectModel extends CI_Model
         $res = $this->db->query($sql,array($userLogin));
         $res = $res->row_array();
         
+        if(is_null($res)) return false;
+        
         if(array_key_exists('id', $res)){
             $userID = $res['id'];
         }else{
