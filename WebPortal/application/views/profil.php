@@ -4,7 +4,7 @@
 	<aside>
 	<?php
 	echo form_open("profil/remove/$user_id");
-	echo form_submit('action', 'Supprimer mon compte');
+	echo form_submit('action', 'Supprimer mon compte',"class='button'");
 	echo form_close();
 	?>
 <!--  	<a href=" <//?= //site_url("profil/remove/$user_id");?//>">Supprimer mon profil</a> -->
