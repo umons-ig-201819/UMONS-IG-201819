@@ -12,20 +12,19 @@
 		<?php
 		echo form_open("administration/addProject");
 		echo form_fieldset('Ajouter un projet');
-		print_r($project);
 		echo '<p>';
 		echo form_label('Nom','project_name');
-		echo form_input('project_name',htmlentities($project['project_name']),'id="project_name"');
+		echo form_input('project_name','','id="project_name"');
 		echo '</p>';
 		
 		echo '<p>';
 		echo form_label('Date de d&eacute;but','add_date');
-		echo '<input type="date" name="date_start" value="'.htmlentities($project['date_start']).'" id="date_start">';// TODO check Y-m-d
+		echo '<input type="date" name="date_start" value="" id="date_start">';// TODO check Y-m-d
 		echo '</p>';
 		
 		echo '<p>';
 		echo form_label('Date de fin','date_end');
-		echo '<input type="date" name="date_end" value="'.htmlentities($project['date_end']).'" id="date_end">';// TODO check Y-m-d
+		echo '<input type="date" name="date_end" value="" id="date_end">';// TODO check Y-m-d
 		echo '</p>';
 		
 		echo '<p>';
