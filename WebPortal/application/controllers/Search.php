@@ -25,13 +25,12 @@ class Search extends CI_Controller {
         }
         $this->load->view('header');
         if(in_array('MANAGE_USERS', $this->session->Rights)){
-            foreach($result as $res){
-                $res['roles'] = array();
-                $temp = $this->UserModel->getUserRoles($res['id']);
+            for($i=0; $i<count($result);$i++){
+                $result[$i]['roles'] = array();
+                $temp = $this->UserModel->getUserRoles($result[$i]['id']);
                 foreach($temp as $t){
-                    array_push($res['roles'],$t['id']);
+                    array_push($result[$i]['roles'],$t['id']);
                 }
-                print_r($res);
                 print_r($result);
             }
         }
