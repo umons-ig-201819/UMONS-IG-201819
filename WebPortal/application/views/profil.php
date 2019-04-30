@@ -89,7 +89,7 @@ echo '<p>';
     echo form_label('Refuser','advise_disabled').form_radio('advise','0',!$advise, 'id="advise_disabled"');
 echo '</p>';
 echo '<p>';
-   echo form_label('En connaissance du R.G.P.D., j\'accepte que Wallesmart utilise mes données &agrave; des fins statistiques.');
+   echo ('En connaissance du R.G.P.D., j\'accepte que Wallesmart utilise mes données &agrave; des fins statistiques.');
 //   echo form_radio('gdpr','1',$gdpr, 'id="gdpr_enabled"').form_label('Accepter','gdpr_enabled');
 //  echo form_radio('gdpr','0',!$gdpr, 'id="gdpr_disabled"').form_label('Refuser','gdpr_disabled');
 echo '</p>';
