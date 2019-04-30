@@ -36,7 +36,7 @@ class DataSourceModelTest extends TestCase{
         $dataSource['config']=NULL;
         $dataSource['visible']=2;
         $resu=$this->dataSourceModel->getUserID();
-        $res =$this->dataSourceModel->addDataSourceApp($resu,$dataSource);
+        $res =$this->dataSourceModel->addDataSourceApp($resu+2,$dataSource);
         $this->assertNotEquals($res,false);
     }
 
@@ -54,7 +54,7 @@ class DataSourceModelTest extends TestCase{
         $dataSourceUser['askAccess']=1;
         $resu =$this->dataSourceModel->getDataSourceID();
         $resul=$this->dataSourceModel->getUserID();
-        $res = $this->dataSourceModel->addDataSourceUser($resu,$resul,$dataSourceUser);
+        $res = $this->dataSourceModel->addDataSourceUser($resu+1,$resul,$dataSourceUser);
         $this->assertEquals($res,true);
     }
     /**
@@ -348,9 +348,9 @@ class DataSourceModelTest extends TestCase{
 
     public function testGetProjectDataSources(){
         $filter['file_name']="test";
-        $filter['file_url']="test11";
-        $filter['application']="test12";
-        $filter['config']="test13";
+        $filter['file_url']="test";
+        $filter['application']="test";
+        $filter['config']="test";
         $filter['visible']=1;
         $filter['add_date']='test14';
         $filter['access_state']=1;
