@@ -42,7 +42,7 @@ class UserModel extends CI_Model {
 					ut_sexe AS gender,
 					ut_login AS login,
 					ut_visible_awe AS visible,
-					ut_accepter_conseil AS advise
+					ut_accepter_conseil AS advice
 				FROM utilisateur 
 				WHERE ut_login=? AND ut_password=?";
 		$query = $this->db->query($sql, array($login,sha1($password)));
@@ -803,7 +803,7 @@ class UserModel extends CI_Model {
 		$mobile=NULL; 		if(isset($user['mobile'])) $mobile=$user['mobile'];
 		$gender=NULL; 		if(isset($user['gender'])) $gender=intval($user['gender']);
 		$visible=0; 		if(isset($user['visible'])) $visible=intval($user['visible']);
-		$advice=0; 		    if(isset($user['advise'])) $advice=intval($user['advise']);
+		$advice=0; 		    if(isset($user['advice'])) $advice=intval($user['advice']);
 		
 		if( ! $this->db->query($sql, array($lastname, $firstname, $birthdate, $email, $phone, $mobile, $gender, $login, $password, $visible, $advice)) )
 		{

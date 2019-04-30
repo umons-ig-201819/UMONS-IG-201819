@@ -10,7 +10,7 @@ BackEnd
 - Ajouter au controler la confirmation de la suppression du profil ?
 
 
-- Traduire le 'form_validation_lang.php -fr
+
 - Création des droits d'accès	- ?
 - Dans mon profil, afficher mes droits -fr
 
@@ -20,6 +20,7 @@ Done
 - Mettre en responsive les graphiques -fr
 - Nombre d'inscrits -fr
 - Mettre le mot de passe en étoiles -fr
+- Traduire le 'form_validation_lang.php -fr
 
 - Modifier l'affichage des champs incorrect (Suppression cadres rouges) -mi
 - Aligner les champs de saisies à l'inscription -mi

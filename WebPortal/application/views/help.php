@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css"
-    	href="<?php echo base_url(); ?>assets/css/style.css">
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/javascript/home.js"></script>
-    <title>Portail AWE</title>
-    </head>
-    
-    <body>    
-    <?php include ("header.php")?>
-    
-    <h1>Help page</h1>
-    
-    <?php include ("footer.php")?>
-    </body>
-</html>
+<h1>A propos</h1>
+<section>
+<br><br>Ce site a &eacute;t&eacute; d&eacute;velopp&eacute; &agrave; l'aide du frameWork Codeigniter par : <br><br>
+
+COOLS Aur&eacute;lie<br>
+GAUTHIER In&egrave;s<br>
+GENIN Emilie<br>
+VANDEN DRIES Virginie<br>
+LERAT Jean-S&eacute;bastien<br>
+ROBBERTS Fran&ccedil;ois<br>
+ROMBAUX Micha&euml;l<br><br>
+
+<a href='https://github.com/umons-ig-201819' >Visitez notre Github</a><br><br>
+
+</section>
