@@ -22,7 +22,7 @@ class Administration extends CI_Controller {
                 $filter['project_description']  = $this->input->post('search');
             }
         }
-        $data = $this->ProjectModel->getProjects($filter);
+        $data = $this->ProjectModel->listProjects($filter);
         $this->load->view('header');
         $this->load->view('projects',array('projects' => $data,'success' => $this->success, 'error' => $this->error));
         $this->load->view('footer');

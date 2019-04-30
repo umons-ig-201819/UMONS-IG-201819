@@ -174,6 +174,39 @@ class ProjectModel extends CI_Model
         return $project;
     }
 
+    public function listProjects($filter = NULL, $and = false){
+        $where = '';
+        $and   = $and ? ' AND': ' OR';
+        $eq    = array('id','date_start','date_end');
+        $like  = array('project_name','owner_lastname','owner_firstname','project_description');
+        foreach($eq as $k){
+            if(array_key_exists($k,$filter))
+                $where .= "$and $k = ".$filter[$k];
+        }
+        foreach($like as $k){
+            if(array_key_exists($k,$filter))
+                $where .= "$and $k = '%".$filter[$k]."'";
+        }
+        if(strlen($where)>0){
+            $where = ' WHERE '.substr($where, strlen($and));
+        }
+        $sql   = "SELECT
+					p_id AS id,
+					p_nom AS project_name,
+					p_date_start AS date_start,
+					p_date_end AS date_end,
+					u.ut_nom AS owner_lastname,
+                    u.ut_prenom as owner_firstname,
+                    p_description AS project_description
+				FROM projet
+				JOIN utilisateur AS u
+				ON u.ut_id=p_id_createur $where ORDER BY project_name ASC";
+        $query = $this->db->query($sql, $params);
+        $projects = $query->result_array();
+        
+        return $projects;
+    }
+    
     /**
      * getProjects() this method returns a project based on its id
      *
