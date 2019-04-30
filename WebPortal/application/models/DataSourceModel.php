@@ -140,10 +140,13 @@ class DataSourceModel extends CI_Model{
 	public function deleteDataSource($dataSourceID)
     {
         if(is_null($dataSourceID)) return false;
+        $dataSourceID = intval($dataSourceID);
+        
+        $sql = "DELETE FROM utilisateur_fichier WHERE uf_id_fichier=?";
+        if( ! $this->db->query($sql, array($dataSourceID)) ) return false;
         
 		$sql="DELETE FROM fichierappli WHERE f_id= ?";
-        
-		if( ! $this->db->query($sql, array(intval($dataSourceID))) ) return false;
+		if( ! $this->db->query($sql, array($dataSourceID)) ) return false;
 		return true;
     
 	}

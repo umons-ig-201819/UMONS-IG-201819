@@ -20,7 +20,7 @@ class ProjectModel extends CI_Model
         parent::__construct();
         $this->load->database();
     }
-
+    
     // -------------------------------------------------------------
     // -------------------- INSERT ---------------------------------
     // -------------------------------------------------------------
@@ -76,8 +76,13 @@ class ProjectModel extends CI_Model
         ))) {
             return false;
         }
-
-        return $this->db->insert_id();
+        // 0=demande effectuee, 1=OK, 2=refus
+        $projectID = $this->db->insert_id();
+        $sql = "INSERT INTO fichier_projet (p_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
+            SELECT f.f_id,$projectID,f.f_visible_awe,NOW()
+            FROM fichierappli AS f";
+        $this->db->query($sql);
+        return $projectID;
     }
 
     /**
@@ -298,6 +303,8 @@ class ProjectModel extends CI_Model
             return NULL;
             $sql = "SELECT  u.ut_nom AS member_lastname, 
                             u.ut_prenom AS member_firstname, 
+                            u.ut_id AS member_id, 
+                            u.ut_login AS member_username, 
                             up.up_role_pour_ce_projet AS member_role, 
                             up.up_gestion AS member_gestion, 
                             u2.ut_nom AS owner_lastname, 
@@ -596,11 +603,15 @@ class ProjectModel extends CI_Model
     {
         if (is_null($projID))
             return false;
+        
+        $projID = intval($projID);
+        
+        $sql = "DELETE FROM fichier_projet WHERE fp_id_projet= ?";
+        if (! $this->db->query($sql, array( $projID ))) return false;
+        
         $sql = "DELETE FROM projet WHERE p_id= ?";
-        if (! $this->db->query($sql, array(
-            intval($projID)
-        )))
-            return false;
+        if (! $this->db->query($sql, array( $projID ))) return false;
+        
         return true;
     }
 
