@@ -153,6 +153,11 @@ article, aside
     text-align: justify;
 }
 
+.account_information
+{
+    border-style: none;	
+}
+
 h3
 {
 	border-style: solid;
