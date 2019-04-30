@@ -31,10 +31,13 @@ class Search extends CI_Controller {
                 foreach($temp as $t){
                     array_push($result[$i]['roles'],$t['id']);
                 }
-                print_r($result);
             }
         }
-        $this->load->view('search_user',array('result' => $result));
+        $roles = $this->UserModel->getRoles();
+        $options = array();
+        foreach($roles as $role)
+            $options[$role['id']] = $role['name'];
+        $this->load->view('search_user',array('result' => $result,'roles' => $options));
         $this->load->view('footer');
     }
     public function datasource(){
