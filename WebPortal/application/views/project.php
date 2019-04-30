@@ -22,12 +22,12 @@
         
         echo '<p>';
         echo form_label('Date de fin','date_end');
-        echo '<input type="date" name="date_end" value="'.htmlentities($project['project_description']).'" id="date_end">';// TODO check Y-m-d
+        echo '<input type="date" name="date_end" value="'.htmlentities($project['date_end']).'" id="date_end">';// TODO check Y-m-d
         echo '</p>';
         
         echo '<p>';
         echo form_label('Description','project_description');
-        echo '<textarea rows="4" cols="50" name="project_description" id="project_description">'.htmlentities($project['date_end']).'</textarea>';
+        echo '<textarea rows="4" cols="50" name="project_description" id="project_description">'.htmlentities($project['project_description']).'</textarea>';
         echo '</p>';
 
         
