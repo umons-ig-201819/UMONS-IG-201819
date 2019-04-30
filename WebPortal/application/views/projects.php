@@ -8,7 +8,6 @@
 	<?php endif; ?>
 		<h1>Gestion des projets</h1>
 		
-		// FORM ADD
 		<?php
 		echo form_open("administration/addProject");
 		echo form_fieldset('Ajouter un projet');
