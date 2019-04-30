@@ -12,7 +12,7 @@
 		<?php
 		echo form_open("administration/addProject");
 		echo form_fieldset('Ajouter un projet');
-		
+		print_r($project);
 		echo '<p>';
 		echo form_label('Nom','project_name');
 		echo form_input('project_name',htmlentities($project['project_name']),'id="project_name"');
