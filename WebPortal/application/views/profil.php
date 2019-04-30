@@ -1,5 +1,5 @@
+<h1>Mon profil</h1>
 <section id="top_page">
-	<h1  align="center">Mon profil</h1>
 	<?php echo validation_errors(); ?>	
 	<aside>
 	<?php
