@@ -203,7 +203,7 @@ article img
     }
 }
 
-.submit {
+submit {       /* ---------------test michael*/
   background-color: #0080ff; /* Green */
   border: none;
   color: white;
@@ -217,7 +217,7 @@ article img
   border-radius: 12px;
 }
 
-.button {
+button {       /* ---------------test michael*/
   background-color: #0080ff; /* Green */
   border: none;
   color: white;
