@@ -16,6 +16,7 @@ class Search extends CI_Controller {
             $roles = $this->input->post('roles');
             $this->UserModel->updateUserRoles($userID,$roles);
         }
+        print_r($_POST);
         $this->user();
     }
     public function user(){
