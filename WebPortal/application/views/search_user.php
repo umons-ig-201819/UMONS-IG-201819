@@ -52,10 +52,10 @@
 			    echo form_hidden('lastname',htmlentities($this->input->post('lastname')));
 			    echo form_hidden('firstname',htmlentities($this->input->post('firstname')));
 			    echo form_hidden('email',htmlentities($this->input->post('email')));
+			    echo form_hidden('login',htmlentities($this->input->post('login')));
 			    echo form_hidden('phone',htmlentities($this->input->post('phone')));
 			    echo form_hidden('mobile',htmlentities($this->input->post('mobile')));
-			    echo form_hidden('action',htmlentities($this->input->post('')));
-			    echo form_hidden('',htmlentities($this->input->post('Rechercher')));
+			    echo form_hidden('action',htmlentities($this->input->post('Rechercher')));
 			    echo form_dropdown("roles[]", $roles, $data['roles'],'multiple="multiple"');
 			    echo form_submit('updateaction', 'Modifier');
 			    echo form_close();
