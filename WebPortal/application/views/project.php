@@ -6,7 +6,6 @@
 	<?php if(!empty($success)): ?>
 	<p class="success"><?=$success;?></p>
 	<?php endif; ?>
-	<?php print_r($project); ?>
 		<h1>Gestion du projet <?=$project['project_name'];?></h1>
 		<?php
 		echo form_open("administration/project/$project[id]");

@@ -122,7 +122,6 @@ class Administration extends CI_Controller {
             }
         }
         $project    = $this->ProjectModel->getProject($projectID);
-        print_r($project);
         $scientists = $this->ProjectModel->getProjectMembers($projectID);
         $this->load->view('header');
         $this->load->view('project',array('project' => $project, 'scientists' => $scientists,'success' => $this->success, 'error' => $this->error));
