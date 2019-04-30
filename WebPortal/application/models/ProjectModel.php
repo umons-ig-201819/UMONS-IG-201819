@@ -185,7 +185,7 @@ class ProjectModel extends CI_Model
         }
         foreach($like as $k => $v){
             if(array_key_exists($k,$filter))
-                $where .= "$and $v = '%".$filter[$k]."%'";
+                $where .= "$and $v LIKE '%".$filter[$k]."%'";
         }
         if(strlen($where)>0){
             $where = ' WHERE '.substr($where, strlen($and));
@@ -201,7 +201,6 @@ class ProjectModel extends CI_Model
 				FROM projet
 				JOIN utilisateur AS u
 				ON u.ut_id=p_id_createur $where ORDER BY p_nom ASC";
-        echo $sql;
         $query = $this->db->query($sql);
         $projects = $query->result_array();
         
