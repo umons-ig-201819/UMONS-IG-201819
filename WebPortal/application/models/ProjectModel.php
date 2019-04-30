@@ -447,7 +447,7 @@ class ProjectModel extends CI_Model
             }
             $sql .= ' ) ';
         }
-        $sql .= 'ORDER BY u.ut_nom ASC';
+        $sql .= ' ORDER BY u.ut_nom ASC';
 
         $query = $this->db->query($sql, $params);
         $projectMembers = $query->result_array();
