@@ -78,7 +78,7 @@ class ProjectModel extends CI_Model
         }
         // 0=demande effectuee, 1=OK, 2=refus
         $projectID = $this->db->insert_id();
-        $sql = "INSERT INTO fichier_projet (p_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
+        $sql = "INSERT INTO fichier_projet (fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
             SELECT f.f_id,$projectID,f.f_visible_awe,NOW()
             FROM fichierappli AS f";
         $this->db->query($sql);
