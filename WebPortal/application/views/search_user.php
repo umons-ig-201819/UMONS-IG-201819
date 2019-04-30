@@ -45,11 +45,13 @@
 		<ul>
 		<?php
 		      $i=0;
+		      echo '<p>';
             foreach($result as $data): ?>
 			<li>
 			<?=htmlentities($data['firstname']).' '.htmlentities($data['lastname']).'&nbsp;: '.htmlentities($data['login']);?>
 			<?php
 			if(array_key_exists('roles', $data)):
+			if (!($i < 4))
 			    echo '<p>';
 			    echo form_open("search/update/$data[id]");
 			    echo form_hidden('lastname',htmlentities($this->input->post('lastname')));
