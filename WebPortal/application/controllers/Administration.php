@@ -108,17 +108,17 @@ class Administration extends CI_Controller {
                 'pdescription'  => $this->input->post('project_description')
             );
             if($this->ProjectModel->updateProject($projectID,NULL,$data)===true){
-                $error = 'Projet modifi&eacute;';
+                $this->success = 'Projet modifi&eacute;';
             }else{
-                $error = 'Impossible de modifier le projet';
+                $this->error = 'Impossible de modifier le projet';
             }
         } elseif($this->input->post('addaction')){
             $login   = $this->input->post('login');
             $gestion = empty($this->input->post('manage'))? 0 : 1;
             if($this->ProjectModel->addUserProject($projectID,NULL,array('login'=>$login, 'gestion' => $gestion))===true){
-                $error = 'Membre ajout&eacute;';
+                $this->success = 'Membre ajout&eacute;';
             }else{
-                $error = 'Impossible d\'ajouter le projet';
+                $this->error = 'Impossible d\'ajouter le projet';
             }
         }
         $project    = $this->ProjectModel->getProject($projectID);
