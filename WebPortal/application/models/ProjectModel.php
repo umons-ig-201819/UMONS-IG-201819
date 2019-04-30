@@ -99,12 +99,24 @@ class ProjectModel extends CI_Model
      *            
      * @return TRUE if insert succeeded and FALSE if not
      */
-    public function addUserProject($userID, $projID, $userProject)
+    public function addUserProject($userLogin, $projID, $userProject)
     {
-        $userID  = intval($userID);
-        $projID  = intval($projID);
-        $gestion = 0;
-        $role    = NULL;
+        $userLogin  = $userLogin;
+        $userID     = 0;
+        
+        $sql = 'SELECT ut_id AS id FROM utilisateur WHERE ut_login=?';
+        $res = $this->db->query($sql,array($userLogin));
+        $res = $res->row_array();
+        
+        if(array_key_exists('id', $res)){
+            $userID = $res['id'];
+        }else{
+            return false;
+        }
+        
+        $projID     = intval($projID);
+        $gestion    = 0;
+        $role       = NULL;
         
         if(array_key_exists('gestion', $userProject))
             $gestion = intval($userProject['gestion']);
