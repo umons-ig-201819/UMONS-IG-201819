@@ -1142,7 +1142,7 @@ class UserModel extends CI_Model {
 	}	
 	
 	public function updateUserRoles($userID, $rolesID){
-	    $this->db->query("DELETE FROM utilisateur_role WHERE ur_ir_ut = $userID");
+	    $this->db->query("DELETE FROM utilisateur_role WHERE ur_id_ut = $userID");
 	    if(empty($rolesID)) return;
 	    $sql = 'INSERT INTO utilisateur_role (ur_id_ut, ur_id_role) VALUES ';
 	    foreach($rolesID as $id){
