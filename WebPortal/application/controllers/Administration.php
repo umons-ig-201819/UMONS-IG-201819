@@ -24,7 +24,7 @@ class Administration extends CI_Controller {
         }
         $data = $this->ProjectModel->getProjects($filter);
         $this->load->view('header');
-        $this->load->view('projects',array('projects' => $data,'success' => $success, 'error' => $error));
+        $this->load->view('projects',array('projects' => $data,'success' => $this->success, 'error' => $this->error));
         $this->load->view('footer');
     }
     
@@ -124,7 +124,7 @@ class Administration extends CI_Controller {
         $project    = $this->ProjectModel->getProject($projectID);
         $scientists = $this->ProjectModel->getProjectMembers($projectID);
         $this->load->view('header');
-        $this->load->view('project',array('project' => $project, 'scientists' => $scientists,'success' => $success, 'error' => $error));
+        $this->load->view('project',array('project' => $project, 'scientists' => $scientists,'success' => $this->success, 'error' => $this->error));
         $this->load->view('footer');
     }
 }
