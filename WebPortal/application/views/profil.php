@@ -69,8 +69,10 @@ echo form_submit('action', 'Modifier');
 echo form_fieldset_close();
 echo form_close();
 		?>	
+<!--
 	</article>
 	<article id="account_right">
+ -->
 		<?php
 echo form_open("profil/rights/$user_id");
 echo form_fieldset('Droits d\'acc&egrave;s');
