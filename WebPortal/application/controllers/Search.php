@@ -14,7 +14,7 @@ class Search extends CI_Controller {
     public function update($userID=-1){
         if(in_array('MANAGE_USERS', $this->session->Rights) && $this->input->post('updateaction')){
             $roles = $this->input->post('roles');
-            $this->UserModel->updateUserRoles($roles);
+            $this->UserModel->updateUserRoles($userID,$roles);
         }
         $this->user();
     }
