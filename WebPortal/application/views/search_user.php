@@ -55,7 +55,7 @@
 			    echo form_hidden('login',htmlentities($this->input->post('login')));
 			    echo form_hidden('phone',htmlentities($this->input->post('phone')));
 			    echo form_hidden('mobile',htmlentities($this->input->post('mobile')));
-			    echo form_hidden('action',htmlentities($this->input->post('Rechercher')));
+			    echo form_hidden('action','Rechercher');
 			    echo form_dropdown("roles[]", $roles, $data['roles'],'multiple="multiple"');
 			    echo form_submit('updateaction', 'Modifier');
 			    echo form_close();
