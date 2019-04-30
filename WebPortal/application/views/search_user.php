@@ -64,9 +64,13 @@
 			    echo form_close();
 			    if ($i < 4)
 			    {
-			    $i++;    
+			         $i = $i + 1;     
 			    }
-			    echo '</p>';
+			    else
+			    {
+			        echo '</p>';
+			        $i = 0;
+			    }
 			endif;
 			?>
 			</li>
