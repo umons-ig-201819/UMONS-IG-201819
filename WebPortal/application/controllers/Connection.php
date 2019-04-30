@@ -23,6 +23,10 @@ class Connection extends CI_Controller {
             if($data !== false){
                 echo "<script charset=\"UTF-8\">alert('Connexion r\351ussie')</script>";
                 $this->session->set_userdata('UserID', $data['id']);
+                $rights = array();
+                foreach($this->UserModel->getUserRights($data['id']) as $right)
+                    array_push($rights,$right['name']);
+                $this->session->set_userdata('Rights', $rights);
             }else{
                 echo "<script>alert('Erreur de connexion')</script>";
                 $data = array('error' => true);

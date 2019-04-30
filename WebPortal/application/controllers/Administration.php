@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Administration extends CI_Controller {
-    // TODO check rights
     private $success, $error;
     public function __construct(){
         parent::__construct();
@@ -12,6 +11,10 @@ class Administration extends CI_Controller {
     }
     
     public function index(){
+        if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
+            forbidden();
+            return;
+        }
         $filter = array();
         if($this->input->post('action')){
             if(!empty($this->input->post('search'))){
@@ -26,6 +29,10 @@ class Administration extends CI_Controller {
     }
     
     public function removeProject($projectID = -1){
+        if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
+            forbidden();
+            return;
+        }
         $this->load->ProjectModel->deleteAllUsersProject($projectID);
         $this->load->ProjectModel->deleteProject($projectID);
         $this->success = 'Le projet a bien &eacute;t&eacute; supprim&eacute;.';
@@ -33,12 +40,26 @@ class Administration extends CI_Controller {
     }
     
     public function removeUser($projectID = -1,$userID){
+        if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
+            forbidden();
+            return;
+        }
         $this->load->ProjectModel->deleteUserProject($userID,$projectID);
         $this->success = 'Le membre a bien &eacute;t&eacute; supprim&eacute;.';
         $this->project($projectID);
     }
     
+    private function forbidden(){
+        $this->load->view('header');
+        $this->load->view('forbidden');
+        $this->load->view('footer');
+    }
+    
     public function addProject(){
+        if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
+            forbidden();
+            return;
+        }
         if($this->input->post('addaction')){
             $userID = $this->session->UserID;
             $data   = array(
@@ -58,6 +79,10 @@ class Administration extends CI_Controller {
     }
     
     public function update($projectID = -1, $memberID = -1){
+        if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
+            forbidden();
+            return;
+        }
         if($this->input->post('update')){
             $gestion = empty($this->input->post('manage'))? 0 : 1;
             if($this->load->ProjectModel->updateUserProject($projectID, $memberID, array('manage' => $gestion)) === true){
@@ -70,6 +95,10 @@ class Administration extends CI_Controller {
     }
     
     public function project($projectID = -1){
+        if(! array_key_exists('MANAGE_PROJECT', $this->session->Rights)){
+            forbidden();
+            return;
+        }
         if($this->input->post('action')){
             $data = array(
                 'id'            => $projectID,

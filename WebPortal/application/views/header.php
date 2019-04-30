@@ -27,7 +27,9 @@
                             <li><a href="<?php echo site_url("help"); ?>">&Agrave; propos</a></li>
                             <?php if(isset($this->session->UserID)): ?>
                             <li><a href="<?php echo site_url("connection/logout"); ?>">D&eacute;connexion</a></li>
+                            <?php if(array_key_exists('MANAGE_PROJECT', $this->session->Rights)): ?>
                             <li><a href="<?php echo site_url("administration"); ?>">Gestion</a></li>
+                            <?php endif; ?>
                             <li><a href="<?php echo site_url("profil"); ?>">Mon profil</a></li>
                             <li><a href="<?php echo site_url("datasource"); ?>">Mes donn&eacute;es</a></li>
                             <li><a href="<?php echo site_url("search/user"); ?>">Rechercher un utilisateur</a></li>
