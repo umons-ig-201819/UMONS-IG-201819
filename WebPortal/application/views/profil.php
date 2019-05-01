@@ -3,11 +3,11 @@
 	<?php
 	echo validation_errors();
 	echo form_open("profil/remove/$user_id");
-	echo form_submit('action', 'Supprimer mon compte',"class='button'", 'value="confirmed_suppression"');
+	echo form_submit('action', 'Supprimer mon compte',"class='button'");
 	echo form_close();
 	?>
 </section>
-<section>
+<section id="top_page">
 	<article id="account_information">
 		<?php
 echo form_open("profil/update/$user_id");
@@ -69,27 +69,29 @@ echo form_submit('action', 'Modifier');
 echo form_fieldset_close();
 echo form_close();
 		?>	
+<!--
 	</article>
 	<article id="account_right">
+ -->
 		<?php
 echo form_open("profil/rights/$user_id");
 echo form_fieldset('Droits d\'acc&egrave;s');
 echo '<p>';
     echo form_label('Partager mes sources de donn&eacute;es : ');
-    echo form_label('Refuser','sharing_refuse').form_radio('sharing','0',$sharing === 0, 'id="sharing_refuse"');
-    echo form_label('Demande d\'accord','sharing_request').form_radio('sharing','2',$sharing === 1, 'id="sharing_request"');
-    echo form_label('Autoriser','sharing_allow').form_radio('sharing','1',$sharing === 2, 'id="sharing_allow"');
+    echo form_label('Refuser','sharing_refuse').form_radio('sharing','0',$sharing == 0, 'id="sharing_refuse"');
+    echo form_label('Demande d\'accord','sharing_request').form_radio('sharing','1',$sharing == 1, 'id="sharing_request"');
+    echo form_label('Autoriser','sharing_allow').form_radio('sharing','2',$sharing == 2, 'id="sharing_allow"');
 echo '</p>';
 echo '<p>';
     echo form_label('Recevoir les requ&ecirc;tes d\'acc&egrave;s aux donn&eacute;es (si le partage n\'est pas d\'office autoris&eacute;) : ');
-    echo form_label('Accepter','advise_enabled').form_radio('advice','1',$advice === 0, 'id="advice"');
-    echo form_label('Refuser','advise_disabled').form_radio('advice','0',!$advice === 1, 'id="advice"');
+    echo form_label('Accepter','advise_enabled').form_radio('advice','1',$advice == 1, 'id="advice"');
+    echo form_label('Refuser','advise_disabled').form_radio('advice','0',$advice == 0, 'id="advice"');
 echo '</p>';
-echo '<p>';
-   echo ('En connaissance du R.G.P.D., j\'accepte que Wallesmart utilise mes données &agrave; des fins statistiques.');
+//echo '<p>';
+//   echo ('En connaissance du R.G.P.D., j\'accepte que Wallesmart utilise mes données &agrave; des fins statistiques.');
 //   echo form_radio('gdpr','1',$gdpr, 'id="gdpr_enabled"').form_label('Accepter','gdpr_enabled');
 //  echo form_radio('gdpr','0',!$gdpr, 'id="gdpr_disabled"').form_label('Refuser','gdpr_disabled');
-echo '</p>';
+//echo '</p>';
 echo form_submit('action', 'Modifier');
 echo form_fieldset_close();
 echo form_close();

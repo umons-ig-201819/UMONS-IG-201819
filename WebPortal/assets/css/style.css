@@ -134,7 +134,7 @@ section
 { 
     margin-bottom: 20px;
     justify-content: space-between;
-      border-style: solid;
+    border-style: solid;
 	border-width: 1px;
 	clear : left;
 	
@@ -143,13 +143,20 @@ section
 #top_page
 {
 	display : flex;
-	flex-wrap: wrap;	
+	flex-wrap: wrap;
+	border-style: none;	  /*Ajouter pour supprimer le cadre du btn supprimer*/
 }
 
 
 article, aside
 {
     text-align: justify;
+}
+
+.account_information
+{
+    border-style: none;	
+	background-color: #389ecf;
 }
 
 h3
@@ -203,8 +210,8 @@ article img
     }
 }
 
-.button {       /* ---------------test michael*/
-  background-color: #0080ff; /* Green */
+.button {       /* ---------------test michael
+  background-color: #0080ff;
   border: none;
   color: white;
   padding: 20px;
@@ -216,3 +223,4 @@ article img
   cursor: pointer;
   border-radius: 14px;
 }
+*/

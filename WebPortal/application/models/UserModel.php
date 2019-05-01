@@ -816,7 +816,6 @@ class UserModel extends CI_Model {
 	
 	}
 		
-	
 	/**
 	 * login_is_free() is a method for checking if login exists
 	 */
@@ -828,11 +827,6 @@ class UserModel extends CI_Model {
 	    else return TRUE;
 	    
 	}
-	
-	
-	
-	
-	
 	
 	/**
 	* addUserRole() is a method for adding a role to an user
@@ -1404,8 +1398,7 @@ class UserModel extends CI_Model {
 		return true;
 		
 	}	
-	
-	
+		
 	// function for tests : get id 
 	public function getId()
 	{

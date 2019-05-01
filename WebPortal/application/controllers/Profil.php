@@ -18,7 +18,7 @@ class Profil extends CI_Controller {
         $data['username']       = $data['login'];
         $data['user_id']        = $data['id'];
         $data['sharing']        = $data['visible'];
-        $data['advice']         = $data['advice'] = 1;
+//        $data['advice']         = $data['advice'];
 //        $data['editable_login'] = $editable_login;
         foreach($data as $key => $value)
             $data[$key] = html_escape($value);
