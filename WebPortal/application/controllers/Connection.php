@@ -27,9 +27,7 @@ class Connection extends CI_Controller {
                 foreach($this->UserModel->getUserRights($data['id']) as $right)
                     array_push($rights,$right['name']);
                 $this->session->set_userdata('Rights', $rights);
-                print_r($this->session->Rights);
             }else{
-                echo "<script>alert('Erreur de connexion')</script>";
                 $data = array('error' => true);
             }
         }
