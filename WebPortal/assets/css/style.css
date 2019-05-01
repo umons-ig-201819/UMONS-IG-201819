@@ -158,12 +158,6 @@ article, aside
     text-align: justify;
 }
 
-.account_information
-{
-    border-style: none;	
-	background-color: #389ecf;
-}
-
 h3
 {
 	border-style: solid;
@@ -213,6 +207,18 @@ article img
     {
         display: none;
     }
+
+    {
+        display: none;
+    }
+}
+
+@media (max-width: 410px) 
+{
+       #account_information
+	{	
+		 text-align: left;
+	}
 }
 
 .button {       /* ---------------test michael
