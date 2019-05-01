@@ -3,17 +3,7 @@
 	<h1>Accueil</h1>	
 	<aside>
 		<h3>Nombre d'agriculteurs inscrits : <?php echo ("$numberAgri");?></h3>
-		<h3>Nombre de visites par jour  :<?php
-
-                $fp = fopen("WebPortal/application/assets/compteur.txt","r+"); 
-                $nbvisites = fgets($fp,255); 
-                $nbvisites++; 
-                fseek($fp,0); 
-                fputs($fp,$nbvisites); 
-                fclose($fp); 
-                echo'Nombre de pages : '.$nbvisites.'';
-
-        ?> </h3>
+		<h3>Nombre de visites par jour  : 3 </h3>
 	</aside>
 </section>
 <section>	
