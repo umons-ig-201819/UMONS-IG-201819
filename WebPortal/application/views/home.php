@@ -3,8 +3,28 @@
 	<h1>Accueil</h1>	
 	<aside>
 		<h3>Nombre d'agriculteurs inscrits : <?php echo ("$numberAgri");?></h3>
-		<h3>Nombre de visites par jour : </h3>
-		
+		<h3>Nombre de visites par jour  : <?php
+
+if(file_exists('compteur_visites.txt'))
+{
+        $compteur_f = fopen('compteur_visites.txt', 'r+');
+        $compte = fgets($compteur_f);
+}
+else
+{
+        $compteur_f = fopen('compteur_visites.txt', 'a+');
+        $compte = 0;
+}
+if(!isset($_SESSION['compteur_de_visite']))
+{
+        $_SESSION['compteur_de_visite'] = 'visite';
+        $compte++;
+        fseek($compteur_f, 0);
+        fputs($compteur_f, $compte);
+}
+fclose($compteur_f);
+echo '<strong>'.$compte.'</strong> visites.';
+?> </h3>
 	</aside>
 </section>
 <section>	

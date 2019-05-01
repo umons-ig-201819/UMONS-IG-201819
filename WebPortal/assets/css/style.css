@@ -136,8 +136,7 @@ section
     justify-content: space-between;
     border-style: solid;
 	border-width: 1px;
-	clear : left;
-	
+	clear : left;	
 }
 
 #top_page
@@ -147,16 +146,15 @@ section
 	border-style: none;	  /*Ajouter pour supprimer le cadre du btn supprimer*/
 }
 
+#account_information
+{	
+	 margin-left: auto;
+ 	 margin-right: auto; 
+}
 
 article, aside
 {
     text-align: justify;
-}
-
-.account_information
-{
-    border-style: none;	
-	background-color: #389ecf;
 }
 
 h3
@@ -172,6 +170,12 @@ article
 	overflow: hidden;	
 }
 
+#centerButton
+{
+text-align:center;
+margin:auto;
+}
+
 .connexion
 {
 	list-style-type: none;
@@ -185,8 +189,7 @@ article
 }
 
 .TextWrap
-{
-	
+{	
 	float: left;
 	margin : 10px;
 }
@@ -195,7 +198,7 @@ article
 article img
 {    
     max-width: 25%;
-     min-width: 200px;
+    min-width: 200px;
     max-height: 25%;
     border-style: solid;
 	border-width: 1px;
@@ -208,6 +211,14 @@ article img
     {
         display: none;
     }
+}
+
+@media (max-width: 410px) 
+{
+	label 
+	{	
+  	text-align: left;
+	}
 }
 
 .button {       /* ---------------test michael
