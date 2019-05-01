@@ -42,9 +42,6 @@ class Datasource extends CI_Controller {
         );
         
         $this->load->view('header');
-        print_r($data);
-        print_r($sources);
-        print_r($options);
         $this->load->view('datasource',$data);
         $this->load->view('footer');
     }
