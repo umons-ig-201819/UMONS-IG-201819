@@ -3,7 +3,17 @@
 	<h1>Accueil</h1>	
 	<aside>
 		<h3>Nombre d'agriculteurs inscrits : <?php echo ("$numberAgri");?></h3>
-		<h3>Nombre de visites par jour  : <a href="https://www.compteurdevisite.com" title="compteur web"><img src="https://counter6.wheredoyoucomefrom.ovh/private/compteurdevisite.php?c=5n1sa9dhamcxx9ge13ch1u79s846mckn" border="0" title="compteur web" alt="compteur web"></a></h3>
+		<h3>Nombre de visites par jour  : <?php
+
+                $fp = fopen("compteur.txt","r+"); 
+                $nbvisites = fgets($fp,255); 
+                $nbvisites++; 
+                fseek($fp,0); 
+                fputs($fp,$nbvisites); 
+                fclose($fp); 
+                echo'Nombre de pages : '.$nbvisites.'';
+
+        ?> </h3>
 	</aside>
 </section>
 <section>	
