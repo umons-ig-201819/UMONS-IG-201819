@@ -3,7 +3,7 @@
 	<h1>Accueil</h1>	
 	<aside>
 		<h3>Nombre d'agriculteurs inscrits : <?php echo ("$numberAgri");?></h3>
-		<h3>Nombre de visites par jour : <a href="https://www.compteurdevisite.com" title="compteurs visiteurs gratuits"><img src="https://counter6.wheredoyoucomefrom.ovh/private/compteurdevisite.php?c=u65pjxjqd4l9z3e7lpsexmqmque9wwkm" border="0" title="compteurs visiteurs gratuits" alt="compteurs visiteurs gratuits"></a></h3>
+		<h3>Nombre de visites par jour  : <a href="https://www.compteurdevisite.com" title="compteurs visiteurs gratuits"><img src="https://counter6.wheredoyoucomefrom.ovh/private/compteurdevisite.php?c=u65pjxjqd4l9z3e7lpsexmqmque9wwkm" border="0" title="compteurs visiteurs gratuits" alt="compteurs visiteurs gratuits"></a></h3>
 		
 	</aside>
 </section>
