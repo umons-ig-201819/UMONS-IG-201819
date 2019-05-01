@@ -1,13 +1,5 @@
 <h1>Mon profil</h1>
 <section id="top_page">
-	<?php
-	echo validation_errors();
-	echo form_open("profil/remove/$user_id");
-	echo form_submit('action', 'Supprimer mon compte',"class='button'");
-	echo form_close();
-	?>
-</section>
-<section id="top_page">
 	<article id="account_information">
 		<?php
 echo form_open("profil/update/$user_id");
@@ -108,4 +100,12 @@ echo form_close();
 
 		?>
 	</article>
+</section>
+<section id="top_page">
+	<?php
+	echo validation_errors();
+	echo form_open("profil/remove/$user_id");
+	echo form_submit('action', 'Supprimer mon compte',"class='button'");
+	echo form_close();
+	?>
 </section>
