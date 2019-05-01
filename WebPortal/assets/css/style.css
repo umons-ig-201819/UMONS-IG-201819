@@ -147,6 +147,11 @@ section
 	border-style: none;	  /*Ajouter pour supprimer le cadre du btn supprimer*/
 }
 
+#account_information article
+{
+	 border-style: none;	
+	 background-color: #389ecf;
+}
 
 article, aside
 {
