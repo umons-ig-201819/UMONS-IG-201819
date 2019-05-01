@@ -215,6 +215,10 @@ article img
 	{	
 		 text-align: left;
 	}
+	label 
+	{	
+  	text-align: left;
+	}
 }
 
 .button {       /* ---------------test michael
