@@ -1,3 +1,4 @@
+	<section>
 		<h1>Connexion</h1>
 <?php if(isset($this->session->UserID)): ?>
 			<p id="success">Bienvenue <?=ucfirst($firstname).' '.strtoupper($lastname);?>.</p>
@@ -6,7 +7,6 @@
 ?>
 		<p id="error"><font color="red">Erreur de login/mot de passe.</font></p>
 		<?php endif; ?>
-	<section>
 	<?php        
         echo form_open('connection');
         echo form_fieldset('Informations de connexion&nbsp;:');
