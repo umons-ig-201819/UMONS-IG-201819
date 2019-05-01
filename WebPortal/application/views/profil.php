@@ -1,5 +1,5 @@
 <h1>Mon profil</h1>
-version test 9
+version test 10
 <section id="top_page">
 	<article id="account_information">
 		<?php
@@ -101,7 +101,7 @@ echo form_close();
 		?>				
 	</article>
 </section>
-	<article id="account_information">
+	<article id="centerButton">
 	<?php
 	echo validation_errors();
 	echo form_open("profil/remove/$user_id");

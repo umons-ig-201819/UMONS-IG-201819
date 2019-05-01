@@ -170,6 +170,12 @@ article
 	overflow: hidden;	
 }
 
+#centerButton
+{
+text-align:center;
+margin:auto;
+}
+
 .connexion
 {
 	list-style-type: none;
