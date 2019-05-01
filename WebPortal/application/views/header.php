@@ -16,7 +16,6 @@
     	</style>
     </head>
     <body>
-    	<div id="bloc_page"> <!-- container page enti�re -->
     	<header>         
                 <div id="logo">
                 	<img src="<?php echo base_url(); ?>assets/images/logo_awe_asbl.png" alt="Logo Principal AWE!" />
