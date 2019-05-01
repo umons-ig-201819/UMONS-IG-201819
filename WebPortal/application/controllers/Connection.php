@@ -21,7 +21,6 @@ class Connection extends CI_Controller {
             
             $data = $this->UserModel->authentification($this->input->post('username'),$this->input->post('password'));
             if($data !== false){
-                echo "<script charset=\"UTF-8\">alert('Connexion reussie')</script>";
                 $this->session->set_userdata('UserID', $data['id']);
                 $rights = array();
                 foreach($this->UserModel->getUserRights($data['id']) as $right)
