@@ -1,5 +1,5 @@
 <h1>Mon profil</h1>
-version test 8
+version test 9
 <section id="top_page">
 	<article id="account_information">
 		<?php
@@ -100,6 +100,7 @@ echo form_fieldset_close();
 echo form_close();
 		?>				
 	</article>
+</section>
 	<article id="account_information">
 	<?php
 	echo validation_errors();
@@ -108,4 +109,4 @@ echo form_close();
 	echo form_close();
 	?>	
 		</article>
-</section>
+
