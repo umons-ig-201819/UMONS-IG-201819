@@ -1,4 +1,5 @@
 <h1>Mon profil</h1>
+version test 1
 <section id="top_page">
 	<article id="account_information">
 		<?php

@@ -151,6 +151,9 @@ section
 {
 	 border-style: none;	
 	 background-color: #389ecf;
+	   margin-left: auto;
+ 		 margin-right: auto;
+ 		 width: 600;
 }
 
 article, aside
