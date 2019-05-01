@@ -1,21 +1,17 @@
 To Do List François Michael
 
 FrontEnd:
-- Aligner les champs de saisies à l'inscription -mi
-- Aligner les champs de saisies à la connexion -mi
+
 - Amélioré le supprimer le profil -mi
-- Modifier l'affichage des champs incorrect (Suppression cadres rouges) -mi
+
 
 BackEnd
 - Nombre de visite par jour? -> demander à JS
 - Ajouter au controler la confirmation de la suppression du profil ?
-- Ajouter une page de confirmation de création de compte -mi
-- Confirmation de la modification de données -mi
 
-- Ajouter les conditions de création - mot de passe confirm -mi
-- Traduire le 'form_validation_lang.php -fr
+
+
 - Création des droits d'accès	- ?
-- Par défaut, on a le droit citoyen
 - Dans mon profil, afficher mes droits -fr
 
 Done
@@ -24,3 +20,12 @@ Done
 - Mettre en responsive les graphiques -fr
 - Nombre d'inscrits -fr
 - Mettre le mot de passe en étoiles -fr
+- Traduire le 'form_validation_lang.php -fr
+
+- Modifier l'affichage des champs incorrect (Suppression cadres rouges) -mi
+- Aligner les champs de saisies à l'inscription -mi
+- Aligner les champs de saisies à la connexion -mi
+- Par défaut, on a le droit citoyen -mi
+- Confirmation de la modification de données -mi
+- Ajouter une page de confirmation de création de compte -mi
+- Ajouter les conditions de création - mot de passe confirm -mi

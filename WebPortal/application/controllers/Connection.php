@@ -18,9 +18,14 @@ class Connection extends CI_Controller {
     public function index(){
         $data = array();
         if($this->input->post('action')){
+            
             $data = $this->UserModel->authentification($this->input->post('username'),$this->input->post('password'));
             if($data !== false){
                 $this->session->set_userdata('UserID', $data['id']);
+                $rights = array();
+                foreach($this->UserModel->getUserRights($data['id']) as $right)
+                    array_push($rights,$right['name']);
+                $this->session->set_userdata('Rights', $rights);
             }else{
                 $data = array('error' => true);
             }

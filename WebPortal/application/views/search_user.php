@@ -2,8 +2,8 @@
 	<h1>Recherche d'un utilisateur</h1>
 <?php
 		echo form_open("search/user");
-		echo form_fieldset('Recherche du login d\'un utilisateur');
-		
+		echo form_fieldset('Critegrave;res de recherche d\'utilisateur');
+				
 		echo '<p>';
 		echo form_label("Nom",'lastname');
 		echo form_input('lastname','','id="lastname"');
@@ -43,8 +43,29 @@
 ?>		
 	<article>
 		<ul>
-		<?php foreach($result as $data): ?>
-			<li><?=htmlentities($data['firstname']).' '.htmlentities($data['lastname']).'&nbsp;: '.htmlentities($data['login']);?></li>
+		<?php
+		      $i=0;
+            foreach($result as $data): ?>
+			<li>
+			<?=htmlentities($data['firstname']).' '.htmlentities($data['lastname']).'&nbsp;: '.htmlentities($data['login']);?>
+			<?php
+			if(array_key_exists('roles', $data)):
+			    echo '<p>';
+			    echo form_open("search/update/$data[id]");
+			    echo form_hidden('lastname',htmlentities($this->input->post('lastname')));
+			    echo form_hidden('firstname',htmlentities($this->input->post('firstname')));
+			    echo form_hidden('email',htmlentities($this->input->post('email')));
+			    echo form_hidden('login',htmlentities($this->input->post('login')));
+			    echo form_hidden('phone',htmlentities($this->input->post('phone')));
+			    echo form_hidden('mobile',htmlentities($this->input->post('mobile')));
+			    echo form_hidden('action','Rechercher');
+			    echo form_dropdown("roles[]", $roles, $data['roles'],'multiple="multiple"');
+			    echo form_submit('updateaction', 'Modifier');
+			    echo form_close();
+			    echo '</p>';
+			endif;
+			?>
+			</li>
 		<?php endforeach; ?>
 		</ul>
 	</article>

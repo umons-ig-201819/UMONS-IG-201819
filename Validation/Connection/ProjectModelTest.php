@@ -22,18 +22,18 @@ protected function tearDown(){
     // -------------------------------------------------------------
     public function testAddProject()
     {
-        $userId=4;
         $project['pName']="test30";
         $project['pDate_start']='test31';
         $project['pDate_end']='2030-01-01';
         $project['pDescription']='2019-01-01';
+        $userId=$this->projectModel->getUserID();
         $res=$this->projectModel->addProject($userId,$project);
         $this->assertNotEquals($res[0],NULL);
     }
     
     public function testAddProject1()
     {
-        $userId=4;
+        $userId=$this->projectModel->getUserID();
         $project['pName']="test32";
         $project['pDate_start']='test33';
         $project['pDate_end']='2030-01-01';
@@ -45,14 +45,18 @@ protected function tearDown(){
     {
         $userProject['role_p']="test40";
         $userProject['gestion']=1;
-        $res=$this->projectModel->addUserProject(3,2,$userProject);
+        $userID=$this->projectModel->getUserID();
+        $projID=$this->projectModel->getProjectID();
+        $res = $this->projectModel->addUserProject($userID,$projID,$userProject);
         $this->assertEquals($res,true);
     }
     
      public function testAddUserProject1()
     {
         $userProject['gestion']=1;
-        $res=$this->projectModel->addUserProject(6,2,$userProject);
+        $userID=$this->projectModel->getUserID();
+        $projID=$this->projectModel->getProjectID();
+        $res=$this->projectModel->addUserProject($userID,$projID-1,$userProject);
         $this->assertEquals($res,true);
     }
     // -------------------------------------------------------------
@@ -63,7 +67,8 @@ protected function tearDown(){
     */
     public function testGetProject()
     {
-        $res=$this->projectModel->getProject("1");
+        $projID=$this->projectModel->getProjectID();
+        $res=$this->projectModel->getProject($projID);
         $this->assertNotEquals($res["id"],NULL);
     }
     /**
@@ -97,8 +102,7 @@ protected function tearDown(){
         $res=$this->projectModel->getProjectMembers(1,$filter,$and);
         $this->assertNotEquals($res[0]["member_lastname"],NULL);
     }
-    /**
-    
+     /**   
     public function testGetUserProjects()
     {
         $filter['project_id']=1;
@@ -112,10 +116,11 @@ protected function tearDown(){
         $res=$this->projectModel->getUserProjects(1, $filter, $and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
-    
+    */
     // -------------------------------------------------------------
     // -------------------- DELETE ---------------------------------
     // -------------------------------------------------------------
+    /**
     * deleteProject() delete a project based on its id
     */
     public function deleteProject()
@@ -137,8 +142,9 @@ protected function tearDown(){
      */
     public function testDeleteUserProject()
     {
-        $and=false;
-        $res=$this->projectModel->deleteUserProject(3,2,$and);
+        $userId=$this->projectModel->getUserID();
+        $projId=$this->projectModel->getProjectID();
+        $res = $this->projectModel->deleteUserProject($userId,$projId);
         $this->assertEquals($res,true);
     }
     /**
@@ -146,8 +152,8 @@ protected function tearDown(){
      */
     public function testDeleteAllProjectsUser()
     {
-        
-        $res=$this->projectModel->deleteAllProjectsUser(3);
+        $userId=$this->projectModel->getUserID();
+        $res = $this->projectModel->deleteAllProjectsUser($userId);
         $this->assertEquals($res,true);
     }
     /**
@@ -189,7 +195,8 @@ protected function tearDown(){
         $project['pdescription']="Etude de corrélation entre l'activité physique des ";
         $project['pdate_start']='2018-12-02';
         $project['pdate_end']='2020-01-01';
-        $resu=$this->projectModel->updateProject($res[0]["id"], 2, $project);
+        $userId= $this->projectModel->getUserID();
+        $resu=$this->projectModel->updateProject($res[0]["id"], $userId, $project);
         $this->assertEquals($resu,true);
     }
     /**

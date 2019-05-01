@@ -79,9 +79,9 @@ class Datasource extends CI_Controller {
                 $path = str_replace('/var/nfs/general/','/nfs/shared/',$path);
                 $url = null;
                 if($data['upload_data']['file_ext'] == 'csv'){
-                    $url = create_csv_source($nodeName,"csv-$userID",$path);
+                    $url = create_csv_source($nodeName,"csv_$userID",$path);
                 }elseif($data['upload_data']['file_ext'] == 'mdb' || $data['upload_data']['file_ext'] == 'accdb'){
-                    $url = create_access_source($nodeName,"access-$userID-".$data['upload_data']['raw_name'],$path);
+                    $url = create_access_source($nodeName,"access_$userID_".$data['upload_data']['raw_name'],$path);
                 }
                 // no else because already checked by CodeIgniter
                 $this->DataSourceModel->addDataSourceApp($userID, array(
@@ -173,10 +173,17 @@ class Datasource extends CI_Controller {
     }
     public function project($sourceID){
         // TODO check permission for each function...
-        $userID = $this->session->UserID;
-        $source = $this->DataSourceModel->getDataSource($sourceID);
+        $userID     = $this->session->UserID;
+        if($this->input->post('action')){
+            $state      = $this->input->post('state');
+            $projectID  = $this->input->post('projectid');
+            if($state == '1') $this->DataSourceModel->acceptAccessProject($sourceID, $projectID);
+            else $this->DataSourceModel->refuseAccessProject($sourceID, $projectID);
+        }
+        $source     = $this->DataSourceModel->getDataSource($sourceID);
+        $projects   = $this->DataSourceModel->getProjects($sourceID);
         $this->load->view('header');
-        $this->load->view('datasource_project',array('source' => $source));
+        $this->load->view('datasource_project',array('source' => $source, 'projects' => $projects,'error' => $this->error, 'success' => $this->success));
         $this->load->view('footer');
     }
 }

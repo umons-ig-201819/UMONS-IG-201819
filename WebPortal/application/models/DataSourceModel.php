@@ -58,7 +58,8 @@ class DataSourceModel extends CI_Model{
 			return false;
 		}
 		
-		return $this->db->insert_id();
+		return true;
+			//$this->db->insert_id();
 		
 	}
 		
@@ -139,10 +140,13 @@ class DataSourceModel extends CI_Model{
 	public function deleteDataSource($dataSourceID)
     {
         if(is_null($dataSourceID)) return false;
+        $dataSourceID = intval($dataSourceID);
+        
+        $sql = "DELETE FROM utilisateur_fichier WHERE uf_id_fichier=?";
+        if( ! $this->db->query($sql, array($dataSourceID)) ) return false;
         
 		$sql="DELETE FROM fichierappli WHERE f_id= ?";
-        
-		if( ! $this->db->query($sql, array(intval($dataSourceID))) ) return false;
+		if( ! $this->db->query($sql, array($dataSourceID)) ) return false;
 		return true;
     
 	}
@@ -471,6 +475,25 @@ class DataSourceModel extends CI_Model{
     }
     
 	/**
+     * getVisibility() this method returns a data source based on its id
+     
+     * @param $dataSourceID data source id
+     
+     * @return the value of the visibility of a data source with its informations
+
+     */
+    public function getVisibility($dataSourceID)
+    {
+	    if(empty($dataSourceID)) return false;
+    $sql="SELECT f_visible_awe FROM fichierappli WHERE f_id=?";
+    $result = $this->db->query($sql,array($dataSourceID));
+    $visible = $result->row_array();
+    $access = intval($visible['f_visible_awe']);
+    
+    return $access;
+    }
+	
+	/**
      * getDataSource() this method returns a data source based on its id
      
      * @param $dataSourceID data source id
@@ -706,8 +729,10 @@ class DataSourceModel extends CI_Model{
                     $sql.='f_visible_awe = ?';
                     $params[] = $v ;
                 }
-            }
-            $sql.=' ) ';  	 
+		   
+            }	 
+	if(!($first)){	
+	 $sql.=' ) ';}
         }
         $sql.=' ORDER BY f_dateajout DESC';
 
@@ -729,6 +754,21 @@ class DataSourceModel extends CI_Model{
 				FROM fichierappli
                 WHERE f_id_proprio=?";
 	    $query = $this->db->query($sql, array($userID));
+	    $result=$query->result_array();
+	    return $result;
+	}
+	public function getProjects($sourceID){
+	    $sourceID = intval($sourceID);
+	    $sql="SELECT
+                projet.p_id                     AS id,
+                projet.p_nom                    AS name,
+                projet.p_date_end               AS end_date,
+                fichier_projet.fp_demande_acces AS state
+              FROM projet, fichier_projet
+              WHERE fichier_projet.fp_id_projet = projet.p_id
+                AND fichier_projet.fp_id_fichier = ?
+        ";
+	    $query = $this->db->query($sql, array($sourceID));
 	    $result=$query->result_array();
 	    return $result;
 	}
@@ -798,6 +838,20 @@ class DataSourceModel extends CI_Model{
 	     $advisorID    = intval($advisorID);
 	     //  0=demande effectuee, 1=OK, 2=refus
 	     $sql = "UPDATE `utilisateur_fichier` SET `uf_demande_acces`=2 WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
+	     $this->db->query($sql);
+	 }
+	 public function acceptAccessProject($sourceID, $projectID){
+	     $sourceID     = intval($sourceID);
+	     $projectID    = intval($projectID);
+	     //  0=demande effectuee, 1=OK, 2=refus
+	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=1 WHERE `fp_id_projet`=$projectID AND `uf_id_fichier`=$sourceID";
+	     $this->db->query($sql);
+	 }
+	 public function refuseAccessProject($sourceID, $projectID){
+	     $sourceID     = intval($sourceID);
+	     $projectID    = intval($projectID);
+	     //  0=demande effectuee, 1=OK, 2=refus
+	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=2 WHERE `fp_id_projet`=$projectID AND `uf_id_fichier`=$sourceID";
 	     $this->db->query($sql);
 	 }
 	 public function revokeAccess($sourceID, $advisorID){
@@ -1107,7 +1161,6 @@ class DataSourceModel extends CI_Model{
 					$params[] = $v;
 				}			
 			}
-			$sql.=' ) ';
 		}
 			
 		$sql.=' ORDER BY uf_demande_date DESC';		
@@ -1268,7 +1321,6 @@ class DataSourceModel extends CI_Model{
     					$params[] = $v;
     				}			
     			}
-			$sql.=' )';
 		}
 			
 		$sql.=' ORDER BY a.f_dateajout DESC';		
@@ -1359,7 +1411,6 @@ class DataSourceModel extends CI_Model{
 					$params[] = $v;
 				}
 			}
-			$sql.=' ) ';
 		}
 			
 		$sql.=' ORDER BY projet.p_date_start DESC';		
@@ -1371,4 +1422,78 @@ class DataSourceModel extends CI_Model{
 	
 	}
 	
+	/**
+	* getUserID() is a method for searching the userID of the last record 
+	* @return userID
+	* @see function for tests
+	*/
+	public function getUserID()
+	{
+	    
+	    $sql="SELECT
+				f_id AS id,
+				f_id_proprio AS owner_id
+               FROM fichierappli
+				ORDER BY f_id_proprio DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastiduser=$id[0]["f_id_proprio"];
+	    return $lastiduser;
+	}	
+	
+	/**
+	* getDataSourceID() is a method for searching the dataSourceID of the last record 
+	* @return dataSourceID
+	* @see function for tests
+	*/
+	public function getDataSourceID()
+	{
+	    
+	    $sql="SELECT
+				f_id AS id,
+				f_id_proprio AS owner_id
+               FROM fichierappli
+				ORDER BY f_id DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastiddatasource=$id[0]["f_id"];
+	    return $lastiddatasource;
+	}
+	/**
+	* getProjetID() is a method for searching the ProjetID of the last record 
+	* @return projetID
+	* @see function for tests
+	*/
+	public function getProjetID()
+	{
+	    
+	    $sql="SELECT
+				fp_id_fichier,
+				fp_id_projet 
+               FROM fichier_projet
+				ORDER BY fp_id_projet DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastidproj=$id[0]["f_id_projet"];
+	    return $lastidproj;
+	}	
+	
+	/**
+	* getAdvisorID() is a method for searching the advisorID of the last record 
+	* @return advisorID
+	* @see function for tests
+	*/
+	public function getAdvisorID()
+	{
+	    
+	    $sql="SELECT
+				uf_id_invite AS id_invite,
+				uf_id_fichier AS id
+               FROM utilisateur_fichier
+				ORDER BY uf_id_fichier DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastidadvisor=$id[0]["uf_id_fichier"];
+	    return $lastidadvisor;
+	}
 }

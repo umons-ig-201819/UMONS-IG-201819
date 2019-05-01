@@ -20,7 +20,7 @@ class ProjectModel extends CI_Model
         parent::__construct();
         $this->load->database();
     }
-
+    
     // -------------------------------------------------------------
     // -------------------- INSERT ---------------------------------
     // -------------------------------------------------------------
@@ -76,8 +76,13 @@ class ProjectModel extends CI_Model
         ))) {
             return false;
         }
-
-        return $this->db->insert_id();
+        // 0=demande effectuee, 1=OK, 2=refus
+        $projectID = $this->db->insert_id();
+        $sql = "INSERT INTO fichier_projet (fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
+            SELECT f.f_id,$projectID,f.f_visible_awe,NOW()
+            FROM fichierappli AS f";
+        $this->db->query($sql);
+        return $projectID;
     }
 
     /**
@@ -94,37 +99,38 @@ class ProjectModel extends CI_Model
      *            
      * @return TRUE if insert succeeded and FALSE if not
      */
-    public function addUserProject($userID, $projID, $userProject)
+    public function addUserProject($userLogin, $projID, $userProject)
     {
-        if (empty($userID))
-            return false;
-        if (empty($projID))
-            return false;
-
-        $gestion = $userProject['gestion'];
-        $roleProject = $userProject['role_project'];
-
-        $sql = "INSERT INTO utilisateur_projet
-				(up_id_participant, up_id_projet, up_role_pour_ce_projet, up_gestion)
-				VALUES (?,?,?,?)";
-
-        $roleProject = NULL;
-        if (isset($userProject['role_project']))
-            $roleProject = $userProject['role_project'];
-        $gestion = '0';
-        if (isset($userProject['gestion']))
-            $gestion = intval($userProject['gestion']);
-
-        if (! $this->db->query($sql, array(
-            intval($userID),
-            intval($projID),
-            $roleProject,
-            intval($gestion)
-        ))) {
+        $userLogin  = $userLogin;
+        $userID     = 0;
+        
+        $sql = 'SELECT ut_id AS id FROM utilisateur WHERE ut_login=?';
+        $res = $this->db->query($sql,array($userLogin));
+        $res = $res->row_array();
+        
+        if(is_null($res)) return false;
+        
+        if(array_key_exists('id', $res)){
+            $userID = $res['id'];
+        }else{
             return false;
         }
+        
+        $projID     = intval($projID);
+        $gestion    = 0;
+        $role       = NULL;
+        
+        if(array_key_exists('gestion', $userProject))
+            $gestion = intval($userProject['gestion']);
+        
+        if(array_key_exists('role_project', $userProject))
+            $role = intval($userProject['role_project']);
+            
+        $sql = "INSERT INTO utilisateur_projet
+				(up_id_participant, up_id_projet, up_role_pour_ce_projet, up_gestion)
+				VALUES ($userID,$projID,?,$gestion)";
 
-        return true;
+        return $this->db->query($sql,array($role));
     }
 
     // -------------------------------------------------------------
@@ -164,11 +170,44 @@ class ProjectModel extends CI_Model
         $query = $this->db->query($sql, array(
             $projID
         ));
-        $project = $query->result_array();
+        $project = $query->row_array();
 
         return $project;
     }
 
+    public function listProjects($filter = NULL, $and = false){
+        $where = '';
+        $and   = $and ? ' AND': ' OR';
+        $eq    = array('id' => 'p_id','date_start' => 'p_date_start','date_end' => 'p_date_end');
+        $like  = array('project_name' => 'p_nom','owner_lastname' => 'u.ut_nom','owner_firstname' => 'u.ut_prenom','project_description' => 'p_description');
+        foreach($eq as $k => $v){
+            if(array_key_exists($k,$filter))
+                $where .= "$and $v = ".$filter[$k];
+        }
+        foreach($like as $k => $v){
+            if(array_key_exists($k,$filter))
+                $where .= "$and $v LIKE '%".$filter[$k]."%'";
+        }
+        if(strlen($where)>0){
+            $where = ' WHERE '.substr($where, strlen($and));
+        }
+        $sql   = "SELECT
+					p_id AS id,
+					p_nom AS project_name,
+					p_date_start AS date_start,
+					p_date_end AS date_end,
+					u.ut_nom AS owner_lastname,
+                    u.ut_prenom as owner_firstname,
+                    p_description AS project_description
+				FROM projet
+				JOIN utilisateur AS u
+				ON u.ut_id=p_id_createur $where ORDER BY p_nom ASC";
+        $query = $this->db->query($sql);
+        $projects = $query->result_array();
+        
+        return $projects;
+    }
+    
     /**
      * getProjects() this method returns a project based on its id
      *
@@ -265,7 +304,7 @@ class ProjectModel extends CI_Model
                     $params[] = '%' . $v . '%';
                 }
             }
-            $sql .= ')';
+            //$sql .= ')';
         }
 
         $sql .= ' ORDER BY p_date_start DESC';
@@ -298,6 +337,8 @@ class ProjectModel extends CI_Model
             return NULL;
             $sql = "SELECT  u.ut_nom AS member_lastname, 
                             u.ut_prenom AS member_firstname, 
+                            u.ut_id AS member_id, 
+                            u.ut_login AS member_username, 
                             up.up_role_pour_ce_projet AS member_role, 
                             up.up_gestion AS member_gestion, 
                             u2.ut_nom AS owner_lastname, 
@@ -440,7 +481,7 @@ class ProjectModel extends CI_Model
             }
             $sql .= ' ) ';
         }
-        $sql .= 'ORDER BY u.ut_nom ASC';
+        $sql .= ' ORDER BY u.ut_nom ASC';
 
         $query = $this->db->query($sql, $params);
         $projectMembers = $query->result_array();
@@ -572,7 +613,6 @@ class ProjectModel extends CI_Model
                     $params[] = $v;
                 }
             }
-            $sql .= ' ) ';
         }
         $sql .= ' ORDER BY p_date_start DESC';
 
@@ -597,11 +637,15 @@ class ProjectModel extends CI_Model
     {
         if (is_null($projID))
             return false;
+        
+        $projID = intval($projID);
+        
+        $sql = "DELETE FROM fichier_projet WHERE fp_id_projet= ?";
+        if (! $this->db->query($sql, array( $projID ))) return false;
+        
         $sql = "DELETE FROM projet WHERE p_id= ?";
-        if (! $this->db->query($sql, array(
-            intval($projID)
-        )))
-            return false;
+        if (! $this->db->query($sql, array( $projID ))) return false;
+        
         return true;
     }
 
@@ -822,4 +866,40 @@ class ProjectModel extends CI_Model
         else
             return true;
     }
+	/**
+	* getUserID() is a method for searching the userID of the last record 
+	* @return userID
+	* @see function for tests
+	*/
+	public function getUserID()
+	{
+	    
+	    $sql="SELECT
+				ut_id
+               FROM utilisateur
+				ORDER BY ut_id DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastiduser=$id[0]["ut_id"];
+	    return $lastiduser;
+	}	
+	
+	/**
+	* getProjectID() is a method for searching the projectID of the last record 
+	* @return projectID
+	* @see function for tests
+	*/
+	public function getProjectID()
+	{
+	    
+	    $sql="SELECT
+				p_id
+				FROM projet
+				ORDER BY p_id DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastiddatasource=$id[0]["p_id"];
+	    return $lastiddatasource;
+	}
+	
 }

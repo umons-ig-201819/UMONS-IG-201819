@@ -99,25 +99,27 @@
             <task id="119" name="Intégration des graphiques (frontend)" color="#8cb6ce" meeting="false" start="2019-04-02" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
             <task id="120" name="Validation (tests) des graphiques" color="#8cb6ce" meeting="false" start="2019-04-02" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="12" name="Histoire 6 - scientifique" color="#8cb6ce" meeting="false" start="2019-04-16" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+        <task id="12" name="Histoire 6 - scientifique" color="#8cb6ce" meeting="false" start="2019-04-16" duration="12" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
             <depend id="13" type="2" difference="0" hardness="Strong"/>
             <depend id="14" type="2" difference="0" hardness="Strong"/>
             <task id="115" name="Ajout d'une source REST (implémentation serveur REST) + Jenkins" color="#8cb6ce" meeting="false" start="2019-04-16" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
             <task id="121" name="Création d'un projet scientifique et requête de droits (backend)" color="#8cb6ce" meeting="false" start="2019-04-16" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
             <task id="123" name="Création d'un projet scientifique et requête de droits (frontend)" color="#8cb6ce" meeting="false" start="2019-04-16" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
             <task id="124" name="Tests des droits de projets scientifiques" color="#8cb6ce" meeting="false" start="2019-04-16" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="140" name="Recherche d'une source de données" color="#8cb6ce" meeting="false" start="2019-04-30" duration="2" complete="0" thirdDate="2019-03-13" thirdDate-constraint="0" expand="true"/>
+            <task id="139" name="Recherche d'un utilisateur" color="#8cb6ce" meeting="false" start="2019-04-30" duration="2" complete="0" thirdDate="2019-03-13" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="13" name="Histoire 7 - Webservice" color="#8cb6ce" meeting="false" start="2019-05-01" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
-            <task id="126" name="Implémentation API Backend REST d'accès aux données" color="#8cb6ce" meeting="false" start="2019-05-01" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
-            <task id="127" name="Sortie frontend REST d'accès aux données" color="#8cb6ce" meeting="false" start="2019-05-01" duration="11" complete="0" thirdDate="2019-05-01" thirdDate-constraint="0" expand="true"/>
-            <task id="129" name="Intégration de la source REST" color="#8cb6ce" meeting="false" start="2019-05-01" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
-            <task id="131" name="Tests de l'API REST" color="#8cb6ce" meeting="false" start="2019-05-01" duration="11" complete="0" thirdDate="2019-05-01" thirdDate-constraint="0" expand="true"/>
+        <task id="13" name="Histoire 7 - Webservice" color="#8cb6ce" meeting="false" start="2019-05-02" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+            <task id="126" name="Implémentation API Backend REST d'accès aux données" color="#8cb6ce" meeting="false" start="2019-05-02" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="127" name="Sortie frontend REST d'accès aux données" color="#8cb6ce" meeting="false" start="2019-05-02" duration="11" complete="0" thirdDate="2019-05-01" thirdDate-constraint="0" expand="true"/>
+            <task id="129" name="Intégration de la source REST" color="#8cb6ce" meeting="false" start="2019-05-02" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="131" name="Tests de l'API REST" color="#8cb6ce" meeting="false" start="2019-05-02" duration="11" complete="0" thirdDate="2019-05-01" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="14" name="Histoire 8 - responssive" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
-            <task id="132" name="Adaptation responssive des graphiques" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
-            <task id="136" name="Adaptation responssive de l'upload de fichiers" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-05-01" thirdDate-constraint="0" expand="true"/>
-            <task id="133" name="Adaptation responssive des frontend" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
-            <task id="137" name="Tests d'intégration responssive" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-05-01" thirdDate-constraint="0" expand="true"/>
+        <task id="14" name="Histoire 8 - responsive" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true">
+            <task id="132" name="Adaptation responsive des graphiques" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="136" name="Adaptation responsive de l'upload de fichiers" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-05-01" thirdDate-constraint="0" expand="true"/>
+            <task id="133" name="Adaptation responsive des frontend" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-02-25" thirdDate-constraint="0" expand="true"/>
+            <task id="137" name="Tests d'intégration responsive" color="#8cb6ce" meeting="false" start="2019-05-14" duration="11" complete="0" thirdDate="2019-05-01" thirdDate-constraint="0" expand="true"/>
         </task>
     </tasks>
     <resources/>

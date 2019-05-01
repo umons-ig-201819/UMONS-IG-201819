@@ -42,7 +42,7 @@ class UserModel extends CI_Model {
 					ut_sexe AS gender,
 					ut_login AS login,
 					ut_visible_awe AS visible,
-					ut_accepter_conseil AS advise
+					ut_accepter_conseil AS advice
 				FROM utilisateur 
 				WHERE ut_login=? AND ut_password=?";
 		$query = $this->db->query($sql, array($login,sha1($password)));
@@ -803,7 +803,7 @@ class UserModel extends CI_Model {
 		$mobile=NULL; 		if(isset($user['mobile'])) $mobile=$user['mobile'];
 		$gender=NULL; 		if(isset($user['gender'])) $gender=intval($user['gender']);
 		$visible=0; 		if(isset($user['visible'])) $visible=intval($user['visible']);
-		$advice=0; 		    if(isset($user['advise'])) $advice=intval($user['advise']);
+		$advice=0; 		    if(isset($user['advice'])) $advice=intval($user['advice']);
 		
 		if( ! $this->db->query($sql, array($lastname, $firstname, $birthdate, $email, $phone, $mobile, $gender, $login, $password, $visible, $advice)) )
 		{
@@ -816,7 +816,6 @@ class UserModel extends CI_Model {
 	
 	}
 		
-	
 	/**
 	 * login_is_free() is a method for checking if login exists
 	 */
@@ -828,11 +827,6 @@ class UserModel extends CI_Model {
 	    else return TRUE;
 	    
 	}
-	
-	
-	
-	
-	
 	
 	/**
 	* addUserRole() is a method for adding a role to an user
@@ -1141,6 +1135,19 @@ class UserModel extends CI_Model {
 		
 	}	
 	
+	public function updateUserRoles($userID, $rolesID){
+	    $this->db->query("DELETE FROM utilisateur_role WHERE ur_id_ut = $userID");
+	    if(empty($rolesID)) return;
+	    $sql = 'INSERT INTO utilisateur_role (ur_id_ut, ur_id_role) VALUES ';
+	    foreach($rolesID as $id){
+	        $id   = intval($id);
+	        $sql .= "($userID,$id), ";
+	    }
+	    $sql = substr($sql,0,strlen($sql)-1);
+	    if($sql[strlen($sql)-1] == ',') $sql = substr($sql,0,strlen($sql)-1);
+	    return $this->db->query($sql);
+	}
+	
 	/**
 	* updateRight() is a method for updating name and/or description of a specific right
 	
@@ -1391,8 +1398,7 @@ class UserModel extends CI_Model {
 		return true;
 		
 	}	
-	
-	
+		
 	// function for tests : get id 
 	public function getId()
 	{

@@ -4,7 +4,9 @@
 
 body  /* Couleur de fond pour l'ensemble */
 {
-	background-color: #c6eaae;
+/*	background-color: #c6eaae; Couleur Francois :D */
+	background-color: #c3e5f5;
+	
 }
 
 #bloc_page /*Marge pour l'ensemble de la page*/
@@ -94,7 +96,6 @@ nav ul /*Gestion des déplacements des boutons*/
 
 aside
 {
-
     position: relative;
     background-color: rgba(0,0,100,0.5);
     box-shadow: 0px 2px 5px #1c1a19;
@@ -108,12 +109,32 @@ aside
 	border-width: 1px;
 }
 
+.supprimer
+{
+    float: right;
+    background-color: rgba(0,0,100,0.5);
+    box-shadow: 0px 2px 5px #1c1a19;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    font-size: 0.9em;
+    margin: 15px 0px;
+    border-color: black;
+    border-style: solid;
+	border-width: 1px;
+}
 
+label {
+  display: inline-block;
+  width: 200px;
+  text-align: right;
+}
+  
 section
 { 
     margin-bottom: 20px;
     justify-content: space-between;
-      border-style: solid;
+    border-style: solid;
 	border-width: 1px;
 	clear : left;
 	
@@ -122,13 +143,20 @@ section
 #top_page
 {
 	display : flex;
-	flex-wrap: wrap;	
+	flex-wrap: wrap;
+	border-style: none;	  /*Ajouter pour supprimer le cadre du btn supprimer*/
 }
 
 
 article, aside
 {
     text-align: justify;
+}
+
+.account_information
+{
+    border-style: none;	
+	background-color: #389ecf;
 }
 
 h3
@@ -142,6 +170,18 @@ article
     border-style: solid;
 	border-width: 1px;
 	overflow: hidden;	
+}
+
+.connexion
+{
+	list-style-type: none;
+    padding: 5px 5px;	
+    display: flex;    
+    flex-wrap: wrap;
+    justify-content: space-around;
+    display: inline-block;
+  	width: 140px;
+  	text-align: left;
 }
 
 .TextWrap
@@ -170,4 +210,17 @@ article img
     }
 }
 
-
+.button {       /* ---------------test michael
+  background-color: #0080ff;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 14px;
+}
+*/

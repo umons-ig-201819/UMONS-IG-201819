@@ -16,7 +16,6 @@
     	</style>
     </head>
     <body>
-    	<div id="bloc_page"> <!-- container page enti�re -->
     	<header>         
                 <div id="logo">
                 	<img src="<?php echo base_url(); ?>assets/images/logo_awe_asbl.png" alt="Logo Principal AWE!" />
@@ -24,9 +23,12 @@
             		<nav>    		
             			<ul>
             				<li><a href="<?php echo site_url("home"); ?>">Accueil</a></li>
-                            <li><a href="<?php echo site_url("help"); ?>">&Acirc; propos</a></li>
+                            <li><a href="<?php echo site_url("help"); ?>">&Agrave; propos</a></li>
                             <?php if(isset($this->session->UserID)): ?>
                             <li><a href="<?php echo site_url("connection/logout"); ?>">D&eacute;connexion</a></li>
+                            <?php if(in_array('MANAGE_PROJECT', $this->session->Rights)): ?>
+                            <li><a href="<?php echo site_url("administration"); ?>">Gestion</a></li>
+                            <?php endif; ?>
                             <li><a href="<?php echo site_url("profil"); ?>">Mon profil</a></li>
                             <li><a href="<?php echo site_url("datasource"); ?>">Mes donn&eacute;es</a></li>
                             <li><a href="<?php echo site_url("search/user"); ?>">Rechercher un utilisateur</a></li>

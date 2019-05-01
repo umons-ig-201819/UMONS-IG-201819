@@ -11,6 +11,13 @@ class Search extends CI_Controller {
     public function index(){
         $this->user();
     }
+    public function update($userID=-1){
+        if(in_array('MANAGE_USERS', $this->session->Rights) && $this->input->post('updateaction')){
+            $roles = $this->input->post('roles');
+            $this->UserModel->updateUserRoles($userID,$roles);
+        }
+        $this->user();
+    }
     public function user(){
         $result = array();
         if($this->input->post('action')){
@@ -24,7 +31,20 @@ class Search extends CI_Controller {
             $result = $this->UserModel->getUsers($filter,true);
         }
         $this->load->view('header');
-        $this->load->view('search_user',array('result' => $result));
+        if(in_array('MANAGE_USERS', $this->session->Rights)){
+            for($i=0; $i<count($result);$i++){
+                $result[$i]['roles'] = array();
+                $temp = $this->UserModel->getUserRoles($result[$i]['id']);
+                foreach($temp as $t){
+                    array_push($result[$i]['roles'],$t['id']);
+                }
+            }
+        }
+        $roles = $this->UserModel->getRoles();
+        $options = array();
+        foreach($roles as $role)
+            $options[$role['id']] = $role['name'];
+        $this->load->view('search_user',array('result' => $result,'roles' => $options));
         $this->load->view('footer');
     }
     public function datasource(){
