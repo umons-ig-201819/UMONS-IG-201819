@@ -11,6 +11,7 @@
         echo form_open('connection');
         echo form_fieldset('Informations de connexion&nbsp;:');
         echo '<p>'; 
+        echo form_label('Identifiant : ','username');
         echo form_input('username',$this->input->post('username',TRUE),'id="username" required="required"');  
         echo '<br>';
         echo form_label('Mot de passe : ','password');
