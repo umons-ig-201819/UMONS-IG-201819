@@ -1,5 +1,5 @@
 <h1>Mon profil</h1>
-version test 6
+version test 7
 <section id="top_page">
 	<article id="account_information">
 		<?php
@@ -98,15 +98,15 @@ echo ("$roleName");
 echo '</p>';
 echo form_fieldset_close();
 echo form_close();
-
 		?>
-	</article>
-</section>
-<section id="bottom">
+		
 	<?php
 	echo validation_errors();
 	echo form_open("profil/remove/$user_id");
 	echo form_submit('action', 'Supprimer mon compte',"class='button'");
 	echo form_close();
-	?>
+	?>			
+		
+	</article>
 </section>
+

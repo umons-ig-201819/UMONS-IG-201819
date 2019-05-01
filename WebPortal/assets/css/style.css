@@ -136,8 +136,7 @@ section
     justify-content: space-between;
     border-style: solid;
 	border-width: 1px;
-	clear : left;
-	
+	clear : left;	
 }
 
 #top_page
@@ -148,11 +147,6 @@ section
 }
 
 #account_information
-{	
-	 margin-left: auto;
- 	 margin-right: auto; 
-}
-#bottom
 {	
 	 margin-left: auto;
  	 margin-right: auto; 
