@@ -150,7 +150,7 @@ class Datasource extends CI_Controller {
         $name           = array_pop($name);
         $this->DataSourceModel->deleteDataSource($sourceID);
         delete_note($zeppelinID);
-        array_map('@unlink', glob("/var/nfs/general/$userID/$name.*"));
+        array_map('unlink', glob("/var/nfs/general/$userID/$name.*"));
         $this->manage();
     }
     public function advisor($sourceID){
