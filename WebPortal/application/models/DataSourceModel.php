@@ -827,14 +827,14 @@ class DataSourceModel extends CI_Model{
 	     $sourceID     = intval($sourceID);
 	     $projectID    = intval($projectID);
 	     //  0=demande effectuee, 1=OK, 2=refus
-	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=1 WHERE `fp_id_projet`=$projectID AND `uf_id_fichier`=$sourceID";
+	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=1 WHERE `fp_id_projet`=$projectID AND `fp_id_fichier`=$sourceID";
 	     $this->db->query($sql);
 	 }
 	 public function refuseAccessProject($sourceID, $projectID){
 	     $sourceID     = intval($sourceID);
 	     $projectID    = intval($projectID);
 	     //  0=demande effectuee, 1=OK, 2=refus
-	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=2 WHERE `fp_id_projet`=$projectID AND `uf_id_fichier`=$sourceID";
+	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=2 WHERE `fp_id_projet`=$projectID AND `fp_id_fichier`=$sourceID";
 	     $this->db->query($sql);
 	 }
 	 public function revokeAccess($sourceID, $advisorID){
