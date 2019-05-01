@@ -1414,8 +1414,8 @@ class DataSourceModel extends CI_Model{
 	{
 	    
 	    $sql="SELECT
-				f_id,
-				f_id_proprio
+				f_id AS id,
+				f_id_proprio AS owner_id
                FROM fichierappli
 				ORDER BY f_id_proprio DESC";
 	    $query = $this->db->query($sql);
@@ -1433,8 +1433,8 @@ class DataSourceModel extends CI_Model{
 	{
 	    
 	    $sql="SELECT
-				f_id,
-				f_id_proprio
+				f_id AS id,
+				f_id_proprio AS owner_id
                FROM fichierappli
 				ORDER BY f_id DESC";
 	    $query = $this->db->query($sql);
@@ -1470,8 +1470,8 @@ class DataSourceModel extends CI_Model{
 	{
 	    
 	    $sql="SELECT
-				uf_id_invite,
-				uf_id_fichier
+				uf_id_invite AS id_invite,
+				uf_id_fichier AS id
                FROM utilisateur_fichier
 				ORDER BY uf_id_fichier DESC";
 	    $query = $this->db->query($sql);
