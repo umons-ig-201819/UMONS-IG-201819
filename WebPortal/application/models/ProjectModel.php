@@ -304,7 +304,7 @@ class ProjectModel extends CI_Model
                     $params[] = '%' . $v . '%';
                 }
             }
-            //$sql .= ')';
+            $sql .= ')';
         }
 
         $sql .= ' ORDER BY p_date_start DESC';
