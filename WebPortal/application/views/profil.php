@@ -12,15 +12,15 @@ echo form_input('username',$username,'id="username" readonly="readonly" style="b
 echo '</p>';
 echo '<p>';
     echo form_label('Nom : ','lastname');
-    echo form_input('lastname',$lastname,'id="lastname"');
+    echo form_input('lastname',$lastname,'id="lastname" readonly="readonly" style="background-color:lightgrey"');
 echo '</p>';
 echo '<p>';
     echo form_label('Pr&eacute;nom : ','firstname');
-    echo form_input('firstname',$firstname,'id="firstname"');
+    echo form_input('firstname',$firstname,'id="firstname" readonly="readonly" style="background-color:lightgrey"');
 echo '</p>';
 echo '<p>';
     echo form_label('Date de naissance : ','birthdate');
-    echo '<input type="date" name="birthdate" value="'.$birthdate.'" id="birthdate">';// TODO check Y-m-d
+    echo '<input type="date" name="birthdate" value="'.$birthdate.'" id="birthdate" readonly="readonly" style="background-color:lightgrey">';// TODO check Y-m-d
 echo '</p>';
 echo '<p>';
     echo form_label('Sexe : ');
