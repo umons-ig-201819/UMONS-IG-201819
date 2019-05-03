@@ -1033,7 +1033,7 @@ class DataSourceModel extends CI_Model{
 			$sql.=' ) ';
 		}
 		if(!($first)){	
-	            $sql.=' ) ';}
+	            $sql.=' ) ';
                 }	
 		$sql.=' ORDER BY a.f_dateajout DESC';		
 
