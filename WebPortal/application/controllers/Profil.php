@@ -6,6 +6,7 @@ class Profil extends CI_Controller {
         // TODO ensure that user is logged
         parent::__construct();
         $this->load->model('UserModel');
+        $this->load->model('DataSourceModel');
     }
     public function index($userID=null){
 //        if(is_null($userID)) $userID = $this->session->UserID;
