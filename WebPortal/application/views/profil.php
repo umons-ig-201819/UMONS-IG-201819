@@ -105,8 +105,17 @@ echo form_close();
 	<?php
 	echo validation_errors();
 	echo form_open("profil/remove/$user_id");
-	echo form_submit('action', 'Supprimer mon compte',"class='button'");
+	echo form_submit('action', 'Supprimer mon compte',"class='button' onclick='delete($user_id)'");
 	echo form_close();
 	?>	
 		</article>
-
+<script type="text/javascript">
+    var url="<?php echo base_url();?>";
+    function delete(id){
+       var r=confirm("Do you want to delete this?")
+        if (r==true)
+          window.location = url+"profil/remove/"+id;
+        else
+          return false;
+        } 
+</script>
