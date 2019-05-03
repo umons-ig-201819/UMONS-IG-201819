@@ -126,7 +126,8 @@ class Profil extends CI_Controller {
             {
                 echo "<script charset='ISO-8859-1'>alert('Suppression des donnees effectuee')</script>";
                 $this->session->sess_destroy();
-                redirect('/');
+                $this->load->view('connection');
+          //      redirect('/');
             }
             else
             {
