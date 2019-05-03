@@ -1,6 +1,7 @@
-<h1>Mon profil</h1>
+
 version test 10
 <section id="top_page">
+<h1>Mon profil</h1>
 	<article id="account_information">
 		<?php
 echo form_open("profil/update/$user_id");
