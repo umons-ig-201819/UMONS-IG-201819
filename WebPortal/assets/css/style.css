@@ -148,7 +148,7 @@ section
 {
 	display : flex;
 	flex-wrap: wrap;
-	border-style: none;	  /*Ajouter pour supprimer le cadre du btn supprimer*/
+	 /*border-style: none;	 Ajouter pour supprimer le cadre du btn supprimer*/
 }
 
 #account_information
