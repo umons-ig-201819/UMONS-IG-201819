@@ -914,7 +914,7 @@ class DataSourceModel extends CI_Model{
 				FROM utilisateur_fichier
 				JOIN fichierappli AS a
 				ON utilisateur_fichier.uf_id_fichier=a.f_id
-				WHERE uf_id_invite = ?";
+				WHERE (uf_id_invite = ?";
 		
 	    $params = array();
 	    $params [] = intval($userID); 
