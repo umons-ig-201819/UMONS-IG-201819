@@ -1,5 +1,4 @@
 
-version test 10
 <section>
 <h1>Mon profil</h1>
 	<article id="account_information">

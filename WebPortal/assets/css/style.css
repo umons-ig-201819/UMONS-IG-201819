@@ -39,6 +39,7 @@ header
   	border-width: 1px;
   	border-radius: 5px;
   	box-shadow: 0px 2px 5px #1c1a19;
+  	margin-bottom: 10px;
 }
 
 #logo /* Contient les items img, h1, et nav*/
