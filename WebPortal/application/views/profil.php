@@ -106,10 +106,10 @@ echo form_close();
 	echo validation_errors();
 	?>
 	<a href="javascript:void(0);" class='button' onclick="delete(<?php echo $user_id;?>);">Supprimer mon compte'</a>
-//	echo form_open("profil/remove/$user_id");
-//	echo form_submit('action', 'Supprimer mon compte',"class='button' onclick='delete($user_id)'");
-//	echo form_close();
-//	?>	
+<!--     	echo form_open("profil/remove/$user_id");
+	echo form_submit('action', 'Supprimer mon compte',"class='button' onclick='delete($user_id)'");
+	echo form_close();
+	?>	-->
 		</article>
 <script type="text/javascript">
     var url="<?php echo base_url();?>";
