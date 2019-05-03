@@ -79,7 +79,7 @@ protected function tearDown(){
      /**   
      testGetUserProjects() this method tests the method getUserProjects()
      */
-    /**
+    
     public function testGetUserProjects()
     {
         $filter['project_id']=1;
@@ -93,7 +93,7 @@ protected function tearDown(){
         $res=$this->projectModel->getUserProjects(1, $filter, $and);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
-    */
+    
     // -------------------------------------------------------------
     // -------------------- INSERT ---------------------------------
     // -------------------------------------------------------------
@@ -166,9 +166,9 @@ protected function tearDown(){
         $filter['owner_firstname']="test";
         $and=false;
         $res=$this->projectModel->getProjects($filter,$and);
-        $project['id']=1;
-        $project['pname']="détection des chaleurs par podomètre";
-        $project['pdescription']="Etude de corrélation entre l'activité physique des ";
+        $project['id']=$res[0]["id"];
+        $project['pname']="test10";
+        $project['pdescription']="test11";
         $project['pdate_start']='2018-12-02';
         $project['pdate_end']='2020-01-01';
         $userId= $this->projectModel->getUserID();
