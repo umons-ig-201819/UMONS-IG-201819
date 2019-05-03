@@ -1,3 +1,13 @@
+<script type="text/javascript">
+    var url="<?php echo base_url();?>";
+    function delete(id){
+       var r=confirm("Do you want to delete this?")
+        if (r==true)
+          window.location = url+"profil/remove/"+id;
+        else
+          return false;
+        } 
+</script>
 
 <section>
 <h1>Mon profil</h1>
@@ -111,13 +121,4 @@ echo form_close();
 	echo form_close();
 	?>	-->
 		</article>
-<script type="text/javascript">
-    var url="<?php echo base_url();?>";
-    function delete(id){
-       var r=confirm("Do you want to delete this?")
-        if (r==true)
-          window.location = url+"profil/remove/"+id;
-        else
-          return false;
-        } 
-</script>
+
