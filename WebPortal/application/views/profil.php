@@ -1,12 +1,12 @@
 <script>
-    var url="<?php echo base_url();?>";
-    function supprofil(){
-    	r = confirm("Etes-vous certain de vouloir supprimer votre profil?");
-       if (r != true)
+    function supprofil()
+    {
+    	r=confirm("Etes-vous certain de vouloir supprimer votre profil?");
+       if (r!=true)
        {
           return false;
        }
-       
+    }
 </script>
 
 <section>
@@ -117,7 +117,7 @@ echo form_close();
     ?>
 <!--	<a href="javascript:void(0);" onclick="supprofil(<?php echo $user_id;?>);">Supprimer mon compte</a>-->*/
     echo form_open("profil/remove/$user_id");
-	echo form_submit('action', 'Supprimer mon compte',"class='button' onclick='return supprofil();'");
+	echo form_submit('action', 'Supprimer mon compte',"class='button' onClick='return supprofil();'");
 	echo form_close();
 	?>	
 	</article>
