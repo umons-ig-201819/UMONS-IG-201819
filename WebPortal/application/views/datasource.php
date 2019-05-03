@@ -1,5 +1,5 @@
 <section>
-	<article id="top_page">
+	<article>
 		<h1>Source de données</h1>
 <?php
 echo form_open('datasource');

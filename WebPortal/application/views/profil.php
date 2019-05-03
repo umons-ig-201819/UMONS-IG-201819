@@ -1,6 +1,6 @@
 
 version test 10
-<section id="top_page">
+<section>
 <h1>Mon profil</h1>
 	<article id="account_information">
 		<?php
