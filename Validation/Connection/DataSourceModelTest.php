@@ -249,7 +249,7 @@ class DataSourceModelTest extends TestCase{
         $dataSource['config']=NULL;
         $dataSource['visible']=2;
         $resu=$this->dataSourceModel->getUserID();
-        $res =$this->dataSourceModel->addDataSourceApp($resu+1,$dataSource);
+        $res =$this->dataSourceModel->addDataSourceApp($resu,$dataSource);
         $this->assertNotEquals($res,false);
     }
 
