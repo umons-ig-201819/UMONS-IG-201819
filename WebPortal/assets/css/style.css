@@ -15,12 +15,7 @@ body  /* Couleur de fond pour l'ensemble */
     margin: auto;
 }
 
-h1 /*Style général pour les titres h1*/
-{
-	font-size: 2.5em; 
-    font-weight: normal;
-   	text-align: center;
-}
+
 
 h2
 {
@@ -96,8 +91,17 @@ nav ul /*Gestion des déplacements des boutons*/
     justify-content: space-around;
 }
 
+h1 /*Style général pour les titres h1*/
+{
+	font-size: 2.5em; 
+    font-weight: normal;
+   	text-align: center;
+   	flex: 3
+}
+
 aside
 {
+	flex: 1;
     position: relative;
     background-color: rgba(48, 83, 163,1);
     box-shadow: 0px 2px 5px #1c1a19;
