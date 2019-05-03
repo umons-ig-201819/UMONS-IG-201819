@@ -1149,7 +1149,9 @@ class DataSourceModel extends CI_Model{
 			}
 			$sql.=' ) ';
 		}
-			
+		if(!($first)){	
+	            $sql.=' ) ';
+                }	
 		$sql.=' ORDER BY uf_demande_date DESC';		
 
 		$query = $this->db->query($sql, $params);
