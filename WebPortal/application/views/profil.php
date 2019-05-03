@@ -113,12 +113,12 @@ echo form_close();
 </section>
 	<article id="centerButton">
 	<?php
-	echo validation_errors();
-	?>
-	<a href="javascript:void(0);" onclick="supprofil(<?php echo $user_id;?>);">Supprimer mon compte</a>
-<!--     	echo form_open("profil/remove/$user_id");
-	echo form_submit('action', 'Supprimer mon compte',"class='button' onclick='delete($user_id)'");
+	echo validation_errors();/*
+    ?>
+<!--	<a href="javascript:void(0);" onclick="supprofil(<?php // echo $user_id;?>);">Supprimer mon compte</a>-->*/
+    echo form_open("profil/remove/$user_id");
+	echo form_submit('action', 'Supprimer mon compte',"class='button' onclick='supprofil($user_id)'");
 	echo form_close();
-	?>	-->
+	?>	
 	</article>
 
