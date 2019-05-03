@@ -3,7 +3,6 @@
     var url="<?php echo base_url();?>";
     function supprofil(id){
        if (confirm("Etes-vous certain de vouloir supprimer votre profil?"))
-
         {
           console.log(url+"profil/remove/"+id);
           window.location = url+"profil/remove/"+id;
