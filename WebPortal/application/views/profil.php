@@ -116,7 +116,7 @@ echo form_close();
 	echo validation_errors();/*
     ?>
 <!--	<a href="javascript:void(0);" onclick="supprofil(<?php echo $user_id;?>);">Supprimer mon compte</a>-->*/
-    echo form_open("profil/$user_id");
+    echo form_open("profil");
 	echo form_submit('action', 'Supprimer mon compte',"class='button' onclick='supprofil($user_id)'");
 	echo form_close();
 	?>	
