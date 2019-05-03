@@ -81,6 +81,9 @@ header nav li /*Défini les boutons*/
 	padding: 12px 0px;
 	text-align: center;
 	color : white;   
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
 }
 nav ul /*Gestion des déplacements des boutons*/
 
