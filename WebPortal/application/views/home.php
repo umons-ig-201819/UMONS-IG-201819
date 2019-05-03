@@ -3,7 +3,7 @@
 	
 	<aside>
 		<h3>Nombre d'agriculteurs inscrits : <?php echo ("$numberAgri");?></h3>
-		<h3>Nombre de visites par jour  : <?php
+		<h3>Nombre de visites : <?php
 
 if(file_exists('compteur_visites.txt'))
 {
