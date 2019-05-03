@@ -1,4 +1,5 @@
 <script>
+	Components.utils.import('resource://gre/modules/Console.jsm');
     var url="<?php echo base_url();?>";
     function supprofil(id){
        if (confirm("Etes-vous certain de vouloir supprimer votre profil?"))
