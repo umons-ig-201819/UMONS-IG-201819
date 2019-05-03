@@ -18,7 +18,6 @@ function post(path, params, method='post') {
 	      form.appendChild(hiddenField);
 	    }
 	  }
-
 	  document.body.appendChild(form);
 	  form.submit();
 	}
