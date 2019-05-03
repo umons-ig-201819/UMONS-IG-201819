@@ -1,7 +1,9 @@
 	<section>
 		<h1>Connexion</h1>
 <?php if(isset($this->session->UserID)): ?>
+			<h2>
 			<p id="success">Bienvenue <?=ucfirst($firstname).' '.strtoupper($lastname);?>.</p>
+			</h2>
 <?php else:
         if(isset($error)):
 ?>
