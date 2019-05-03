@@ -918,7 +918,7 @@ class DataSourceModel extends CI_Model{
 		
 	    $params = array();
 	    $params [] = intval($userID); 
-		 $sql.=' )';
+		 
 		
 		if(!is_null($filter))
 		{
@@ -1032,7 +1032,9 @@ class DataSourceModel extends CI_Model{
 			}
 			$sql.=' ) ';
 		}
-			
+		if(!($first)){	
+	            $sql.=' ) ';}
+                }	
 		$sql.=' ORDER BY a.f_dateajout DESC';		
 
 		$query = $this->db->query($sql, $params);
