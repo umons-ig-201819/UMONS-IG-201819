@@ -1343,7 +1343,7 @@ class DataSourceModel extends CI_Model{
 				FROM fichier_projet AS p
 				JOIN projet
 				ON p.fp_id_fichier=p_id
-				WHERE p.fp_id_fichier = ?";
+				WHERE (p.fp_id_fichier = ?";
 		
 		$params = array();
 		$params [] = intval($dataSourceID);
@@ -1400,7 +1400,11 @@ class DataSourceModel extends CI_Model{
 					$params[] = $v;
 				}
 			}
+		$sql.=' ) ';
 		}
+		if(!($first)){	
+	            $sql.=' ) ';
+                }	
 			
 		$sql.=' ORDER BY projet.p_date_start DESC';		
 
