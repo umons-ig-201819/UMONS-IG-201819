@@ -1,4 +1,4 @@
-
+<section id="top_page">
 	<h1>Bienvenue sur la page d'accueil du projet Wallesmart</h1>
 	
 	<aside>
@@ -26,7 +26,7 @@ fclose($compteur_f);
 echo '<strong>'.$compte.'</strong> visites.';
 ?> </h3>
 	</aside>
-
+</section>
 <section>	
 	<h2>Actualit&eacute;s</h2>	
 	<article>		
