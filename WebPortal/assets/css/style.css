@@ -99,6 +99,11 @@ h1 /*Style général pour les titres h1*/
    	flex: 3
 }
 
+aside h3
+{
+	text-align: center;
+}
+
 aside
 {
 	flex: 1;
@@ -113,7 +118,7 @@ aside
     border-color: black;
     border-style: solid;
 	border-width: 1px;
-	min-width: 240px;
+	min-width: 250px;
 }
 
 .supprimer
