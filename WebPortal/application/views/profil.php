@@ -1,11 +1,34 @@
 <script>
-	Components.utils.import('resource://gre/modules/Console.jsm');
+
+function post(path, params, method='post') {
+
+	  // The rest of this code assumes you are not using a library.
+	  // It can be made less wordy if you use one.
+	  const form = document.createElement('form');
+	  form.method = method;
+	  form.action = path;
+
+	  for (const key in params) {
+	    if (params.hasOwnProperty(key)) {
+	      const hiddenField = document.createElement('input');
+	      hiddenField.type = 'hidden';
+	      hiddenField.name = key;
+	      hiddenField.value = params[key];
+
+	      form.appendChild(hiddenField);
+	    }
+	  }
+
+	  document.body.appendChild(form);
+	  form.submit();
+	}
+
     var url="<?php echo base_url();?>";
     function supprofil(id){
        if (confirm("Etes-vous certain de vouloir supprimer votre profil?"))
         {
           console.log(url+"profil/remove/"+id);
-          window.location = url+"profil/remove/"+id;
+         post(url+"profil/remove/"+id,{action: 'Supprimer mon compte'});
           }
         else
           return false;
@@ -84,9 +107,9 @@ echo form_open("profil/rights/$user_id");
 echo form_fieldset('Droits d\'acc&egrave;s');
 echo '<p>';
     echo form_label('Partager mes sources de donn&eacute;es : ');
-    echo form_label('Refuser','sharing_refuse').form_radio('sharing','0',$sharing == 0, 'id="sharing_refuse"');
-    echo form_label('Demande d\'accord','sharing_request').form_radio('sharing','1',$sharing == 1, 'id="sharing_request"');
     echo form_label('Autoriser','sharing_allow').form_radio('sharing','2',$sharing == 2, 'id="sharing_allow"');
+    echo form_label('Demande d\'accord','sharing_request').form_radio('sharing','1',$sharing == 1, 'id="sharing_request"');
+    echo form_label('Refuser','sharing_refuse').form_radio('sharing','0',$sharing == 0, 'id="sharing_refuse"');
 echo '</p>';
 echo '<p>';
     echo form_label('Recevoir les requ&ecirc;tes d\'acc&egrave;s aux donn&eacute;es (si le partage n\'est pas d\'office autoris&eacute;) : ');
