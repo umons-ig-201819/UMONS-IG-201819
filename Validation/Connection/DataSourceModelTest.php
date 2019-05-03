@@ -273,7 +273,7 @@ class DataSourceModelTest extends TestCase{
         $dataSourceUser['askAccess']=1;
         $resu =$this->dataSourceModel->getDataSourceID();
         $resul=$this->dataSourceModel->getUserID();
-        $res = $this->dataSourceModel->addDataSourceUser($resu+1,$resul,$dataSourceUser);
+        $res = $this->dataSourceModel->addDataSourceUser($resu,$resul,$dataSourceUser);
         $this->assertEquals($res,true);
     }
     
