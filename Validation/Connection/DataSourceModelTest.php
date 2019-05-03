@@ -32,7 +32,7 @@ class DataSourceModelTest extends TestCase{
     }
     
     /**
-    testGetDataSource() this method tests the method getDataSource()
+    * testGetDataSource() this method tests the method getDataSource()
     */
     public function testGetDataSource(){
         $resu=$this->dataSourceModel->getDataSourceID();
@@ -235,7 +235,7 @@ class DataSourceModelTest extends TestCase{
         $dataSource['name']="test";
         $dataSource['visible']=2;
         $resu=$this->dataSourceModel->getUserID();
-        $res =$this->dataSourceModel->addDataSourceApp($resu+1,$dataSource);
+        $res =$this->dataSourceModel->addDataSourceApp($resu,$dataSource);
         $this->assertNotEquals($res,false);
     }
 
@@ -249,7 +249,7 @@ class DataSourceModelTest extends TestCase{
         $dataSource['config']=NULL;
         $dataSource['visible']=2;
         $resu=$this->dataSourceModel->getUserID();
-        $res =$this->dataSourceModel->addDataSourceApp($resu+2,$dataSource);
+        $res =$this->dataSourceModel->addDataSourceApp($resu+1,$dataSource);
         $this->assertNotEquals($res,false);
     }
 
