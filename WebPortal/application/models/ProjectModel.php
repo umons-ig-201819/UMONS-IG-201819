@@ -626,7 +626,7 @@ class ProjectModel extends CI_Model
                     } else {
                         $sql .= $operator;
                     }
-                    $sql .= 'project_owner = ?';
+                    $sql .= 'p_id_createur = ?';
                     $params[] = $v;
                 }
             }
