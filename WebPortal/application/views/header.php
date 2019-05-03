@@ -32,7 +32,7 @@
                             <li><a href="<?php echo site_url("profil"); ?>">Mon profil</a></li>
                             <li><a href="<?php echo site_url("datasource"); ?>">Mes donn&eacute;es</a></li>
                             <li><a href="<?php echo site_url("search/user"); ?>">Rechercher un utilisateur</a></li>
-                            <li><a href="<?php echo site_url("search/datasource"); ?>">Rechercher une source de donn&eacute;es</a></li>
+                            <li><a href="<?php echo site_url("search/datasource"); ?>">Rechercher de donn&eacute;es</a></li>
                             <?php else: ?>
                             <li><a href="<?php echo site_url("connection"); ?>">Connexion</a></li>
                             <li><a href="<?php echo site_url("register"); ?>">Inscription</a></li>
