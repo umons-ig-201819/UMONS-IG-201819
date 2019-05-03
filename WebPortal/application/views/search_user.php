@@ -2,7 +2,7 @@
 	<h1>Recherche d'un utilisateur</h1>
 <?php
 		echo form_open("search/user");
-		echo form_fieldset('Critegrave;res de recherche d\'utilisateur');
+		echo form_fieldset('Crit&egrave;res de recherche d\'utilisateur');
 				
 		echo '<p>';
 		echo form_label("Nom",'lastname');

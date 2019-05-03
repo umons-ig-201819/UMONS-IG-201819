@@ -1,0 +1,24 @@
+Ecran 1
+-------
+1) En tant que gestionnaire, ajouter une nouvelle source de données et montrer qu'elle est privée.
+2) Montrer le résultat (tableau)
+3) Changer le mode de fonctionnement par notification
+6) Accepter la demande
+
+Ecran 2
+-------
+4) en tant qu'autre utlisateur, montrer que l'on y a pas accès (via la recherche)
+5) Envoyer une demande d'accès
+7) Montrer que l'on y a accès
+
+Ecran 1
+-------
+8) Créer un projet de recherche, y ajouter un membre
+11) Accepter la demande d'accès du projet
+
+Ecran 2
+-------
+9) Se connecter avec le membre
+10) Montrer qu'il n'a pas accès à la source de données
+11) Montrer qu'il y a accès
+
