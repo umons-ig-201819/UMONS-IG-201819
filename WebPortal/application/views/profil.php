@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script>
     var url="<?php echo base_url();?>";
     function delete(id){
        var r=confirm("Do you want to delete this?")
