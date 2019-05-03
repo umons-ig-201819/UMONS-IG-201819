@@ -137,6 +137,7 @@ section
 	clear : left;	
 	border-radius: 5px;
   	box-shadow: 0px 2px 5px #1c1a19;
+  	background-color: rgba(237, 242, 249,0.5);
 }
 
 #top_page
