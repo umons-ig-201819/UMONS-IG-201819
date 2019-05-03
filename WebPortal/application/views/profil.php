@@ -1,6 +1,6 @@
 <script>
     var url="<?php echo base_url();?>";
-    function supprofil(id){
+    function supprofil(){
     	r = confirm("Etes-vous certain de vouloir supprimer votre profil?");
        if (r != true)
        {
