@@ -34,9 +34,10 @@ header
 	background-repeat: no-repeat;
 	background-position: top left;*/
 	
-	border-radius: 5px;
+	
 	border-style: solid;
   	border-width: 1px;
+  	border-radius: 5px;
   	box-shadow: 0px 2px 5px #1c1a19;
 }
 
@@ -134,6 +135,8 @@ section
     border-style: solid;
 	border-width: 1px;
 	clear : left;	
+	border-radius: 5px;
+  	box-shadow: 0px 2px 5px #1c1a19;
 }
 
 #top_page
