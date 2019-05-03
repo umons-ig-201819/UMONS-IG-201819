@@ -5,8 +5,8 @@
 body  /* Couleur de fond pour l'ensemble */
 {
 /*	background-color: #c6eaae; Couleur Francois :D */
-	background-color: #c3e5f5;
 	
+	background-color: rgba(237, 242, 249,0.5);
 }
 
 #bloc_page /*Marge pour l'ensemble de la page*/
@@ -137,7 +137,7 @@ section
 	clear : left;	
 	border-radius: 5px;
   	box-shadow: 0px 2px 5px #1c1a19;
-  	background-color: rgba(237, 242, 249,0.5);
+  	background-color: #c3e5f5;
   	 padding: 5px 5px;	
 }
 
