@@ -120,5 +120,5 @@ echo form_close();
 	echo form_submit('action', 'Supprimer mon compte',"class='button' onclick='delete($user_id)'");
 	echo form_close();
 	?>	-->
-		</article>
+	</article>
 
