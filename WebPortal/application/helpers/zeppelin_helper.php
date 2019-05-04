@@ -27,7 +27,18 @@ if(!function_exists('get_binded_interpreters')){
 
 if(!function_exists('bind_interpreter')){
     function bind_interpreter($noteID,$interpreters){
-        print_r($interpreters);
+        $headers = array('http' =>
+            array(
+                'method'  => 'PUT',
+                'header'  => 'Content-Type: application/json',
+                'content' => json_encode($interpreters)
+            )
+        );
+        $context  = stream_context_create($headers);
+        $information = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID", true, $context));
+        print_r($information);
+        return $information['body'];
+
         // TODO from https://issues.apache.org/jira/browse/ZEPPELIN-2513
         // TODO   PUT: ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID" , with -d = array of interpreter id's - will update the notebook intepreter binding. 
         // TODO do it when synchronize
