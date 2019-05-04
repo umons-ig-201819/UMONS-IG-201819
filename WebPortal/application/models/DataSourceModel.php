@@ -493,7 +493,7 @@ class DataSourceModel extends CI_Model{
      */
     public function getDataSource($dataSourceID)
     {
-        if(is_null($dataSourceID)) return NULL;
+        if(is_null($dataSourceID)) return false;
         
         $sql="SELECT
 					f_id AS id,
@@ -501,15 +501,15 @@ class DataSourceModel extends CI_Model{
 					f_nom AS name,
 					f_url AS url,
 					f_appli AS application,
-                    f_config AS configuration_file,
-                    f_visible_awe AS visible,
-                    f_dateajout AS add_date
+                                        f_config AS configuration_file,
+                                        f_visible_awe AS visible,
+                                        f_dateajout AS add_date
 				FROM fichierappli
 				WHERE (f_visible_awe = 0 OR f_visible_awe = 1) AND f_id = ? ";
         $query = $this->db->query($sql, array($dataSourceID));
-        $File=$query->row_array();
-        if(is_null($File['id'])) return false;
-        return $File;
+        $file=$query->row_array();
+        if(is_null($file['id'])) return false;
+        return $file;
     
 	}
 	
