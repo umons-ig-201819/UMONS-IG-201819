@@ -179,7 +179,7 @@ class Profil extends CI_Controller {
         $key = 'roleName';
         foreach ($dataRoles as $key => $myValue)
         {
-        $data['roleName']=  $data['roleName'] +  $myValue;     
+        $data['roleName']=  $myValue;     
         }
         
               
