@@ -34,10 +34,7 @@
         <?php echo ("taillee :"+strlen($compte));?>
           <span><?php echo $compte[0];?></span>
           <span><?php echo $compte[1];?></span>
-          <span><?php echo $compte[2];?></span>
-          <span><?php echo $compte[3];?></span>
-          <span><?php echo $compte[4];?></span>
-          <span><?php echo $compte[5];?></span>
+
 	</div>
 
 	</aside>
