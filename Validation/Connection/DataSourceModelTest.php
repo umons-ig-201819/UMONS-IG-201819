@@ -26,8 +26,8 @@ class DataSourceModelTest extends TestCase{
     */
     public function testGetVisibility()
     {
-        $dataSourceID = $this->dataSourceModel->getDataSourceID();
-        $res=$this->dataSourceModel->getVisibility($dataSourceID);
+        $dataSource = $this->dataSourceModel->getDataSourceID();
+        $res=$this->dataSourceModel->getVisibility($dataSource);
         $this->assertNotEquals($res,NULL);
     }
     
@@ -35,8 +35,8 @@ class DataSourceModelTest extends TestCase{
     * testGetDataSource() this method tests the method getDataSource()
     */
     public function testGetDataSource(){
-        $dataSourceID=$this->dataSourceModel->getDataSourceID();
-        $res =$this->dataSourceModel->getDataSource($dataSourceID);
+        $dataSourcID=$this->dataSourceModel->getDataSourceID();
+        $res =$this->dataSourceModel->getDataSource($dataSourcID);
         $this->assertNotEquals($res["id"],NULL);
     }
 
@@ -46,7 +46,7 @@ class DataSourceModelTest extends TestCase{
     public function testGetOwnedDataSources(){
         $dataSourceID=$this->dataSourceModel->getUserID();
         $res=$this->dataSourceModel->getOwnedDataSources($dataSourceID);
-        $this->assertEquals($res["id"],NULL);
+        $this->assertNotEquals($res["id"],NULL);
     }
     
 /**
