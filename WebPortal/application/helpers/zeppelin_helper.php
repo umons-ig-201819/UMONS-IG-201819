@@ -12,7 +12,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if(!defined('ZEPPELIN_URL')){
     define('ZEPPELIN_URL','http://192.168.2.168/zeppelin'); #'http://192.168.2.169:8080';
 }
-    
+
+if(!function_exists('get_binded_interpreters')){
+    function get_binded_interpreters($noteID){
+        $information = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID"),true);
+        return $information['body'];
+    }
+}
+
+if(!function_exists('bind_interpreter')){
+    function bind_interpreter($noteID,$interpreter){
+        // TODO from https://issues.apache.org/jira/browse/ZEPPELIN-2513
+        // TODO   PUT: ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID" , with -d = array of interpreter id's - will update the notebook intepreter binding. 
+        // TODO do it when synchronize
+        $information = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID"),true);
+        return $information['body'];
+    }
+}
+
 if(!function_exists('create_note_if_not_exists')){
     /**
      * Check if a given node (by name) already exists. If not, it creates this node (purpose: new user workspace).
@@ -342,6 +359,10 @@ if(!function_exists('synchronize_workspace')){
      * @param unknown $originalParagraphs List of paragraphs contained in $originalID note. If null, autoloading
      */
     function synchronize_workspace($workspaceNoteID,&$workspaceParagraphs,$originalID,$originalParagraphs=null){
+        echo "Note:<br>\n";
+        print_r(get_binded_interpreters($originalID));
+        echo "Workspace:<br>\n";
+        print_r(get_binded_interpreters($workspaceNoteID));
         if(is_null($originalParagraphs)){
             $originalParagraphs = list_paragraphs($originalID);
         }
