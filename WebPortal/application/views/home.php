@@ -31,7 +31,7 @@
         
         
         ?> 
-        <?php echo ("taillee :");?>
+        <?php echo ("taillee :"+strlen($compte));?>
           <span><?php echo substr($compte,0,1);?></span>
           <span><?php echo substr($compte,1,1);?></span>
           <span><?php echo substr($compte,2,1);?></span>
