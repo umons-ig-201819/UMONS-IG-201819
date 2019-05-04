@@ -13,7 +13,7 @@
         {
                 $compteur_f = fopen('compteur_visites.txt', 'r+');
                 $compte = fgets($compteur_f);
-                echo $compte;
+                
         }
         else
         {
