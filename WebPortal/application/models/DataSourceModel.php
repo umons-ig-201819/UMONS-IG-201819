@@ -49,9 +49,9 @@ class DataSourceModel extends CI_Model{
 					VALUES (?,?,?,?,?,?,NOW())";
 		
 		$fURL=NULL; 		if(isset($dataSource ['url'])) $fURL=$dataSource ['url'];
-		$fAppli=0; 	        if(isset($dataSource ['appli'])) $fAppli=intval($dataSource ['appli']);
+		$fAppli='0'; 	        if(isset($dataSource ['appli'])) $fAppli=intval($dataSource ['appli']);
 		$fConfig=NULL; 		if(isset($dataSource ['config'])) $fConfig=$dataSource ['config'];
-		$fVisible=0; 		if(isset($dataSource ['visible'])) $fVisible=intval($dataSource ['visible']);
+		$fVisible='0'; 		if(isset($dataSource ['visible'])) $fVisible=intval($dataSource ['visible']);
 			
 		if( ! $this->db->query($sql, array(intval($userID), $fName, $fURL, intval($fAppli), $fConfig, intval($fVisible))) )
 		{
@@ -68,20 +68,19 @@ class DataSourceModel extends CI_Model{
 	 
 	 * @param $dataSourceID (required) is the id of a data source
 	 * @param $projectID (required) is the id of the project
+	 * @param $access (required) is the granted access for a project to a datasource
 	 
 	 * @return TRUE if insert succeeded and FALSE if not
 	 */
-	public function addDataSourceProject($dataSourceID,$projID)
+	public function addDataSourceProject($dataSourceID,$projID,$access='0')
 	{
 		if(empty($dataSourceID)) return false;
 		if(empty($projID)) return false;
-		
-		$access = $this->getVisibility($dataSourceID);
 			
 		$sql = "INSERT INTO fichier_projet
 					(fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
 					VALUES (?,?,?,NOW())";
-			
+		
 		if( ! $this->db->query($sql, array(intval($dataSourceID), intval($projID), $access)) )
 		{
 			return false;
@@ -99,6 +98,7 @@ class DataSourceModel extends CI_Model{
      * @param $fileUser ['read'] (required) means if a user may read a data source or not (0) = default
      * @param $fileUser ['modify'] (required) means if a user may modify a data source or not (0) = default
      * @param $fileUser ['remove'] (required) means if a user may remove a data source or not (0) = default
+	 * @param $fileUser ['access] (required) is the granted access for a user to a datasource
 
      * @return TRUE if insert succeeded and FALSE if not
      */
@@ -107,8 +107,6 @@ class DataSourceModel extends CI_Model{
         if(empty($dataSourceID)) return false;
         if(empty($userID)) return false;
           
-     $access = $this->getVisibility($dataSourceID);
-          
      $sql = "INSERT INTO utilisateur_fichier
      (uf_id_invite, uf_id_fichier, uf_lire, uf_modifier, uf_effacer,uf_demande_acces, uf_demande_date)
      VALUES (?,?,?,?,?,?,NOW())";
@@ -116,8 +114,9 @@ class DataSourceModel extends CI_Model{
      $fuRead='0'; 		if(isset($fileUser['read'])) 			$fuRead=intval($fileUser['read']);
      $fuModify='0';		if(isset($fileUser['modify']))			$fuModify=intval($fileUser['modify']);
      $fuRemove='0';		if(isset($fileUser['remove']))			$fuRemove=intval($fileUser['remove']);
+     $fuAccess='0';		if(isset($fileUser['access']))			$fuAccess=intval($fileUser['access']);
      
-     if( ! $this->db->query($sql, array(intval($userID), intval($dataSourceID), $fuRead, $fuModify, $fuRemove,$access)) )
+     if( ! $this->db->query($sql, array(intval($userID), intval($dataSourceID), $fuRead, $fuModify, $fuRemove,$fuAccess)) )
      {
      return false;
      }
