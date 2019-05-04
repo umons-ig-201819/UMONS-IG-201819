@@ -27,7 +27,7 @@ protected function tearDown(){
     {
         $projID=$this->projectModel->getProjectID();
         $res=$this->projectModel->getProject($projID);
-        $this->assertNotEquals($res["id"],NULL);
+        $this->assertNotEquals($res,false);
     }
     /**
     * testListProjects() this method tests the method listProjects()
@@ -43,7 +43,7 @@ protected function tearDown(){
         $filter['owner_firstname']="Jean";
         $and=false;
         $res=$this->projectModel->listProjects($filter,$and);
-        $this->assertEquals($res[0]["id"],NULL);
+        $this->assertEquals($res,false);
     }
     /**
     * testGetProjects() this method tests the method getProjects()
@@ -59,7 +59,7 @@ protected function tearDown(){
         $filter['owner_firstname']="Jean";
         $and=false;
         $res=$this->projectModel->getProjects($filter,$and);
-        $this->assertEquals($res[0]["id"],NULL);
+        $this->assertEquals($res,false);
     }
     /**
     * testGetProjectMembers() this method tests the method getProjectMembers()
@@ -74,7 +74,7 @@ protected function tearDown(){
         $filter['owner_firstname']="Nadine";
         $and=false;
         $res=$this->projectModel->getProjectMembers(1,$filter,$and);
-        $this->assertNotEquals($res[0]["member_lastname"],NULL);
+        $this->assertNotEquals($res,false);
     }
      /**   
      testGetUserProjects() this method tests the method getUserProjects()
@@ -91,7 +91,7 @@ protected function tearDown(){
         $filter['project_owner']=2;
         $and=false;
         $res=$this->projectModel->getUserProjects(1, $filter, $and);
-        $this->assertNotEquals($res[0]["id"],NULL);
+        $this->assertNotEquals($res,false);
     }
     
     // -------------------------------------------------------------
@@ -108,7 +108,7 @@ protected function tearDown(){
         $project['pDescription']='2019-01-01';
         $userId=$this->projectModel->getUserID();
         $res=$this->projectModel->addProject($userId,$project);
-        $this->assertNotEquals($res[0],NULL);
+        $this->assertNotEquals($res,false);
     }
     
     /**
