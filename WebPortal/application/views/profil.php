@@ -99,13 +99,20 @@ echo form_submit('action', 'Modifier');
 echo form_fieldset_close();
 echo form_close();
 
+$arrlength = count($roleName);
+
 echo form_open("profil/roles/$user_id");
-echo form_fieldset('Mon r&ocirc;le');
+if($arrlength>1)
+{
+echo form_fieldset('Mes r&ocirc;les');
+}
+else 
+{echo form_fieldset('Mon r&ocirc;le');}
 echo '<p>';
 //echo ("$test"."&nbsp;");
 //echo ("$roleName");
 
-$arrlength = count($roleName);
+
 
 for($x = 0; $x < $arrlength; $x++) {
     $thisArray=$roleName[$x];
