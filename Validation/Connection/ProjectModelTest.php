@@ -43,7 +43,7 @@ protected function tearDown(){
         $filter['owner_firstname']="Jean";
         $and=false;
         $res=$this->projectModel->listProjects($filter,$and);
-        $this->assertEquals($res,false);
+        $this->assertEquals($res[0],false);
     }
     /**
     * testGetProjects() this method tests the method getProjects()
@@ -59,7 +59,7 @@ protected function tearDown(){
         $filter['owner_firstname']="Jean";
         $and=false;
         $res=$this->projectModel->getProjects($filter,$and);
-        $this->assertEquals($res,false);
+        $this->assertEquals($res[0],false);
     }
     /**
     * testGetProjectMembers() this method tests the method getProjectMembers()
@@ -102,10 +102,10 @@ protected function tearDown(){
     */
     public function testAddProject()
     {
-        $project['pName']="test30";
-        $project['pDate_start']='test31';
-        $project['pDate_end']='2030-01-01';
-        $project['pDescription']='2019-01-01';
+        $project['pname']="test30";
+        $project['pdate_start']='test31';
+        $project['pdate_end']='2030-01-01';
+        $project['pdescription']='2019-01-01';
         $userId=$this->projectModel->getUserID();
         $res=$this->projectModel->addProject($userId,$project);
         $this->assertNotEquals($res,false);
@@ -117,9 +117,9 @@ protected function tearDown(){
     public function testAddProject1()
     {
         $userId=$this->projectModel->getUserID();
-        $project['pName']="test32";
-        $project['pDate_start']='test33';
-        $project['pDate_end']='2030-01-01';
+        $project['pname']="test32";
+        $project['pdate_start']='test33';
+        $project['pdate_end']='2030-01-01';
         $res=$this->projectModel->addProject($userId,$project);
         $this->assertNotEquals($res,false);
     }
@@ -129,7 +129,7 @@ protected function tearDown(){
     */
     public function testAddUserProject()
     {
-        $userProject['role_p']="test40";
+        $userProject['role_project']="test40";
         $userProject['gestion']=1;
         $userID=$this->projectModel->getUserID();
         $projID=$this->projectModel->getProjectID();
