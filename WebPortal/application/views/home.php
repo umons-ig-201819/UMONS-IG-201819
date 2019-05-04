@@ -29,7 +29,7 @@
         }
         fclose($compteur_f);
         
-        echo '<strong>'.strlen($compte).'</strong>';
+        echo ("taillee :"+strlen($compte));
         ?> 
         
           <span><?php echo substr($compte,0,1);?></span>
