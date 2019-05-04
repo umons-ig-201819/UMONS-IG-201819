@@ -5,8 +5,8 @@
 body  /* Couleur de fond pour l'ensemble */
 {
 /*	background-color: #c6eaae; Couleur Francois :D */
-	background-color: #c3e5f5;
 	
+	background-color: rgba(237, 242, 249,0.5);
 }
 
 #bloc_page /*Marge pour l'ensemble de la page*/
@@ -15,17 +15,11 @@ body  /* Couleur de fond pour l'ensemble */
     margin: auto;
 }
 
-h1 /*Style général pour les titres h1*/
-{
-	font-size: 2.5em; 
-    font-weight: normal;
-   	text-align: center;
-}
+
 
 h2
 {
-	border-style: solid;
-	border-width: 1px;	
+	margin-left: 20px;
 }
 
 
@@ -35,10 +29,12 @@ header
 	background-repeat: no-repeat;
 	background-position: top left;*/
 	
-	border-radius: 5px;
+	
 	border-style: solid;
   	border-width: 1px;
+  	border-radius: 5px;
   	box-shadow: 0px 2px 5px #1c1a19;
+  	margin-bottom: 20px;
 }
 
 #logo /* Contient les items img, h1, et nav*/
@@ -49,7 +45,7 @@ header
 	display: flex;
     align-items: center;
     flex-wrap: wrap;
-    background-color: rgba(0,0,100,0.5);
+    background-color: rgba(48, 83, 163,1);
 }
 
 #logo img /*Logo AWE*/
@@ -79,10 +75,11 @@ header nav li /*Défini les boutons*/
 {
 	width : 90px;
 	padding: 12px 0px;
-	border-style: solid;
-	border-width: 1px;
 	text-align: center;
 	color : white;   
+	/*border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;*/
 }
 nav ul /*Gestion des déplacements des boutons*/
 
@@ -94,10 +91,24 @@ nav ul /*Gestion des déplacements des boutons*/
     justify-content: space-around;
 }
 
+h1 /*Style général pour les titres h1*/
+{
+	font-size: 2.5em; 
+    font-weight: normal;
+   	text-align: center;
+   	flex: 3
+}
+
+aside h3
+{
+	text-align: center;
+}
+
 aside
 {
+	flex: 1;
     position: relative;
-    background-color: rgba(0,0,100,0.5);
+    background-color: rgba(48, 83, 163,1);
     box-shadow: 0px 2px 5px #1c1a19;
     border-radius: 5px;
     padding: 10px;
@@ -107,6 +118,7 @@ aside
     border-color: black;
     border-style: solid;
 	border-width: 1px;
+	min-width: 250px;
 }
 
 .supprimer
@@ -137,13 +149,17 @@ section
     border-style: solid;
 	border-width: 1px;
 	clear : left;	
+	border-radius: 5px;
+  	box-shadow: 0px 2px 5px #1c1a19;
+  	background-color: #c3e5f5;
+  	 padding: 5px 5px;	
 }
 
 #top_page
 {
 	display : flex;
 	flex-wrap: wrap;
-	border-style: none;	  /*Ajouter pour supprimer le cadre du btn supprimer*/
+	 /*border-style: none;	 Ajouter pour supprimer le cadre du btn supprimer*/
 }
 
 #account_information
@@ -159,14 +175,12 @@ article, aside
 
 h3
 {
-	border-style: solid;
-	border-width: 1px;
+
 }
 
 article
 {	 
-    border-style: solid;
-	border-width: 1px;
+
 	overflow: hidden;	
 }
 
@@ -191,7 +205,7 @@ margin:auto;
 .TextWrap
 {	
 	float: left;
-	margin : 10px;
+	margin : 18px;
 }
 
 

@@ -17,7 +17,7 @@ echo '</p>';
 
 echo '<p>';
     echo form_label('Date d\'ajout','add_date');
-    echo '<input type="date" name="add_date" value="'.htmlentities($data['add_date']).'" id="add_date">';// TODO check Y-m-d
+    echo '<input type="date" name="add_date" value="'.strftime("%Y-%m-%d",strtotime(htmlentities($data['add_date']))).'" id="add_date">'; // TODO check Y-m-d
 echo '</p>';
 
 echo '<p>';

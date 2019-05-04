@@ -1,6 +1,16 @@
+<script>
+    function supprofil()
+    {
+    	r=confirm("Etes-vous certain de vouloir supprimer votre profil?");
+       if (r!=true)
+       {
+          return false;
+       }
+    }
+</script>
+
+<section>
 <h1>Mon profil</h1>
-version test 10
-<section id="top_page">
 	<article id="account_information">
 		<?php
 echo form_open("profil/update/$user_id");
@@ -71,9 +81,9 @@ echo form_open("profil/rights/$user_id");
 echo form_fieldset('Droits d\'acc&egrave;s');
 echo '<p>';
     echo form_label('Partager mes sources de donn&eacute;es : ');
-    echo form_label('Refuser','sharing_refuse').form_radio('sharing','0',$sharing == 0, 'id="sharing_refuse"');
-    echo form_label('Demande d\'accord','sharing_request').form_radio('sharing','1',$sharing == 1, 'id="sharing_request"');
     echo form_label('Autoriser','sharing_allow').form_radio('sharing','2',$sharing == 2, 'id="sharing_allow"');
+    echo form_label('Demande d\'accord','sharing_request').form_radio('sharing','1',$sharing == 1, 'id="sharing_request"');
+    echo form_label('Refuser','sharing_refuse').form_radio('sharing','0',$sharing == 0, 'id="sharing_refuse"');
 echo '</p>';
 echo '<p>';
     echo form_label('Recevoir les requ&ecirc;tes d\'acc&egrave;s aux donn&eacute;es (si le partage n\'est pas d\'office autoris&eacute;) : ');
@@ -104,9 +114,10 @@ echo form_close();
 	<article id="centerButton">
 	<?php
 	echo validation_errors();
-	echo form_open("profil/remove/$user_id");
-	echo form_submit('action', 'Supprimer mon compte',"class='button'");
+
+    echo form_open("profil/remove/$user_id");
+	echo form_submit('action', 'Supprimer mon compte',"class='button' onClick='return supprofil();'");
 	echo form_close();
 	?>	
-		</article>
+	</article>
 

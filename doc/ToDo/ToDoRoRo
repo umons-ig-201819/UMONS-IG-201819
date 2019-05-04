@@ -2,13 +2,8 @@ To Do List François Michael
 
 FrontEnd:
 
-- Amélioré le supprimer le profil -mi
-
-
 BackEnd
-- Nombre de visite par jour? -> demander à JS
-- Ajouter au controler la confirmation de la suppression du profil ?
-- Création des droits d'accès	- ?
+
 - Dans mon profil, afficher mes droits -fr
 
 Done
@@ -18,6 +13,7 @@ Done
 - Nombre d'inscrits -fr
 - Mettre le mot de passe en étoiles -fr
 - Traduire le 'form_validation_lang.php -fr
+- Nombre de visite par jour - fr
 
 - Modifier l'affichage des champs incorrect (Suppression cadres rouges) -mi
 - Aligner les champs de saisies à l'inscription -mi
@@ -26,3 +22,6 @@ Done
 - Confirmation de la modification de données -mi
 - Ajouter une page de confirmation de création de compte -mi
 - Ajouter les conditions de création - mot de passe confirm -mi
+- Amélioré le supprimer le profil -mi
+- Ajouter au controler la confirmation de la suppression du profil - mi
+- Création des droits d'accès -mi

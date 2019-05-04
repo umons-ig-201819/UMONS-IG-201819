@@ -32,11 +32,11 @@ class DataSourceModelTest extends TestCase{
     }
     
     /**
-    testGetDataSource() this method tests the method getDataSource()
+    * testGetDataSource() this method tests the method getDataSource()
     */
     public function testGetDataSource(){
-        $resu=$this->dataSourceModel->getDataSourceID();
-        $res =$this->dataSourceModel->getDataSource($resu);
+        $dataSourceID=$this->dataSourceModel->getDataSourceID();
+        $res =$this->dataSourceModel->getDataSource($dataSourceID);
         $this->assertNotEquals($res["id"],NULL);
     }
 
@@ -44,8 +44,8 @@ class DataSourceModelTest extends TestCase{
     * testGetOwnedDataSources() this method tests the method getOwnedDataSources()
     */
     public function testGetOwnedDataSources(){
-        $resu=$this->dataSourceModel->getUserID();
-        $res=$this->dataSourceModel->getOwnedDataSources($resu);
+        $dataSourceID=$this->dataSourceModel->getUserID();
+        $res=$this->dataSourceModel->getOwnedDataSources($dataSourceID);
         $this->assertEquals($res["id"],NULL);
     }
     
@@ -96,8 +96,8 @@ class DataSourceModelTest extends TestCase{
     * testGetAccessDataSources() this method tests the method getAccessDataSources()
     */
     public function testGetAccessDataSources(){
-        $resu=$this->dataSourceModel->getAdvisorID();
-        $res=$this->dataSourceModel->getAccessDataSources($resu);
+        $advisorID=$this->dataSourceModel->getAdvisorID();
+        $res=$this->dataSourceModel->getAccessDataSources($advisorID);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
 
@@ -105,8 +105,8 @@ class DataSourceModelTest extends TestCase{
     * testGetAdvisors() this method tests the method getAdvisors()
     */
     public function testGetAdvisors(){
-        $resu=$this->dataSourceModel->getAdvisorID();
-        $res=$this->dataSourceModel->getAdvisors($resu);
+        $advisorID=$this->dataSourceModel->getAdvisorID();
+        $res=$this->dataSourceModel->getAdvisors($advisorID);
         $this->assertNotEquals($res[0]["id"],NULL);
     }
     
@@ -235,7 +235,7 @@ class DataSourceModelTest extends TestCase{
         $dataSource['name']="test";
         $dataSource['visible']=2;
         $resu=$this->dataSourceModel->getUserID();
-        $res =$this->dataSourceModel->addDataSourceApp($resu+1,$dataSource);
+        $res =$this->dataSourceModel->addDataSourceApp($resu,$dataSource);
         $this->assertNotEquals($res,false);
     }
 
@@ -249,7 +249,7 @@ class DataSourceModelTest extends TestCase{
         $dataSource['config']=NULL;
         $dataSource['visible']=2;
         $resu=$this->dataSourceModel->getUserID();
-        $res =$this->dataSourceModel->addDataSourceApp($resu+2,$dataSource);
+        $res =$this->dataSourceModel->addDataSourceApp($resu,$dataSource);
         $this->assertNotEquals($res,false);
     }
 
@@ -273,7 +273,7 @@ class DataSourceModelTest extends TestCase{
         $dataSourceUser['askAccess']=1;
         $resu =$this->dataSourceModel->getDataSourceID();
         $resul=$this->dataSourceModel->getUserID();
-        $res = $this->dataSourceModel->addDataSourceUser($resu+1,$resul,$dataSourceUser);
+        $res = $this->dataSourceModel->addDataSourceUser($resu,$resul,$dataSourceUser);
         $this->assertEquals($res,true);
     }
     
