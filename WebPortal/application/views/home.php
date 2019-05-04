@@ -1,5 +1,5 @@
 <section id="top_page">
-	<h1>Bienvenue sur la page d'accueil du projet Wallesmart</h1>
+	<h1>Bienvenue sur la page d'accueil</h1>
 	
 	<aside>
 		<h3>Nombre d'agriculteurs inscrits : <?php echo ("$numberAgri");?></h3>
