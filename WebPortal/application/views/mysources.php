@@ -17,14 +17,14 @@ echo '</p>';
 
 echo '<p>';
     echo form_label('Date d\'ajout','add_date');
-    echo '<input type="date" name="add_date" value="'.htmlentities($data['add_date']).'" id="add_date">';// TODO check Y-m-d
+    echo '<input type="date" name="add_date" value="'.strftime("%Y-%m-%d",strtotime(htmlentities($data['add_date']))).'" id="add_date">'; // TODO check Y-m-d
 echo '</p>';
 
 echo '<p>';
     echo form_label('Visibilit&eacute;');
-    echo form_radio('visible','2',$data['visible'] == 2, 'id="visible_2"').form_label('Priv&eacute;','visible_2');
-    echo form_radio('visible','1',$data['visible'] == 1, 'id="visible_1"').form_label('Public','visible_1');
-    echo form_radio('visible','0',$data['visible'] == 0, 'id="visible_0"').form_label('Sur demande','visible_0');
+    echo form_label('Priv&eacute;','visible_2').form_radio('visible','2',$data['visible'] == 2, 'id="visible_2"');
+    echo form_label('Public','visible_1').form_radio('visible','1',$data['visible'] == 1, 'id="visible_1"');
+    echo form_label('Sur demande','visible_0').form_radio('visible','0',$data['visible'] == 0, 'id="visible_0"');
     //    echo form_input('gender',$gender,'id="gender"');/*** TODO input type to radio (HTML5) **/
 echo '</p>';
 

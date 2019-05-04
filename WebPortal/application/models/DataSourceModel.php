@@ -844,14 +844,14 @@ class DataSourceModel extends CI_Model{
 	     $sourceID     = intval($sourceID);
 	     $projectID    = intval($projectID);
 	     //  0=demande effectuee, 1=OK, 2=refus
-	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=1 WHERE `fp_id_projet`=$projectID AND `uf_id_fichier`=$sourceID";
+	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=1 WHERE `fp_id_projet`=$projectID AND `fp_id_fichier`=$sourceID";
 	     $this->db->query($sql);
 	 }
 	 public function refuseAccessProject($sourceID, $projectID){
 	     $sourceID     = intval($sourceID);
 	     $projectID    = intval($projectID);
 	     //  0=demande effectuee, 1=OK, 2=refus
-	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=2 WHERE `fp_id_projet`=$projectID AND `uf_id_fichier`=$sourceID";
+	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=2 WHERE `fp_id_projet`=$projectID AND `fp_id_fichier`=$sourceID";
 	     $this->db->query($sql);
 	 }
 	 public function revokeAccess($sourceID, $advisorID){
@@ -931,10 +931,11 @@ class DataSourceModel extends CI_Model{
 				FROM utilisateur_fichier
 				JOIN fichierappli AS a
 				ON utilisateur_fichier.uf_id_fichier=a.f_id
-				WHERE uf_id_invite = ?";
+				WHERE (uf_id_invite = ?";
 		
 	    $params = array();
 	    $params [] = intval($userID); 
+		 
 		
 		if(!is_null($filter))
 		{
@@ -1048,7 +1049,9 @@ class DataSourceModel extends CI_Model{
 			}
 			$sql.=' ) ';
 		}
-			
+		if(!($first)){	
+	            $sql.=' ) ';
+                }	
 		$sql.=' ORDER BY a.f_dateajout DESC';		
 
 		$query = $this->db->query($sql, $params);
@@ -1089,7 +1092,7 @@ class DataSourceModel extends CI_Model{
 				ON a.f_id = utilisateur_fichier.uf_id_fichier
                 JOIN utilisateur 
                 ON utilisateur_fichier.uf_id_invite = utilisateur.ut_id
-				WHERE uf_id_fichier = ?";
+				WHERE (uf_id_fichier = ?";
 		
 		$params = array();
 		$params[]=intval($dataSourceID);
@@ -1161,8 +1164,11 @@ class DataSourceModel extends CI_Model{
 					$params[] = $v;
 				}			
 			}
+			$sql.=' ) ';
 		}
-			
+		if(!($first)){	
+	            $sql.=' ) ';
+                }	
 		$sql.=' ORDER BY uf_demande_date DESC';		
 
 		$query = $this->db->query($sql, $params);
@@ -1354,7 +1360,7 @@ class DataSourceModel extends CI_Model{
 				FROM fichier_projet AS p
 				JOIN projet
 				ON p.fp_id_fichier=p_id
-				WHERE p.fp_id_fichier = ?";
+				WHERE (p.fp_id_fichier = ?";
 		
 		$params = array();
 		$params [] = intval($dataSourceID);
@@ -1411,7 +1417,11 @@ class DataSourceModel extends CI_Model{
 					$params[] = $v;
 				}
 			}
+		$sql.=' ) ';
 		}
+		if(!($first)){	
+	            $sql.=' ) ';
+                }	
 			
 		$sql.=' ORDER BY projet.p_date_start DESC';		
 
@@ -1431,8 +1441,8 @@ class DataSourceModel extends CI_Model{
 	{
 	    
 	    $sql="SELECT
-				f_id AS id,
-				f_id_proprio AS owner_id
+				f_id,
+				f_id_proprio
                FROM fichierappli
 				ORDER BY f_id_proprio DESC";
 	    $query = $this->db->query($sql);
@@ -1450,8 +1460,8 @@ class DataSourceModel extends CI_Model{
 	{
 	    
 	    $sql="SELECT
-				f_id AS id,
-				f_id_proprio AS owner_id
+				f_id,
+				f_id_proprio
                FROM fichierappli
 				ORDER BY f_id DESC";
 	    $query = $this->db->query($sql);
@@ -1487,8 +1497,8 @@ class DataSourceModel extends CI_Model{
 	{
 	    
 	    $sql="SELECT
-				uf_id_invite AS id_invite,
-				uf_id_fichier AS id
+				uf_id_invite,
+				uf_id_fichier
                FROM utilisateur_fichier
 				ORDER BY uf_id_fichier DESC";
 	    $query = $this->db->query($sql);

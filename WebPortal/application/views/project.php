@@ -74,7 +74,7 @@
 		<li>
 		<?php
 		echo form_open("administration/update/$project[id]/$scientist[member_id]");
-		echo form_fieldset("member_username ($scientist[member_firstname] $scientist[member_lastname])");
+		echo form_fieldset("$scientist[member_username] ($scientist[member_firstname] $scientist[member_lastname])");
 		
 		echo '<p>';
 		echo form_label('Gestionnaire du projet','manage');

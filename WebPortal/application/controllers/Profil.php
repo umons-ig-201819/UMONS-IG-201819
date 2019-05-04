@@ -6,6 +6,7 @@ class Profil extends CI_Controller {
         // TODO ensure that user is logged
         parent::__construct();
         $this->load->model('UserModel');
+        $this->load->model('DataSourceModel');
     }
     public function index($userID=null){
 //        if(is_null($userID)) $userID = $this->session->UserID;
@@ -23,12 +24,16 @@ class Profil extends CI_Controller {
         foreach($data as $key => $value)
             $data[$key] = html_escape($value);
         
-  
+  /*
          $dataRoles = $this->UserModel->getUserRoles($this->session->UserID);
          $firstArray=$dataRoles[0];
          $data['test']= $firstArray['id'];            
-         $data['roleName']= $firstArray['name'];      
-                
+         $data['roleName']= $firstArray['name'];
+  */  
+         
+         $dataRoles = $this->UserModel->getUserRoles($this->session->UserID);
+         $data['roleName']= $dataRoles;
+
         $this->load->view('header');
         $this->load->view('profil',$data);
         $this->load->view('footer');
@@ -97,9 +102,9 @@ class Profil extends CI_Controller {
         
         $resuserupdate = $this->UserModel->updateUser($data);
         if ($resuserupdate)
-            echo "<script>alert('Modification effectuée')</script>";
+            echo "<script>alert('Modification effectuee')</script>";
             else
-                echo "<script>alert('Modification échouée')</script>";
+                echo "<script>alert('Modification echouee')</script>";
                 
         $this->index($userID);
     }
@@ -118,12 +123,22 @@ class Profil extends CI_Controller {
                 $userID = $this->session->UserID;
             }
             
-            echo 'Deleted successfully.';
-            $this->UserModel->deleteUserAllRole($userID);
-            $this->UserModel->deleteUser($userID);
-            $this->session->sess_destroy();
-            redirect('/');
-    
+            $resultatdel1 =  $this->DataSourceModel->deleteAllDataSourcesUser($userID);
+            $resultatdel2 =  $this->UserModel->deleteUserAllRole($userID);
+            $resultatdel3 =  $this->UserModel->deleteUser($userID);
+            if ($resultatdel1 && $resultatdel2 && $resultatdel3)
+            {
+                echo "<script charset='ISO-8859-1'>alert('Suppression des donnees effectuee')</script>";
+                $this->session->sess_destroy();
+                $this->load->view('connection');
+          //      redirect('/');
+            }
+            else
+            {
+                echo "<script charset='ISO-8859-1'>alert('Suppression echouee, veuillez contacter l'administrateur')</script>";
+                $this->load->view('profil');
+            }
+            
     }
     public function data($userID=null){
         // TODO update rights
@@ -158,11 +173,7 @@ class Profil extends CI_Controller {
         foreach($data as $key => $value)
         $data[$key] = html_escape($value);
            
-        $dataRoles = $this->UserModel->getUserRoles($this->session->UserID);
-        $firstArray=$dataRoles[0];
-        $data['test']= $firstArray['id'];
-        $data['roleName']= $firstArray['name'];     
-              
+        
         if ($this->form_validation->run() == FALSE)
         {
             $this->load->view('profil',$data);

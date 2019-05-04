@@ -175,6 +175,23 @@ class ProjectModel extends CI_Model
         return $project;
     }
 
+	/**
+     * listProjects() this method returns a project based on its id
+     *
+     * @param $projID project id
+     * @param $filter is optional and is an array containing search criterions           
+     * @param $filter['id'] is the project id
+     * @param $filter['project_name'] is the name of the project
+     * @param $filter['project_description'] is the description of the project
+     * @param $filter['date_start'] is the date when the projet begin
+     * @param $filter['date_end'] is the date when the projet end
+     * @param $filter['owner_lastname'] is the lastname of creator
+     * @param $filter['owner_firstname'] is the firstname of creator
+     * @param $and is optional and is an boolean which is FALSE (default behavior) for processing teh search query with OR operators and TRUE for AND operators
+	 
+     * @return an array of projects (date start descending order)
+     * @see getProjects() for the data structure of returned users
+     */
     public function listProjects($filter = NULL, $and = false){
         $where = '';
         $and   = $and ? ' AND': ' OR';
@@ -304,7 +321,7 @@ class ProjectModel extends CI_Model
                     $params[] = '%' . $v . '%';
                 }
             }
-            //$sql .= ')';
+            $sql .= ')';
         }
 
         $sql .= ' ORDER BY p_date_start DESC';
@@ -609,7 +626,7 @@ class ProjectModel extends CI_Model
                     } else {
                         $sql .= $operator;
                     }
-                    $sql .= 'project_owner = ?';
+                    $sql .= 'p_id_createur = ?';
                     $params[] = $v;
                 }
             }

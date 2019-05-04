@@ -12,7 +12,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if(!defined('ZEPPELIN_URL')){
     define('ZEPPELIN_URL','http://192.168.2.168/zeppelin'); #'http://192.168.2.169:8080';
 }
-    
+
+if(!function_exists('get_binded_interpreters')){
+    function get_binded_interpreters($noteID){
+        $information  = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID"),true);
+        $interpreters = array();
+        foreach($information['body'] as $tab){
+            array_push($interpreters,$tab['id']);
+        }
+        sort($interpreters);
+        return $interpreters;
+    }
+}
+
+if(!function_exists('bind_interpreter')){
+    function bind_interpreter($noteID,$interpreters){
+        $headers = array('http' =>
+            array(
+                'method'  => 'PUT',
+                'header'  => 'Content-Type: application/json',
+                'content' => json_encode($interpreters)
+            )
+        );
+        $context  = stream_context_create($headers);
+        $information = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID", true, $context),true);
+        return $information['status'] == 'OK';
+    }
+}
+
 if(!function_exists('create_note_if_not_exists')){
     /**
      * Check if a given node (by name) already exists. If not, it creates this node (purpose: new user workspace).
@@ -342,6 +369,13 @@ if(!function_exists('synchronize_workspace')){
      * @param unknown $originalParagraphs List of paragraphs contained in $originalID note. If null, autoloading
      */
     function synchronize_workspace($workspaceNoteID,&$workspaceParagraphs,$originalID,$originalParagraphs=null){
+        $originInterpreters    = get_binded_interpreters($originalID);
+        $workspaceInterpreters = get_binded_interpreters($workspaceNoteID);
+        foreach($originInterpreters as $interpreter){
+            if(!in_array($interpreter, $workspaceInterpreters))
+                array_push($workspaceInterpreters,$interpreter);
+        }
+        bind_interpreter($workspaceNoteID,$workspaceInterpreters);
         if(is_null($originalParagraphs)){
             $originalParagraphs = list_paragraphs($originalID);
         }
