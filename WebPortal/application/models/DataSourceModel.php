@@ -115,7 +115,7 @@ class DataSourceModel extends CI_Model{
      $fuModify='0';		if(isset($fileUser['modify']))			$fuModify=intval($fileUser['modify']);
      $fuRemove='0';		if(isset($fileUser['remove']))			$fuRemove=intval($fileUser['remove']);
      $fuAccess='0';		if(isset($fileUser['access']))			$fuAccess=intval($fileUser['access']);
-     
+      
      if( ! $this->db->query($sql, array(intval($userID), intval($dataSourceID), $fuRead, $fuModify, $fuRemove,$fuAccess)) )
      {
      return false;
