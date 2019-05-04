@@ -49,9 +49,9 @@ class DataSourceModel extends CI_Model{
 					VALUES (?,?,?,?,?,?,NOW())";
 		
 		$fURL=NULL; 		if(isset($dataSource ['url'])) $fURL=$dataSource ['url'];
-		$fAppli='0'; 	        if(isset($dataSource ['appli'])) $fAppli=intval($dataSource ['appli']);
+		$fAppli=0; 	        if(isset($dataSource ['appli'])) $fAppli=intval($dataSource ['appli']);
 		$fConfig=NULL; 		if(isset($dataSource ['config'])) $fConfig=$dataSource ['config'];
-		$fVisible='0'; 		if(isset($dataSource ['visible'])) $fVisible=intval($dataSource ['visible']);
+		$fVisible=0; 		if(isset($dataSource ['visible'])) $fVisible=intval($dataSource ['visible']);
 			
 		if( ! $this->db->query($sql, array(intval($userID), $fName, $fURL, intval($fAppli), $fConfig, intval($fVisible))) )
 		{
@@ -68,19 +68,20 @@ class DataSourceModel extends CI_Model{
 	 
 	 * @param $dataSourceID (required) is the id of a data source
 	 * @param $projectID (required) is the id of the project
-	 * @param $access (required) is the granted access for a project to a datasource
 	 
 	 * @return TRUE if insert succeeded and FALSE if not
 	 */
-	public function addDataSourceProject($dataSourceID,$projID,$access='0')
+	public function addDataSourceProject($dataSourceID,$projID)
 	{
 		if(empty($dataSourceID)) return false;
 		if(empty($projID)) return false;
+		
+		$access = $this->getVisibility($dataSourceID);
 			
 		$sql = "INSERT INTO fichier_projet
 					(fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
 					VALUES (?,?,?,NOW())";
-		
+			
 		if( ! $this->db->query($sql, array(intval($dataSourceID), intval($projID), $access)) )
 		{
 			return false;
@@ -98,7 +99,6 @@ class DataSourceModel extends CI_Model{
      * @param $fileUser ['read'] (required) means if a user may read a data source or not (0) = default
      * @param $fileUser ['modify'] (required) means if a user may modify a data source or not (0) = default
      * @param $fileUser ['remove'] (required) means if a user may remove a data source or not (0) = default
-	 * @param $fileUser ['access] (required) is the granted access for a user to a datasource
 
      * @return TRUE if insert succeeded and FALSE if not
      */
@@ -107,6 +107,8 @@ class DataSourceModel extends CI_Model{
         if(empty($dataSourceID)) return false;
         if(empty($userID)) return false;
           
+     $access = $this->getVisibility($dataSourceID);
+          
      $sql = "INSERT INTO utilisateur_fichier
      (uf_id_invite, uf_id_fichier, uf_lire, uf_modifier, uf_effacer,uf_demande_acces, uf_demande_date)
      VALUES (?,?,?,?,?,?,NOW())";
@@ -114,9 +116,8 @@ class DataSourceModel extends CI_Model{
      $fuRead='0'; 		if(isset($fileUser['read'])) 			$fuRead=intval($fileUser['read']);
      $fuModify='0';		if(isset($fileUser['modify']))			$fuModify=intval($fileUser['modify']);
      $fuRemove='0';		if(isset($fileUser['remove']))			$fuRemove=intval($fileUser['remove']);
-     $fuAccess='0';		if(isset($fileUser['access']))			$fuAccess=intval($fileUser['access']);
-        
-     if( ! $this->db->query($sql, array(intval($userID), intval($dataSourceID), $fuRead, $fuModify, $fuRemove,$fuAccess)) )
+     
+     if( ! $this->db->query($sql, array(intval($userID), intval($dataSourceID), $fuRead, $fuModify, $fuRemove,$access)) )
      {
      return false;
      }
@@ -452,11 +453,11 @@ class DataSourceModel extends CI_Model{
         
     }
 	
-	//-------------------------------------------------------------
+    //-------------------------------------------------------------
     //-------------------- SELECT ---------------------------------
     //-------------------------------------------------------------
 
-	/**
+    /**
      * getVisibility() this method returns a data source based on its id
      
      * @param $dataSourceID data source id
@@ -471,7 +472,7 @@ class DataSourceModel extends CI_Model{
     $result = $this->db->query($sql,array($dataSourceID));
     $visible = $result->row_array();
     $access = intval($visible['f_visible_awe']);
-    
+    if(is_null($access)) return false;
     return $access;
     }
 	
@@ -507,12 +508,12 @@ class DataSourceModel extends CI_Model{
 				WHERE (f_visible_awe = 0 OR f_visible_awe = 1) AND f_id = ? ";
         $query = $this->db->query($sql, array($dataSourceID));
         $File=$query->row_array();
-        
+        if(is_null($File['id'])) return false;
         return $File;
     
 	}
 	
-	 /**
+     /**
      * getOwnedDataSources() this method returns the data sources that belong to a user
      
      * @param $userID user id
@@ -542,7 +543,7 @@ class DataSourceModel extends CI_Model{
 				WHERE f_id_proprio=?";
         $query = $this->db->query($sql, array($userID));
         $ownerFiles=$query->row_array();
-        
+        if(is_null($ownerFiles['id'])) return false;
         return $ownerFiles;
     
 	}
@@ -581,6 +582,7 @@ class DataSourceModel extends CI_Model{
 	    }
 	    $sql = "$sql ORDER BY file_name";
 	    $query = $this->db->query($sql);
+	    if(is_null($query['id'])) return false;
 	    return $query->result_array();
 	}
  	
@@ -720,7 +722,7 @@ class DataSourceModel extends CI_Model{
 
         $query = $this->db->query($sql, $params);
         $dataSources=$query->result_array();
-
+        if(is_null($dataSources['id'])) return false;
         return $dataSources;
 	}
 	public function getPersonalDataSources($userID){
@@ -737,6 +739,7 @@ class DataSourceModel extends CI_Model{
                 WHERE f_id_proprio=?";
 	    $query = $this->db->query($sql, array($userID));
 	    $result=$query->result_array();
+	    if(is_null($result['id'])) return false;
 	    return $result;
 	}
 	public function getProjects($sourceID){
@@ -752,6 +755,7 @@ class DataSourceModel extends CI_Model{
         ";
 	    $query = $this->db->query($sql, array($sourceID));
 	    $result=$query->result_array();
+	    if(is_null($result['id'])) return false;
 	    return $result;
 	}
 	public function getAccessDataSources($advisorID){
@@ -768,6 +772,7 @@ class DataSourceModel extends CI_Model{
 				WHERE utilisateur_fichier.uf_id_fichier=fichierappli.f_id AND utilisateur_fichier.uf_demande_acces=1 AND utilisateur_fichier.uf_id_invite=?";
 	    $query = $this->db->query($sql, array($advisorID));
 	    $result=$query->result_array();
+	    if(is_null($result['id'])) return false;
 	    return $result;
 	}
 	public function getAdvisors($sourceID){
@@ -785,6 +790,7 @@ class DataSourceModel extends CI_Model{
         ";
 	    $query = $this->db->query($sql, array($sourceID));
 	    $result=$query->result_array();
+	    if(is_null($result['userid'])) return false;
 	    return $result;
 	}
 	 public function addAdvisor($sourceID, $advisorUsername){
@@ -870,6 +876,7 @@ class DataSourceModel extends CI_Model{
 	     $query = $this->db->query($sql);
 	     $dataSources=$query->result_array();
 	     // TODO project still valid => add 'AND end_date >= now'
+	     if(is_null($dataSources['id'])) return false;
 	     return $dataSources;
 	 }
 	 
@@ -1038,7 +1045,7 @@ class DataSourceModel extends CI_Model{
 
 		$query = $this->db->query($sql, $params);
 		$dataSources=$query->result_array();		
-		
+		if(is_null($dataSources['fileID'])) return false;
 		return $dataSources;
 	}
 	
@@ -1155,7 +1162,7 @@ class DataSourceModel extends CI_Model{
 
 		$query = $this->db->query($sql, $params);
 		$users=$query->result_array();		
-		
+		if(is_null($users['userID'])) return false;
 		return $users;
 	
 	}
@@ -1315,7 +1322,7 @@ class DataSourceModel extends CI_Model{
 
 		$query = $this->db->query($sql, $params);
 		$dataSources=$query->result_array();		
-		
+		if(is_null($dataSources['fileID'])) return false;
 		return $dataSources;
 	}
 	
@@ -1409,7 +1416,7 @@ class DataSourceModel extends CI_Model{
 
 		$query = $this->db->query($sql, $params);
 		$projects=$query->result_array();		
-		
+		if(is_null($projects['project_ID'])) return false;
 		return $projects;
 	
 	}
@@ -1430,6 +1437,7 @@ class DataSourceModel extends CI_Model{
 	    $query = $this->db->query($sql);
 	    $id=$query->result_array();
 	    $lastiduser=$id[0]["f_id_proprio"];
+           
 	    return $lastiduser;
 	}	
 	
