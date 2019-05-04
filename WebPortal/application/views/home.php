@@ -30,10 +30,14 @@
         fclose($compteur_f);
         
         
-        ?> 
         
-          <span><?php echo ($compte[0]);?></span>
-          <span><?php echo ($compte[1]);?></span>
+        for ($i = 0; $i < strlen($compte); $i++) 
+	{
+		?><span><?php echo ($compte[$i]);?></span>
+		<?php
+	}
+	?>
+  
 
 	</div>
 
