@@ -24,22 +24,23 @@ class Profil extends CI_Controller {
         foreach($data as $key => $value)
             $data[$key] = html_escape($value);
         
-  
+  /*
          $dataRoles = $this->UserModel->getUserRoles($this->session->UserID);
          $firstArray=$dataRoles[0];
          $data['test']= $firstArray['id'];            
          $data['roleName']= $firstArray['name'];
+  */  
          
-         /*
          $dataRoles = $this->UserModel->getUserRoles($this->session->UserID);
          //$firstArray=$dataRoles[0];
          //$data['test']= $firstArray['id'];
          $key = 'roleName';
+         $s = '';
          foreach ($dataRoles as $key => $myValue)
          {
-             $data['roleName']=  $myValue;
+          $s = $s. $myValue . "!";
          }
-         */
+         $data['roleName']=  $myValue;
          
          
          
