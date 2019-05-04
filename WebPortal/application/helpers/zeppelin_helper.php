@@ -15,8 +15,12 @@ if(!defined('ZEPPELIN_URL')){
 
 if(!function_exists('get_binded_interpreters')){
     function get_binded_interpreters($noteID){
-        $information = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID"),true);
-        return $information['body'];
+        $information  = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID"),true);
+        $interpreters = array();
+        foreach($information['body'] as $tab){
+            array_push($interpreters,$tab['id']);
+        }
+        return $interpreters;
     }
 }
 
