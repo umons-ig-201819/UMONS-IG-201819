@@ -32,13 +32,8 @@ class Profil extends CI_Controller {
   */  
          
          $dataRoles = $this->UserModel->getUserRoles($this->session->UserID);
-         $data['role']= $dataRoles;
+         $data['roleName']= $dataRoles;
 
-
-         
-         
-         
-                 
         $this->load->view('header');
         $this->load->view('profil',$data);
         $this->load->view('footer');
