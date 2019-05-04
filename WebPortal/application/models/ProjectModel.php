@@ -919,4 +919,21 @@ class ProjectModel extends CI_Model
 	    return $lastiddatasource;
 	}
 	
+	/**
+	* getLogin() is a method for searching the login of the last user
+	* @return the login
+	* @see function for tests
+	*/
+	public function getLogin()
+	{
+	    
+	    $sql="SELECT
+				ut_login
+				FROM utilisateur
+				ORDER BY p_id DESC";
+	    $query = $this->db->query($sql);
+	    $id=$query->result_array();
+	    $lastlogin=$id[0]["ut_login"];
+	    return $lastlogin;
+	}
 }
