@@ -32,15 +32,9 @@ class Profil extends CI_Controller {
   */  
          
          $dataRoles = $this->UserModel->getUserRoles($this->session->UserID);
-         //$firstArray=$dataRoles[0];
-         //$data['test']= $firstArray['id'];
-         $key = 'roleName';
-         $s = '';
-         foreach ($dataRoles as $key => $myValue)
-         {
-          $s = $s. $myValue . "!";
-         }
-         $data['roleName']=  $myValue;
+         $data['role']= $dataRoles;
+
+
          
          
          

@@ -103,7 +103,16 @@ echo form_open("profil/roles/$user_id");
 echo form_fieldset('Mon r&ocirc;le');
 echo '<p>';
 //echo ("$test"."&nbsp;");
-echo ("$roleName");
+//echo ("$roleName");
+
+$arrlength = count($roleName);
+
+for($x = 0; $x < $arrlength; $x++) {
+    $thisArray=$roleName[$x];
+    echo $thisArray['name'];
+    echo "<br>";
+}
+
 
 echo '</p>';
 echo form_fieldset_close();
