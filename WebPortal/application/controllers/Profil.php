@@ -30,6 +30,19 @@ class Profil extends CI_Controller {
          $data['test']= $firstArray['id'];            
          $data['roleName']= $firstArray['name'];
          
+         /*
+         $dataRoles = $this->UserModel->getUserRoles($this->session->UserID);
+         //$firstArray=$dataRoles[0];
+         //$data['test']= $firstArray['id'];
+         $key = 'roleName';
+         foreach ($dataRoles as $key => $myValue)
+         {
+             $data['roleName']=  $myValue;
+         }
+         */
+         
+         
+         
                  
         $this->load->view('header');
         $this->load->view('profil',$data);
@@ -170,18 +183,7 @@ class Profil extends CI_Controller {
         foreach($data as $key => $value)
         $data[$key] = html_escape($value);
            
-        $dataRoles = $this->UserModel->getUserRoles($this->session->UserID);
         
-       
-        //$firstArray=$dataRoles[0];
-        //$data['test']= $firstArray['id'];
-        $key = 'roleName';
-        foreach ($dataRoles as $key => $myValue)
-        {
-        $data['roleName']=  $myValue;     
-        }
-        
-              
         if ($this->form_validation->run() == FALSE)
         {
             $this->load->view('profil',$data);
