@@ -30,8 +30,7 @@ class Profil extends CI_Controller {
          $data['test']= $firstArray['id'];            
          $data['roleName']= $firstArray['name'];
          
-         foreach($obj in $dataRoles)
-                
+                 
         $this->load->view('header');
         $this->load->view('profil',$data);
         $this->load->view('footer');
