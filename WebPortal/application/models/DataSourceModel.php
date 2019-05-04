@@ -49,7 +49,7 @@ class DataSourceModel extends CI_Model{
 					VALUES (?,?,?,?,?,?,NOW())";
 		
 		$fURL=NULL; 		if(isset($dataSource ['url'])) $fURL=$dataSource ['url'];
-		$fAppli=0; 			if(isset($dataSource ['appli'])) $fAppli=intval($dataSource ['appli']);
+		$fAppli=0; 	        if(isset($dataSource ['appli'])) $fAppli=intval($dataSource ['appli']);
 		$fConfig=NULL; 		if(isset($dataSource ['config'])) $fConfig=$dataSource ['config'];
 		$fVisible=0; 		if(isset($dataSource ['visible'])) $fVisible=intval($dataSource ['visible']);
 			
@@ -263,21 +263,21 @@ class DataSourceModel extends CI_Model{
         
     }
 	
-	//-------------------------------------------------------------
+    //-------------------------------------------------------------
     //-------------------- UPDATE ---------------------------------
     //-------------------------------------------------------------
 	
-	 /**
+     /**
      * updateDataSource() is a method for updating a specific data source
      
-	 * @param $userID is is the id of the owner of the data source
-	 * @param $dataSource is an array containing the informations about the data source
-	 * @param $dataSourceID is the id of the data source
-	 * @param $dataSource ['name'] (optional) is the new name of the data source
-	 * @param $dataSource ['url'] (optional) is the new access url to the data source (default value=NULL)
-	 * @param $dataSource ['appli'] (optional) means if the id is an application (1) or not (0) =default
-	 * @param $dataSource ['config'] (optional) could be, for exemple, a JSON app configuration file
-	 * @param $dataSource ['visible'] (optional) means if the data source have to be hidden (=2), visible (=1) or if it is accessible on request (=0)
+     * @param $userID is is the id of the owner of the data source
+     * @param $dataSource is an array containing the informations about the data source
+     * @param $dataSourceID is the id of the data source
+     * @param $dataSource ['name'] (optional) is the new name of the data source
+     * @param $dataSource ['url'] (optional) is the new access url to the data source (default value=NULL)
+     * @param $dataSource ['appli'] (optional) means if the id is an application (1) or not (0) =default
+     * @param $dataSource ['config'] (optional) could be, for exemple, a JSON app configuration file
+     * @param $dataSource ['visible'] (optional) means if the data source have to be hidden (=2), visible (=1) or if it is accessible on request (=0)
      
      * @return TRUE if update succeeded and FALSE if not
      */
@@ -456,24 +456,7 @@ class DataSourceModel extends CI_Model{
 	//-------------------------------------------------------------
     //-------------------- SELECT ---------------------------------
     //-------------------------------------------------------------
-    /**
-     * getVisibility() this method returns a data source based on its id
-     
-     * @param $dataSourceID data source id
-     
-     * @return the value of the visibility of a data source with its informations
 
-     */
-    public function getVisibility($dataSourceID)
-    {
-    $sql="SELECT f_visible_awe FROM fichierappli WHERE f_id=$dataSourceID";
-    $result = $this->db->query($sql);
-    $visible = $result->row_array();
-    $access = intval($visible['f_visible_awe']);
-    
-    return $access;
-    }
-    
 	/**
      * getVisibility() this method returns a data source based on its id
      
