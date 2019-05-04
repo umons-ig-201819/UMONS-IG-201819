@@ -18,8 +18,7 @@
     <body>
     	<header>         
                 <div id="logo">
-                	<img src="<?php echo base_url(); ?>assets/images/logo_awe_asbl.png" alt="Logo Principal AWE!" />
-                	<h1> Portail de Wallesmart </h1>
+                	<h1> Wallesmart </h1>
             		<nav>    		
             			<ul>
             				<li><a href="<?php echo site_url("home"); ?>">Accueil</a></li>
