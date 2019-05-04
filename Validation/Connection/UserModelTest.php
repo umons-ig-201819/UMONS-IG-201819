@@ -144,7 +144,7 @@ class UserModelTest extends TestCase{
         $lastid = $this->userModel->getId();
         $res=$this->userModel->getUsers();
     
-        $this->assertEquals($res[0]["id"],$lastid);
+        $this->assertEquals($res[0]["id"],intval($lastid));
         $this->assertEquals($res[1]["id"],5);
         $this->assertEquals($res[2]["id"],1);
         $this->assertEquals($res[9]["id"],2);
@@ -157,7 +157,7 @@ class UserModelTest extends TestCase{
     }
     
     public function testLoginIsFree2(){
-        $res=$this->userModel->loginIsFree("DurandJ");
+        $res=$this->userModel->loginIsFree("coooools");
         $this->assertEquals($res,false);
     }
     
