@@ -32,12 +32,12 @@
         
         ?> 
         <?php echo ("taillee :"+strlen($compte));?>
-          <span><?php echo substr($compte,0,1);?></span>
-          <span><?php echo substr($compte,1,1);?></span>
-          <span><?php echo substr($compte,2,1);?></span>
-          <span><?php echo substr($compte,3,1);?></span>
-          <span><?php echo substr($compte,4,1);?></span>
-          <span><?php echo substr($compte,5,1);?></span>
+          <span><?php echo $compte[0];?></span>
+          <span><?php echo $compte[1];?></span>
+          <span><?php echo $compte[2];?></span>
+          <span><?php echo $compte[3];?></span>
+          <span><?php echo $compte[4];?></span>
+          <span><?php echo $compte[5];?></span>
 	</div>
 
 	</aside>
