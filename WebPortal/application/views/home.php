@@ -29,9 +29,9 @@
         }
         fclose($compteur_f);
         
-        echo ("taillee :".strlen($compte));
-        ?> 
         
+        ?> 
+        <?php echo ("taillee :");?>
           <span><?php echo substr($compte,0,1);?></span>
           <span><?php echo substr($compte,1,1);?></span>
           <span><?php echo substr($compte,2,1);?></span>
