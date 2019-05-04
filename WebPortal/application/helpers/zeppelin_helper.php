@@ -20,17 +20,19 @@ if(!function_exists('get_binded_interpreters')){
         foreach($information['body'] as $tab){
             array_push($interpreters,$tab['id']);
         }
+        sort($interpreters);
         return $interpreters;
     }
 }
 
 if(!function_exists('bind_interpreter')){
-    function bind_interpreter($noteID,$interpreter){
+    function bind_interpreter($noteID,$interpreters){
+        print_r($interpreters);
         // TODO from https://issues.apache.org/jira/browse/ZEPPELIN-2513
         // TODO   PUT: ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID" , with -d = array of interpreter id's - will update the notebook intepreter binding. 
         // TODO do it when synchronize
-        $information = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID"),true);
-        return $information['body'];
+        #$information = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID"),true);
+        #return $information['body'];
     }
 }
 
@@ -363,10 +365,13 @@ if(!function_exists('synchronize_workspace')){
      * @param unknown $originalParagraphs List of paragraphs contained in $originalID note. If null, autoloading
      */
     function synchronize_workspace($workspaceNoteID,&$workspaceParagraphs,$originalID,$originalParagraphs=null){
-        echo "Note:<br>\n";
-        print_r(get_binded_interpreters($originalID));
-        echo "Workspace:<br>\n";
-        print_r(get_binded_interpreters($workspaceNoteID));
+        $originInterpreters    = get_binded_interpreters($originalID);
+        $workspaceInterpreters = get_binded_interpreters($workspaceNoteID);
+        foreach($originInterpreters as $interpreter){
+            if(!in_array($interpreter, $workspaceInterpreters))
+                array_push($workspaceInterpreters,$interpreter);
+        }
+        bind_interpreter($workspaceNoteID,$workspaceInterpreters);
         if(is_null($originalParagraphs)){
             $originalParagraphs = list_paragraphs($originalID);
         }
