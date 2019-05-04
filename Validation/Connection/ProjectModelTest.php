@@ -43,7 +43,7 @@ protected function tearDown(){
         $filter['owner_firstname']="Jean";
         $and=false;
         $res=$this->projectModel->listProjects($filter,$and);
-        $this->assertEquals($res[0],false);
+        $this->assertEquals($res[0]['id'],false);
     }
     /**
     * testGetProjects() this method tests the method getProjects()
@@ -143,9 +143,9 @@ protected function tearDown(){
      public function testAddUserProject1()
     {
         $userProject['gestion']=1;
-        $userID=$this->projectModel->getUserID();
+        $login=$this->projectModel->getLogin();
         $projID=$this->projectModel->getProjectID();
-        $res=$this->projectModel->addUserProject($userID,$projID-1,$userProject);
+        $res=$this->projectModel->addUserProject($login,$projID-1,$userProject);
         $this->assertEquals($res,true);
     }
     
