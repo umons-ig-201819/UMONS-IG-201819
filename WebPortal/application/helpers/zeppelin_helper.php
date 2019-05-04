@@ -35,7 +35,7 @@ if(!function_exists('bind_interpreter')){
             )
         );
         $context  = stream_context_create($headers);
-        $information = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID", true, $context);true);
+        $information = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/interpreter/bind/$noteID", true, $context),true);
         print_r($information);
         return $information['body'];
         // TODO from https://issues.apache.org/jira/browse/ZEPPELIN-2513
