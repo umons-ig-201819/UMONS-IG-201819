@@ -28,7 +28,7 @@ class DataSourceModelTest extends TestCase{
     {
         $dataSource = $this->dataSourceModel->getDataSourceID();
         $res=$this->dataSourceModel->getVisibility($dataSource);
-        $this->assertNotEquals($res,NULL);
+        $this->assertNotEquals($res,false);
     }
     
     /**
@@ -37,7 +37,7 @@ class DataSourceModelTest extends TestCase{
     public function testGetDataSource(){
         $dataSourcID=$this->dataSourceModel->getDataSourceID();
         $res =$this->dataSourceModel->getDataSource($dataSourcID);
-        $this->assertNotEquals($res["id"],NULL);
+        $this->assertNotEquals($res,false);
     }
 
     /**
@@ -46,7 +46,7 @@ class DataSourceModelTest extends TestCase{
     public function testGetOwnedDataSources(){
         $dataSourceID=$this->dataSourceModel->getUserID();
         $res=$this->dataSourceModel->getOwnedDataSources($dataSourceID);
-        $this->assertNotEquals($res["id"],NULL);
+        $this->assertNotEquals($res,false);
     }
     
 /**
@@ -57,7 +57,7 @@ class DataSourceModelTest extends TestCase{
         $filter['owner']="test";
         $filter['name']="test40";
         $res=$this->dataSourceModel->searchDataSources($filter,$and);
-        $this->assertNotEquals($res[0]["id"],NULL);
+        $this->assertNotEquals($res,false);
     }
     
     /**
@@ -71,7 +71,7 @@ class DataSourceModelTest extends TestCase{
         $filter['visible']=2;
         $filter['add_date']='2019-04-28 16:28:51';
         $res=$this->dataSourceModel->getDataSources($filter,$and);
-        $this->assertNotEquals($res[0]["id"],NULL);
+        $this->assertNotEquals($res,false);
     }
 
     /**
@@ -80,7 +80,7 @@ class DataSourceModelTest extends TestCase{
     public function testGetDataSources1(){
         $and = false;
         $res=$this->dataSourceModel->getDataSources(" ",$and);
-        $this->assertNotEquals($res[0]["id"],NULL);
+        $this->assertNotEquals($res,false);
     }
     
     /**
@@ -89,7 +89,7 @@ class DataSourceModelTest extends TestCase{
     public function testGetPersonalDataSources(){
         $resu=$this->dataSourceModel->getUserID();
         $res=$this->dataSourceModel->getPersonalDataSources($resu);
-        $this->assertNotEquals($res[0]["id"],NULL);
+        $this->assertNotEquals($res,false);
     }
     
     /**
@@ -98,7 +98,7 @@ class DataSourceModelTest extends TestCase{
     public function testGetAccessDataSources(){
         $advisorID=$this->dataSourceModel->getAdvisorID();
         $res=$this->dataSourceModel->getAccessDataSources($advisorID);
-        $this->assertNotEquals($res[0]["id"],NULL);
+        $this->assertNotEquals($res,false);
     }
 
     /**
@@ -107,7 +107,7 @@ class DataSourceModelTest extends TestCase{
     public function testGetAdvisors(){
         $advisorID=$this->dataSourceModel->getAdvisorID();
         $res=$this->dataSourceModel->getAdvisors($advisorID);
-        $this->assertNotEquals($res[0]["id"],NULL);
+        $this->assertNotEquals($res,false);
     }
     
     /**
@@ -116,7 +116,7 @@ class DataSourceModelTest extends TestCase{
     public function testGetAccessibleDataSources(){
         $resu=$this->dataSourceModel->getAdvisorID();
         $res=$this->dataSourceModel->getAccessibleDataSources($resu);
-        $this->assertNotEquals($res[0]["id"],NULL);
+        $this->assertNotEquals($res,false);
     }
 
     /**
@@ -136,7 +136,7 @@ class DataSourceModelTest extends TestCase{
         $filter['add_date']="";
         $and=false;
         $res=$this->dataSourceModel->getUserDataSources(1,$filter,$and);
-        $this->assertNotEquals($res[0]["id_file"],NULL);
+        $this->assertNotEquals($res,false);
     }
     
     /**
@@ -146,7 +146,7 @@ class DataSourceModelTest extends TestCase{
         $and=false;
         $resu=$this->dataSourceModel->getUserID();
         $res=$this->dataSourceModel->getUserDataSources($resu,$and);
-        $this->assertNotEquals($res[0]["id_file"],NULL);
+        $this->assertNotEquals($res,false);
     }
 
     /**
@@ -160,7 +160,7 @@ class DataSourceModelTest extends TestCase{
         $and=false;
         $resu=$this->dataSourceModel->getDataSourceID();
         $res=$this->dataSourceModel->getDataSourceUsers($resu,$filter,$and);
-        $this->assertNotEquals($res[0]["id"],NULL);
+        $this->assertNotEquals($res,false);
     }
     
     /**
@@ -170,7 +170,7 @@ class DataSourceModelTest extends TestCase{
         $and = false;
         $resu=$this->dataSourceModel->getDataSourceID();
         $res=$this->dataSourceModel->getDataSourceUsers($resu,$and);
-        $this->assertNotEquals($res[0]["id"],NULL);
+        $this->assertNotEquals($res,false);
     }
 
     /**
@@ -188,7 +188,7 @@ class DataSourceModelTest extends TestCase{
         $and=false;
         $resu=$this->dataSourceModel->getProjetID();
         $res=$this->dataSourceModel->getProjectDataSources($resu,$filter,$and);
-        $this->assertNotEquals($res[0]["id_fichier"],NULL);
+        $this->assertNotEquals($res,false);
     }
     
     /**
@@ -198,7 +198,7 @@ class DataSourceModelTest extends TestCase{
         $and = false;
         $resu=$this->dataSourceModel->getProjetID();
         $res=$this->dataSourceModel->getProjectDataSources($resu,$and);
-        $this->assertNotEquals($res[0]["id_fichier"],NULL);
+        $this->assertNotEquals($res,false);
     }
 
     /**
@@ -211,7 +211,7 @@ class DataSourceModelTest extends TestCase{
         $and=false;
         $resu=$this->dataSourceModel->getDataSourceID();
         $res=$this->dataSourceModel->getDataSourceProjects($resu,$filter,$and);
-        $this->assertEquals($res[0]["id_fichier"],NULL);
+        $this->assertEquals($res,false);
     }
     
     /**
@@ -221,7 +221,7 @@ class DataSourceModelTest extends TestCase{
         $and=false;
         $resu=$this->dataSourceModel->getDataSourceID();
         $res=$this->dataSourceModel->getDataSourceProjects($resu,$and);
-        $this->assertEquals($res[0]["id_fichier"],NULL);
+        $this->assertEquals($res,false);
     }
     
     //-------------------------------------------------------------
