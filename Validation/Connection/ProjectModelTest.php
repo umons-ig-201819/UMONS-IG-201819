@@ -131,9 +131,9 @@ protected function tearDown(){
     {
         $userProject['role_project']="test40";
         $userProject['gestion']=1;
-        $userID=$this->projectModel->getUserID();
+        $login=$this->projectModel->getLogin();
         $projID=$this->projectModel->getProjectID();
-        $res = $this->projectModel->addUserProject($userID,$projID,$userProject);
+        $res = $this->projectModel->addUserProject($login,$projID,$userProject);
         $this->assertEquals($res,true);
     }
     
