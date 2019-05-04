@@ -29,7 +29,7 @@
         }
         fclose($compteur_f);
         
-        echo '<strong>'.$compte.'</strong>';
+        //echo '<strong>'.$compte.'</strong>';
         ?> 
         
           <span><?php echo substr($compte,0,1);?></span>
