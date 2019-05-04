@@ -22,9 +22,10 @@ if(!isset($_SESSION['compteur_de_visite']))
         fseek($compteur_f, 0);
         fputs($compteur_f, $compte);
 }
-fclose($compteur_f);?>
-<strong id="odometer-away" class="odometer" data-value="'. $compte .'"></strong>
-<!--echo '<strong>'.$compte.'</strong> visites.';-->
+fclose($compteur_f);
+
+echo '<strong>'.$compte.'</strong> visites.';
+?>
  </h3>
 	</aside>
 </section>
