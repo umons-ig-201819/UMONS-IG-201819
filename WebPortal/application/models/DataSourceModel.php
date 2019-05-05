@@ -721,7 +721,7 @@ class DataSourceModel extends CI_Model{
         $sql.=' ORDER BY f_dateajout DESC';
 
         $query = $this->db->query($sql, $params);
-        $dataSources=$query->result_array();
+        $dataSources=$query->row_array();
         if(is_null($dataSources['id'])) return false;
         return $dataSources;
 	}
@@ -738,7 +738,7 @@ class DataSourceModel extends CI_Model{
 				FROM fichierappli
                 WHERE f_id_proprio=?";
 	    $query = $this->db->query($sql, array($userID));
-	    $result=$query->result_array();
+	    $result=$query->row_array();
 	    if(is_null($result['id'])) return false;
 	    return $result;
 	}
@@ -754,7 +754,7 @@ class DataSourceModel extends CI_Model{
                 AND fichier_projet.fp_id_fichier = ?
         ";
 	    $query = $this->db->query($sql, array($sourceID));
-	    $result=$query->result_array();
+	    $result=$query->row_array();
 	    if(is_null($result['id'])) return false;
 	    return $result;
 	}
@@ -771,7 +771,7 @@ class DataSourceModel extends CI_Model{
 				FROM fichierappli, utilisateur_fichier
 				WHERE utilisateur_fichier.uf_id_fichier=fichierappli.f_id AND utilisateur_fichier.uf_demande_acces=1 AND utilisateur_fichier.uf_id_invite=?";
 	    $query = $this->db->query($sql, array($advisorID));
-	    $result=$query->result_array();
+	    $result=$query->row_array();
 	    if(is_null($result['id'])) return false;
 	    return $result;
 	}
@@ -874,7 +874,7 @@ class DataSourceModel extends CI_Model{
                                )
 	     ";
 	     $query = $this->db->query($sql);
-	     $dataSources=$query->result_array();
+	     $dataSources=$query->row_array();
 	     // TODO project still valid => add 'AND end_date >= now'
 	     if(is_null($dataSources['id'])) return false;
 	     return $dataSources;
@@ -920,7 +920,7 @@ class DataSourceModel extends CI_Model{
 				FROM utilisateur_fichier
 				JOIN fichierappli AS a
 				ON utilisateur_fichier.uf_id_fichier=a.f_id
-				WHERE (uf_id_invite = ?";
+				WHERE uf_id_invite = ?";
 		
 	    $params = array();
 	    $params [] = intval($userID); 
@@ -1038,13 +1038,11 @@ class DataSourceModel extends CI_Model{
 			}
 			$sql.=' ) ';
 		}
-		if(!($first)){	
-	            $sql.=' ) ';
-                }	
+	
 		$sql.=' ORDER BY a.f_dateajout DESC';		
 
 		$query = $this->db->query($sql, $params);
-		$dataSources=$query->result_array();		
+		$dataSources=$query->row_array();		
 		if(is_null($dataSources['fileID'])) return false;
 		return $dataSources;
 	}
@@ -1155,9 +1153,7 @@ class DataSourceModel extends CI_Model{
 			}
 			$sql.=' ) ';
 		}
-		/*if(!($first)){	
-	            $sql.=' ) ';
-                }	*/
+
 		$sql.=' ORDER BY uf_demande_date DESC';		
 
 		$query = $this->db->query($sql, $params);
@@ -1316,12 +1312,13 @@ class DataSourceModel extends CI_Model{
     					$params[] = $v;
     				}			
     			}
+    		$sql.=' ) ';
 		}
 			
 		$sql.=' ORDER BY a.f_dateajout DESC';		
 
 		$query = $this->db->query($sql, $params);
-		$dataSources=$query->result_array();		
+		$dataSources=$query->row_array();		
 		if(is_null($dataSources['fileID'])) return false;
 		return $dataSources;
 	}
@@ -1408,14 +1405,11 @@ class DataSourceModel extends CI_Model{
 			}
 		$sql.=' ) ';
 		}
-		if(!($first)){	
-	            $sql.=' ) ';
-                }	
 			
 		$sql.=' ORDER BY projet.p_date_start DESC';		
 
 		$query = $this->db->query($sql, $params);
-		$projects=$query->result_array();		
+		$projects=$query->row_array();		
 		if(is_null($projects['project_ID'])) return false;
 		return $projects;
 	
