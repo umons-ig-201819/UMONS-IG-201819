@@ -1081,7 +1081,7 @@ class DataSourceModel extends CI_Model{
 				ON a.f_id = utilisateur_fichier.uf_id_fichier
                 JOIN utilisateur 
                 ON utilisateur_fichier.uf_id_invite = utilisateur.ut_id
-				WHERE (uf_id_fichier = ?";
+				WHERE uf_id_fichier = ?";
 		
 		$params = array();
 		$params[]=intval($dataSourceID);
@@ -1155,13 +1155,13 @@ class DataSourceModel extends CI_Model{
 			}
 			$sql.=' ) ';
 		}
-		if(!($first)){	
+		/*if(!($first)){	
 	            $sql.=' ) ';
-                }	
+                }	*/
 		$sql.=' ORDER BY uf_demande_date DESC';		
 
 		$query = $this->db->query($sql, $params);
-		$users=$query->result_array();		
+		$users=$query->row_array();
 		if(is_null($users['userID'])) return false;
 		return $users;
 	
