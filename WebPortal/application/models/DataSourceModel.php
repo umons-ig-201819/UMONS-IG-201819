@@ -501,9 +501,9 @@ class DataSourceModel extends CI_Model{
 					f_nom AS name,
 					f_url AS url,
 					f_appli AS application,
-                                        f_config AS configuration_file,
-                                        f_visible_awe AS visible,
-                                        f_dateajout AS add_date
+                    f_config AS configuration_file,
+                    f_visible_awe AS visible,
+                    f_dateajout AS add_date
 				FROM fichierappli
 				WHERE (f_visible_awe = 0 OR f_visible_awe = 1) AND f_id = ? ";
         $query = $this->db->query($sql, array($dataSourceID));
@@ -542,10 +542,9 @@ class DataSourceModel extends CI_Model{
 				FROM fichierappli
 				WHERE f_id_proprio=?";
         $query = $this->db->query($sql, array($userID));
-        $ownerFiles=$query->row_array();
-        if(is_null($ownerFiles['id'])) return false;
+        $ownerFiles=$query->result_array();
+        //if(is_null($ownerFiles['id'])) return false;
         return $ownerFiles;
-    
 	}
 	
 	public function searchDataSources($filter = NULL, $and = false) {
@@ -721,8 +720,8 @@ class DataSourceModel extends CI_Model{
         $sql.=' ORDER BY f_dateajout DESC';
 
         $query = $this->db->query($sql, $params);
-        $dataSources=$query->row_array();
-        if(is_null($dataSources['id'])) return false;
+        $dataSources=$query->result_array();
+        //if(is_null($dataSources['id'])) return false;
         return $dataSources;
 	}
 	public function getPersonalDataSources($userID){
@@ -738,8 +737,8 @@ class DataSourceModel extends CI_Model{
 				FROM fichierappli
                 WHERE f_id_proprio=?";
 	    $query = $this->db->query($sql, array($userID));
-	    $result=$query->row_array();
-	    if(is_null($result['id'])) return false;
+	    $result=$query->result_array();
+	    //if(is_null($result['id'])) return false;
 	    return $result;
 	}
 	public function getProjects($sourceID){
@@ -754,8 +753,8 @@ class DataSourceModel extends CI_Model{
                 AND fichier_projet.fp_id_fichier = ?
         ";
 	    $query = $this->db->query($sql, array($sourceID));
-	    $result=$query->row_array();
-	    if(is_null($result['id'])) return false;
+	    $result=$query->result_array();
+	    //if(is_null($result['id'])) return false;
 	    return $result;
 	}
 	public function getAccessDataSources($advisorID){
@@ -790,7 +789,7 @@ class DataSourceModel extends CI_Model{
         ";
 	    $query = $this->db->query($sql, array($sourceID));
 	    $result=$query->result_array();
-	    if(is_null($result['userid'])) return false;
+	    //if(is_null($result['userid'])) return false;
 	    return $result;
 	}
 	 public function addAdvisor($sourceID, $advisorUsername){
@@ -871,12 +870,21 @@ class DataSourceModel extends CI_Model{
                                     LEFT JOIN `projet` AS `p` ON `up`.`up_id_projet`=`p`.`p_id`
                                     LEFT JOIN `fichier_projet` AS `fp` ON `fp`.`fp_id_projet`=`p`.`p_id`
                                     WHERE `fp`.`fp_demande_acces`=1 AND `fp`.`fp_id_fichier`=`ds`.`f_id`
-                               )
+                                    AND DATE(p.p_date_end)>=current_timestamp()
+                                )
+               OR $userID IN (	SELECT p.p_id_createur 
+                         	      FROM projet AS p
+                         	      LEFT JOIN fichier_projet AS fp ON fp.fp_id_projet=p.p_id
+                         	      WHERE fp.fp_demande_acces=1 AND fp.fp_id_fichier=ds.f_id
+                         	      AND DATE(p.p_date_end)>=current_timestamp()
+                              )
 	     ";
 	     $query = $this->db->query($sql);
-	     $dataSources=$query->row_array();
-	     // TODO project still valid => add 'AND end_date >= now'
-	     if(is_null($dataSources['id'])) return false;
+	     $dataSources=$query->result_array();
+	     //if(is_null($dataSources['id'])) return false;
+	     //--> ne fonctionne pas à cause du result array. 
+	     //Fonctionnerait avec row array mais row array ne renvoie qu'1 seule ligne...
+	     //Je n'ai pas trouvé mieux...
 	     return $dataSources;
 	 }
 	 
@@ -1042,8 +1050,8 @@ class DataSourceModel extends CI_Model{
 		$sql.=' ORDER BY a.f_dateajout DESC';		
 
 		$query = $this->db->query($sql, $params);
-		$dataSources=$query->row_array();		
-		if(is_null($dataSources['fileID'])) return false;
+		$dataSources=$query->result_array();		
+		//if(is_null($dataSources['fileID'])) return false;
 		return $dataSources;
 	}
 	
@@ -1157,8 +1165,8 @@ class DataSourceModel extends CI_Model{
 		$sql.=' ORDER BY uf_demande_date DESC';		
 
 		$query = $this->db->query($sql, $params);
-		$users=$query->row_array();
-		if(is_null($users['userID'])) return false;
+		$users=$query->result_array();
+		//if(is_null($users['userID'])) return false;
 		return $users;
 	
 	}
@@ -1318,8 +1326,8 @@ class DataSourceModel extends CI_Model{
 		$sql.=' ORDER BY a.f_dateajout DESC';		
 
 		$query = $this->db->query($sql, $params);
-		$dataSources=$query->row_array();		
-		if(is_null($dataSources['fileID'])) return false;
+		$dataSources=$query->result_array();		
+		//if(is_null($dataSources['fileID'])) return false;
 		return $dataSources;
 	}
 	
@@ -1346,7 +1354,7 @@ class DataSourceModel extends CI_Model{
 				FROM fichier_projet AS p
 				JOIN projet
 				ON p.fp_id_fichier=p_id
-				WHERE (p.fp_id_fichier = ?";
+				WHERE p.fp_id_fichier = ?";
 		
 		$params = array();
 		$params [] = intval($dataSourceID);
@@ -1409,8 +1417,8 @@ class DataSourceModel extends CI_Model{
 		$sql.=' ORDER BY projet.p_date_start DESC';		
 
 		$query = $this->db->query($sql, $params);
-		$projects=$query->row_array();		
-		if(is_null($projects['project_ID'])) return false;
+		$projects=$query->result_array();		
+		//if(is_null($projects['project_ID'])) return false;
 		return $projects;
 	
 	}
