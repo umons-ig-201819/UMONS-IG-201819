@@ -518,7 +518,7 @@ class DataSourceModel extends CI_Model{
      
      * @param $userID user id
      
-     * @return data sources with the firstname and lastname of the owner
+     * @return datasources with the firstname and lastname of the owner
      * <br> $response['id'] is the data source id
      * <br> $response['file_name'] is the name of the data source
      * <br> $response['url'] is the URL of the data source
@@ -541,6 +541,7 @@ class DataSourceModel extends CI_Model{
                     f_dateajout AS add_date
 				FROM fichierappli
 				WHERE f_id_proprio=?";
+
         $query = $this->db->query($sql, array($userID));
         $ownerFiles=$query->result_array();
         //if(is_null($ownerFiles['id'])) return false;
@@ -724,6 +725,7 @@ class DataSourceModel extends CI_Model{
         //if(is_null($dataSources['id'])) return false;
         return $dataSources;
 	}
+	//IDENTIQUE à "getOwnedDataSources"!
 	public function getPersonalDataSources($userID){
 	    $userID = intval($userID);
 	    $sql="SELECT
@@ -1193,7 +1195,7 @@ class DataSourceModel extends CI_Model{
 	    if(is_null($projecID)) return NULL;
 	    $sql="SELECT
 					fp_id_projet AS projectID,
-					fp_id_fichier AS fileID,
+					fp_id_fichier AS sourceID,
 					fp_demande_acces AS access_state,
 					fp_demande_date AS ask_date,
 					a.f_nom AS file_name,
