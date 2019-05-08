@@ -1417,7 +1417,9 @@ class DataSourceModel extends CI_Model{
 					$params[] = $v;
 				}
 			}
-		$sql.=' ) ';
+		        if(!($first)){	
+	                   $sql.=' ) ';
+                        }
 		}
 			
 		$sql.=' ORDER BY projet.p_date_start DESC';		
