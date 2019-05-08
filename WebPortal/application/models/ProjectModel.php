@@ -930,7 +930,7 @@ class ProjectModel extends CI_Model
 	    $sql="SELECT
 				ut_login
 				FROM utilisateur
-				ORDER BY p_id DESC";
+				ORDER BY ut_id DESC";
 	    $query = $this->db->query($sql);
 	    $id=$query->result_array();
 	    $lastlogin=$id[0]["ut_login"];
