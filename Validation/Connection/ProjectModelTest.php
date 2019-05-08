@@ -102,7 +102,7 @@ protected function tearDown(){
     */
     public function testAddProject()
     {
-        $project['pname']="test35";
+        $project['pname']="test36";
         $project['pdate_start']='2019-01-01';
         $project['pdate_end']='2030-01-01';
         $project['pdescription']='test31';
