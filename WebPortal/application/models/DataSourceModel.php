@@ -1047,7 +1047,7 @@ class DataSourceModel extends CI_Model{
 				}			
 			}
 			if(!($first)){	
-	                   $sql.=' ) ';}
+	                   $sql.=' ) ';
                         }
 		}
 	
@@ -1055,7 +1055,7 @@ class DataSourceModel extends CI_Model{
 
 		$query = $this->db->query($sql, $params);
 		$dataSources=$query->result_array();		
-		//if(is_null($dataSources['fileID'])) return false;
+		if(is_null($dataSources['fileID'])) return false;
 		return $dataSources;
 	}
 	
