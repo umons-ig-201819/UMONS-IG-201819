@@ -43,7 +43,7 @@ protected function tearDown(){
         $filter['owner_firstname']="Jean";
         $and=false;
         $res=$this->projectModel->listProjects($filter,$and);
-        $this->assertEquals($res[0]['id'],false);
+        $this->assertNotEquals($res[0]['id'],false);
     }
     /**
     * testGetProjects() this method tests the method getProjects()
