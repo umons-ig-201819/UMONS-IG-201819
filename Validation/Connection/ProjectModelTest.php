@@ -102,12 +102,12 @@ protected function tearDown(){
     */
     public function testAddProject()
     {
-        $project['pname']="test33";
-        $project['pdate_start']='test31';
+        $project['pname']="test34";
+        $project['pdate_start']='2019-01-01';
         $project['pdate_end']='2030-01-01';
-        $project['pdescription']='2019-01-01';
-        $userId='106';//$this->projectModel->getUserID();
-        $res=$this->projectModel->addProject($userId,$project);
+        $project['pdescription']='test31';
+        $userId=$this->projectModel->getUserID();
+        $res=$this->projectModel->addProject($userId+1,$project);
         $this->assertNotEquals($res,false);
     }
     
