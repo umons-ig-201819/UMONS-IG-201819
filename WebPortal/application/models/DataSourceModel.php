@@ -1163,7 +1163,9 @@ class DataSourceModel extends CI_Model{
 					$params[] = $v;
 				}			
 			}
-			$sql.=' ) ';
+			if(!($first)){	
+	                   $sql.=' ) ';
+                        }
 		}
 
 		$sql.=' ORDER BY uf_demande_date DESC';		
