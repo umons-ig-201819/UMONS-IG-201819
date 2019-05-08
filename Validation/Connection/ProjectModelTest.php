@@ -77,7 +77,7 @@ protected function tearDown(){
         $this->assertNotEquals($res,false);
     }
      /**   
-     testGetUserProjects() this method tests the method getUserProjects()
+     * testGetUserProjects() this method tests the method getUserProjects()
      */
     
     public function testGetUserProjects()
