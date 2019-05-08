@@ -106,7 +106,7 @@ protected function tearDown(){
         $project['pdate_start']='test31';
         $project['pdate_end']='2030-01-01';
         $project['pdescription']='2019-01-01';
-        $userId=$this->projectModel->getUserID();
+        $userId='106';//$this->projectModel->getUserID();
         $res=$this->projectModel->addProject($userId,$project);
         $this->assertNotEquals($res,false);
     }
