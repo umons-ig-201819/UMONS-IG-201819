@@ -725,7 +725,7 @@ class DataSourceModel extends CI_Model{
         //if(is_null($dataSources['id'])) return false;
         return $dataSources;
 	}
-	//IDENTIQUE à "getOwnedDataSources"!
+	//IDENTIQUE Ã  "getOwnedDataSources"!
 	public function getPersonalDataSources($userID){
 	    $userID = intval($userID);
 	    $sql="SELECT
@@ -740,7 +740,7 @@ class DataSourceModel extends CI_Model{
                 WHERE f_id_proprio=?";
 	    $query = $this->db->query($sql, array($userID));
 	    $result=$query->result_array();
-	    //if(is_null($result['id'])) return false;
+	    if(is_null($result['id'])) return false;
 	    return $result;
 	}
 	public function getProjects($sourceID){
@@ -756,7 +756,7 @@ class DataSourceModel extends CI_Model{
         ";
 	    $query = $this->db->query($sql, array($sourceID));
 	    $result=$query->result_array();
-	    //if(is_null($result['id'])) return false;
+	    if(is_null($result['id'])) return false;
 	    return $result;
 	}
 	public function getAccessDataSources($advisorID){
@@ -791,7 +791,7 @@ class DataSourceModel extends CI_Model{
         ";
 	    $query = $this->db->query($sql, array($sourceID));
 	    $result=$query->result_array();
-	    //if(is_null($result['userid'])) return false;
+	    if(is_null($result['userid'])) return false;
 	    return $result;
 	}
 	 public function addAdvisor($sourceID, $advisorUsername){
@@ -883,10 +883,10 @@ class DataSourceModel extends CI_Model{
 	     ";
 	     $query = $this->db->query($sql);
 	     $dataSources=$query->result_array();
-	     //if(is_null($dataSources['id'])) return false;
-	     //--> ne fonctionne pas à cause du result array. 
+	     if(is_null($dataSources['id'])) return false;
+	     //--> ne fonctionne pas Ã  cause du result array. 
 	     //Fonctionnerait avec row array mais row array ne renvoie qu'1 seule ligne...
-	     //Je n'ai pas trouvé mieux...
+	     //Je n'ai pas trouvÃ© mieux...
 	     return $dataSources;
 	 }
 	 
@@ -1046,7 +1046,9 @@ class DataSourceModel extends CI_Model{
 					$params[] = $v;
 				}			
 			}
-			$sql.=' ) ';
+			if(!($first)){	
+	                   $sql.=' ) ';}
+                        }
 		}
 	
 		$sql.=' ORDER BY a.f_dateajout DESC';		
@@ -1168,7 +1170,7 @@ class DataSourceModel extends CI_Model{
 
 		$query = $this->db->query($sql, $params);
 		$users=$query->result_array();
-		//if(is_null($users['userID'])) return false;
+		if(is_null($users['userID'])) return false;
 		return $users;
 	
 	}
@@ -1329,7 +1331,7 @@ class DataSourceModel extends CI_Model{
 
 		$query = $this->db->query($sql, $params);
 		$dataSources=$query->result_array();		
-		//if(is_null($dataSources['fileID'])) return false;
+		if(is_null($dataSources['fileID'])) return false;
 		return $dataSources;
 	}
 	
@@ -1420,7 +1422,7 @@ class DataSourceModel extends CI_Model{
 
 		$query = $this->db->query($sql, $params);
 		$projects=$query->result_array();		
-		//if(is_null($projects['project_ID'])) return false;
+		if(is_null($projects['project_ID'])) return false;
 		return $projects;
 	
 	}
