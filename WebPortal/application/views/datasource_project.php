@@ -1,5 +1,7 @@
-<section>
+<section id="top_page">
 	<h1>Acc&egrave;s de projets sur <?=htmlentities($source['name']);?></h1>
+</section>
+<section>
 	<article>
 	<?php if(!empty($error)): ?>
 	<p class="error"><?=$error;?></p>
@@ -27,7 +29,7 @@
 		echo form_label('Source','state');
 		echo form_hidden('projectid',$data['id']);
 		echo form_dropdown('state',$options,$selected,'id="state" required="required"');
-		echo form_submit('action', 'Modifier');
+		echo form_submit('action', 'Modifier',"class='buttonvalider'");
 		echo '</p>';
 		
 		echo form_fieldset_close();
