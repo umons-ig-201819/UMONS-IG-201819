@@ -1,7 +1,10 @@
+
 <section id="top_page">
     <h1>Inscription</h1>
+</section>
+<section>
+<fieldset>
     <?= form_open('register'); ?>
-    <fieldset>
     <legend> Informations d'inscription :  </legend>
            	<br><label >sexe : </label><br>
         		<input type="radio" name="gender" value="man"> Homme&nbsp;&nbsp;
@@ -29,6 +32,6 @@
     	<input type="password" id="confirm_mdp" name="confirm_mdp" placeholder="Confirmation du mot de passe" required/> <br><br>
     
     	<input type="submit"><input type="reset">				
-    </fieldset>
-    </form>
+</form>
+</fieldset>
 </section>
