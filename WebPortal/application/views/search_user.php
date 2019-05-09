@@ -1,5 +1,8 @@
+<section id="top_page">
+<h1>Recherche d'un utilisateur</h1>
+</section>
 <section>
-	<h1>Recherche d'un utilisateur</h1>
+	
 <?php
 		echo form_open("search/user");
 		echo form_fieldset('Crit&egrave;res de recherche d\'utilisateur');
@@ -35,7 +38,7 @@
 		echo '</p>';
 		
 		echo '<p>';
-		echo form_submit('action', 'Rechercher');
+		echo form_submit('action', 'Rechercher',"class='buttonvalider'");
 		echo '</p>';
 		
 		echo form_fieldset_close();
@@ -60,7 +63,7 @@
 			    echo form_hidden('mobile',htmlentities($this->input->post('mobile')));
 			    echo form_hidden('action','Rechercher');
 			    echo form_dropdown("roles[]", $roles, $data['roles'],'multiple="multiple"');
-			    echo form_submit('updateaction', 'Modifier');
+			    echo form_submit('updateaction', 'Modifier',"class='buttonvalider'");
 			    echo form_close();
 			    echo '</p>';
 			endif;
