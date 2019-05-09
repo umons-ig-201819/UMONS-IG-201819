@@ -1,22 +1,31 @@
-<section>
-	<article>
-		<h1>Source de données</h1>
-<?php
-echo form_open('datasource');
-echo form_fieldset('Source de données');
-echo '<p>';
-    echo form_label('Source');
-    echo form_dropdown('datasource',$options,$selected,'id="datasource" required="required"');
-    echo form_submit('action', 'Charger');
-echo '</p>';
-echo form_fieldset_close();
-echo form_close();
-		?>
-		<p><a href="<?=site_url("datasource/addSource"); ?>">Ajouter un fichier de donn&eacute;es</a></p>
-		<p><a href="<?=site_url("datasource/manage"); ?>">Gérer mes sources de donn&eacute;es et acc&egrave;s</a></p>
-	</article>
-	<?php foreach($url as $zeppelin_link): ?>
-	<!--  sandbox="allow-plugins allow-scripts allow-same-origin"  --> 
-	<iframe id="table_view" width="100%" height="500px" src="<?=$zeppelin_link;?>" scrolling="yes"></iframe>
-	<?php endforeach; ?>
+	<section id="top_page">
+		<h1>Connexion</h1>
+	</section>
+	<section>
+<?php if(isset($this->session->UserID)): ?>
+			<h2>
+			<p id="success">Bienvenue <?=ucfirst($firstname).' '.strtoupper($lastname);?>.</p>
+			</h2>
+<?php else:
+        if(isset($error)):
+?>
+		<p id="error"><font color="red">Erreur de login/mot de passe.</font></p>
+		<?php endif; ?>
+	<?php        
+        echo form_open('connection');
+        echo form_fieldset('Informations de connexion&nbsp;:');
+        echo '<p>'; 
+        echo form_label('Identifiant : ','username');
+        echo form_input('username',$this->input->post('username',TRUE),'id="username" required="required"');  
+        echo '<br>';
+        echo form_label('Mot de passe : ','password');
+        echo form_password('password','','id="password" required="required"');
+        echo '<br>';
+        echo '</p>';
+        echo form_submit('action', 'Se connecter', "class='buttonvalider'");
+        echo form_fieldset_close();
+        echo form_close();
+    endif;
+?>
 </section>
+
