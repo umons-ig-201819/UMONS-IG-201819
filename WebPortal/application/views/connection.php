@@ -1,5 +1,7 @@
-	<section>
+	<section id="top_page">
 		<h1>Connexion</h1>
+	</section>
+	<section>
 <?php if(isset($this->session->UserID)): ?>
 			<h2>
 			<p id="success">Bienvenue <?=ucfirst($firstname).' '.strtoupper($lastname);?>.</p>
@@ -20,9 +22,10 @@
         echo form_password('password','','id="password" required="required"');
         echo '<br>';
         echo '</p>';
-        echo form_submit('action', 'Se connecter');
+        echo form_submit('action', 'Se connecter', "class='buttonvalider'");
         echo form_fieldset_close();
         echo form_close();
     endif;
 ?>
 </section>
+
