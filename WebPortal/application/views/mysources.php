@@ -1,3 +1,6 @@
+<section id="top_page">
+<h1>Gestion de mes sources de donn&eacute;es</h1>
+</section>
 <section>
 	<article>
 	<?php if(!empty($error)): ?>
@@ -6,7 +9,7 @@
 	<?php if(!empty($success)): ?>
 	<p class="success"><?=$success;?></p>
 	<?php endif; ?>
-		<h1>Gestion de mes sources de donn&eacute;es</h1>
+		
 		<?php foreach($source as $data):
 echo form_open("datasource/update/$data[id]");
 echo form_fieldset(htmlentities($data['file_name']));
@@ -33,7 +36,7 @@ echo '<p><a href="'.site_url("datasource/project/$data[id]").'">Consulter/Révoq
 echo '<p><a href="'.site_url("datasource/remove/$data[id]").'">Supprimer</a></p>';
 
 echo '<p>';
-    echo form_submit('action', 'Modifier');
+echo form_submit('action', 'Modifier',"class='buttonvalider'");
 echo '</p>';
 
 echo form_fieldset_close();
@@ -41,8 +44,12 @@ echo form_close();
 		?>
 		<?php endforeach; ?>
 	</article>
+</section>
+<section id="top_page">
+<h1>Gestion des sources auxquelles j'ai acc&egrave;s</h1>
+</section>
+<section>
 	<article>
-		<h1>Gestion des sources auxquelles j'ai acc&egrave;s</h1>
 		<ul>
 		<?php foreach($access as $data): ?>
 		<li><?=htmlentities($data['file_name']);?> <a href="<?=site_url("datasource/revoke/$data[id]"); ?>">Supprimer</a></li>
