@@ -1,48 +1,98 @@
-<section id="top_page">
-	<h1>Bienvenue sur la page d'accueil</h1>
-	
-	<aside>
-	<h3>Nombre d'agriculteurs inscrits : <?php echo ("$numberAgri");?>
-		<br></br>
-	<div id="visits" >
-		Nombre de visites : 
-		
-        <?php
-        
-        if(file_exists('compteur_visites.txt'))
-        {
-                $compteur_f = fopen('compteur_visites.txt', 'r+');
-                $compte = fgets($compteur_f);
-                
-        }
-        else
-        {
-                $compteur_f = fopen('compteur_visites.txt', 'a+');
-                $compte = 0;
-        }
-        if(!isset($_SESSION['compteur_de_visite']))
-        {
-                $_SESSION['compteur_de_visite'] = 'visite';
-                $compte++;
-                fseek($compteur_f, 0);
-                fputs($compteur_f, $compte);
-        }
-        fclose($compteur_f);
-        
-        
-        
-        for ($i = 0; $i < strlen($compte); $i++) 
-	{
-		?><span><?php echo ($compte[$i]);?></span>
-		<?php
-	}
-	?>
-  
 
+<div class="row" >
+<!--  id="home">-->
+
+    <div class="col-9 menu">
+        <section id="top_page">
+        	<h1>Bienvenue sur la page d'accueil du projet Wallesmart</h1>
+        	
+        </section>
+    </div>
+
+	<div class="col-3">
+		<aside id="visits">
+		<h3>Nombre d'agriculteurs inscrits : <br> 
+			<?php
+			
+		    $chaine2="OOOOO";
+		    $numberAgri="23"; // a supprimer sur le site 
+		    for($i=0,$j=5-strlen($numberAgri); $i<strlen($numberAgri);$i++,$j++)
+            {
+                $chaine2[$j]=$numberAgri[$i];
+            } 
+               
+           
+            for ($i = 0; $i < strlen($chaine2); $i++)
+            {
+                ?><span><?php echo ($chaine2[$i]);?></span>
+    			<?php
+            }
+            ?> 
+		
+		
+		
+		
+		<br></br>
+    	<div  id="visits" >
+    	
+    		Nombre de visites : <br>
+    		
+            <?php
+            
+            if(file_exists('compteur_visites.txt'))
+            {
+                    $compteur_f = fopen('compteur_visites.txt', 'r+');
+                    $compte = fgets($compteur_f);
+            }
+            else
+            {
+                    $compteur_f = fopen('compteur_visites.txt', 'a+');
+                    $compte = 0;
+            }
+            if(!isset($_SESSION['compteur_de_visite']))
+            {
+                    $_SESSION['compteur_de_visite'] = 'visite';
+                    $compte++;
+                    fseek($compteur_f, 0);
+                    fputs($compteur_f, $compte);
+            }
+         
+            $compte="1234"; // a supprimer sur le site
+            $current_time=date("H:i ");
+            if($current_time[1]=="0")
+                $compte="1";
+            fputs($compteur_f, $compte);
+            fclose($compteur_f);
+            $taille=strlen($compte);
+            
+            $chaine="OOOOO";
+      
+            for($i=0,$j=5-strlen($compte); $i<strlen($compte);$i++,$j++)
+            {
+                $chaine[$j]=$compte[$i];
+      
+            } 
+            
+               
+            for ($i = 0; $i < 5; $i++)
+            {
+                ?><span><?php echo ($chaine[$i]);?></span>
+    			<?php
+            }
+            ?> 
+           
+    	</div>
+    	</aside> 
 	</div>
 
-	</aside>
-</section>
+
+ </h3>
+	
+	</div>
+	
+
+<div class="row">
+<div class="col-12 col-s-12">
 <section>	
 	<h2>Actualit&eacute;s</h2>	
 	<article>		
@@ -72,4 +122,5 @@
 		</p>	
 	</article>
 </section>
-	
+</div>	
+</div>	
