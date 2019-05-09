@@ -107,6 +107,7 @@ class DataSourceModelTest extends TestCase{
     public function testGetAdvisors(){
         $advisorID=$this->dataSourceModel->getAdvisorID();
         $res=$this->dataSourceModel->getAdvisors($advisorID);
+        if(is_null($res['userid'])) $res='false';
         $this->assertNotEquals($res,false);
     }
     
@@ -116,6 +117,7 @@ class DataSourceModelTest extends TestCase{
     public function testGetAccessibleDataSources(){
         $resu=$this->dataSourceModel->getAdvisorID();
         $res=$this->dataSourceModel->getAccessibleDataSources($resu);
+        if(is_null($res['id'])) $res='false';
         $this->assertNotEquals($res,false);
     }
 
@@ -136,6 +138,7 @@ class DataSourceModelTest extends TestCase{
         $filter['add_date']="";
         $and=false;
         $res=$this->dataSourceModel->getUserDataSources(1,$filter,$and);
+        if(is_null($res['fileID'])) $res='false';
         $this->assertNotEquals($res,false);
     }
     
@@ -146,6 +149,7 @@ class DataSourceModelTest extends TestCase{
         $and=false;
         $resu=$this->dataSourceModel->getUserID();
         $res=$this->dataSourceModel->getUserDataSources($resu,$and);
+        if(is_null($res['fileID'])) $res='false';
         $this->assertNotEquals($res,false);
     }
 
@@ -160,6 +164,7 @@ class DataSourceModelTest extends TestCase{
         $and=false;
         $resu=$this->dataSourceModel->getDataSourceID();
         $res=$this->dataSourceModel->getDataSourceUsers($resu,$filter,$and);
+        if(is_null($res['userID'])) $res='false';
         $this->assertNotEquals($res,false);
     }
     
@@ -170,6 +175,7 @@ class DataSourceModelTest extends TestCase{
         $and = false;
         $resu=$this->dataSourceModel->getDataSourceID();
         $res=$this->dataSourceModel->getDataSourceUsers($resu,$and);
+        if(is_null($res['userID'])) $res='false';
         $this->assertNotEquals($res,false);
     }
 
@@ -188,6 +194,7 @@ class DataSourceModelTest extends TestCase{
         $and=false;
         $resu=$this->dataSourceModel->getProjetID();
         $res=$this->dataSourceModel->getProjectDataSources($resu,$filter,$and);
+        if(is_null($res['fileID'])) $res='false';
         $this->assertNotEquals($res,false);
     }
     
@@ -198,6 +205,7 @@ class DataSourceModelTest extends TestCase{
         $and = false;
         $resu=$this->dataSourceModel->getProjetID();
         $res=$this->dataSourceModel->getProjectDataSources($resu,$and);
+        if(is_null($res['fileID'])) $res='false';
         $this->assertNotEquals($res,false);
     }
 
@@ -211,6 +219,7 @@ class DataSourceModelTest extends TestCase{
         $and=false;
         $resu=$this->dataSourceModel->getDataSourceID();
         $res=$this->dataSourceModel->getDataSourceProjects($resu,$filter,$and);
+        if(is_null($res['project_ID'])) $res='false';
         $this->assertEquals($res,false);
     }
     
@@ -221,6 +230,7 @@ class DataSourceModelTest extends TestCase{
         $and=false;
         $resu=$this->dataSourceModel->getDataSourceID();
         $res=$this->dataSourceModel->getDataSourceProjects($resu,$and);
+        if(is_null($res['project_ID'])) $res='false';
         $this->assertEquals($res,false);
     }
     
