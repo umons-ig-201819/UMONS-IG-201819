@@ -1,3 +1,6 @@
+<section id="top_page">
+<h1>Gestion des projets</h1>
+</section>
 <section>
 	<article>
 	<?php if(!empty($error)): ?>
@@ -6,7 +9,7 @@
 	<?php if(!empty($success)): ?>
 	<p class="success"><?=$success;?></p>
 	<?php endif; ?>
-		<h1>Gestion des projets</h1>
+		
 		
 		<?php
 		echo form_open("administration/addProject");
@@ -32,7 +35,7 @@
 		echo '</p>';
 		
 		echo '<p>';
-		echo form_submit('addaction', 'Ajouter');
+		echo form_submit('addaction', 'Ajouter',"class='buttonvalider'");
 		echo '</p>';
 		
 		echo form_fieldset_close();
@@ -46,8 +49,9 @@
 		
 		echo '<p>';
 		echo form_label('Recherche','search');
-		echo form_input('search','','id="search"');
-		echo form_submit('action', 'Rechercher');
+		echo form_input('search','','id="search"'); 
+		?><br><br><?php 
+		echo form_submit('action', 'Rechercher',"class='buttonvalider'");
 		echo '</p>';
 		
 		echo form_fieldset_close();
@@ -55,10 +59,10 @@
 		?>
 	</article>
 	<article>
-	<ul>
+	
 	<?php foreach($projects as $project): ?>
-	<li><a href="<?=site_url("administration/project/$project[id]");?>"><?=htmlentities($project['project_name']); ?> (<?=htmlentities($project['date_start']);?>, <?=htmlentities($project['date_end']);?>)</a></li>
+	<input type="button" id="projet" style="background-color: blanchedalmond; width: -webkit-fill-available;font-style: italic; font-size: inherit;padding: 10px" value="<?=htmlentities($project['project_name']); ?> (<?=htmlentities($project['date_start']);?>, <?=htmlentities($project['date_end']);?>)" id="lien" onclick="window.location.href='<?=site_url("administration/project/$project[id]") ; ?>'"> </input>
 	<?php endforeach; ?>
-	</ul>
+	
 	</article>
 </section>
