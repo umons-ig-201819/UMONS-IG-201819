@@ -1,3 +1,6 @@
+<section id="top_page">
+<h1>Gestion du projet <?=$project['project_name'];?></h1>
+</section>
 <section>
 	<article>
 	<?php if(!empty($error)): ?>
@@ -6,7 +9,7 @@
 	<?php if(!empty($success)): ?>
 	<p class="success"><?=$success;?></p>
 	<?php endif; ?>
-		<h1>Gestion du projet <?=$project['project_name'];?></h1>
+		
 		<?php
 		echo form_open("administration/project/$project[id]");
 		echo form_fieldset(htmlentities($project['project_name']));
@@ -34,7 +37,7 @@
         echo '<p><a href="'.site_url("administration/removeProject/$project[id]").'">Supprimer le projet</a></p>';
         
         echo '<p>';
-            echo form_submit('action', 'Modifier');
+        echo form_submit('action', 'Modifier',"class='buttonvalider'");
         echo '</p>';
         
         echo form_fieldset_close();
