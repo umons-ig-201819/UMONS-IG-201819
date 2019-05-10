@@ -10,7 +10,7 @@
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> <!--  Ajout de la largeur de l'�cran pour le d�v-->
     	<link rel="stylesheet" type="text/css"  href="<?php echo base_url(); ?>assets/css/style.css" />
     	<link rel="stylesheet" type="text/css"  href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" />
-    	<link rel="icon" href="assets/images/Wallesmart.ico" />
+    	<link rel="icon" href="../assets/images/favicon.ico" />
     	<style type="text/css">
         	.alert-warning {
         	   visibility: hidden;
