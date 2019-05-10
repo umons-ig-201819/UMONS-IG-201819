@@ -10,12 +10,12 @@
     </div>
 
 	<div class="col-3">
-		<aside id="visits" style="margin-top: 10px";>
-		<h3>Nombre d'agriculteurs inscrits : </h3><br> 
-			<?=implode("\n",array_map(function($x) { return "<span>$x</span>"; }, str_split(sprintf("%05d",intval($numberAgri))))); ?>
-
-    	<h3  id="visits" >Nombre de visites : </h3><br>
-    		<?=implode("\n",array_map(function($x) { return "<span>$x</span>"; }, str_split(sprintf("%05d",intval($numberVisit))))); ?>
+			<aside id="visits" style="margin-top: 10px";>
+		<h3>Nombre d'agriculteurs inscrits : </h3>
+		<div id="compteur"><?=implode("\n",array_map(function($x) { return "<span>$x</span>"; }, str_split(sprintf("%05d",intval($numberAgri))))); ?></div>
+	<br> 
+    	<h3  id="visits" >Nombre de visites : </h3>
+    		<div id="compteur"><?=implode("\n",array_map(function($x) { return "<span>$x</span>"; }, str_split(sprintf("%05d",intval($numberVisit))))); ?>
 	</div>
     	</aside> 
 	</div>
