@@ -23,6 +23,7 @@ class DataSourceModelTest extends TestCase{
 
     /**
      * testGetVisibility() this method test the output of GetVisibility method: a data source based on its id
+      * getVisibility() this method returns the value of the visibility of the data source with its informations
     */
     public function testGetVisibility()
     {
@@ -33,6 +34,15 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testGetDataSource() this method tests the method getDataSource()
+    * getDataSource() this method returns a data source based on its id with its informations
+     * <br> $response['id'] is the data source id
+     * <br> $response['owner_id'] is the owner id
+     * <br> $response['name']is the name of the data source
+     * <br> $response['url'] is the url of the data source
+     * <br> $response['application'] 0 for file and 1 for application
+     * <br> $response['configuration'] is the configuration File
+     * <br> $response['visible'] default visibility attribute for user files (0=hidden, 1=visible, 2=on demand)
+     * <br> $response['add_date'] is the creation date of the data source in the database
     */
     public function testGetDataSource(){
         $dataSourcID=$this->dataSourceModel->getDataSourceID();
@@ -42,6 +52,16 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testGetOwnedDataSources() this method tests the method getOwnedDataSources()
+    * getOwnedDataSources() this method returns the data sources that belong to a user
+     * @param $userID user id
+     * @return datasources with the firstname and lastname of the owner
+     * <br> $response['id'] is the data source id
+     * <br> $response['file_name'] is the name of the data source
+     * <br> $response['url'] is the URL of the data source
+     * <br> $response['application'] 0 for file and 1 for application
+     * <br> $response['configuration'] is the configuration File
+     * <br> $response['visible'] default visibility attribute for user files (0=hidden, 1=visible, 2=on demand)
+     * <br> $response['add_date'] is the creation date of the data source in the database
     */
     public function testGetOwnedDataSources(){
         $dataSourceID=$this->dataSourceModel->getUserID();
@@ -51,6 +71,7 @@ class DataSourceModelTest extends TestCase{
     
 /**
     * testSearchDataSources() this method tests the method searchDataSources()
+    * @see searchDataSources() for the data structure of returned files
     */
     public function testSearchDataSources(){
         $and = false;
@@ -62,6 +83,15 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testGetDataSources() this method tests the method getDataSources()
+    * getUserDataSources() is a method for searching the data sources of a user in the database
+	* @param $filter is optional and is an array containing search criterions
+	* @param $filter['file_name'] is optional and contains the name (can be partial) of searched data source(s) 
+	* @param $filter['file_url'] is optional and contains the url of the searched data source(s) or not
+	* @param $filter['application'] is optional and contains 1 if it's an application and 0 if not 
+	* @param $filter['visible'] is optional and contains the default visible attribute for user data sources (0=hidden, 1=visible, 2=on demand)
+	* @param $filter['add_date'] is optional and contains the creation date of searched data source(s)
+	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
+	* @return an array of files (ordered by date)
     */
     public function testGetDataSources(){
         $and = false;
@@ -76,6 +106,9 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testGetDataSources1() this method tests the method getDataSources1()
+    * getUserDataSources() is a method for searching the data sources of a user in the database
+	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
+	* @return an array of files (ordered by date)
     */
     public function testGetDataSources1(){
         $and = false;
@@ -85,6 +118,7 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testGetPersonalDataSources() this method tests the method getPersonalDataSources()
+    * @see getPersonalDataSources() for the data structure of returned files
     */
     public function testGetPersonalDataSources(){
         $resu=$this->dataSourceModel->getUserID();
@@ -94,6 +128,7 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testGetAccessDataSources() this method tests the method getAccessDataSources()
+    * @see getAccessDataSources() for the data structure of returned files
     */
     public function testGetAccessDataSources(){
         $advisorID=$this->dataSourceModel->getAdvisorID();
@@ -103,6 +138,7 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testGetAdvisors() this method tests the method getAdvisors()
+    * @see getAdvisors() for the data structure of returned files
     */
     public function testGetAdvisors(){
         $advisorID=$this->dataSourceModel->getAdvisorID();
@@ -113,6 +149,7 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testGetAccessibleDataSources() this method tests the method getAccessibleDataSources()
+    * @see getAccessibleDataSources() for the data structure of returned files
     */
     public function testGetAccessibleDataSources(){
         $resu=$this->dataSourceModel->getAdvisorID();
@@ -123,6 +160,20 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testGetUserDataSources() this method tests the method getUserDataSources()
+    * @param $filter is optional and is an array containing search criterions
+	* @param $filter['file_name'] is optional and contains the name (can be partial) of searched data source(s)
+	* @param $filter['f_read'] is optional and contains the right to read the searched data source(s) or not
+	* @param $filter['f_modify'] is optional and contains the right to modify the searched data source(s) or not 
+	* @param $filter['f_remove'] is optional and contains the right to remove the searched data source(s) or not
+	* @param $filter['access_state'] is optional and contains the access state (0=on demand, 1=OK, 2=KO) the searched data source(s) or not
+	* @param $filter['ask_date'] is optional and contains the date when the user asked an access to the searched data source(s) or not
+	* @param $filter['file_url'] is optional and contains the url of the searched data source(s) or not
+	* @param $filter['application'] is optional and contains 1 if it's an application and 0 if not 
+	* @param $filter['config'] is optional and contains the config file
+	* @param $filter['visible'] is optional and contains the default visible attribute for user data sources (0=hidden, 1=visible, 2=on demand)
+	* @param $filter['add_date'] is optional and contains the creation date of searched data source(s)
+	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
+	* @return an array of files (ordered by date)
     */
     public function testGetUserDataSources(){
         $filter['file_name']="";
@@ -144,6 +195,8 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testGetUserDataSources1() this method tests the method getUserDataSources1()
+	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
+	* @return an array of files (ordered by date)
     */
     public function testGetUserDataSources1(){
         $and=false;
@@ -155,6 +208,14 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testGetDataSourceUsers() this method tests the method getDataSourceUsers()
+    * getDataSourceUsers() is a method for searching the users of a data source in the database
+	* @param $filter is optional and is an array containing search criterions
+	* @param $filter['user_name'] is optional and contains the lastname (can be partial) of searched user(s)
+	* @param $filter['user_firstname'] is optional and contains the firstname (can be partial) of searched user(s)
+	* @param $filter['access_state'] is optional and is a boolean which is for the access state (0 = asked, 1 OK, 2 KO)
+	* @param $filter['ask_date'] is optional and contains  date when the user asked an access to the searched data source
+	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
+	* @return an array of data source(s) (ordered by date)
     */
     public function testGetDataSourceUsers(){
         $filter['user_name'] = "test2";
@@ -170,6 +231,9 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testGetDataSourceUsers1() this method tests the method getDataSourceUsers1()
+    * getDataSourceUsers() is a method for searching the users of a data source in the database
+	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
+	* @return an array of data source(s) (ordered by date)
     */
     public function testGetDataSourceUsers1(){
         $and = false;
@@ -181,6 +245,18 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testGetProjectDataSources() this method tests the method getProjectDataSources()
+    * getProjectDataSources() is a method for searching the data sources of a project in the database
+	* @param $filter is optional and is an array containing search criterions
+	* @param $filter['file_name'] is optional and contains the name (can be partial) of searched data source(s)
+	* @param $filter['file_url'] is optional and contains the url of the searched data source(s) or not
+	* @param $filter['application'] is optional and contains 1 if it's an application and 0 if not 
+	* @param $filter['config'] is optional and contains the config file
+	* @param $filter['visible'] is optional and contains the default visible attribute for user data sources (0=hidden, 1=visible, 2=on demand)
+	* @param $filter['add_date'] is optional and contains the creation date of searched data source(s)
+    * @param $filter['access_state'] is optional and contains the access state (0=on demand, 1=OK, 2=KO) to the searched data source(s) or not
+	* @param $filter['ask_date'] is optional and contains the date when asked an access to the searched data source(s) or not
+	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
+	* @return an array of data sources (ordered by date)
     */
     public function testGetProjectDataSources(){
         $filter['file_name']="test";
@@ -200,6 +276,9 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testGetProjectDataSources1() this method tests the method getProjectDataSources1()
+    * getProjectDataSources() is a method for searching the data sources of a project in the database
+	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
+	* @return an array of data sources (ordered by date)
     */
     public function testGetProjectDataSources1(){
         $and = false;
@@ -211,6 +290,13 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testGetDataSourceProjects() this method tests the method getDataSourceProjects()
+    * getDataSourceProjects() is a method for searching the projects linked with a data source in the database
+	* @param $filter is optional and is an array containing search criterions
+	* @param $filter['project_name'] is optional and contains the name (can be partial) of searched project(s)
+	* @param $filter['ask_access'] is optional and contains the access state (0=on demand, 1=OK, 2=KO) to the searched project(s)
+	* @param $filter['ask_date'] is optional and contains the date when asked an access to the searched project(s)
+	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
+	* @return an array of files (ordered by date)
     */
     public function testGetDataSourceProjects(){
         $filter['project_name'] = "test";
@@ -225,6 +311,9 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testGetDataSourceProjects1() this method tests the method getDataSourceProjects1()
+    * getDataSourceProjects() is a method for searching the projects linked with a data source in the database
+	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
+	* @return an array of files (ordered by date)
     */
     public function testGetDataSourceProjects1(){
         $and=false;
@@ -240,6 +329,12 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testAddDataSourceApp() this method tests the method getAddDataSourceApp()
+    * addDataSourceApp() is a method for adding a file
+	 * @param $userID is is the id of the owner of the data source
+	 * @param $dataSource is an array containing the informations about the data source
+	 * @param $dataSource ['name'] (required) is the name of the data source
+	 * @param $dataSource ['visible'] (required) means if the data source have to be hidden (=2), visible (=1) or on demand (=0, default)
+	 * @return new data source id if insert succeeded and FALSE if not
     */
     public function testAddDataSourceApp(){
         $dataSource['name']="test";
@@ -251,6 +346,15 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testAddDataSourceApp1() this method tests the method addDataSourceApp1()
+    * addDataSourceApp() is a method for adding a file
+	 * @param $userID is is the id of the owner of the data source
+	 * @param $dataSource is an array containing the informations about the data source
+	 * @param $dataSource ['name'] (required) is the name of the data source
+	 * @param $dataSource ['url'] (optional) is the access url to the data source (default value=NULL)
+	 * @param $dataSource ['appli'] (optional) means if the id is an application (1) or not (0) =default
+	 * @param $dataSource ['config'] (optional) could be, for exemple, a JSON app configuration file
+	 * @param $dataSource ['visible'] (required) means if the data source have to be hidden (=2), visible (=1) or on demand (=0, default)
+	 * @return new data source id if insert succeeded and FALSE if not
     */
     public function testAddDataSourceApp1(){
         $dataSource['name']="test";
@@ -265,6 +369,10 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testAddDataSourceProject() this method tests the method addDataSourceProject()
+    * addDataSourceProject() is a method to link a data source to a project
+	 * @param $dataSourceID (required) is the id of a data source
+	 * @param $projectID (required) is the id of the project
+	 * @return TRUE if insert succeeded and FALSE if not
     */
     public function testAddDataSourceProject(){
         $resu =$this->dataSourceModel->getDataSourceID();
@@ -275,6 +383,14 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testAddDataSourceUser() this method tests the method addDataSourceUser()
+    * addDataSourceUser() is a method for adding a data source for a user   
+     * @param $fileID (required) is the id of a data source
+     * @param $userID (required) is the id of a user
+     * @param $fileUser (required) is an array containing the informations the types of access has a user for a data source
+     * @param $fileUser ['read'] (required) means if a user may read a data source or not (0) = default
+     * @param $fileUser ['modify'] (required) means if a user may modify a data source or not (0) = default
+     * @param $fileUser ['remove'] (required) means if a user may remove a data source or not (0) = default
+     * @return TRUE if insert succeeded and FALSE if not
     */
     public function testAddDataSourceUser(){
         $dataSourceUser['read']=0;
@@ -289,6 +405,7 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testAddAdvisor() this method tests the method addAdvisor()
+    * @see AddAdvisor() for the data structure of returned files
     */
     public function testAddAdvisor(){
         $res=$this->dataSourceModel->addAdvisor(1,1,$dataSourceUser);
@@ -297,6 +414,7 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testAskAccess() this method tests the method askAccess()
+    * @see AskAccess() for the data structure of returned files
     */
     public function testAskAccess(){
         $res=$this->dataSourceModel->askAccess(1,1);
@@ -309,6 +427,16 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testUpdateDataSource() this method tests the method updateDataSource()
+    * updateDataSource() is a method for updating a specific data source
+     * @param $userID is is the id of the owner of the data source
+     * @param $dataSource is an array containing the informations about the data source
+     * @param $dataSourceID is the id of the data source
+     * @param $dataSource ['name'] (optional) is the new name of the data source
+     * @param $dataSource ['url'] (optional) is the new access url to the data source (default value=NULL)
+     * @param $dataSource ['appli'] (optional) means if the id is an application (1) or not (0) =default
+     * @param $dataSource ['config'] (optional) could be, for exemple, a JSON app configuration file
+     * @param $dataSource ['visible'] (optional) means if the data source have to be hidden (=2), visible (=1) or if it is accessible on request (=0)
+     * @return TRUE if update succeeded and FALSE if not
     */
     public function testUpdateDataSource(){
         $and = false;
@@ -330,6 +458,7 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testUpdateDataSource1() this method tests the method updateDataSource1()
+    * @see updateDataSource() for the data structure of returned files
     */
     public function testUpdateDataSource1(){
         $and = false;
@@ -351,6 +480,14 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testupdateDataSourceUser() this method tests the method updateDataSourceUser()
+    * updateDataSourceUser() is a method for updating the access of a user to a data source
+     * @param $dataSourceID contains the id of the data source
+	 * @param $userID is the id of the user
+     * @param $dataSourceUser ['read'] (optional) means if a user may read a data source or not (0) = default
+	 * @param $dataSourceUser ['modify'] (optional) means if a user may modify a data source or not (0) = default
+	 * @param $dataSourceUser ['remove'] (optional) means if a user may remove a data source or not (0) = default
+	 * @param $dataSourceUser ['askaccess'] (optional) means if an access request is refused (2), if it is accepted (1) or if the request is made (0) = default
+     * @return TRUE if update succeeded and FALSE if not
     */
     public function testUpdateDataSourceUser(){
         $and = false;
@@ -371,6 +508,11 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testUpdateDataSourceProject() this method tests the method updateDataSourceProject()
+    * updateDataSourceProject() is a method for updating the access of a project to a data source
+     * @param $dataSourceID contains the id of the the id of the data source
+	 * @param $projectID is the ID of the project
+	 * @param $askAccess (required) means if an access request is refused (2), if it is accepted (1) or if the request is made (0) = default
+     * @return TRUE if update succeeded and FALSE if not
     */
     public function testUpdateDataSourceProject(){
         $askAccess="1";
@@ -382,6 +524,7 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testAcceptAccess() this method tests the method acceptAccess()
+    * @see acceptAccess() for the data structure of returned files
     */
     public function testAcceptAccess(){
         $res=$this->dataSourceModel->acceptAccess(1,1);
@@ -390,6 +533,7 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testRefuseAccess() this method tests the method refuseAccess()
+    * @see refuseAccess() for the data structure of returned files
     */
     public function testRefuseAccess(){
         $res=$this->dataSourceModel->refuseAccess(1,1);
@@ -402,6 +546,9 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testDeleteDataSource() this method tests the method deleteDataSource()
+    * deleteDataSource() delete a data source based on its id
+     * @param $dataSourceID
+     * @return a boolean (TRUE if deletion has been applied, FALSE if not)
     */
     public function testDeleteDataSource(){
         $and = false;
@@ -417,6 +564,10 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testDeleteUserDataSource() this method tests the method deleteUserDataSource()
+    * deleteUserDataSource() remove a data source for a specific user
+	 * @param $userID
+	 * @param $dataSourceID
+	 * @return a boolean (TRUE if deletion has been applied, FALSE if not)
     */
     public function testDeleteUserDataSource()
     {
@@ -434,6 +585,10 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testDeleteDataSourceProject() this method tests the method deleteDataSourceProject()
+    * deleteDataSourceProject() remove a data source for a specific project
+	 * @param $dataSourceID
+	 * @param $projID
+	 * @return a boolean (TRUE if deletion has been applied, FALSE if not)
     */
     public function testDeleteDataSourceProject()
     {
@@ -451,6 +606,9 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testDeleteAllDataSourcesUser() this method tests the method deleteAllDataSourcesUser()
+    * deleteAllDataSourcesUser() remove all data sources for a specific user
+     * @param $userID
+     * @return a boolean (TRUE if deletion has been applied, FALSE if not)
     */
     public function testDeleteAllDataSourcesUser()
     {
@@ -461,6 +619,9 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testDeleteAllUsersDataSource() this method tests the method deleteAllUsersDataSource()
+    * deleteAllUsersDataSource() remove all users for a specific data source
+     * @param $dataSourceID
+     * @return a boolean (TRUE if deletion has been applied, FALSE if not)
     */
     public function testDeleteAllUsersDataSource(){
         $and = false;
@@ -476,6 +637,9 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testDeleteAllProjectsDataSource() this method tests the method deleteAllProjectsDataSource()
+     * deleteAllProjectsDataSource() remove all projects for a specific data source
+     * @param $dataSourceID
+     * @return a boolean (TRUE if deletion has been applied, FALSE if not)
     */
     public function testDeleteAllProjectsDataSource(){
         $and = false;
@@ -491,6 +655,9 @@ class DataSourceModelTest extends TestCase{
 
     /**
     * testDeleteAllDataSourcesProject() this method tests the method deleteAllDataSourcesProject()
+    * deleteAllDataSourcesProject() remove all data sources for a specific project
+     * @param $projectID
+     * @return a boolean (TRUE if deletion has been applied, FALSE if not)
     */
     public function testDeleteAllDataSourcesProject(){
         $resu=$this->dataSourceModel->getProjetID();
@@ -500,6 +667,7 @@ class DataSourceModelTest extends TestCase{
     
     /**
     * testRevokeAccess() this method tests the method revokeAccess()
+    * @see revokeAccess() for the data structure of returned files
     */
     public function testRevokeAccess(){
         $res=$this->dataSourceModel->revokeAccess(1,1);
