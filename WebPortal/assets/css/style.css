@@ -98,6 +98,11 @@ h3
 	margin:auto;
 }
 
+#compteur
+{
+	margin:auto;
+	text-align:-webkit-center;
+}
 /*Boite avec compteur*/
 aside h3
 {
