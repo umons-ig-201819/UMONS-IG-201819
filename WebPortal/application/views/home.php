@@ -10,15 +10,18 @@
     </div>
 
 	<div class="col-3">
-		<aside id="visits">
-		<h3>Nombre d'agriculteurs inscrits : <br> 
+		<aside id="visits" style="margin-top: 10px";>
+		<h3>Nombre d'agriculteurs inscrits : </h3><br> 
 			<?php
 			
 		    $chaine2="OOOOO";
 		
+		    $nombre =(string)$numberAgri;
+		    
 		    for($i=0,$j=5-strlen($numberAgri); $i<strlen($numberAgri);$i++,$j++)
             {
-                $chaine2[$j]=$numberAgri[$i];
+                
+                $chaine2[$j]=$nombre[$i];
             } 
            
             for ($i = 0; $i < strlen($chaine2); $i++)
@@ -31,9 +34,7 @@
 		
 		
 
-    	<div  id="visits" >
-    	
-    		Nombre de visites : <br>
+    	<h3  id="visits" >Nombre de visites : </h3><br>
     		
             <?php
             
@@ -61,13 +62,14 @@
                 $compte="1";
             fputs($compteur_f, $compte);
             fclose($compteur_f);
-            $taille=strlen($compte);
+           // $taille=strlen($compte);
             
             $chaine="OOOOO";
-      
+            $nombre2 =(string)$compte;
+            
             for($i=0,$j=5-strlen($compte); $i<strlen($compte);$i++,$j++)
             {
-                $chaine[$j]=$compte[$i];
+                $chaine[$j]=$nombre2[$i];
       
             } 
             
