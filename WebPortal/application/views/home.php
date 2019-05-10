@@ -9,7 +9,7 @@
         </section>
     </div>
 
-	<div class="col-3">
+	<div class="col-3" style=" padding-bottom: 11px";>
 			<aside id="visits" >
 		<h3>Nombre d'agriculteurs inscrits : </h3>
 		<div id="compteur" style="text-align:center";><?=implode("\n",array_map(function($x) { return "<span>$x</span>"; }, str_split(sprintf("%05d",intval($numberAgri))))); ?></div>
