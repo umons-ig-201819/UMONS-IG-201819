@@ -15,12 +15,11 @@
 			<?php
 			
 		    $chaine2="OOOOO";
-		    $numberAgri="23"; // a supprimer sur le site 
+		
 		    for($i=0,$j=5-strlen($numberAgri); $i<strlen($numberAgri);$i++,$j++)
             {
                 $chaine2[$j]=$numberAgri[$i];
             } 
-               
            
             for ($i = 0; $i < strlen($chaine2); $i++)
             {
@@ -31,8 +30,7 @@
 		
 		
 		
-		
-		<br></br>
+
     	<div  id="visits" >
     	
     		Nombre de visites : <br>
@@ -57,7 +55,7 @@
                     fputs($compteur_f, $compte);
             }
          
-            $compte="1234"; // a supprimer sur le site
+            
             $current_time=date("H:i ");
             if($current_time[1]=="0")
                 $compte="1";
