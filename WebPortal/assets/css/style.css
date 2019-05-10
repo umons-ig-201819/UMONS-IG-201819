@@ -93,6 +93,11 @@ aside
 	min-height:140px;
 }
 
+h3
+{
+	margin:auto;
+}
+
 /*Boite avec compteur*/
 aside h3
 {
