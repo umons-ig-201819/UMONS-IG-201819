@@ -98,6 +98,7 @@ aside
 h3
 {
 	margin:10px;
+	padding: inherit;
 }
 
 #compteur
