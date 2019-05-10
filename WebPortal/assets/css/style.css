@@ -60,10 +60,9 @@ h2
 /*Compteur visite*/
 #visits span {
   display: inline-block;
-  padding: 5px;
+  padding: 3px 6px 4px;
   border-radius: 3px;
   background-color: #323234;
-  /*margin-right: -3px;*/
   color : white;
   text-align : center;
 }
