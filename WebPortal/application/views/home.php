@@ -37,7 +37,7 @@
     	<h3  id="visits" >Nombre de visites : </h3><br>
     		
             <?php
-            
+            /*
             if(file_exists('compteur_visites.txt'))
             {
                     $compteur_f = fopen('compteur_visites.txt', 'r+');
@@ -58,8 +58,7 @@
          
             
             $current_time=date("H:i ");
-            if($current_time[1]=="0")
-                $compte="1";
+            if($current_time[1]=="0") $compte="1";
             fputs($compteur_f, $compte);
             fclose($compteur_f);
            // $taille=strlen($compte);
@@ -67,18 +66,15 @@
             $chaine="OOOOO";
             $nombre2 =(string)$compte;
             
-            for($i=0,$j=5-strlen($compte); $i<strlen($compte);$i++,$j++)
-            {
+            for($i=0,$j=5-strlen($compte); $i<strlen($compte);$i++,$j++){
                 $chaine[$j]=$nombre2[$i];
-      
             } 
             
                
             for ($i = 0; $i < 5; $i++)
             {
-                ?><span><?php echo ($chaine[$i]);?></span>
-    			<?php
-            }
+                echo "<span>$chaine[$i]</span>";
+            }*/
             ?> 
            
     	</div>
