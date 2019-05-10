@@ -12,8 +12,9 @@ class CounterModel extends CI_Model{
     }
     
     public function countVisitors(){
-        $sql    = "SELECT MAX(0,value) AS value FROM counter WHERE day=CURRENT_DATE()";
+        $sql    = "SELECT value AS value FROM counter WHERE day=CURRENT_DATE()";
         $query  = $this->db->query($sql)->row_array();
+        if(empty($query)) return 0;
         return $query['value'];
     }
 }
