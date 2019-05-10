@@ -13,7 +13,7 @@
 			<aside id="visits" style="margin-top: 10px";>
 		<h3>Nombre d'agriculteurs inscrits : </h3>
 		<div id="compteur" style="text-align:center";><?=implode("\n",array_map(function($x) { return "<span>$x</span>"; }, str_split(sprintf("%05d",intval($numberAgri))))); ?></div>
-	<br> 
+	
     	<h3  id="visits" >Nombre de visites : </h3>
     		<div id="compteur" style="text-align:center";><?=implode("\n",array_map(function($x) { return "<span>$x</span>"; }, str_split(sprintf("%05d",intval($numberVisit))))); ?>
 	</div>
