@@ -5,7 +5,7 @@ class CounterModel extends CI_Model{
         $this->load->database();
     }
     public function newVisitor(){
-        $sql    = "INSERT IF NOT EXISTS counter (day) VALUES (CURRENT_DATE())";
+        $sql    = "INSERT IF NOT EXISTS INTO counter (day) VALUES (CURRENT_DATE())";
         $this->db->query($sql);
         $sql    = "UPDATE counter SET value=value+1 WHERE day=CURRENT_DATE()";
         $this->db->query($sql);
