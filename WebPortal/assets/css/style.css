@@ -445,12 +445,12 @@ input[type=submit]:active, input[type=reset]:active {
 @media only screen and (min-width: 768px) {
   /* For desktop: */
 	
-aside{
-	height :20vh;	
+aside h3{
+	font-size:inherit;	
 }
 
 #top_page{
-	height :20vh;	
+	font-size:2.2em;	
 }
 	
   .col-1 {width: 8.33%;}
@@ -466,6 +466,8 @@ aside{
   .col-11 {width: 91.66%;}
   .col-12 {width: 100%;}
 }
+
+
 
 @media only screen and (min-width: 908px) {
   /* For desktop: */
