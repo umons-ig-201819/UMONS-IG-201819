@@ -443,7 +443,7 @@ input[type=submit]:active, input[type=reset]:active {
 }
 
 
-@media only screen and (min-width: 780px) {
+@media only screen and (min-width: 794px) {
   /* For desktop: */
 	
 aside h3{
