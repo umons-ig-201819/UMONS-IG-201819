@@ -446,11 +446,11 @@ input[type=submit]:active, input[type=reset]:active {
   /* For desktop: */
 	
 aside{
-	height :25vh;	
+	height :20vh;	
 }
 
 #top_page{
-	height :26vh;	
+	height :20vh;	
 }
 	
   .col-1 {width: 8.33%;}
@@ -465,6 +465,18 @@ aside{
   .col-10 {width: 83.33%;}
   .col-11 {width: 91.66%;}
   .col-12 {width: 100%;}
+}
+
+@media only screen and (min-width: 908px) {
+  /* For desktop: */
+	
+aside{
+	height :25vh;	
+}
+
+#top_page{
+	height :26vh;	
+}
 }
 
 
