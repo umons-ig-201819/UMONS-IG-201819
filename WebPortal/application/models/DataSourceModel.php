@@ -505,7 +505,7 @@ class DataSourceModel extends CI_Model{
                                         f_visible_awe AS visible,
                                         f_dateajout AS add_date
 				FROM fichierappli
-				WHERE (f_visible_awe = 0 OR f_visible_awe = 1) AND f_id = ? ";
+				WHERE f_id = ? ";
         $query = $this->db->query($sql, array($dataSourceID));
         $file=$query->row_array();
         if(is_null($file['id'])) return true;
