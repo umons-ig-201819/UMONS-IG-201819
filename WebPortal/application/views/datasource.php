@@ -1,9 +1,9 @@
 <section>
 	<article>
-		<h1>Source de données</h1>
+		<h1>Sources de donn&eacute;es</h1>
 <?php
 echo form_open('datasource');
-echo form_fieldset('Source de données');
+echo form_fieldset('Sources de donn&eacute;es');
 echo '<p>';
     echo form_label('Source');
     echo form_dropdown('datasource',$options,$selected,'id="datasource" required="required"');
