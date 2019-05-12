@@ -740,7 +740,7 @@ class DataSourceModel extends CI_Model{
                 WHERE f_id_proprio=?";
 	    $query = $this->db->query($sql, array($userID));
 	    $result=$query->result_array();
-	    if(is_null($result['id'])) return false;
+	    //if(is_null($result['id'])) return false;
 	    return $result;
 	}
 	public function getProjects($sourceID){
@@ -884,9 +884,6 @@ class DataSourceModel extends CI_Model{
 	     $query = $this->db->query($sql);
 	     $dataSources=$query->result_array();
 	     //if(is_null($dataSources['id'])) return false;
-	     //--> ne fonctionne pas à cause du result array. 
-	     //Fonctionnerait avec row array mais row array ne renvoie qu'1 seule ligne...
-	     //Je n'ai pas trouvé mieux...
 	     return $dataSources;
 	 }
 	 
