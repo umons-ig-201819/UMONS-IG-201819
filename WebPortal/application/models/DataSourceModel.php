@@ -582,7 +582,7 @@ class DataSourceModel extends CI_Model{
 	    }
 	    $sql = "$sql ORDER BY file_name";
 	    $query = $this->db->query($sql);
-	    if(is_null($query['id'])) return false;
+	    //if(is_null($query['id'])) return false;
 	    return $query->result_array();
 	}
  	
