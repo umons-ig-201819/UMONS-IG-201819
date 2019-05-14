@@ -82,7 +82,7 @@ if(!function_exists('list_paragraphs')){
      * @param ZeppelinRef $noteID The given node unique identifier
      * @return array Array of paragraph, each indice contains an associative array 'dateCreated', 'dateStarted', 'title', 'text' and 'id'
      */
-    function list_paragraphs($noteID){
+    function list_paragraphs($noteID,$content=false){
         $information = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID"),true);
         $information = $information['body']['paragraphs'];
         $result      = array();
@@ -94,6 +94,20 @@ if(!function_exists('list_paragraphs')){
             $tmp['id']             = array_key_exists('id'          ,$paragraph) ? $paragraph['id' ]            : '' ;
             $tmp['dateCreated']    = array_key_exists('dateCreated' ,$paragraph) ? strtotime($paragraph['dateCreated' ])   : '' ;
             $tmp['dateStarted']    = array_key_exists('dateStarted' ,$paragraph) ? strtotime($paragraph['dateStarted' ])   : '' ;
+            if($content){
+                if(         array_key_exists('results',$paragraph)
+                    &&  array_key_exists('msg',$paragraph['results'])
+                    &&  array_key_exists(0,$paragraph['results']['msg'])
+                    &&  array_key_exists('data',$paragraph['results']['msg'][0])
+                    &&  array_key_exists('type',$paragraph['results']['msg'][0])
+                    &&  $paragraph['results']['msg'][0]['type'] == 'TABLE'
+                  ){
+                      $values = explode('\n',$paragraph['results']['msg'][0]['data']);
+                      $tmp['content'] = array_map(function ($x){ return explode("\t",$x); }, $values);
+                }else{
+                    $tmp['content'] = array();
+                }
+            }
             if(!empty($tmp['results'])){
                 if(array_key_exists('results',$tmp['results'])){
                     $tmp['results'] = $tmp['results']['results'];
