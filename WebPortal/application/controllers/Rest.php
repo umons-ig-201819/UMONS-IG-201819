@@ -22,7 +22,7 @@ class Rest extends CI_Controller {
         $login      = array_key_exists('username', $this->query) ? $this->query['username'] : '';
         $password   = array_key_exists('password', $this->query) ? $this->query['password'] : '';
         $res        = $this->UserModel->authentification($login,$password);
-        if(res === false) return false;
+        if($res === false) return false;
         $this->userID = $res['id'];
     }
     private function canAccess($sourceID){
