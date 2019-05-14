@@ -2,7 +2,7 @@
 #coding: utf-8
 import requests
 
-WALLSMART_URL	= 'http://192.168.2.168/index.php/Rest/index'
+WALLSMART_URL	= 'http://192.168.2.168/index.php/Rest/source'
 USERNAME			= 'supernadine'
 PASSWORD			= 'test'
 SOURCE			= '88'
