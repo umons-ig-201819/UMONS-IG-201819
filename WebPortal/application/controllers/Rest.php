@@ -10,6 +10,7 @@ class Rest extends CI_Controller {
         
         $this->load->model('UserModel');
         $this->load->model('DataSourceModel');
+        $this->load->helper('zeppelin');
         
         $this->response = array(
             'status'    => 'OK',
