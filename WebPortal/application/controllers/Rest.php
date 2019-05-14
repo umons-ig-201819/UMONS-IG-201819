@@ -64,7 +64,7 @@ class Rest extends CI_Controller {
             $this->response['message']='Cannot access to this data source';
         }else{
             $data = $this->DataSourceModel->getDataSource($source);
-            print_r(list_paragraphs($data['url'],true)[0]['content']);
+            $this->response['body']['data'] = list_paragraphs($data['url'],true)[0]['content'];
         }
         $this->output();
     }
