@@ -11,7 +11,6 @@ def main(args):
 	global ZEPPELIN_URL, USERNAME, PASSWORD, SOURCE
 	r = requests.post(WALLSMART_URL, json={'username': USERNAME, 'password': PASSWORD, 'source': SOURCE})
 	print("Status code: "+str(r.status_code))
-	print(r.content)
 	print(r.json())
 
 if(__name__ == '__main__'):
