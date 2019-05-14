@@ -104,6 +104,7 @@ class Rest extends CI_Controller {
             $this->response['message']='Bad JSON encoding';
             return false;
         }
+        print_r($this->query);
         $this->userID = $this->authentication();
         if(is_null($this->userID)){
             $this->response['status']='KO';
