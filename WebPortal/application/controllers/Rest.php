@@ -10,7 +10,6 @@ class Rest extends CI_Controller {
         
         $this->load->model('UserModel');
         $this->load->model('DataSourceModel');
-        $this->load->helper('zeppelin');
         
         $this->response = array(
             'status'    => 'OK',
@@ -63,6 +62,7 @@ class Rest extends CI_Controller {
             $this->response['status']='KO';
             $this->response['message']='Cannot access to this data source';
         }else{
+            $data = $this->DataSourceModel->getDataSource($source);
             print_r(list_paragraphs($data['url']));
         }
         $this->output();
