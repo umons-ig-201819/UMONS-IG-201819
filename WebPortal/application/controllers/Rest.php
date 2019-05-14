@@ -27,6 +27,11 @@ class Rest extends CI_Controller {
         $this->userID = $res['id'];
     }
     private function canAccess($sourceID){
+        $data   = $this->DataSourceModel->getAccessibleDataSources($this->userID);
+        foreach($data as $source){
+            if($source['id'] == $sourceID) return true;
+        }
+        /*
         $data   = $this->DataSourceModel->getPersonalDataSources($this->userID);
         foreach($data as $source){
             if($source['id'] == $sourceID) return true;
@@ -35,7 +40,7 @@ class Rest extends CI_Controller {
         $access = $this->DataSourceModel->getAccessDataSources($this->userID);
         foreach($access as $source){
             if($source['id'] == $sourceID) return true;
-        }
+        }*/
 
         return false;
     }
