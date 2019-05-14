@@ -58,7 +58,7 @@ class Rest extends CI_Controller {
         if($source < 0){
             $this->response['status']='KO';
             $this->response['message']='Cannot identify the data source';
-        }elseif(!canAccess($source)){
+        }elseif(!$this->canAccess($source)){
             $this->response['status']='KO';
             $this->response['message']='Cannot access to this data source';
         }else{
