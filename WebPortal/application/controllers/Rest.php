@@ -62,7 +62,7 @@ class Rest extends CI_Controller {
             $this->response['status']='KO';
             $this->response['message']='Cannot access to this data source';
         }else{
-            $data = getDataSource($source);
+            $data = $this->DataSourceModel->getDataSource($source);
             print_r($data);
             // TODO read from source
         }
