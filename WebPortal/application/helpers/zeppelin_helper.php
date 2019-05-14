@@ -102,7 +102,7 @@ if(!function_exists('list_paragraphs')){
                     &&  array_key_exists('type',$paragraph['results']['msg'][0])
                     &&  $paragraph['results']['msg'][0]['type'] == 'TABLE'
                   ){
-                      $values = explode('\n',$paragraph['results']['msg'][0]['data']);
+                      $values = explode("\n",$paragraph['results']['msg'][0]['data']);
                       $tmp['content'] = array_map(function ($x){ return explode("\t",$x); }, $values);
                 }else{
                     $tmp['content'] = array();
