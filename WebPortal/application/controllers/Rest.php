@@ -23,6 +23,7 @@ class Rest extends CI_Controller {
         $login      = array_key_exists('username', $this->query) ? $this->query['username'] : '';
         $password   = array_key_exists('password', $this->query) ? $this->query['password'] : '';
         $res        = $this->UserModel->authentification($login,$password);
+        echo "Login: #$login#, password: #$password#\n";
         if($res === false) return false;
         $this->userID = $res['id'];
     }
@@ -104,8 +105,7 @@ class Rest extends CI_Controller {
             $this->response['message']='Bad JSON encoding';
             return false;
         }
-        print_r($this->query);
-        $this->userID = $this->authentication();
+        $this->authentication();
         if(is_null($this->userID)){
             $this->response['status']='KO';
             $this->response['message']='Autentication failure';
