@@ -44,7 +44,7 @@ class Rest extends CI_Controller {
         $methods = array_filter($methods,function ($x){ return $x->isPublic();});
         $methods = array_map(function ($x){ return $x->getName();}, $methods);
         $this->response['body']['methods'] = $methods;
-        output();
+        $this->output();
     }
     public function data(){
         process();
@@ -58,7 +58,7 @@ class Rest extends CI_Controller {
         }else{
             // TODO read from source
         }
-        output();
+        $this->output();
     }
     public function source(){
         process();
@@ -75,7 +75,7 @@ class Rest extends CI_Controller {
             foreach($keys as $k)
                 $this->response['body'][$k] = $res[$k];
         }
-        output();
+        $this->output();
     }
     public function list(){
         process();
@@ -90,7 +90,7 @@ class Rest extends CI_Controller {
             array_push($this->response['body'],array('id'=>$source['id'],'name'=>$source['file_name']));
         }
         
-        output();
+        $this->output();
     }
     private function output(){
         header('Content-type: application/json');
