@@ -47,7 +47,7 @@ class Rest extends CI_Controller {
         $this->output();
     }
     public function data(){
-        process();
+        $this->process();
         $source = array_key_exists('source', $this->query) ? intval($this->query['source']) : -1;
         if($source < 0){
             $this->response['status']='KO';
@@ -61,7 +61,7 @@ class Rest extends CI_Controller {
         $this->output();
     }
     public function source(){
-        process();
+        $this->process();
         $source = array_key_exists('source', $this->query) ? intval($this->query['source']) : -1;
         if($source < 0){
             $this->response['status']='KO';
@@ -78,7 +78,7 @@ class Rest extends CI_Controller {
         $this->output();
     }
     public function list(){
-        process();
+        $this->process();
         $data   = $this->DataSourceModel->getPersonalDataSources($this->userID);
         $access = $this->DataSourceModel->getAccessDataSources($this->userID);
         
