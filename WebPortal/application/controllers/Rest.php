@@ -87,7 +87,7 @@ class Rest extends CI_Controller {
         $this->process();
         $data   = $this->DataSourceModel->getAccessibleDataSources($this->userID);
         foreach($data as $source){
-            array_push($this->response['body'],array('id'=>$source['id'],'name'=>$source['file_name']));
+            array_push($this->response['body'],array('id'=>$source['id'],'name'=>$source['name']));
         }
         /*
         $data   = $this->DataSourceModel->getPersonalDataSources($this->userID);
