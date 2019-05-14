@@ -85,6 +85,11 @@ class Rest extends CI_Controller {
     }
     public function list(){
         $this->process();
+        $data   = $this->DataSourceModel->getAccessibleDataSources($this->userID);
+        foreach($data as $source){
+            array_push($this->response['body'],array('id'=>$source['id'],'name'=>$source['file_name']));
+        }
+        /*
         $data   = $this->DataSourceModel->getPersonalDataSources($this->userID);
         $access = $this->DataSourceModel->getAccessDataSources($this->userID);
         
@@ -94,7 +99,7 @@ class Rest extends CI_Controller {
         
         foreach($access as $source){
             array_push($this->response['body'],array('id'=>$source['id'],'name'=>$source['file_name']));
-        }
+        }*/
         
         $this->output();
     }
