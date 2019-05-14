@@ -9,6 +9,7 @@ class Rest extends CI_Controller {
         parent::__construct();
         
         $this->load->model('UserModel');
+        $this->load->model('DataSourceModel');
         
         $this->response = array(
             'status'    => 'OK',
