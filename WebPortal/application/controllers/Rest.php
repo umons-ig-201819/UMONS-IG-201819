@@ -43,6 +43,8 @@ class Rest extends CI_Controller {
         $methods = array_map(function ($x){ return new ReflectionMethod($this, $x);}, $methods);
         $methods = array_filter($methods,function ($x){ return $x->isPublic() && !$x->isConstructor();});
         print_r(array_map(function ($x){ $x->getDeclaringClass();}, $methods));
+        echo $methods[count($methods)-1]->getDeclaringClass();
+        
         $methods = array_map(function ($x){ return $x->getName();}, $methods);
         $this->response['body']['methods'] = $methods;
         $this->output();
