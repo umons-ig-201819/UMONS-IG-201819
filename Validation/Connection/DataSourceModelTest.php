@@ -78,6 +78,7 @@ class DataSourceModelTest extends TestCase{
         $filter['owner']="test";
         $filter['name']="test40";
         $res=$this->dataSourceModel->searchDataSources($filter,$and);
+	if(is_null($res['id'])) return false;
         $this->assertNotEquals($res,false);
     }
     
@@ -101,6 +102,7 @@ class DataSourceModelTest extends TestCase{
         $filter['visible']=2;
         $filter['add_date']='2019-04-28 16:28:51';
         $res=$this->dataSourceModel->getDataSources($filter,$and);
+	if(is_null($res['id'])) return false;
         $this->assertNotEquals($res,false);
     }
 
@@ -113,6 +115,7 @@ class DataSourceModelTest extends TestCase{
     public function testGetDataSources1(){
         $and = false;
         $res=$this->dataSourceModel->getDataSources(" ",$and);
+	if(is_null($res['id'])) return false;
         $this->assertNotEquals($res,false);
     }
     
@@ -123,6 +126,7 @@ class DataSourceModelTest extends TestCase{
     public function testGetPersonalDataSources(){
         $resu=$this->dataSourceModel->getUserID();
         $res=$this->dataSourceModel->getPersonalDataSources($resu);
+	if(is_null($res['id'])) return false;
         $this->assertNotEquals($res,false);
     }
     
