@@ -121,6 +121,15 @@ if(!function_exists('list_paragraphs')){
     }
 }
 
+if(!function_exists('json_clear')){
+    function json_clear($rawText){
+        $rawText = preg_replace('%\\\\([a-z])%','\\\\\\\\\1',$rawText);
+        $rawText = str_replace("\n",'\\n',$rawText);
+        $rawText = preg_replace('/"/','\\"',$rawText);
+        return $rawText;
+    }
+}
+
 if(!function_exists('create_paragraph')){
     function create_paragraph($noteID,$name,$textContent,$results=''){
         if(empty($results)){
@@ -133,10 +142,9 @@ if(!function_exists('create_paragraph')){
             'http' => array(
                 'method'  => 'POST',
                 'header'  => "Content-Type: application/json",//'Content-Type: application/x-www-form-urlencoded',
-                'content' => '{"title": "'.$name.'", "text": "'.preg_replace('/"/','\\"',$textContent).'"'.$results.'}'
+                'content' => '{"title": "'.$name.'", "text": "'.json_clear($textContent).'"'.$results.'}'
             )
         );
-        print_r($headers);
         $context       = stream_context_create($headers);
         $result        = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID/paragraph", true, $context),true);
         $paragraphID   = $result['body'];
