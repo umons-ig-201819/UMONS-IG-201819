@@ -136,6 +136,7 @@ if(!function_exists('create_paragraph')){
                 'content' => '{"title": "'.$name.'", "text": "'.preg_replace('/"/','\\"',$textContent).'"'.$results.'}'
             )
         );
+        print_r($headers);
         $context       = stream_context_create($headers);
         $result        = json_decode(file_get_contents(ZEPPELIN_URL."/api/notebook/$noteID/paragraph", true, $context),true);
         $paragraphID   = $result['body'];
