@@ -7,7 +7,7 @@ VALUES ('SMITH', 'John', 'smithy', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3'),
 ;
 
 INSERT IGNORE INTO utilisateur_role (ur_id_ut, ur_id_role)
-SELECT ut_id,, r_id FROM utilisateur, role
+SELECT ut_id, r_id FROM utilisateur, role
 WHERE r_nom LIKE 'gestionnaire' AND ut_login LIKE 'smithy'
 ;
 
