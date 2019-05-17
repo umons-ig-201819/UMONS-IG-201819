@@ -5,7 +5,7 @@ $('<datalist/>', {
     class: 'suggestion'
 }).insertAfter('#login.suggestion');
 
-var suggestions = $(document).select('#login_suggestions.suggestion');
+var suggestions = $(document).select('#login_suggestions.suggestion')[0];
 
 inputsuggestion.attr("list", "login_suggestions");
 
