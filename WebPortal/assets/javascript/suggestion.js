@@ -12,7 +12,7 @@ inputsuggestion.attr("list", "login_suggestions");
 
 inputsuggestion.bind( "input", function(data) {
 	var elem = data.target;
-	console.log(elem);
+	console.log(elem.text());
 	$.get('http://' + window.location.hostname+ "/index.php/search/usersuggestion/10/s", function(response) {
 		$(document).select('#login_suggestions.suggestion').html('');
 		//dev suggestion.js
