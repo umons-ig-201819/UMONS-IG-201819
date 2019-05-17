@@ -3,7 +3,7 @@ var inputsuggestion;
 $( document ).ready(function() {
 
 	inputsuggestion = $(document).select('#login.suggestion');
-	suggestions = $(document).select('#login_suggestions.suggestion');	
+	suggestions = $(document).select('#loginsuggestions.suggestion');	
 	
 	inputsuggestion.bind( "input", function(data) {
 		var elem = data.target;
@@ -13,7 +13,7 @@ $( document ).ready(function() {
 			for(var i=0;i<response.length;i++){
 				content += "<option value='" + response[i] + "'></option>\n";
 			}
-			document.getElementById('login_suggestions').innerHTML=content;
+			document.getElementById('loginsuggestions').innerHTML=content;
 		});
 	});
 
