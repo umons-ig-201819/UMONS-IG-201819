@@ -18,10 +18,7 @@ inputsuggestion.bind( "input", function(data) {
 		for(var i=0;i<response.length;i++){
 			content += "<option value='" + response[i] + "'></option>\n";
 		}
-		suggestions.each(function(){
-			console.log($(this));
-			$(this).append(content);
-		});
+		suggestions.append(content);
 	});
 });
 
