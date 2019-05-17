@@ -15,3 +15,4 @@ console.log($(".suggestion#login").length);
 
 console.log($("input").length);
 
+console.log(document.getElementById('login'));
