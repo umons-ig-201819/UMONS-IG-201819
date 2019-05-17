@@ -8,7 +8,6 @@ $( document ).ready(function() {
 	inputsuggestion.bind( "input", function(data) {
 		var elem = data.target;
 		$.get('http://' + window.location.hostname+ "/index.php/search/usersuggestion/10/"+elem.value, function(response) {
-			//dev suggestion.js
 			var content = "";
 			for(var i=0;i<response.length;i++){
 				content += "<option value='" + response[i] + "'></option>\n";
