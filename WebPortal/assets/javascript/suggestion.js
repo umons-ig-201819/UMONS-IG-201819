@@ -18,7 +18,7 @@ inputsuggestion.bind( "input", function(data) {
 		for(var i=0;i<response.length;i++){
 			content += "<option value='" + response[i] + "'></option>\n";
 		}
-		suggestions.html(content);
+		console.log(suggestions);
 	});
 });
 
