@@ -18,7 +18,7 @@ inputsuggestion.bind( "input", function(data) {
 		for(var i=0;i<response.length;i++){
 			content += "<option value='" + response[i] + "'></option>\n";
 		}
-		$(document).select('#login_suggestions.suggestion').html(content);
+		suggestions.html(content);
 	});
 });
 
