@@ -68,6 +68,6 @@ class Search extends CI_Controller {
         $username   = str_replace('%', "\\%", $username);
         $result     = $this->UserModel->getUsers(array('login' => $username),true, $limit, '');
         $result     = array_map(function ($x){ return $x['login']; }, $result);
-        echo json_encode( $this->$result );
+        echo json_encode( $result );
     }
 }
