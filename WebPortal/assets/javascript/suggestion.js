@@ -22,8 +22,8 @@ $( document ).ready(function() {
 				content += "<option value='" + response[i] + "'></option>\n";
 			}
 			console.log(content);
-			suggestions.append(content);
-			//document.getElementById('login_suggestions').innerHTML = content;
+			//suggestions.append(content);
+			console.log(document.getElementById('login_suggestions'));//.innerHTML = content;
 		});
 	});
 
