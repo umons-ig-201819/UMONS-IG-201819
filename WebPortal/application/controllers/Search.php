@@ -5,6 +5,10 @@ class Search extends CI_Controller {
     public function __construct(){
         // TODO ensure that user is logged
         parent::__construct();
+        if(!isset($this->session->UserID)){
+            http_response_code(403);
+            die('Access denied!');
+        }
         $this->load->model('UserModel');
         $this->load->model('DataSourceModel');
     }
@@ -58,5 +62,12 @@ class Search extends CI_Controller {
         $this->load->view('header');
         $this->load->view('search_datasource',array('result' => $result));
         $this->load->view('footer');
+    }
+    public function usersuggestion($limit=10,$username=''){
+        header('Content-type: application/json');
+        $username   = str_replace('%', "\\%", $username);
+        $result     = $this->UserModel->getUsers(array('login' => $username),true, $limit, '');
+        $result     = array_map(function ($x){ return $x['login']; }, $result);
+        echo json_encode( $this->$result );
     }
 }

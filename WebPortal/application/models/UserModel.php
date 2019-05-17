@@ -289,9 +289,9 @@ class UserModel extends CI_Model {
 	* @return an array of users (lastname, firstname ascending order)
 	* @see getUser() for the data structure of returned users
 	*/
-	public function getUsers($filter = NULL, $and = false) 			
+	public function getUsers($filter = NULL, $and = false, $limit=0, $like_start='%', $like_end='%') 			
 	{ 
-		
+	    $limit = intval($limit);
 		$sql="SELECT 
 					ut_id AS id,
 					ut_nom AS lastname,
@@ -328,7 +328,7 @@ class UserModel extends CI_Model {
 						$sql.=$operator;
 					}
 					$sql.='ut_nom LIKE ?';
-					$params[] = '%'.$v.'%';
+					$params[] = "$like_start$v$like_end";
 
 				}	
 				if($k=='firstname') 
@@ -343,7 +343,7 @@ class UserModel extends CI_Model {
 						$sql.=$operator;
 					}
 					$sql.='ut_prenom LIKE ?';
-					$params[] = '%'.$v.'%';
+					$params[] = "$like_start$v$like_end";
 				}	
 				if($k=='login') 
 				{ 
@@ -357,7 +357,7 @@ class UserModel extends CI_Model {
 						$sql.=$operator;
 					}
 					$sql.='ut_login LIKE ?';
-					$params[] = '%'.$v.'%';
+					$params[] = "$like_start$v$like_end";
 				}
 				if($k=='phone') 
 				{ 
@@ -371,7 +371,7 @@ class UserModel extends CI_Model {
 						$sql.=$operator;
 					}
 					$sql.='ut_tel LIKE ?';
-					$params[] = '%'.$v.'%';
+					$params[] = "$like_start$v$like_end";
 				}	
 				if($k=='mobile') 
 				{ 
@@ -385,7 +385,7 @@ class UserModel extends CI_Model {
 						$sql.=$operator;
 					}
 					$sql.='ut_gsm LIKE ?';
-					$params[] = '%'.$v.'%';
+					$params[] = "$like_start$v$like_end";
 				}			
 				if($k=='email') 
 				{ 
@@ -399,7 +399,7 @@ class UserModel extends CI_Model {
 						$sql.=$operator;
 					}
 					$sql.='ut_mail LIKE ?';
-					$params[] = '%'.$v.'%';
+					$params[] = "$like_start$v$like_end";
 				}
 				if($k=='birthdate') 
 				{ 
@@ -490,7 +490,10 @@ class UserModel extends CI_Model {
 			}		
 			
 		}
-		$sql.=' ORDER BY ut_nom, ut_prenom';		
+		$sql.=' ORDER BY ut_nom, ut_prenom';
+		if($limit > 0){
+		    $sql .= " LIMIT $limit";
+		}
 
 		$query = $this->db->query($sql, $params);
 		$users=$query->result_array();		
