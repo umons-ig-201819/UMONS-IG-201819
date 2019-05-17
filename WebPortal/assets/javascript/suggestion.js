@@ -1,6 +1,7 @@
-$("#login .suggestion").bind( "input", function(data) {
+$(document).select('#login.suggestion').bind( "input", function(data) {
 	console.log(data);
 });
+/*
 $("#login .suggestion").bind( "keypress", function(data) {
 	console.log(data);
 });
@@ -20,3 +21,4 @@ console.log(document.getElementsByClassName('suggestion').length);
 console.log(document.getElementsByTagName('input').length);
 
 console.log($(".suggestion"));
+*/
