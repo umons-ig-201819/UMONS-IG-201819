@@ -15,8 +15,6 @@ inputsuggestion.bind( "input", function(data) {
 		for(var i=0;i<response.length;i++){
 			suggestions.append("<option value='" + data[i] + "'></option>");
 		}
-		console.log(response);
-		console.log("done");
 	});
 });
 /*
@@ -26,7 +24,7 @@ $(document).select('option.suggestion').bind( "cick", function(data) {
 });*/
 
 
-console.log(inputsuggestion.parent());
+console.log($(document).select('#login.suggestion').parent());
 
 //TODO add attribute to login input list="datalist1" to ref its datalist
 
