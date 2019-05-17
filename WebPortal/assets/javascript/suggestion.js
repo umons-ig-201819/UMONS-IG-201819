@@ -22,4 +22,4 @@ $(document).select('option.suggestion').bind( "cick", function(data) {
 suggestions.insertAfter(inputsuggestion.parent());
 $('<option value="test" class="suggestion">').appendTo(suggestions);
 
-console.log(inputsuggestion.parent().innerHTML);
+console.log(inputsuggestion.parent());
