@@ -1,4 +1,8 @@
 var inputsuggestion = $(document).select('#login.suggestion');
+var suggestions = $('<datalist/>', {
+    id: 'login_suggestions',
+    class: 'suggestion'
+});
 
 inputsuggestion.bind( "input", function(data) {
 	var elem = data.target;
@@ -8,19 +12,6 @@ inputsuggestion.bind( "input", function(data) {
 	});
 });
 
-var suggestions = $('<datalist/>', {
-    id: 'login_suggestions',
-    class: 'suggestion'
-}).insertAfter(inputsuggestion.parent());
 
-console.log($('<datalist/>'));
-
-/*
-<datalist id="suggestions">
-<option value="Black">
-<option value="Red">
-<option value="Green">
-<option value="Blue">
-<option value="White">
-</datalist>
-*/
+suggestions.insertAfter(inputsuggestion.parent());
+$('<option value="test">').appendTo(suggestions);
