@@ -1,24 +1,8 @@
+
 $(document).select('#login.suggestion').bind( "input", function(data) {
-	console.log(data);
+	console.log(data)
+	$.get('http://' + window.location.hostname+ "/index.php/search/usersuggestion/10/s", function(response) {
+		console.log(response);
+		console.log("done");
+	});
 });
-/*
-$("#login .suggestion").bind( "keypress", function(data) {
-	console.log(data);
-});
-
-console.log($("#login").length);
-
-console.log($(".suggestion").length);
-
-console.log($(".suggestion#login").length);
-
-console.log($(".suggestion#login").length);
-
-console.log($("input").length);
-
-console.log(document.getElementById('login'));
-console.log(document.getElementsByClassName('suggestion').length);
-console.log(document.getElementsByTagName('input').length);
-
-console.log($(".suggestion"));
-*/
