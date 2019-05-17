@@ -32,4 +32,4 @@ inputsuggestion.bind( "input", function(data) {
 	});
 });
 
-}
+)};
