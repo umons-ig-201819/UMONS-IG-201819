@@ -15,7 +15,7 @@
 				
 		echo '<p>';
 		echo form_label("Nom d'utilisateur du conseiller",'login');
-		echo form_input('login','','id="login"');
+		echo form_input('login','','id="login" class="suggestion"');
 		echo form_submit('actionadd', 'Ajouter',"class='buttonvalider'");
 		echo '</p>';
 		
