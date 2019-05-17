@@ -23,21 +23,3 @@ inputsuggestion.bind( "input", function(data) {
 	});
 });
 
-console.log(suggestions);
-
-/*
-$(document).select('option.suggestion').bind( "cick", function(data) {
-	var elem = data.target;
-	console.log("select "+elem.value);
-});*/
-
-
-
-//TODO add attribute to login input list="datalist1" to ref its datalist
-
-// suggestions.appendTo($(document).select('form')[0]);
-
-
-/*suggestions.insertAfter(inputsuggestion.parent());
-$('<option value="test" class="suggestion">').appendTo(suggestions);
-*/
