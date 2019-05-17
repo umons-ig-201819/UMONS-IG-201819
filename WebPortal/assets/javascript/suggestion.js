@@ -5,28 +5,30 @@ var suggestions = $('<datalist/>', {
     class: 'suggestion'
 });
 
+inputsuggestion.attr("list", "login_suggestions");
+
+
 inputsuggestion.bind( "input", function(data) {
 	var elem = data.target;
 	$.get('http://' + window.location.hostname+ "/index.php/search/usersuggestion/10/s", function(response) {
+		suggestions.empty();
+		for(var i=0;i<response.length;i++){
+			suggestions.append("<option value='" + data[i] + "'></option>");
+		}
 		console.log(response);
 		console.log("done");
 	});
 });
-
+/*
 $(document).select('option.suggestion').bind( "cick", function(data) {
 	var elem = data.target;
 	console.log("select "+elem.value);
-});
+});*/
 
 
-console.log($(document).select('form'));
-console.log($(document).select('form')[0]);
+console.log(inputsuggestion.parent());
 
-$(document).select('form')[0].innerHTML="<p>sd</p>";
-
-console.log(suggestions);
-
-suggestions.appendTo($(document).select('body'));
+//TODO add attribute to login input list="datalist1" to ref its datalist
 
 // suggestions.appendTo($(document).select('form')[0]);
 
