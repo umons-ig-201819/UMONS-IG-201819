@@ -24,8 +24,9 @@ console.log($(document).select('form')[0]);
 
 $(document).select('form')[0].innerHTML="<p>sd</p>";
 
+console.log(suggestions);
 
-suggestions.appendTo($(document).select('form')[0]);
+// suggestions.appendTo($(document).select('form')[0]);
 
 
 /*suggestions.insertAfter(inputsuggestion.parent());
