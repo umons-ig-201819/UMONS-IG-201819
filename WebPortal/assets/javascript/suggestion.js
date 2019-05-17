@@ -1,3 +1,4 @@
+$( document ).ready(function() {
 
 var inputsuggestion = $(document).select('#login.suggestion');
 
@@ -31,3 +32,4 @@ inputsuggestion.bind( "input", function(data) {
 	});
 });
 
+}
