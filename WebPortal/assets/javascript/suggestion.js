@@ -17,7 +17,7 @@ inputsuggestion.bind( "input", function(data) {
 		//dev suggestion.js
 		for(var i=0;i<response.length;i++){
 			console.log(response[i]);
-			console.log(suggestions);
+			suggestions.append("<option value='" + response[i] + "'></option>");
 			//$("<option value='" + response[i] + "'></option>").appendTo('#login_suggestions.suggestion');
 		}
 	});
