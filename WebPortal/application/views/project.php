@@ -19,7 +19,7 @@
         echo '</p>';
         
         echo '<p>';
-        echo form_label('Date de d&eacute;but','add_date');
+        echo form_label('Date de d&eacute;but','date_start');
         echo '<input type="date" name="date_start" value="'.htmlentities($project['date_start']).'" id="date_start">';// TODO check Y-m-d
         echo '</p>';
         

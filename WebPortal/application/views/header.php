@@ -29,7 +29,7 @@
                 	
                 </div>
     
-    	<div class="header" id="myHeader">
+    	<header class="header" id="myHeader">
     	
     <!--  <div class="topnav" id="myTopnav">-->	
             		   	
@@ -56,8 +56,8 @@
                       <!--     <li><a href="?php echo site_url("connection/register"); ?>">Inscription</a></li>        -->              
             			
         
-    			</div>
-  </div>
+    			</header>
+ <!--  </div> -->
 
 
 <script type="text/javascript">
