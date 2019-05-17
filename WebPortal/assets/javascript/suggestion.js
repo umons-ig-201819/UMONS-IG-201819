@@ -12,12 +12,14 @@ inputsuggestion.attr("list", "login_suggestions");
 
 inputsuggestion.bind( "input", function(data) {
 	var elem = data.target;
+	console.log(elem);
 	$.get('http://' + window.location.hostname+ "/index.php/search/usersuggestion/10/s", function(response) {
 		$(document).select('#login_suggestions.suggestion').html('');
 		//dev suggestion.js
 		for(var i=0;i<response.length;i++){
 			console.log(response[i]);
-			$("<option value='" + response[i] + "'></option>").appendTo('#login_suggestions.suggestion');
+			console.log(suggestions);
+			//$("<option value='" + response[i] + "'></option>").appendTo('#login_suggestions.suggestion');
 		}
 	});
 });
