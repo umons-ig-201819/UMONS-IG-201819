@@ -23,7 +23,7 @@ $( document ).ready(function() {
 			}
 			console.log(content);
 			//suggestions.append(content);
-			console.log(document.getElementById('login_suggestions'));//.innerHTML = content;
+			console.log(document.getElementById('login_suggestions').innerHTML);//.innerHTML = content;
 		});
 	});
 
