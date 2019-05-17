@@ -13,7 +13,7 @@ inputsuggestion.attr("list", "login_suggestions");
 inputsuggestion.bind( "input", function(data) {
 	var elem = data.target;
 	$.get('http://' + window.location.hostname+ "/index.php/search/usersuggestion/10/s", function(response) {
-		suggestions.empty();
+		//suggestions.empty();
 		for(var i=0;i<response.length;i++){
 			$("<option value='" + data[i] + "'></option>").appendTo('#login_suggestions.suggestion');
 		}
