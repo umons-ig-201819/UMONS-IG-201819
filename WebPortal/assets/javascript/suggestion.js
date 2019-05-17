@@ -1,9 +1,11 @@
 var inputsuggestion = $(document).select('#login.suggestion');
 
-var suggestions = $('<datalist/>', {
+$('<datalist/>', {
     id: 'login_suggestions',
     class: 'suggestion'
-});
+}).insertAfter('#login.suggestion');
+
+var suggestions = $(document).select('#login_suggestions.suggestion');;
 
 inputsuggestion.attr("list", "login_suggestions");
 
@@ -17,13 +19,16 @@ inputsuggestion.bind( "input", function(data) {
 		}
 	});
 });
+
+console.log(suggestions);
+
 /*
 $(document).select('option.suggestion').bind( "cick", function(data) {
 	var elem = data.target;
 	console.log("select "+elem.value);
 });*/
 
-suggestions.insertAfter('#login.suggestion');
+
 
 //TODO add attribute to login input list="datalist1" to ref its datalist
 
