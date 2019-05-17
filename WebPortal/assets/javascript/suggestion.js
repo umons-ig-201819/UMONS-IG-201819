@@ -5,7 +5,7 @@ var suggestions = document.createElement('datalist');
 suggestions.setAttribute("id", "login_suggestions");
 suggestions.setAttribute("class", "suggestion");
 
-document.getElementById('login').parentNode.insertBefore(suggestions, document.getElementById('login').nextSibling);
+document.body.appendChild(suggestions);
 
 /*
 $('<datalist/>', {
