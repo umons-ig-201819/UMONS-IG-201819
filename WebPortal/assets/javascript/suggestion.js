@@ -3,17 +3,7 @@ var inputsuggestion;
 $( document ).ready(function() {
 
 	inputsuggestion = $(document).select('#login.suggestion');
-	
-	
-	$('<datalist/>', {
-	    id: 'login_suggestions',
-	    class: 'suggestion'
-	}).insertAfter('#login.suggestion');
-	
-	suggestions = $(document).select('#login_suggestions.suggestion');
-	
-	inputsuggestion.attr("list", "login_suggestions");
-	
+	suggestions = $(document).select('#login_suggestions.suggestion');	
 	
 	inputsuggestion.bind( "input", function(data) {
 		var elem = data.target;

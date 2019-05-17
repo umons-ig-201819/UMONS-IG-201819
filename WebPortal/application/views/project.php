@@ -60,7 +60,8 @@
 		
 		echo '<p>';
 		echo form_label('Nom d\'utilisateur','login');
-		echo form_input('login','','id="login" class="suggestion"');
+		echo form_input('login','','id="login" class="suggestion" list="loginsuggestions"');
+		echo '<datalist id="loginsuggestions" class="suggestion"></datalist>';
 		echo '</p>';
         
         echo '<p>';
