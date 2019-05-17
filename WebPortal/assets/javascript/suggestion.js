@@ -21,7 +21,7 @@ $( document ).ready(function() {
 			for(var i=0;i<response.length;i++){
 				content += "<option value='" + response[i] + "'></option>\n";
 			}
-			document.getElementById('login_suggestions').innerHTML=content);
+			document.getElementById('login_suggestions').innerHTML=content;
 		});
 	});
 
