@@ -8,7 +8,7 @@
     		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     	<![endif]-->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> <!--  Ajout de la largeur de l'�cran pour le d�v-->
-    	<script src="../assets/javascript/suggestion.js"></script>
+    	<script src="<?php echo base_url(); ?>assets/javascript/suggestion.js"></script>
     	<link rel="stylesheet" type="text/css"  href="<?php echo base_url(); ?>assets/css/style.css" />
     	<link rel="stylesheet" type="text/css"  href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" />
     	<link rel="icon" href="../assets/images/favicon.ico" />
