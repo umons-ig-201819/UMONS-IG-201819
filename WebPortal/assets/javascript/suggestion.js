@@ -7,7 +7,7 @@ suggestions.setAttribute("class", "suggestion");
 
 console.log(inputsuggestion);
 console.log(inputsuggestion[0]);
-inputsuggestion.insertAdjacentElement('afterend', suggestions)
+inputsuggestion[0].insertAdjacentElement('afterend', suggestions)
 
 /*
 $('<datalist/>', {
