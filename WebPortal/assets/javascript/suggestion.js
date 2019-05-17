@@ -13,3 +13,5 @@ console.log($(".suggestion#login").length);
 
 console.log($(".suggestion#login").length);
 
+console.log($("input").length);
+
