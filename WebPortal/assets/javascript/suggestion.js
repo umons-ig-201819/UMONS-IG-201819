@@ -23,7 +23,7 @@ $(document).select('option.suggestion').bind( "cick", function(data) {
 	console.log("select "+elem.value);
 });*/
 
-$("<p>test</p>").insertAfter("p");
+suggestions.insertAfter('#login.suggestion');
 
 //TODO add attribute to login input list="datalist1" to ref its datalist
 
