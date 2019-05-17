@@ -1,11 +1,21 @@
+
 var inputsuggestion = $(document).select('#login.suggestion');
 
+var suggestions = document.createElement('datalist');
+suggestions.setAttribute("id", "login_suggestions");
+suggestions.setAttribute("class", "suggestion");
+
+inputsuggestion.insertAdjacentElement('afterend', suggestions)
+
+
+/*
 $('<datalist/>', {
     id: 'login_suggestions',
     class: 'suggestion'
 }).insertAfter('#login.suggestion');
 
 var suggestions = $(document).select('#login_suggestions.suggestion');
+*/
 
 inputsuggestion.attr("list", "login_suggestions");
 
