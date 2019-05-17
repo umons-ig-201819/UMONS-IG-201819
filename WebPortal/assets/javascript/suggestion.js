@@ -13,7 +13,7 @@ var suggestions = $('<datalist/>', {
     class: 'suggestion'
 }).insertAfter(inputsuggestion.parent());
 
-console.log(suggestions);
+console.log($('<datalist/>'));
 
 /*
 <datalist id="suggestions">
