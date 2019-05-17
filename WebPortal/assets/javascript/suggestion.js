@@ -19,8 +19,9 @@ $(document).select('option.suggestion').bind( "cick", function(data) {
 });
 
 
-suggestions.insertAfter(inputsuggestion.parent());
-$('<option value="test" class="suggestion">').appendTo(suggestions);
+suggestions.appendTo($(document).select('form')[0]);
+console.log($(document).select('form')[0]);
 
-console.log($(inputsuggestion).parent());
-console.log($(inputsuggestion).parents());
+/*suggestions.insertAfter(inputsuggestion.parent());
+$('<option value="test" class="suggestion">').appendTo(suggestions);
+*/
