@@ -7,7 +7,7 @@ $( document ).ready(function() {
 	suggestions.setAttribute("class", "suggestion");
 	
 	document.body.appendChild(suggestions);
-	
+	console.log("OH");
 	/*
 	$('<datalist/>', {
 	    id: 'login_suggestions',
