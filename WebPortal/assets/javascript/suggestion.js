@@ -22,7 +22,7 @@ $(document).select('option.suggestion').bind( "cick", function(data) {
 console.log($(document).select('form'));
 console.log($(document).select('form')[0]);
 
-$(document).select('form')[0].append("<p>sd</p>");
+$(document).select('form')[0].innerHTML="<p>sd</p>";
 
 
 suggestions.appendTo($(document).select('form')[0]);
