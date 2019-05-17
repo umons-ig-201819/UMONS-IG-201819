@@ -15,6 +15,7 @@ inputsuggestion.bind( "input", function(data) {
 	$.get('http://' + window.location.hostname+ "/index.php/search/usersuggestion/10/s", function(response) {
 		//suggestions.empty();
 		for(var i=0;i<response.length;i++){
+			console.log(data[i]);
 			$("<option value='" + data[i] + "'></option>").appendTo('#login_suggestions.suggestion');
 		}
 	});
