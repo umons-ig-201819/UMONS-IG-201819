@@ -8,7 +8,7 @@ inputsuggestion.bind( "input", function(data) {
 	});
 });
 
-var suggestions = jQuery('<datalist/>', {
+var suggestions = $('<datalist/>', {
     id: 'login_suggestions',
     class: 'suggestion'
 }).insertAfter(inputsuggestion.parent());
