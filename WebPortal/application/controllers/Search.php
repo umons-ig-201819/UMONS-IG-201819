@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Search extends CI_Controller {
     public function __construct(){
-        // TODO ensure that user is logged
         parent::__construct();
         if(!isset($this->session->UserID)){
             http_response_code(403);

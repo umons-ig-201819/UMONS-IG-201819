@@ -5,6 +5,10 @@ class Administration extends CI_Controller {
     private $success, $error;
     public function __construct(){
         parent::__construct();
+        if(!isset($this->session->UserID)){
+            http_response_code(403);
+            die('Access denied!');
+        }
         $this->load->model('ProjectModel');
         $this->success  = null;
         $this->error    = null;
