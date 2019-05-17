@@ -13,13 +13,12 @@ inputsuggestion.attr("list", "login_suggestions");
 inputsuggestion.bind( "input", function(data) {
 	var elem = data.target;
 	$.get('http://' + window.location.hostname+ "/index.php/search/usersuggestion/10/"+elem.value, function(response) {
-		$(document).select('#login_suggestions.suggestion').html('');
 		//dev suggestion.js
+		var content = "";
 		for(var i=0;i<response.length;i++){
-			console.log(response[i]);
-			suggestions.append("<option value='" + response[i] + "'></option>");
-			//$("<option value='" + response[i] + "'></option>").appendTo('#login_suggestions.suggestion');
+			content += "<option value='" + response[i] + "'></option>\n";
 		}
+		$(document).select('#login_suggestions.suggestion').html(content);
 	});
 });
 
