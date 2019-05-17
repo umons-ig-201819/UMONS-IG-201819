@@ -5,7 +5,7 @@ $('<datalist/>', {
     class: 'suggestion'
 }).insertAfter('#login.suggestion');
 
-var suggestions = $(document).select('#login_suggestions.suggestion')[0];
+var suggestions = $(document).select('#login_suggestions.suggestion');
 
 inputsuggestion.attr("list", "login_suggestions");
 
@@ -18,7 +18,9 @@ inputsuggestion.bind( "input", function(data) {
 		for(var i=0;i<response.length;i++){
 			content += "<option value='" + response[i] + "'></option>\n";
 		}
-		console.log(suggestions.innerText);
+		suggestions.each(function(){
+			$(this).append(content);
+		});
 	});
 });
 
