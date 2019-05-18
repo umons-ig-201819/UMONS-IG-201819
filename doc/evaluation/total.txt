@@ -1,0 +1,13 @@
+Logical Line of Code:
+
+Models		1109
+Views			 452
+Controllers	 456
+Helpers		 126
+CSS			 389
+Javascript	  35
+-----------------
+Subtotal		2567
+Tests			 738
+-----------------
+				3305

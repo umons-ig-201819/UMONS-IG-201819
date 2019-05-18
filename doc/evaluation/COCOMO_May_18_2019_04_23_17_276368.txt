@@ -1,0 +1,44 @@
+startCOCOMO, 1
+Models, COCOMO
+MonteCarlo, MonteCarlo_Off
+AutoCalculate, Off
+size_type, SLOC
+new_size, 3305
+reused_size, 0
+IM_reused, 
+AA_reused, 
+modified_size, 0
+DM_modified, 
+CM_modified, 
+IM_modified, 
+AA_modified, 
+SU_modified, 
+UNFM_modified, 
+prec, Very_Low
+flex, Very_High
+rely, Very_High
+data, Low
+cplx, High
+ruse, Extra_High
+docu, High
+resl, High
+team, Low
+acap, Very_Low
+pcap, Very_Low
+pcon, Very_High
+apex, Very_Low
+pexp, Very_Low
+ltex, Very_Low
+pmat, Very_High
+time, Very_High
+stor, Nominal
+pvol, High
+tool, Very_Low
+site, Very_High
+sced, High
+software_maintenance, Off
+software_labor_cost_per_PM, 3000
+submit2, Calculate
+software_EAF, 7.3195038513301
+software_effort, 77.310522073222
+software_schedule, 20.032177353963
