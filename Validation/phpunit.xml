@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="true" convertErrorsToExceptions=true backupStaticAttributes="false" cacheTokens="false" colors="true" codecoverage="true" haltonfailure="false" haltonerror="false">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="true" convertErrorsToExceptions="true" backupStaticAttributes="false" cacheTokens="false" colors="true" codecoverage="true" haltonfailure="false" haltonerror="false">
 	<testsuites>
 		<testsuite name="Connection">
     		<directory suffix="Test.php">Connection</directory>
