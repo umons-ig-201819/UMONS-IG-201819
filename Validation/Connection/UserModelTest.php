@@ -92,17 +92,23 @@ class UserModelTest extends TestCase{
     public function testGetUserRoles()
     {
         $res=$this->userModel->getUserRoles("1");
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $this->assertEquals($res[0]["id"],"3");
     }
     
     public function testGetRoles()
     {
         $res=$this->userModel->getRoles();
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $this->assertEquals($res[0]["id"],"3");
     }
     
     public function testGetUserRights(){
         $res=$this->userModel->getUserRights("1");
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>2,true);
         $this->assertEquals($res[0]["id"],"5");
         $this->assertEquals($res[1]["id"],"3");
         $this->assertEquals($res[2]["id"],"6");
@@ -111,12 +117,16 @@ class UserModelTest extends TestCase{
     public function testGetRights()
     {
         $res=$this->userModel->getRights();
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $this->assertEquals($res[0]["id"],"7");
     }
     
     public function testRoleRights()
     {
         $res=$this->userModel->getRoleRights("3");
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>2,true);
         $this->assertEquals($res[0]["id"],"5");
         $this->assertEquals($res[1]["id"],"3");
         $this->assertEquals($res[2]["id"],"6");
@@ -143,7 +153,8 @@ class UserModelTest extends TestCase{
     {
         $lastid = $this->userModel->getId();
         $res=$this->userModel->getUsers();
-    
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>9,true);
         $this->assertEquals($res[0]["id"],intval($lastid));
         $this->assertEquals($res[1]["id"],5);
         $this->assertEquals($res[2]["id"],1);
@@ -163,6 +174,8 @@ class UserModelTest extends TestCase{
     
     public function testGetUsersFromRole(){
         $res=$this->userModel->getUsersFromRole("2");
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $this->assertEquals($res[0]["id"],"4");
     }
     
@@ -176,6 +189,8 @@ class UserModelTest extends TestCase{
     
     public function testGetAdvices(){
         $res=$this->userModel->getAdvices();
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>2,true);
         $lastid = $this->userModel->getIdConseil();
         $lastiduser = $this->userModel->getId();
         $this->assertEquals($res[0]["id"],$lastid);
@@ -191,7 +206,8 @@ class UserModelTest extends TestCase{
     
     public function testGetUserAdvices(){
         $res=$this->userModel->getUserAdvices("5");
-        print_r($res);
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>1,true);
         $this->assertEquals($res[0]["id"],"3");
         $this->assertEquals($res[1]["id"],"4");
         
@@ -199,6 +215,8 @@ class UserModelTest extends TestCase{
     
     public function testGetAdvisorAdvices(){
         $res=$this->userModel->getAdvisorAdvices("1");
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $this->assertEquals($res[0]["id"],"3");
     }
     

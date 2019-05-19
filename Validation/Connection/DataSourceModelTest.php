@@ -456,6 +456,8 @@ class DataSourceModelTest extends TestCase{
         $dataSource['config']="";
         $dataSource['visible']="";
         $resul=$this->dataSourceModel->getUserID();
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $resu=$this->dataSourceModel->updateDataSource($res[0]["id"],$resul,$dataSource);
         $this->assertEquals($resu,true);
     }
@@ -478,6 +480,8 @@ class DataSourceModelTest extends TestCase{
         $dataSource['config']="test";
         $dataSource['visible']="test";
         $resul=$this->dataSourceModel->getUserID();
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $resu=$this->dataSourceModel->updateDataSource($res[0]["id"],$resul,$dataSource);
         $this->assertEquals($resu,true);
     }
@@ -562,6 +566,8 @@ class DataSourceModelTest extends TestCase{
         $filter['visible']=2;
         $filter['add_date']='1980-01-01 00:00:00';
         $res=$this->dataSourceModel->getDataSources($filter,$and);
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $resu=$this->dataSourceModel->deleteDataSource($res[0]["id"]);
         $this->assertEquals($resu,true);
     }
@@ -583,6 +589,8 @@ class DataSourceModelTest extends TestCase{
         $filter['add_date']='1980-01-01 00:00:00';
         $res=$this->dataSourceModel->getDataSources($filter,$and);
         $resul=$this->dataSourceModel->getUserID();
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $resu=$this->dataSourceModel->deleteUserDataSource($resul,$res[0]["id"]);
         $this->assertEquals($resu,true);
     }
@@ -604,6 +612,8 @@ class DataSourceModelTest extends TestCase{
         $filter['add_date']='1980-01-01 00:00:00';
         $res=$this->dataSourceModel->getDataSources($filter,$and);
         $resul=$this->dataSourceModel->getProjetID();
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $resu=$this->dataSourceModel->deleteDataSourceProject($res[0]["id"],$resulID);
         $this->assertEquals($resu,true);
     }
@@ -635,6 +645,8 @@ class DataSourceModelTest extends TestCase{
         $filter['visible']=2;
         $filter['add_date']='1980-01-01 00:00:00';
         $res=$this->dataSourceModel->getDataSources($filter,$and);
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $resu=$this->dataSourceModel->deleteAllUsersDataSource($res[0]["id"]);
         $this->assertEquals($resu,true);
     }
@@ -653,6 +665,8 @@ class DataSourceModelTest extends TestCase{
         $filter['visible']=2;
         $filter['add_date']='1980-01-01 00:00:00';
         $res=$this->dataSourceModel->getDataSources($filter,$and);
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $resu=$this->dataSourceModel->deleteAllProjectsDataSource($res[0]["id"]);
         $this->assertEquals($resu,true);
     }

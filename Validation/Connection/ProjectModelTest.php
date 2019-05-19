@@ -43,6 +43,8 @@ class ProjectModelTest extends TestCase{
         $filter['owner_firstname']="Jean";
         $and=false;
         $res=$this->projectModel->listProjects($filter,$and);
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $this->assertNotEquals($res[0]['id'],false);
     }
     /**
@@ -191,6 +193,8 @@ class ProjectModelTest extends TestCase{
         $filter['owner_firstname']="test";
         $and=false;
         $res=$this->projectModel->getProjects($filter,$and);
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $userProject['role']="aide";
         $userProject['manage']=1;
         $resu=$this->projectModel->updateUserProject(1, $res[0]["id"], $userProject);
@@ -214,6 +218,8 @@ class ProjectModelTest extends TestCase{
         $filter['owner_firstname']="test";
         $and=false;
         $res=$this->projectModel->getProjects($filter,$and);
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $resu=$this->projectModel->deleteProject($res[0]["id"]);
         $this->assertEquals($resu,true);
     }
@@ -250,6 +256,8 @@ class ProjectModelTest extends TestCase{
         $filter['owner_firstname']="test";
         $and=false;
         $res=$this->projectModel->getProjects($filter,$and);
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $resu=$this->projectModel->deleteAllUsersProject($res[0]["id"]);
         $this->assertEquals($resu,true);
     }
