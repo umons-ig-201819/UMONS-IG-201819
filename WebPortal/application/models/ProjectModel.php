@@ -81,8 +81,12 @@ class ProjectModel extends CI_Model
         $sql = "INSERT INTO fichier_projet (fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
             SELECT f.f_id,$projectID,f.f_visible_awe,NOW()
             FROM fichierappli AS f";
-        $this->db->query($sql);
-        return $projectID;
+        try{
+            $this->db->query($sql);
+            return $projectID;
+        }catch(Exception e){
+            return false;
+        }
     }
 
     /**
