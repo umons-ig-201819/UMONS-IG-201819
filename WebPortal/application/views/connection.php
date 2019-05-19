@@ -23,6 +23,7 @@
         echo '<br>';
         echo '</p>';
         echo form_submit('action', 'Se connecter', "class='buttonvalider'");
+        echo '<p><a href="'.site_url("connection/lost").'">Mot de passe oubli&eacute;&nbsp;?</a></p>';
         echo form_fieldset_close();
         echo form_close();
     endif;

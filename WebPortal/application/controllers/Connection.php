@@ -15,6 +15,18 @@ class Connection extends CI_Controller {
         $this->load->view('home');
         $this->load->view('footer');*/
     }
+    
+    public function lost(){
+        $data = array();
+        if($this->input->post('action')){
+            $this->UserModel->forgot($this->input->post('email'));
+            $data = array('state' => true);
+        }
+        $this->load->view('header');
+        $this->load->view('lost',data);
+        $this->load->view('footer');
+    }
+    
     public function index(){
         $data = array();
         if($this->input->post('action')){

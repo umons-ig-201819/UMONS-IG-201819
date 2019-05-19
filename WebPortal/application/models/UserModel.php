@@ -31,6 +31,7 @@ class UserModel extends CI_Model {
 	*/
 	public function authentification($login,$password)
 	{
+	    $reset = false;
 		$sql="SELECT
 					ut_id AS id,
 					ut_nom AS lastname,
@@ -42,18 +43,61 @@ class UserModel extends CI_Model {
 					ut_sexe AS gender,
 					ut_login AS login,
 					ut_visible_awe AS visible,
-					ut_accepter_conseil AS advice
+					ut_accepter_conseil AS advice,
+                    ut_reset                AS reset
 				FROM utilisateur 
 				WHERE ut_login=? AND ut_password=?";
 		$query = $this->db->query($sql, array($login,sha1($password)));
 		$user=$query->row_array();
 		
+		if(is_null($user) || is_null($user['id'])){
+		    $sql="SELECT
+					ut_id AS id,
+					ut_nom AS lastname,
+					ut_prenom AS firstname,
+					ut_date_naiss AS birthdate,
+					ut_mail AS email,
+					ut_tel AS phone,
+					ut_gsm AS mobile,
+					ut_sexe AS gender,
+					ut_login AS login,
+					ut_visible_awe AS visible,
+					ut_accepter_conseil AS advice,
+                    ut_reset                AS reset
+				FROM utilisateur
+				WHERE ut_login=? AND ut_reset=? AND NOW() < ut_validreset";
+		    $query = $this->db->query($sql, array($login,sha1($password)));
+		    $user=$query->row_array();
+		    $reset = true;
+		}
+		
 		//---- if not access
 		if(is_null($user)) return false;
 		if(is_null($user['id'])) return false;
+		
 		//--- if ok
+		
+		if($reset){
+		    $sql = "UPDATE utilisateur SET ut_password = ut_reset, ut_reset = NULL, ut_validreset = NULL WHERE ut_id = $user[id]";
+		    $this->db->query($sql);
+		}
+		
 		return $user;
 				
+	}
+	
+	public function forgot($email,$time=20){
+	    $time = max(intval($time),1);
+	    $charset   = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+	    $pwd       = substr(str_shuffle($charset), 0, 10);
+	    $text      = "Votre nouveau mot de passe est valable $time minutes : $pwd";
+	    $users     = $this->UserModel->getUsers(array('email' => $email),true);
+	    if($users ===false || is_null($users) || count($users)<1) return;
+	    $users = $users[0];
+	    mail($users['email'], 'Oubli de mot de passe Wallsmart',$text);
+	    $pwd       = sha1($pwd);
+	    $sql = "UPDATE utilisateur SET ut_reset = \"$pwd\", ut_validreset =  TIMESTAMPADD(MINUTE, $time, NOW()) WHERE ut_id = $user[id]";
+	    $this->db->query($sql);
 	}
 	
 	//-------------------------------------------------------------
