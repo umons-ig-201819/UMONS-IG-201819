@@ -111,7 +111,7 @@ class DataSourceModelTest extends TestCase{
             $filter['application']=0;
             $filter['visible']=2;
             $filter['add_date']='2019-04-28 16:28:51';
-            $res=$this->dataSourceModel->getDataSources($filter,$and);
+            $res=$this->dataSourceModel->getDataSources($filter,null,$and);
             $this->assertTrue(array_key_exists('id',$res));
         	if(is_null($res['id'])) return false;
                 $this->assertNotEquals($res,false);
