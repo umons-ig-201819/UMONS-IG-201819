@@ -565,6 +565,7 @@ class DataSourceModelTest extends TestCase{
             $dataSourceUser['remove']="testDataSource";
             $dataSourceUser['askAccess']=1;
             $resul=$this->dataSourceModel->getUserID();
+            $this->assertTrue(array_key_exists('id',$res));
             $resu=$this->dataSourceModel->updateDataSourceUser($res[0]["id"],$resul,$dataSourceUser);
             $this->assertEquals($resu,true);
         }catch(Exception $e) { $this->assertTrue(false); }
