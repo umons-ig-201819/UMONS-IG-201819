@@ -1357,7 +1357,7 @@ class DataSourceModel extends CI_Model{
 				FROM fichier_projet AS p
 				JOIN projet
 				ON p.fp_id_projet=p_id
-				WHERE p.fp_id_fichier = ?";
+				WHERE p.fp_id_projet = ?";
 		
 		$params = array();
 		$params [] = intval($dataSourceID);
