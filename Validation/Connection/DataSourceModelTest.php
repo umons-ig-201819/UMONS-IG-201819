@@ -128,6 +128,7 @@ class DataSourceModelTest extends TestCase{
         try{
             $and = false;
             $res=$this->dataSourceModel->getDataSources(" ",$and);
+            $this->assertTrue(array_key_exists('id',$res));
         	if(is_null($res['id'])) return false;
                 $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
