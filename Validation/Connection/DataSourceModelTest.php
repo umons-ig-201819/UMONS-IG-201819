@@ -109,7 +109,7 @@ class DataSourceModelTest extends TestCase{
             $filter['file_name']="test";
             $filter['file_url']=NULL;
             $filter['application']=0;
-            $filter['visible']=2;
+            $filter['visible']=1;
             $filter['add_date']='2019-04-28 16:28:51';
             $result=$this->dataSourceModel->getDataSources($filter,$and);
 //            $this->assertTrue(array_key_exists('id',$res));
