@@ -13,10 +13,10 @@
     	</php>
     <filter>
         <whitelist>
-            <directory suffix=".php">/home/user/git/WebPortal/application/controllers</directory>
-            <directory suffix=".php">/home/user/git/WebPortal/application/helpers</directory>
-            <directory suffix=".php">/home/user/git/WebPortal/application/views</directory>
-            <directory suffix=".php">/home/user/git/WebPortal/application/models</directory>
+            <directory suffix=".php">./WebPortal/application/controllers</directory>
+            <directory suffix=".php">./WebPortal/application/helpers</directory>
+            <directory suffix=".php">./WebPortal/application/views</directory>
+            <directory suffix=".php">./WebPortal/application/models</directory>
         </whitelist>
     </filter>
 	<logging>
