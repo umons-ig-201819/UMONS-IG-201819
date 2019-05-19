@@ -458,6 +458,7 @@ class DataSourceModelTest extends TestCase{
     * @see AddAdvisor() for the data structure of returned files
     */
     public function testAddAdvisor(){
+        $dataSourceUser = null;
         try{
             $res=$this->dataSourceModel->addAdvisor(1,1,$dataSourceUser);
             $this->assertEquals($res,true);
