@@ -342,6 +342,7 @@ class DataSourceModelTest extends TestCase{
             $and=false;
             $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->getDataSourceProjects($resu,$filter,$and);
+            $this->assertTrue(array_key_exists('project_ID',$res));
             if(is_null($res['project_ID'])) $res='false';
             $this->assertEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
@@ -358,6 +359,7 @@ class DataSourceModelTest extends TestCase{
             $and=false;
             $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->getDataSourceProjects($resu,$and);
+            $this->assertTrue(array_key_exists('project_ID',$res));
             if(is_null($res['project_ID'])) $res='false';
             $this->assertEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
