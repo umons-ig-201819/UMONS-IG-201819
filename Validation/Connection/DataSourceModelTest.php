@@ -638,7 +638,7 @@ class DataSourceModelTest extends TestCase{
     */
     public function testDeleteDataSource(){
         try{
-            $and = false;
+            $and = true;
             $filter['file_name']="test";
             $filter['file_url']="test40";
             $filter['application']=0;
@@ -662,7 +662,7 @@ class DataSourceModelTest extends TestCase{
     public function testDeleteUserDataSource()
     {
         try{
-            $and = false;
+            $and = true;
             $filter['file_name']="test";
             $filter['file_url']="test40";
             $filter['application']=1;
@@ -687,7 +687,7 @@ class DataSourceModelTest extends TestCase{
     public function testDeleteDataSourceProject()
     {
         try{
-            $and = false;
+            $and = true;
             $filter['file_name']="test";
             $filter['file_url']="test40";
             $filter['application']=0;
@@ -725,7 +725,7 @@ class DataSourceModelTest extends TestCase{
     */
     public function testDeleteAllUsersDataSource(){
         try{
-            $and = false;
+            $and = true;
             $filter['file_name']="test";
             $filter['file_url']="test40";
             $filter['application']=0;
@@ -747,7 +747,7 @@ class DataSourceModelTest extends TestCase{
     */
     public function testDeleteAllProjectsDataSource(){
         try{
-            $and = false;
+            $and = true;
             $filter['file_name']="test";
             $filter['file_url']="test40";
             $filter['application']=0;
