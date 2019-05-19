@@ -318,7 +318,7 @@ class DataSourceModelTest extends TestCase{
         try{
             $and = false;
             $resu=$this->dataSourceModel->getProjetID();
-            $res=$this->dataSourceModel->getProjectDataSources($resu,$and);
+            $res=$this->dataSourceModel->getProjectDataSources($resu,null,$and);
             if(is_null($res['fileID'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
