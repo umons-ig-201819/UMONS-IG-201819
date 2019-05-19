@@ -114,7 +114,7 @@ class DataSourceModelTest extends TestCase{
     public function testAddAdvisor(){
         $dataSourceUser = null;
         try{
-            $res=$this->dataSourceModel->addAdvisor(1,1,$dataSourceUser);
+            $res=$this->dataSourceModel->addAdvisor(1,$dataSourceUser);
             $this->assertEquals($res,true);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
@@ -125,7 +125,9 @@ class DataSourceModelTest extends TestCase{
     */
     public function testAskAccess(){
         try{
-            $res=$this->dataSourceModel->askAccess(1,1);
+	    $resu=$this->dataSourceModel->getUserID();
+	    $resul=$this->dataSourceModel->getDataSourceID();
+            $res=$this->dataSourceModel->askAccess($resul,$resu);
             $this->assertEquals($res,true);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
@@ -509,13 +511,14 @@ class DataSourceModelTest extends TestCase{
     */
     public function testUpdateDataSource(){
         try{
-            $and = false;
+/*            $and = false;
             $filter['file_name']="test";
             $filter['file_url']="test40";
             $filter['application']=0;
             $filter['visible']=2;
             $filter['add_date']='1980-01-01 00:00:00';
-            $res=$this->dataSourceModel->getDataSources($filter,$and);
+            $res=$this->dataSourceModel->getDataSources($filter,$and);*/
+	    $res=$this->dataSourceModel->getDataSourceID();
             $dataSource['name']="testDataSourceModel";
             $dataSource['url']="testDataSource";
             $dataSource['appli']=1;
@@ -524,7 +527,7 @@ class DataSourceModelTest extends TestCase{
             $resul=$this->dataSourceModel->getUserID();
 //            $this->assertTrue(!is_null($res),true);
 //            $this->assertTrue(count($res)>0,true);
-            $resu=$this->dataSourceModel->updateDataSource($res[0]["id"],$resul,$dataSource);
+            $resu=$this->dataSourceModel->updateDataSource($res,$resul,$dataSource);
             $this->assertEquals($resu,true);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
@@ -535,7 +538,7 @@ class DataSourceModelTest extends TestCase{
     */
     public function testUpdateDataSource1(){
         try{
-            $and = false;
+/*            $and = false;
             $filter['file_name']="test";
             $filter['file_url']="test40";
             $filter['application']=0;
@@ -546,11 +549,12 @@ class DataSourceModelTest extends TestCase{
             $dataSource['url']="testDataSource";
             $dataSource['appli']=1;
             $dataSource['config']="test";
-            $dataSource['visible']="test";
+            $dataSource['visible']="test";*/
+	    $res=$this->dataSourceModel->getDataSourceID();
             $resul=$this->dataSourceModel->getUserID();
  //           $this->assertTrue(!is_null($res),true);
  //           $this->assertTrue(count($res)>0,true);
-            $resu=$this->dataSourceModel->updateDataSource($res[0]["id"],$resul,$dataSource);
+            $resu=$this->dataSourceModel->updateDataSource($res,$resul,$dataSource);
             $this->assertEquals($resu,true);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
@@ -612,7 +616,8 @@ class DataSourceModelTest extends TestCase{
     */
     public function testAcceptAccess(){
         try{
-            $res=$this->dataSourceModel->acceptAccess(1,1);
+	    $resu=$this->dataSourceModel->getDataSourceID();
+            $res=$this->dataSourceModel->acceptAccess($resu,1);
             $this->assertEquals($res,true);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
@@ -623,12 +628,13 @@ class DataSourceModelTest extends TestCase{
     */
     public function testRefuseAccess(){
         try{
-            $res=$this->dataSourceModel->refuseAccess(1,1);
+	    $resu=$this->dataSourceModel->getDataSourceID();
+            $res=$this->dataSourceModel->refuseAccess($resu,1);
             $this->assertEquals($res,true);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
     
-    //-------------------------------------------------------------
+        //-------------------------------------------------------------
    	//-------------------- DELETE ---------------------------------
    	//-------------------------------------------------------------
 
@@ -640,16 +646,17 @@ class DataSourceModelTest extends TestCase{
     */
     public function testDeleteDataSource(){
         try{
-            $and = true;
+/*            $and = true;
             $filter['file_name']="test";
             $filter['file_url']="test40";
             $filter['application']=0;
             $filter['visible']=2;
             $filter['add_date']='1980-01-01 00:00:00';
-            $res=$this->dataSourceModel->getDataSources($filter,$and);
+            $res=$this->dataSourceModel->getDataSources($filter,$and);*/
 //            $this->assertTrue(!is_null($res),true);
 //            $this->assertTrue(count($res)>0,true);
-            $resu=$this->dataSourceModel->deleteDataSource($res[0]["id"]);
+	    $res=$this->dataSourcemodel->getDataSourceID();
+            $resu=$this->dataSourceModel->deleteDataSource($res);
             $this->assertEquals($resu,true);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
@@ -783,7 +790,8 @@ class DataSourceModelTest extends TestCase{
     */
     public function testRevokeAccess(){
         try{
-            $res=$this->dataSourceModel->revokeAccess(1,1);
+	    $resu=$this->dataSourceModel->getDataSourceID();
+            $res=$this->dataSourceModel->revokeAccess($resu,1);
             $this->assertEquals($res,true);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
