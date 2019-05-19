@@ -1,0 +1,16 @@
+
+
+Code Coverage Report:       
+  2019-05-19 13:08:23       
+                            
+ Summary:                   
+  Classes:  0.00% (0/15)    
+  Methods: 32.53% (54/166)  
+  Lines:   25.28% (892/3528)
+
+DataSourceModel
+  Methods:  46.15% (18/39)   Lines:  53.69% (284/529)
+ProjectModel
+  Methods:  29.41% ( 5/17)   Lines:  76.78% (281/366)
+UserModel
+  Methods:  73.81% (31/42)   Lines:  68.12% (327/480)

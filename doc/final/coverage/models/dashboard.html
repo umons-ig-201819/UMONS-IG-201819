@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /home/user/git/WebPortal/application/models</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../.css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="../.css/style.css" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]>
+  <script src="../.js/html5shiv.min.js"></script>
+  <script src="../.js/respond.min.js"></script>
+  <![endif]-->
+ </head>
+ <body>
+  <header>
+   <div class="container">
+    <div class="row">
+     <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="../index.html">/home/user/git/WebPortal/application</a></li>
+        <li><a href="index.html">models</a></li>
+        <li class="active">(Dashboard)</li>
+
+      </ol>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="CounterModel.php.html#2">CounterModel</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#12">DataSourceModel</a></td><td class="text-right">53%</td></tr>
+       <tr><td><a href="UserModel.php.html#11">UserModel</a></td><td class="text-right">68%</td></tr>
+       <tr><td><a href="ProjectModel.php.html#12">ProjectModel</a></td><td class="text-right">76%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="DataSourceModel.php.html#12">DataSourceModel</a></td><td class="text-right">3972</td></tr>
+       <tr><td><a href="UserModel.php.html#11">UserModel</a></td><td class="text-right">1757</td></tr>
+       <tr><td><a href="ProjectModel.php.html#12">ProjectModel</a></td><td class="text-right">304</td></tr>
+       <tr><td><a href="CounterModel.php.html#2">CounterModel</a></td><td class="text-right">20</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="CounterModel.php.html#3"><abbr title="CounterModel::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#284"><abbr title="DataSourceModel::updateDataSource">updateDataSource</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#839"><abbr title="DataSourceModel::refuseAccessProject">refuseAccessProject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#832"><abbr title="DataSourceModel::acceptAccessProject">acceptAccessProject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#746"><abbr title="DataSourceModel::getProjects">getProjects</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ProjectModel.php.html#657"><abbr title="ProjectModel::deleteProject">deleteProject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserModel.php.html#119"><abbr title="UserModel::getRole">getRole</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#429"><abbr title="DataSourceModel::updateDataSourceProject">updateDataSourceProject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserModel.php.html#745"><abbr title="UserModel::getNumberFromRole">getNumberFromRole</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#237"><abbr title="DataSourceModel::deleteAllProjectsDataSource">deleteAllProjectsDataSource</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#219"><abbr title="DataSourceModel::deleteAllUsersDataSource">deleteAllUsersDataSource</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#182"><abbr title="DataSourceModel::deleteDataSourceProject">deleteDataSourceProject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#162"><abbr title="DataSourceModel::deleteUserDataSource">deleteUserDataSource</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#140"><abbr title="DataSourceModel::deleteDataSource">deleteDataSource</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UserModel.php.html#1141"><abbr title="UserModel::updateUserRoles">updateUserRoles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="CounterModel.php.html#14"><abbr title="CounterModel::countVisitors">countVisitors</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="CounterModel.php.html#7"><abbr title="CounterModel::newVisitor">newVisitor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#1194"><abbr title="DataSourceModel::getProjectDataSources">getProjectDataSources</abbr></a></td><td class="text-right">1%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#369"><abbr title="DataSourceModel::updateDataSourceUser">updateDataSourceUser</abbr></a></td><td class="text-right">6%</td></tr>
+       <tr><td><a href="UserModel.php.html#1376"><abbr title="UserModel::deleteRoleAllRight">deleteRoleAllRight</abbr></a></td><td class="text-right">25%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#255"><abbr title="DataSourceModel::deleteAllDataSourcesProject">deleteAllDataSourcesProject</abbr></a></td><td class="text-right">25%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#74"><abbr title="DataSourceModel::addDataSourceProject">addDataSourceProject</abbr></a></td><td class="text-right">28%</td></tr>
+       <tr><td><a href="UserModel.php.html#292"><abbr title="UserModel::getUsers">getUsers</abbr></a></td><td class="text-right">36%</td></tr>
+       <tr><td><a href="UserModel.php.html#589"><abbr title="UserModel::getAdvices">getAdvices</abbr></a></td><td class="text-right">50%</td></tr>
+       <tr><td><a href="UserModel.php.html#956"><abbr title="UserModel::updateUser">updateUser</abbr></a></td><td class="text-right">61%</td></tr>
+       <tr><td><a href="ProjectModel.php.html#249"><abbr title="ProjectModel::getProjects">getProjects</abbr></a></td><td class="text-right">62%</td></tr>
+       <tr><td><a href="ProjectModel.php.html#681"><abbr title="ProjectModel::deleteUserProject">deleteUserProject</abbr></a></td><td class="text-right">70%</td></tr>
+       <tr><td><a href="UserModel.php.html#1101"><abbr title="UserModel::updateRole">updateRole</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="ProjectModel.php.html#705"><abbr title="ProjectModel::deleteAllProjectsUser">deleteAllProjectsUser</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="ProjectModel.php.html#726"><abbr title="ProjectModel::deleteAllUsersProject">deleteAllUsersProject</abbr></a></td><td class="text-right">71%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#603"><abbr title="DataSourceModel::getDataSources">getDataSources</abbr></a></td><td class="text-right">72%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#1072"><abbr title="DataSourceModel::getDataSourceUsers">getDataSourceUsers</abbr></a></td><td class="text-right">74%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#1349"><abbr title="DataSourceModel::getDataSourceProjects">getDataSourceProjects</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="ProjectModel.php.html#46"><abbr title="ProjectModel::addProject">addProject</abbr></a></td><td class="text-right">75%</td></tr>
+       <tr><td><a href="ProjectModel.php.html#848"><abbr title="ProjectModel::updateUserProject">updateUserProject</abbr></a></td><td class="text-right">76%</td></tr>
+       <tr><td><a href="ProjectModel.php.html#530"><abbr title="ProjectModel::getUserProjects">getUserProjects</abbr></a></td><td class="text-right">77%</td></tr>
+       <tr><td><a href="ProjectModel.php.html#355"><abbr title="ProjectModel::getProjectMembers">getProjectMembers</abbr></a></td><td class="text-right">78%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#910"><abbr title="DataSourceModel::getUserDataSources">getUserDataSources</abbr></a></td><td class="text-right">79%</td></tr>
+       <tr><td><a href="UserModel.php.html#1212"><abbr title="UserModel::updateAdvice">updateAdvice</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="ProjectModel.php.html#757"><abbr title="ProjectModel::updateProject">updateProject</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#551"><abbr title="DataSourceModel::searchDataSources">searchDataSources</abbr></a></td><td class="text-right">84%</td></tr>
+       <tr><td><a href="ProjectModel.php.html#158"><abbr title="ProjectModel::getProject">getProject</abbr></a></td><td class="text-right">85%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="DataSourceModel.php.html#1194"><abbr title="DataSourceModel::getProjectDataSources">getProjectDataSources</abbr></a></td><td class="text-right">363</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#284"><abbr title="DataSourceModel::updateDataSource">updateDataSource</abbr></a></td><td class="text-right">342</td></tr>
+       <tr><td><a href="UserModel.php.html#292"><abbr title="UserModel::getUsers">getUsers</abbr></a></td><td class="text-right">292</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#369"><abbr title="DataSourceModel::updateDataSourceUser">updateDataSourceUser</abbr></a></td><td class="text-right">149</td></tr>
+       <tr><td><a href="UserModel.php.html#956"><abbr title="UserModel::updateUser">updateUser</abbr></a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#429"><abbr title="DataSourceModel::updateDataSourceProject">updateDataSourceProject</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="UserModel.php.html#589"><abbr title="UserModel::getAdvices">getAdvices</abbr></a></td><td class="text-right">43</td></tr>
+       <tr><td><a href="ProjectModel.php.html#757"><abbr title="ProjectModel::updateProject">updateProject</abbr></a></td><td class="text-right">24</td></tr>
+       <tr><td><a href="ProjectModel.php.html#249"><abbr title="ProjectModel::getProjects">getProjects</abbr></a></td><td class="text-right">24</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#910"><abbr title="DataSourceModel::getUserDataSources">getUserDataSources</abbr></a></td><td class="text-right">23</td></tr>
+       <tr><td><a href="ProjectModel.php.html#530"><abbr title="ProjectModel::getUserProjects">getUserProjects</abbr></a></td><td class="text-right">23</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#603"><abbr title="DataSourceModel::getDataSources">getDataSources</abbr></a></td><td class="text-right">22</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#162"><abbr title="DataSourceModel::deleteUserDataSource">deleteUserDataSource</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="UserModel.php.html#1141"><abbr title="UserModel::updateUserRoles">updateUserRoles</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#140"><abbr title="DataSourceModel::deleteDataSource">deleteDataSource</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="ProjectModel.php.html#657"><abbr title="ProjectModel::deleteProject">deleteProject</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#182"><abbr title="DataSourceModel::deleteDataSourceProject">deleteDataSourceProject</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="ProjectModel.php.html#355"><abbr title="ProjectModel::getProjectMembers">getProjectMembers</abbr></a></td><td class="text-right">19</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#1072"><abbr title="DataSourceModel::getDataSourceUsers">getDataSourceUsers</abbr></a></td><td class="text-right">17</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#1349"><abbr title="DataSourceModel::getDataSourceProjects">getDataSourceProjects</abbr></a></td><td class="text-right">14</td></tr>
+       <tr><td><a href="UserModel.php.html#1101"><abbr title="UserModel::updateRole">updateRole</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#237"><abbr title="DataSourceModel::deleteAllProjectsDataSource">deleteAllProjectsDataSource</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#219"><abbr title="DataSourceModel::deleteAllUsersDataSource">deleteAllUsersDataSource</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="UserModel.php.html#1212"><abbr title="UserModel::updateAdvice">updateAdvice</abbr></a></td><td class="text-right">11</td></tr>
+       <tr><td><a href="ProjectModel.php.html#848"><abbr title="ProjectModel::updateUserProject">updateUserProject</abbr></a></td><td class="text-right">11</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#74"><abbr title="DataSourceModel::addDataSourceProject">addDataSourceProject</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="ProjectModel.php.html#46"><abbr title="ProjectModel::addProject">addProject</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#551"><abbr title="DataSourceModel::searchDataSources">searchDataSources</abbr></a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="DataSourceModel.php.html#255"><abbr title="DataSourceModel::deleteAllDataSourcesProject">deleteAllDataSourcesProject</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="UserModel.php.html#1376"><abbr title="UserModel::deleteRoleAllRight">deleteRoleAllRight</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="CounterModel.php.html#14"><abbr title="CounterModel::countVisitors">countVisitors</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="UserModel.php.html#119"><abbr title="UserModel::getRole">getRole</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="ProjectModel.php.html#681"><abbr title="ProjectModel::deleteUserProject">deleteUserProject</abbr></a></td><td class="text-right">4</td></tr>
+       <tr><td><a href="ProjectModel.php.html#726"><abbr title="ProjectModel::deleteAllUsersProject">deleteAllUsersProject</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="ProjectModel.php.html#705"><abbr title="ProjectModel::deleteAllProjectsUser">deleteAllProjectsUser</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="ProjectModel.php.html#158"><abbr title="ProjectModel::getProject">getProject</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 5.3.0</a> using <a href="https://secure.php.net/" target="_top">PHP 7.2.17-0ubuntu0.18.04.1</a> with <a href="https://xdebug.org/">Xdebug 2.6.0</a> and <a href="https://phpunit.de/">PHPUnit 6.5.5</a> at Sun May 19 13:08:23 UTC 2019.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../.js/jquery.min.js" type="text/javascript"></script>
+  <script src="../.js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../.js/holder.min.js" type="text/javascript"></script>
+  <script src="../.js/d3.min.js" type="text/javascript"></script>
+  <script src="../.js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([1,0,0,0,0,0,1,1,1,0,0,0], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([17,2,0,3,1,0,1,2,12,4,5,54], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,4,"<a href=\"CounterModel.php.html#2\">CounterModel<\/a>"],[53.68620037807184,195,"<a href=\"DataSourceModel.php.html#12\">DataSourceModel<\/a>"],[76.775956284153,121,"<a href=\"ProjectModel.php.html#12\">ProjectModel<\/a>"],[68.125,218,"<a href=\"UserModel.php.html#11\">UserModel<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"CounterModel.php.html#3\">CounterModel::__construct<\/a>"],[0,1,"<a href=\"CounterModel.php.html#7\">CounterModel::newVisitor<\/a>"],[0,2,"<a href=\"CounterModel.php.html#14\">CounterModel::countVisitors<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#17\">DataSourceModel::__construct<\/a>"],[90.9090909090909,8,"<a href=\"DataSourceModel.php.html#40\">DataSourceModel::addDataSourceApp<\/a>"],[28.57142857142857,4,"<a href=\"DataSourceModel.php.html#74\">DataSourceModel::addDataSourceProject<\/a>"],[90,7,"<a href=\"DataSourceModel.php.html#105\">DataSourceModel::addDataSourceUser<\/a>"],[0,4,"<a href=\"DataSourceModel.php.html#140\">DataSourceModel::deleteDataSource<\/a>"],[0,4,"<a href=\"DataSourceModel.php.html#162\">DataSourceModel::deleteUserDataSource<\/a>"],[0,4,"<a href=\"DataSourceModel.php.html#182\">DataSourceModel::deleteDataSourceProject<\/a>"],[100,3,"<a href=\"DataSourceModel.php.html#201\">DataSourceModel::deleteAllDataSourcesUser<\/a>"],[0,3,"<a href=\"DataSourceModel.php.html#219\">DataSourceModel::deleteAllUsersDataSource<\/a>"],[0,3,"<a href=\"DataSourceModel.php.html#237\">DataSourceModel::deleteAllProjectsDataSource<\/a>"],[25,3,"<a href=\"DataSourceModel.php.html#255\">DataSourceModel::deleteAllDataSourcesProject<\/a>"],[0,18,"<a href=\"DataSourceModel.php.html#284\">DataSourceModel::updateDataSource<\/a>"],[6.896551724137931,13,"<a href=\"DataSourceModel.php.html#369\">DataSourceModel::updateDataSourceUser<\/a>"],[0,7,"<a href=\"DataSourceModel.php.html#429\">DataSourceModel::updateDataSourceProject<\/a>"],[100,3,"<a href=\"DataSourceModel.php.html#468\">DataSourceModel::getVisibility<\/a>"],[100,3,"<a href=\"DataSourceModel.php.html#494\">DataSourceModel::getDataSource<\/a>"],[100,2,"<a href=\"DataSourceModel.php.html#530\">DataSourceModel::getOwnedDataSources<\/a>"],[84.21052631578947,7,"<a href=\"DataSourceModel.php.html#551\">DataSourceModel::searchDataSources<\/a>"],[72.72727272727273,17,"<a href=\"DataSourceModel.php.html#603\">DataSourceModel::getDataSources<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#729\">DataSourceModel::getPersonalDataSources<\/a>"],[0,1,"<a href=\"DataSourceModel.php.html#746\">DataSourceModel::getProjects<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#762\">DataSourceModel::getAccessDataSources<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#779\">DataSourceModel::getAdvisors<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#797\">DataSourceModel::addAdvisor<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#808\">DataSourceModel::askAccess<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#818\">DataSourceModel::acceptAccess<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#825\">DataSourceModel::refuseAccess<\/a>"],[0,1,"<a href=\"DataSourceModel.php.html#832\">DataSourceModel::acceptAccessProject<\/a>"],[0,1,"<a href=\"DataSourceModel.php.html#839\">DataSourceModel::refuseAccessProject<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#846\">DataSourceModel::revokeAccess<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#853\">DataSourceModel::getAccessibleDataSources<\/a>"],[79.6875,20,"<a href=\"DataSourceModel.php.html#910\">DataSourceModel::getUserDataSources<\/a>"],[74.4186046511628,14,"<a href=\"DataSourceModel.php.html#1072\">DataSourceModel::getDataSourceUsers<\/a>"],[1.5873015873015872,19,"<a href=\"DataSourceModel.php.html#1194\">DataSourceModel::getProjectDataSources<\/a>"],[75,12,"<a href=\"DataSourceModel.php.html#1349\">DataSourceModel::getDataSourceProjects<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#1436\">DataSourceModel::getUserID<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#1456\">DataSourceModel::getDataSourceID<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#1474\">DataSourceModel::getProjetID<\/a>"],[100,1,"<a href=\"DataSourceModel.php.html#1493\">DataSourceModel::getAdvisorID<\/a>"],[100,1,"<a href=\"ProjectModel.php.html#18\">ProjectModel::__construct<\/a>"],[75,8,"<a href=\"ProjectModel.php.html#46\">ProjectModel::addProject<\/a>"],[94.44444444444444,5,"<a href=\"ProjectModel.php.html#106\">ProjectModel::addUserProject<\/a>"],[85.71428571428571,2,"<a href=\"ProjectModel.php.html#158\">ProjectModel::getProject<\/a>"],[100,7,"<a href=\"ProjectModel.php.html#199\">ProjectModel::listProjects<\/a>"],[62.5,14,"<a href=\"ProjectModel.php.html#249\">ProjectModel::getProjects<\/a>"],[78.57142857142857,17,"<a href=\"ProjectModel.php.html#355\">ProjectModel::getProjectMembers<\/a>"],[77.61194029850746,19,"<a href=\"ProjectModel.php.html#530\">ProjectModel::getUserProjects<\/a>"],[0,4,"<a href=\"ProjectModel.php.html#657\">ProjectModel::deleteProject<\/a>"],[70,4,"<a href=\"ProjectModel.php.html#681\">ProjectModel::deleteUserProject<\/a>"],[71.42857142857143,3,"<a href=\"ProjectModel.php.html#705\">ProjectModel::deleteAllProjectsUser<\/a>"],[71.42857142857143,3,"<a href=\"ProjectModel.php.html#726\">ProjectModel::deleteAllUsersProject<\/a>"],[80,21,"<a href=\"ProjectModel.php.html#757\">ProjectModel::updateProject<\/a>"],[76.92307692307693,10,"<a href=\"ProjectModel.php.html#848\">ProjectModel::updateUserProject<\/a>"],[100,1,"<a href=\"ProjectModel.php.html#895\">ProjectModel::getUserID<\/a>"],[100,1,"<a href=\"ProjectModel.php.html#913\">ProjectModel::getProjectID<\/a>"],[100,1,"<a href=\"ProjectModel.php.html#931\">ProjectModel::getLogin<\/a>"],[100,1,"<a href=\"UserModel.php.html#16\">UserModel::__construct<\/a>"],[100,3,"<a href=\"UserModel.php.html#32\">UserModel::authentification<\/a>"],[100,2,"<a href=\"UserModel.php.html#71\">UserModel::getUserRoles<\/a>"],[100,1,"<a href=\"UserModel.php.html#94\">UserModel::getRoles<\/a>"],[0,2,"<a href=\"UserModel.php.html#119\">UserModel::getRole<\/a>"],[100,2,"<a href=\"UserModel.php.html#142\">UserModel::getUserRights<\/a>"],[100,1,"<a href=\"UserModel.php.html#166\">UserModel::getRights<\/a>"],[100,2,"<a href=\"UserModel.php.html#188\">UserModel::getRoleRights<\/a>"],[100,2,"<a href=\"UserModel.php.html#215\">UserModel::getRight<\/a>"],[100,2,"<a href=\"UserModel.php.html#250\">UserModel::getUser<\/a>"],[36.633663366336634,32,"<a href=\"UserModel.php.html#292\">UserModel::getUsers<\/a>"],[100,3,"<a href=\"UserModel.php.html#511\">UserModel::loginIsFree<\/a>"],[100,2,"<a href=\"UserModel.php.html#527\">UserModel::getUsersFromRole<\/a>"],[100,2,"<a href=\"UserModel.php.html#549\">UserModel::getAdvice<\/a>"],[50,15,"<a href=\"UserModel.php.html#589\">UserModel::getAdvices<\/a>"],[100,2,"<a href=\"UserModel.php.html#718\">UserModel::getUserAdvices<\/a>"],[100,2,"<a href=\"UserModel.php.html#733\">UserModel::getAdvisorAdvices<\/a>"],[0,1,"<a href=\"UserModel.php.html#745\">UserModel::getNumberFromRole<\/a>"],[96,19,"<a href=\"UserModel.php.html#776\">UserModel::addUser<\/a>"],[100,2,"<a href=\"UserModel.php.html#825\">UserModel::login_is_free<\/a>"],[100,4,"<a href=\"UserModel.php.html#842\">UserModel::addUserRole<\/a>"],[100,3,"<a href=\"UserModel.php.html#862\">UserModel::addRole<\/a>"],[100,3,"<a href=\"UserModel.php.html#881\">UserModel::addRight<\/a>"],[100,4,"<a href=\"UserModel.php.html#900\">UserModel::addRoleRight<\/a>"],[100,5,"<a href=\"UserModel.php.html#921\">UserModel::addAdvice<\/a>"],[61.33333333333333,36,"<a href=\"UserModel.php.html#956\">UserModel::updateUser<\/a>"],[71.42857142857143,10,"<a href=\"UserModel.php.html#1101\">UserModel::updateRole<\/a>"],[0,4,"<a href=\"UserModel.php.html#1141\">UserModel::updateUserRoles<\/a>"],[95.23809523809523,10,"<a href=\"UserModel.php.html#1163\">UserModel::updateRight<\/a>"],[80,11,"<a href=\"UserModel.php.html#1212\">UserModel::updateAdvice<\/a>"],[100,3,"<a href=\"UserModel.php.html#1267\">UserModel::deleteUser<\/a>"],[100,4,"<a href=\"UserModel.php.html#1283\">UserModel::deleteUserRole<\/a>"],[100,3,"<a href=\"UserModel.php.html#1302\">UserModel::deleteUserAllRole<\/a>"],[100,3,"<a href=\"UserModel.php.html#1320\">UserModel::deleteRole<\/a>"],[100,3,"<a href=\"UserModel.php.html#1338\">UserModel::deleteRight<\/a>"],[100,4,"<a href=\"UserModel.php.html#1357\">UserModel::deleteRoleRight<\/a>"],[25,3,"<a href=\"UserModel.php.html#1376\">UserModel::deleteRoleAllRight<\/a>"],[100,3,"<a href=\"UserModel.php.html#1394\">UserModel::deleteAdvice<\/a>"],[100,1,"<a href=\"UserModel.php.html#1406\">UserModel::getId<\/a>"],[100,1,"<a href=\"UserModel.php.html#1420\">UserModel::getIdRole<\/a>"],[100,1,"<a href=\"UserModel.php.html#1434\">UserModel::getIdRight<\/a>"],[100,1,"<a href=\"UserModel.php.html#1448\">UserModel::getIdConseil<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>
