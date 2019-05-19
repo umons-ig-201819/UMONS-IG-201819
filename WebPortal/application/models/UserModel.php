@@ -91,12 +91,12 @@ class UserModel extends CI_Model {
 	    $charset   = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
 	    $pwd       = substr(str_shuffle($charset), 0, 10);
 	    $text      = "Votre nouveau mot de passe est valable $time minutes : $pwd";
-	    $users     = $this->UserModel->getUsers(array('email' => $email),true);
+	    $users     = $this->getUsers(array('email' => $email),true);
 	    if($users ===false || is_null($users) || count($users)<1) return;
 	    $users = $users[0];
 	    mail($users['email'], 'Oubli de mot de passe Wallsmart',$text);
 	    $pwd       = sha1($pwd);
-	    $sql = "UPDATE utilisateur SET ut_reset = \"$pwd\", ut_validreset =  TIMESTAMPADD(MINUTE, $time, NOW()) WHERE ut_id = $user[id]";
+	    $sql = "UPDATE utilisateur SET ut_reset = \"$pwd\", ut_validreset =  TIMESTAMPADD(MINUTE, $time, NOW()) WHERE ut_id = $users[id]";
 	    $this->db->query($sql);
 	}
 	
