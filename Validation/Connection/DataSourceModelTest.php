@@ -29,8 +29,8 @@ class DataSourceModelTest extends TestCase{
     {
         try{
             $dataSource = $this->dataSourceModel->getDataSourceID();
-            $res=$this->dataSourceModel->getVisibility($dataSource);
-            $this->assertNotEquals($res,false);
+            $re=$this->dataSourceModel->getVisibility($dataSource);
+            $this->assertNotEquals($re,false);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
     
@@ -70,8 +70,8 @@ class DataSourceModelTest extends TestCase{
     public function testGetOwnedDataSources(){
         try{
             $dataSourceID=$this->dataSourceModel->getUserID();
-            $res=$this->dataSourceModel->getOwnedDataSources($dataSourceID);
-            $this->assertNotEquals($res,false);
+            $resu=$this->dataSourceModel->getOwnedDataSources($dataSourceID);
+            $this->assertNotEquals($resu,false);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
     
@@ -84,10 +84,10 @@ class DataSourceModelTest extends TestCase{
             $and = false;
             $filter['owner']="test";
             $filter['name']="test";
-            $res=$this->dataSourceModel->searchDataSources($filter,$and);
+            $resul=$this->dataSourceModel->searchDataSources($filter,$and);
 //            $this->assertTrue(array_key_exists('id',$res));
-        	if(is_null($res['id'])) $res=false;
-                $this->assertNotEquals($res,false);
+        	if(is_null($res['id'])) $resul=false;
+                $this->assertNotEquals($resul,false);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
     
@@ -111,10 +111,10 @@ class DataSourceModelTest extends TestCase{
             $filter['application']=0;
             $filter['visible']=2;
             $filter['add_date']='2019-04-28 16:28:51';
-            $res=$this->dataSourceModel->getDataSources($filter,$and);
+            $result=$this->dataSourceModel->getDataSources($filter,$and);
 //            $this->assertTrue(array_key_exists('id',$res));
-	    if(is_null($res['id'])) $res=false;
-                $this->assertNotEquals($res,false);
+	    if(is_null($res['id'])) $result=false;
+                $this->assertNotEquals($result,false);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
 
