@@ -12,7 +12,7 @@
 		<var name="DB_DBNAME" value="wallesmart" />
     	</php>
     <filter>
-        <whitelist>
+        <whitelist addUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">../WebPortal/application/controllers</directory>
             <directory suffix=".php">../WebPortal/application/helpers</directory>
             <directory suffix=".php">../WebPortal/application/views</directory>
