@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="true" backupStaticAttributes="false" cacheTokens="false" colors="false">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="true" backupStaticAttributes="false" cacheTokens="false" colors="true">
 	<testsuites>
 		<testsuite name="Connection">
     		<directory suffix="Test.php">Connection</directory>
@@ -11,8 +11,19 @@
 		<var name="DB_PASSWD" value="" />
 		<var name="DB_DBNAME" value="wallesmart" />
     	</php>
-	
-	
+    <filter>
+        <whitelist>
+            <directory suffix=".php">WebPortal/application/controllers</directory>
+            <directory suffix=".php">WebPortal/application/helpers</directory>
+            <directory suffix=".php">WebPortal/application/views</directory>
+            <directory suffix=".php">WebPortal/application/models</directory>
+        </whitelist>
+    </filter>
+	<logging>
+		<log type="coverage-html" target="/home/user/coverage" charset="UTF-8" yui="true" highlight="true" />
+	    <log type="coverage-text" target="/home/user/coverage.txt "/>
+	    <log type="coverage-clover" target="/home/user/logs/clover.xml "/>
+    </logging>
 	<dataset>
    		 <utilisateur ut_id="1" ut_nom="thomas" ut_prenom="Kerala" ut_date_naiss="12345" ut_mail="dkdkd@mail.com" ut_tel="495859" ut_gsm="029484020" ut_sexe="f" ut_login="acools" ut_password="test" ut_visible_awe="1" ut_accepter_conseil="1"/>
    		 <utilisateur ut_id="2" ut_nom="thmas" ut_prenom="Kela" ut_date_naiss="12345" ut_mail="dkdkd@mail.com" ut_tel="495859" ut_gsm="029484020" ut_sexe="f" ut_login="cools" ut_password="test" ut_visible_awe="1" ut_accepter_conseil="1"/>
