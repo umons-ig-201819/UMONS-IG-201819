@@ -59,7 +59,7 @@ class ProjectModel extends CI_Model
         $pDateStart = $project['pdate_start'];
         $pDateEnd = $project['pdate_end'];
 
-        $sql = "INSERT INTO projet
+        $sql = "INSERT IGNORE INTO projet
 				(p_nom, p_description, p_date_start, p_date_end, p_id_createur)
 				VALUES (?,?,?,?,?)";
 
@@ -78,7 +78,7 @@ class ProjectModel extends CI_Model
             }
         // 0=demande effectuee, 1=OK, 2=refus
         $projectID = $this->db->insert_id();
-        $sql = "INSERT INTO fichier_projet (fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
+        $sql = "INSERT IGNORE INTO fichier_projet (fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
             SELECT f.f_id,$projectID,f.f_visible_awe,NOW()
             FROM fichierappli AS f";
 
