@@ -130,7 +130,7 @@ class ProjectModel extends CI_Model
         if(array_key_exists('role_project', $userProject))
             $role = intval($userProject['role_project']);
             
-        $sql = "INSERT INTO utilisateur_projet
+        $sql = "INSERT IGNORE INTO utilisateur_projet
 				(up_id_participant, up_id_projet, up_role_pour_ce_projet, up_gestion)
 				VALUES ($userID,$projID,?,$gestion)";
 
