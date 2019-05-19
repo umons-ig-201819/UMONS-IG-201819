@@ -193,8 +193,8 @@ class ProjectModel extends CI_Model
      * @param $filter['owner_firstname'] is the firstname of creator
      * @param $and is optional and is an boolean which is FALSE (default behavior) for processing teh search query with OR operators and TRUE for AND operators
 	 
-     * @return an array of projects (date start descending order)
-     * @see getProjects() for the data structure of returned users
+     * @return an array of projects (name ascending order)
+     * @see listProjects() for the data structure of returned users
      */
     public function listProjects($filter = NULL, $and = false){
         $where = '';
@@ -372,57 +372,6 @@ class ProjectModel extends CI_Model
                         JOIN utilisateur u2
                         	ON p_id_createur = u2.ut_id
                     WHERE p_id = $projID";
-        
-            /*
-             * SELECT DISTINCT
-					u.ut_id AS member_id,
-                    u.ut_nom AS member_lastname,
-                    u.ut_prenom as member_firstname
-                FROM utilisateur AS u
-                JOIN utilisateur_projet AS up
-                ON u.ut_id =  up_id_participant
-				WHERE
-				up_id_projet = $projID
-				OR $projID IN (SELECT p.p_id
-								FROM projet AS p
-								LEFT JOIN utilisateur AS u
-								ON u.ut_id=p.p_id_createur)
-             */
-            
-            /* "SELECT DISTINCT
-             u.ut_id AS member_id,
-             u.ut_nom AS member_lastname,
-             u.ut_prenom as member_firstname,
-             IF(up.up_id_participant=u.ut_id,up.up_role_pour_ce_projet,NULL) AS role,
-             IF(up.up_id_participant=u.ut_id,up.up_gestion,0) AS manage
-             FROM utilisateur AS u
-             JOIN utilisateur_projet AS up
-             ON up.up_id_participant=u.ut_id
-             WHERE
-             up.up_id_projet = 14
-             OR 14 IN (SELECT p.p_id
-             FROM projet AS p
-             LEFT JOIN utilisateur AS u
-             ON u.ut_id=p.p_id_createur)"*/
-            
-            /*
-             * "SELECT DISTINCT
-					u.ut_id AS member_id,
-                    u.ut_nom AS member_lastname,
-                    u.ut_prenom as member_firstname,
-                IF(p.p_id_createur=u.ut_id,1,0) AS project_owner
-                FROM utilisateur AS u
-                JOIN projet AS p
-                ON p.p_id_createur=u.ut_id
-				WHERE
-					p.p_id=14 
-                
-                	OR 14 IN (SELECT utilisateur_projet.up_id_projet
-								FROM utilisateur_projet
-								LEFT JOIN utilisateur AS u
-								ON u.ut_id=utilisateur_projet.up_id_participant)"
-             * */
-        
 
         $params = array();
         //$params[] = $projID;
@@ -510,138 +459,7 @@ class ProjectModel extends CI_Model
         return $projectMembers;
     }
 
-    /**
-     * getUserProjects() this method returns the projects for which a user participates
-     *
-     * @param $userID the id of the user         
-     * @param $filter is optional and is an array containing search criterions
-     * @param $filter['project_id'] is the id of the project
-     * @param $filter['project_name'] is the name of the project
-     * @param $filter['project_date_start'] is the date when the project start
-     * @param $filter['project_date_end'] is the date when the project end
-     * @param $filter['project_role'] is the role of the member for the project
-     * @param $filter['project_gestion'] means 1 or 0 (if the participant may not manage the project)
-     * @param $filter['project_owner'] means 1 or 0 (if the participant is not the owner of the project)
-	 * @param $and is optional and is an boolean which is FALSE (default behavior) for processing teh search query with OR operators and TRUE for AND operators
-	 
-	 * @return an array of projects for a user (date start descending order)
-	 * @see getUserProjects() for the data structure of returned projects
-     */
-    public function getUserProjects($userID, $filter = NULL, $and = false)
-    {
-        if (is_null($userID))
-            return NULL;
-
-        $params = array();
-        
-        $sql = "SELECT DISTINCT
-                        p.p_id AS id,
-                        p.p_nom AS name,
-                        p.p_date_start AS date_start,
-                        p.p_date_end AS date_end,
-                        IF(p_id_createur=$userID,1,0) AS project_owner,
-                        IF(up.up_id_participant=$userID,up.up_role_pour_ce_projet,NULL) AS project_role,
-                        IF(up.up_id_participant=$userID,up.up_gestion,0) AS project_gestion
-                 FROM projet AS p
-                    JOIN utilisateur_projet AS up
-                    ON up.up_id_projet = p.p_id
-                 WHERE
-                     up.up_id_participant = $userID
-                     OR $userID IN (SELECT p.p_id_createur FROM projet)";
-        
-        if (! is_null($filter)) {
-            $first = true;
-            $operator = ' OR ';
-            if ($and)
-                $operator = ' AND ';
-
-            foreach ($filter as $k => $v) {
-
-                if ($k == 'project_id') {
-                    if ($first) {
-                        $sql .= ' AND ( ';
-                        $first = false;
-                    } else {
-                        $sql .= $operator;
-                    }
-                    $sql .= 'p.p_id)=?';
-                    $params[] = $v;
-                }
-                
-                if ($k == 'project_name') {
-                    if ($first) {
-                        $sql .= ' AND ( ';
-                        $first = false;
-                    } else {
-                        $sql .= $operator;
-                    }
-                    $sql .= 'p.p_nom LIKE ?';
-                    $params[] = '%' . $v . '%';
-                }
-
-                if ($k == 'project_date_end') {
-                    if ($first) {
-                        $sql .= ' AND ( ';
-                        $first = false;
-                    } else {
-                        $sql .= $operator;
-                    }
-                    $sql .= 'DATE(p.p_date_end)=?';
-                    $params[] = $v;
-                }
-                
-                if ($k == 'project_date_start') {
-                    if ($first) {
-                        $sql .= ' AND ( ';
-                        $first = false;
-                    } else {
-                        $sql .= $operator;
-                    }
-                    $sql .= 'DATE(p.p_date_start)=?';
-                    $params[] = $v;
-                }
-
-                if ($k == 'project_role') {
-                    if ($first) {
-                        $sql .= ' AND ( ';
-                        $first = false;
-                    } else {
-                        $sql .= $operator;
-                    }
-                    $sql .= 'up.up_role_pour_ce_projet LIKE ?';
-                    $params[] = '%' . $v . '%';
-                }
-
-                if ($k == 'project_gestion') {
-                    if ($first) {
-                        $sql .= ' AND ( ';
-                        $first = false;
-                    } else {
-                        $sql .= $operator;
-                    }
-                    $sql .= 'up.up_gestion = ?';
-                    $params[] = $v;
-                }
-
-                if ($k == 'project_owner') {
-                    if ($first) {
-                        $sql .= ' AND ( ';
-                        $first = false;
-                    } else {
-                        $sql .= $operator;
-                    }
-                    $sql .= 'p_id_createur = ?';
-                    $params[] = $v;
-                }
-            }
-        }
-        $sql .= ' ORDER BY p_date_start DESC';
-
-        $query = $this->db->query($sql, $params);
-        $userProjects = $query->result_array();
-
-        return $userProjects;
-    }
+    
 
     // -------------------------------------------------------------
     // -------------------- DELETE ---------------------------------
@@ -689,27 +507,6 @@ class ProjectModel extends CI_Model
         if (! $this->db->query($sql, array(
             intval($userID),
             intval($projID)
-        )))
-            return false;
-
-        return true;
-    }
-
-    /**
-     * deleteAllProjectsUser() remove all projects for a specific user
-     *
-     * @param $userID
-     *            
-     * @return a boolean (TRUE if deletion has been applied, FALSE if not)
-     */
-    public function deleteAllProjectsUser($userID)
-    {
-        if (empty($userID))
-            return false;
-
-        $sql = "DELETE FROM utilisateur_projet WHERE up_id_participant=?";
-        if (! $this->db->query($sql, array(
-            intval($userID)
         )))
             return false;
 
