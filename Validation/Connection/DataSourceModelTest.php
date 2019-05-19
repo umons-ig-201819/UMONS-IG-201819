@@ -83,7 +83,7 @@ class DataSourceModelTest extends TestCase{
         try{
             $and = false;
             $filter['owner']="test";
-            $filter['name']="test40";
+            $filter['name']="test";
             $res=$this->dataSourceModel->searchDataSources($filter,$and);
             $this->assertTrue(array_key_exists('id',$res));
         	if(is_null($res['id'])) return false;
@@ -104,7 +104,7 @@ class DataSourceModelTest extends TestCase{
 	* @return an array of files (ordered by date)
     */
     public function testGetDataSources(){
-        try{
+//        try{
             $and = false;
             $filter['file_name']="test";
             $filter['file_url']=NULL;
@@ -113,9 +113,9 @@ class DataSourceModelTest extends TestCase{
             $filter['add_date']='2019-04-28 16:28:51';
             $res=$this->dataSourceModel->getDataSources($filter,$and);
             $this->assertTrue(array_key_exists('id',$res));
-        	if(is_null($res['id'])) return false;
+	    if(is_null($res['id'])) return false;
                 $this->assertNotEquals($res,false);
-        }catch(Exception $e) { $this->assertTrue(false); }
+ //       }catch(Exception $e) { $this->assertTrue(false); }
     }
 
     /**
@@ -125,13 +125,13 @@ class DataSourceModelTest extends TestCase{
 	* @return an array of files (ordered by date)
     */
     public function testGetDataSources1(){
-        try{
+//        try{
             $and = false;
             $res=$this->dataSourceModel->getDataSources(null,$and);
             $this->assertTrue(array_key_exists('id',$res));
         	if(is_null($res['id'])) return false;
                 $this->assertNotEquals($res,false);
-        }catch(Exception $e) { $this->assertTrue(false); }
+//        }catch(Exception $e) { $this->assertTrue(false); }
     }
     
     /**
