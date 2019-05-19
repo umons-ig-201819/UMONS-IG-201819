@@ -3,8 +3,8 @@
 /**
  * \file      models/ProjectModel.php
  * \author    EmilieG
- * \version   1.0
- * \date      2019-03-25
+ * \version   1.1
+ * \date      2019-05-19
  * \brief     Model to manage projects for the Wallesmart database
  *
  * \details   This class is supposed to be used with the codeigniter framework
