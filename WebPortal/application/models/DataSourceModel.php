@@ -1481,7 +1481,7 @@ class DataSourceModel extends CI_Model{
 				ORDER BY fp_id_projet DESC";
 	    $query = $this->db->query($sql);
 	    $id=$query->result_array();
-	    $lastidproj=$id[0]["f_id_projet"];
+	    $lastidproj=$id[0]["fp_id_projet"];
 	    return $lastidproj;
 	}	
 	
