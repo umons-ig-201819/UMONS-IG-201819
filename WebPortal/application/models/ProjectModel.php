@@ -84,7 +84,7 @@ class ProjectModel extends CI_Model
         try{
             $this->db->query($sql);
             return $projectID;
-        }catch(Exception e){
+        }catch(Exception $e){
             return false;
         }
     }
