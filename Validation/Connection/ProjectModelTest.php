@@ -2,18 +2,18 @@
 use PHPUnit\Framework\TestCase;
 require_once(__DIR__.'/../configuration.php');
 load_model('ProjectModel');
+
 class ProjectModelTest extends TestCase{
-public function __construct()
-    {
+    public function __construct(){
         parent::__construct();
-        $projectModel = null;
+        $this->projectModel = null;
     }
     
-protected function setUp(){
+    protected function setUp(){
         $this->projectModel = new ProjectModel();
     }
     
-protected function tearDown(){
+    protected function tearDown(){
         $this->projectModel = null;
     }
     
@@ -59,6 +59,8 @@ protected function tearDown(){
         $filter['owner_firstname']="Jean";
         $and=false;
         $res=$this->projectModel->getProjects($filter,$and);
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $this->assertEquals($res[0],false);
     }
     /**
