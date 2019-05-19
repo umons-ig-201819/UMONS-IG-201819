@@ -70,15 +70,17 @@ class ProjectModelTest extends TestCase{
     */
     public function testGetProjectMembers()
     {
-        $filter['member_lastname']="Durand";
-        $filter['member_firstname']="Jean";
-        $filter['member_role']="propriétaire du terrain";
-        $filter['member_gestion']=0;
-        $filter['owner_lastname']="vanderelst";
-        $filter['owner_firstname']="Nadine";
-        $and=false;
-        $res=$this->projectModel->getProjectMembers(1,$filter,$and);
-        $this->assertNotEquals($res,false);
+        try{
+            $filter['member_lastname']="Durand";
+            $filter['member_firstname']="Jean";
+            $filter['member_role']="propriétaire du terrain";
+            $filter['member_gestion']=0;
+            $filter['owner_lastname']="vanderelst";
+            $filter['owner_firstname']="Nadine";
+            $and=false;
+            $res=$this->projectModel->getProjectMembers(1,$filter,$and);
+            $this->assertNotEquals($res,false);
+        }catch(Exception $e) { $this->assertTrue(false); }
     }
      /**   
      * testGetUserProjects() this method tests the method getUserProjects()
