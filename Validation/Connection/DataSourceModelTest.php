@@ -358,7 +358,7 @@ class DataSourceModelTest extends TestCase{
         try{
             $and=false;
             $resu=$this->dataSourceModel->getDataSourceID();
-            $res=$this->dataSourceModel->getDataSourceProjects($resu,$and);
+            $res=$this->dataSourceModel->getDataSourceProjects($resu,null,$and);
             $this->assertTrue(array_key_exists('project_ID',$res));
             if(is_null($res['project_ID'])) $res='false';
             $this->assertEquals($res,false);
