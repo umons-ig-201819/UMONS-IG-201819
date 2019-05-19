@@ -66,7 +66,7 @@ class ProjectModel extends CI_Model
         $pDescription = NULL;
         if (isset($project['pdescription']))
             $pDescription = $project['pdescription'];
-
+            try{
         if (! $this->db->query($sql, array(
             $pName,
             $pDescription,
@@ -81,8 +81,8 @@ class ProjectModel extends CI_Model
         $sql = "INSERT INTO fichier_projet (fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
             SELECT f.f_id,$projectID,f.f_visible_awe,NOW()
             FROM fichierappli AS f";
-        try{
-            $this->db->query($sql);
+
+        $this->db->query($sql);
             return $projectID;
         }catch(Exception $e){
             return false;
