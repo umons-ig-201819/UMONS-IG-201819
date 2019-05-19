@@ -689,7 +689,7 @@ class DataSourceModel extends CI_Model{
 	    $lastidproj=$id[0]["fp_id_projet"];
 	    return $lastidproj;
 	}	
-	
+	 
 	/**
 	* getAdvisorID() is a method for searching the advisorID of the last record 
 	* @return advisorID
