@@ -86,7 +86,7 @@ class DataSourceModelTest extends TestCase{
             $filter['name']="test";
             $res=$this->dataSourceModel->searchDataSources($filter,$and);
             $this->assertTrue(array_key_exists('id',$res));
-        	if(is_null($res['id'])) return false;
+        	if(is_null($res['id'])) $res=false;
                 $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
@@ -113,7 +113,7 @@ class DataSourceModelTest extends TestCase{
             $filter['add_date']='2019-04-28 16:28:51';
             $res=$this->dataSourceModel->getDataSources($filter,$and);
             $this->assertTrue(array_key_exists('id',$res));
-	    if(is_null($res['id'])) return false;
+	    if(is_null($res['id'])) $res=false;
                 $this->assertNotEquals($res,false);
  //       }catch(Exception $e) { $this->assertTrue(false); }
     }
@@ -129,7 +129,7 @@ class DataSourceModelTest extends TestCase{
             $and = false;
             $res=$this->dataSourceModel->getDataSources(null,$and);
             $this->assertTrue(array_key_exists('id',$res));
-        	if(is_null($res['id'])) return false;
+        	if(is_null($res['id'])) $res= false;
                 $this->assertNotEquals($res,false);
 //        }catch(Exception $e) { $this->assertTrue(false); }
     }
@@ -143,7 +143,7 @@ class DataSourceModelTest extends TestCase{
             $resu=$this->dataSourceModel->getUserID();
             $res=$this->dataSourceModel->getPersonalDataSources($resu);
             $this->assertTrue(array_key_exists('id',$res));
-        	if(is_null($res['id'])) return false;
+        	if(is_null($res['id'])) $res=false;
                 $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
