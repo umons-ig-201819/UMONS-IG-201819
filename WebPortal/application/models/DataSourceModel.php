@@ -125,6 +125,82 @@ class DataSourceModel extends CI_Model{
      return true;
      
      }
+     
+     /**
+      * addAdvisor() is a method for adding a data source for a user
+      *
+      * @param $sourceID (required) is the id of a data source
+      * @param $advisorUsername (required) is the login of a user
+      
+      * @return the affected rows
+      */
+     public function addAdvisor($sourceID, $advisorUsername){
+         $sourceID        = intval($sourceID);
+         $advisorUsername = trim($advisorUsername);
+         $sql = "
+            INSERT IGNORE INTO `utilisateur_fichier`(`uf_id_invite`, `uf_id_fichier`, `uf_lire`, `uf_modifier`, `uf_effacer`, `uf_demande_acces`, `uf_demande_date`)
+            SELECT utilisateur.ut_id, $sourceID, 1, 0, 0, 1, NOW()
+            FROM utilisateur
+            WHERE utilisateur.ut_login = ? ";
+         $this->db->query($sql, array($advisorUsername));
+         return $this->db->affected_rows();
+     }
+     
+     /**
+      * askAccess() is a method for asking the access to a data source
+      *
+      * @param $sourceID (required) is the id of a data source
+      * @param $userID (required) is the id of a user
+      
+      */
+     public function askAccess($sourceID, $userID){
+         $sourceID     = intval($sourceID);
+         $userID       = intval($userID);
+         //  0=demande effectuee, 1=OK, 2=refus
+         $sql = "
+            INSERT IGNORE INTO  `utilisateur_fichier`(`uf_id_invite`, `uf_id_fichier`, `uf_lire`, `uf_modifier`, `uf_effacer`, `uf_demande_acces`, `uf_demande_date`)
+	       VALUES ($userID, $sourceID, 1, 0, 0, 0, NOW());"
+	       ;
+	       $this->db->query($sql);
+     }
+     
+     /**
+      * addProject() is a method for adding a data source for a user
+      *
+      * @param $sourceID (required) is the id of a data source
+      * @param $projectName (required) is the login of a user
+      
+      * @return the affected rows
+      */
+     public function addProject($sourceID, $projectName){
+         $sourceID        = intval($sourceID);
+         $projectName     = trim($projectName);
+         $sql = "
+            INSERT IGNORE INTO fichier_projet (fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
+					SELECT $sourceID,projet.p_id,1,NOW()
+            FROM projet
+            WHERE projet.p_nom = ? ";
+         $this->db->query($sql, array($projectName));
+         return $this->db->affected_rows();
+     }
+     
+     /**
+      * askAccessProject() is a method for asking the access to a data source
+      *
+      * @param $sourceID (required) is the id of a data source
+      * @param $projectID (required) is the id of a user
+      
+      */
+     public function askAccessProject($sourceID, $projectID){
+         $sourceID     = intval($sourceID);
+         $projectID       = intval($projectID);
+         //  0=demande effectuee, 1=OK, 2=refus
+         $sql = "
+            INSERT IGNORE INTO  `fichier_projet`(fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
+	       VALUES ($sourceID, $projectID, 0, NOW());"
+	       ;
+	       $this->db->query($sql);
+     }
 	
 	//-------------------------------------------------------------
 	//-------------------- DELETE ---------------------------------
@@ -148,26 +224,6 @@ class DataSourceModel extends CI_Model{
 		$sql="DELETE FROM fichierappli WHERE f_id= ?";
 		if( ! $this->db->query($sql, array($dataSourceID)) ) return false;
 		return true;
-    
-	}
-    
-	/**
-	 * deleteUserDataSource() remove a data source for a specific user
-	 
-	 * @param $userID
-	 * @param $dataSourceID
-	 
-	 * @return a boolean (TRUE if deletion has been applied, FALSE if not)
-	 */
-	public function deleteUserDataSource($userID, $dataSourceID)
-    {
-        if(empty($userID)) return false;
-        if(empty($dataSourceID)) return false;
-        
-		$sql="DELETE FROM utilisateur_fichier WHERE uf_id_fichier=? AND uf_id_invite=?";
-		
-		if( ! $this->db->query($sql, array(intval($userID), intval($dataSourceID))) ) return false;
-        return true;  
     
 	}
 	
@@ -261,6 +317,21 @@ class DataSourceModel extends CI_Model{
         if( ! $this->db->query($sql, array(intval($projectID))) ) return false;
         return true;
         
+    }
+    
+    /**
+     * revokeAccess() remove a data source for a specific user
+     
+     * @param $adivsorID is the id of the user invited to the data source
+     * @param $ourceID is the data source id
+     
+     */
+    public function revokeAccess($sourceID, $advisorID){
+        $sourceID     = intval($sourceID);
+        $advisorID    = intval($advisorID);
+        //  0=demande effectuee, 1=OK, 2=refus
+        $sql = "DELETE FROM `utilisateur_fichier` WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
+        $this->db->query($sql);
     }
 	
     //-------------------------------------------------------------
@@ -452,6 +523,66 @@ class DataSourceModel extends CI_Model{
         else return true;
         
     }
+    
+    /**
+     * acceptAccess() is a method for accepting the access of a user to a data source
+     
+     * @param $sourceID contains the id of the the id of the data source
+     * @param $advisorID is the ID of the user
+     
+     */
+    public function acceptAccess($sourceID, $advisorID){
+        $sourceID     = intval($sourceID);
+        $advisorID    = intval($advisorID);
+        //  0=demande effectuee, 1=OK, 2=refus
+        $sql = "UPDATE `utilisateur_fichier` SET `uf_demande_acces`=1 WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
+        $this->db->query($sql);
+    }
+    
+    /**
+     * refuseAccess() is a method for refusing the access of a user to a data source
+     
+     * @param $sourceID contains the id of the the id of the data source
+     * @param $advisorID is the ID of the user
+     
+     */
+    public function refuseAccess($sourceID, $advisorID){
+        $sourceID     = intval($sourceID);
+        $advisorID    = intval($advisorID);
+        //  0=demande effectuee, 1=OK, 2=refus
+        $sql = "UPDATE `utilisateur_fichier` SET `uf_demande_acces`=2 WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
+        $this->db->query($sql);
+    }
+    
+    /**
+     * acceptAccessProject() is a method for accepting the access of a project to a data source
+     
+     * @param $sourceID contains the id of the the id of the data source
+     * @param $projectID is the ID of the project
+     
+     */
+    public function acceptAccessProject($sourceID, $projectID){
+        $sourceID     = intval($sourceID);
+        $projectID    = intval($projectID);
+        //  0=demande effectuee, 1=OK, 2=refus
+        $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=1 WHERE `fp_id_projet`=$projectID AND `fp_id_fichier`=$sourceID";
+        $this->db->query($sql);
+    }
+    
+    /**
+     * refuseAccessProject() is a method for refusing the access of a project to a data source
+     
+     * @param $projectID is the id of the user invited to the data source
+     * @param $ourceID is the data source id
+     
+     */
+    public function refuseAccessProject($sourceID, $projectID){
+        $sourceID     = intval($sourceID);
+        $projectID    = intval($projectID);
+        //  0=demande effectuee, 1=OK, 2=refus
+        $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=2 WHERE `fp_id_projet`=$projectID AND `fp_id_fichier`=$sourceID";
+        $this->db->query($sql);
+    }
 	
     //-------------------------------------------------------------
     //-------------------- SELECT ---------------------------------
@@ -513,41 +644,16 @@ class DataSourceModel extends CI_Model{
     
 	}
 	
-     /**
-     * getOwnedDataSources() this method returns the data sources that belong to a user
-     
-     * @param $userID user id
-     
-     * @return datasources with the firstname and lastname of the owner
-     * <br> $response['id'] is the data source id
-     * <br> $response['file_name'] is the name of the data source
-     * <br> $response['url'] is the URL of the data source
-     * <br> $response['application'] 0 for file and 1 for application
-     * <br> $response['configuration'] is the configuration File
-     * <br> $response['visible'] default visibility attribute for user files (0=hidden, 1=visible, 2=on demand)
-     * <br> $response['add_date'] is the creation date of the data source in the database
-     */
-	public function getOwnedDataSources($userID)
-    {
-        if(is_null($userID)) return NULL;
-        
-        $sql="SELECT
-					f_id AS id,
-					f_nom AS file_name,
-					f_url AS url,
-					f_appli AS application,
-                    f_config AS configuration,
-                    f_visible_awe AS visible,
-                    f_dateajout AS add_date
-				FROM fichierappli
-				WHERE f_id_proprio=?";
+	/**
+	 * searchDataSources() is a method for searching data sources in the database
+	 
+	 * @param $filter is optional and is an array containing search criterions
+	 * @param $filter['owner'] is optional and contains the name (can be partial) of the owner of a data source
+	 * @param $filter['name'] is optional and contains the name (can be partial) of searched data source(s)
 
-        $query = $this->db->query($sql, array($userID));
-        $ownerFiles=$query->result_array();
-        //if(is_null($ownerFiles['id'])) return false;
-        return $ownerFiles;
-	}
-	
+	 * @return an array of data sources (ordered by file name)
+	 * @see searchDataSources() for the data structure of returned data sources
+	 */	
 	public function searchDataSources($filter = NULL, $and = false) {
 	    $conditions = '';
 	    $prep = array();
@@ -725,7 +831,21 @@ class DataSourceModel extends CI_Model{
         //if(is_null($dataSources['id'])) return false;
         return $dataSources;
 	}
-	//IDENTIQUE à "getOwnedDataSources"!
+    /**
+    * getPersonalDataSources() this method returns the data sources that belong to a user
+
+    * @param $userID user id
+
+    * @return datasources of the user
+    * <br> $response['id'] is the data source id
+    * <br> $response['file_name'] is the name of the data source
+    * <br> $response['url'] is the URL of the data source
+    * <br> $response['application'] 0 for file and 1 for application
+    * <br> $response['configuration'] is the configuration File
+    * <br> $response['visible'] default visibility attribute for user files (0=hidden, 1=visible, 2=on demand)
+    * <br> $response['add_date'] is the creation date of the data source in the database
+    */
+	
 	public function getPersonalDataSources($userID){
 	    $userID = intval($userID);
 	    $sql="SELECT
@@ -743,6 +863,18 @@ class DataSourceModel extends CI_Model{
 	    //if(is_null($result['id'])) return false;
 	    return $result;
 	}
+	
+	/**
+	 * getProjects() is a method for searching the projects linked with a data source in the database
+	 
+	 * @param $sourceID data source id
+	 
+	 * @return an array of projects that requested access to a data source
+     * <br> $response['id'] is the project id
+     * <br> $response['name'] is the name of the project
+     * <br> $response['end_date'] is the date of the end of the project
+     * <br> $response['state'] is the 'access state' with the possible values 0(=asked), 1(=accepted), 2(=refused)
+	 */
 	public function getProjects($sourceID){
 	    $sourceID = intval($sourceID);
 	    $sql="SELECT
@@ -759,6 +891,21 @@ class DataSourceModel extends CI_Model{
 	    //if(is_null($result['id'])) return false;
 	    return $result;
 	}
+	
+	/**
+	 * getAccessDataSources() is a method to search for data sources that a user has access to
+	 
+	 * @param $advisorID is the user ID
+	 * 
+	 * @return an array of data sources
+	 * <br> $response['id'] is the data source id
+     * <br> $response['file_name'] is the name of the data source
+     * <br> $response['url'] is the URL of the data source
+     * <br> $response['application'] 0 for file and 1 for application
+     * <br> $response['configuration'] is the configuration File
+     * <br> $response['visible'] default visibility attribute for user files (0=hidden, 1=visible, 2=on demand)
+     * <br> $response['add_date'] is the creation date of the data source in the database
+	 */
 	public function getAccessDataSources($advisorID){
 	    $advisorID = intval($advisorID);
 	    $sql="SELECT
@@ -776,6 +923,19 @@ class DataSourceModel extends CI_Model{
 	    //if(is_null($result['id'])) return false;
 	    return $result;
 	}
+	
+	/**
+	 * getAdvisors() is a method to search for users who requested access to data sources
+	 
+	 * @param $sourceID is the data source ID
+	 *
+	 * @return an array of users
+	 * <br> $response['userid'] is the user id
+	 * <br> $response['username'] is the user login
+	 * <br> $response['firstname'] is the user firstname
+	 * <br> $response['lastname'] is the user lasstname
+	 * <br> $response['state'] is the state of accessibility to the data source
+	 */
 	public function getAdvisors($sourceID){
 	    $sourceID = intval($sourceID);
 	    $sql="
@@ -794,62 +954,20 @@ class DataSourceModel extends CI_Model{
 	    //if(is_null($result['userid'])) return false;
 	    return $result;
 	}
-	 public function addAdvisor($sourceID, $advisorUsername){
-	     $sourceID        = intval($sourceID);
-	     $advisorUsername = trim($advisorUsername);
-	     $sql = "
-            INSERT IGNORE INTO `utilisateur_fichier`(`uf_id_invite`, `uf_id_fichier`, `uf_lire`, `uf_modifier`, `uf_effacer`, `uf_demande_acces`, `uf_demande_date`)
-            SELECT utilisateur.ut_id, $sourceID, 1, 0, 0, 1, NOW()
-            FROM utilisateur
-            WHERE utilisateur.ut_login = ? ";
-	     $this->db->query($sql, array($advisorUsername));
-	     return $this->db->affected_rows();
-	 }
-	 public function askAccess($sourceID, $userID){
-	     $sourceID     = intval($sourceID);
-	     $userID       = intval($userID);
-	     //  0=demande effectuee, 1=OK, 2=refus
-	     $sql = "
-            INSERT IGNORE INTO  `utilisateur_fichier`(`uf_id_invite`, `uf_id_fichier`, `uf_lire`, `uf_modifier`, `uf_effacer`, `uf_demande_acces`, `uf_demande_date`)
-	       VALUES ($userID, $sourceID, 1, 0, 0, 0, NOW());"
-	       ;
-	       $this->db->query($sql);
-	 }
-	 public function acceptAccess($sourceID, $advisorID){
-	     $sourceID     = intval($sourceID);
-	     $advisorID    = intval($advisorID);
-	     //  0=demande effectuee, 1=OK, 2=refus
-	     $sql = "UPDATE `utilisateur_fichier` SET `uf_demande_acces`=1 WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
-	     $this->db->query($sql);
-	 }
-	 public function refuseAccess($sourceID, $advisorID){
-	     $sourceID     = intval($sourceID);
-	     $advisorID    = intval($advisorID);
-	     //  0=demande effectuee, 1=OK, 2=refus
-	     $sql = "UPDATE `utilisateur_fichier` SET `uf_demande_acces`=2 WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
-	     $this->db->query($sql);
-	 }
-	 public function acceptAccessProject($sourceID, $projectID){
-	     $sourceID     = intval($sourceID);
-	     $projectID    = intval($projectID);
-	     //  0=demande effectuee, 1=OK, 2=refus
-	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=1 WHERE `fp_id_projet`=$projectID AND `fp_id_fichier`=$sourceID";
-	     $this->db->query($sql);
-	 }
-	 public function refuseAccessProject($sourceID, $projectID){
-	     $sourceID     = intval($sourceID);
-	     $projectID    = intval($projectID);
-	     //  0=demande effectuee, 1=OK, 2=refus
-	     $sql = "UPDATE `fichier_projet` SET `fp_demande_acces`=2 WHERE `fp_id_projet`=$projectID AND `fp_id_fichier`=$sourceID";
-	     $this->db->query($sql);
-	 }
-	 public function revokeAccess($sourceID, $advisorID){
-	     $sourceID     = intval($sourceID);
-	     $advisorID    = intval($advisorID);
-	     //  0=demande effectuee, 1=OK, 2=refus
-	     $sql = "DELETE FROM `utilisateur_fichier` WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
-	     $this->db->query($sql);
-	 }
+	 
+	/**
+	 * getAccessibleDataSources() is a method to search for users who requested access to data sources
+	 
+	 * @param $userID is the user ID
+	 *
+	 * @return an array of data sources
+	 * <br> $response['id'] is the data source id
+	 * <br> $response['owner_id'] is the owner id
+	 * <br> $response['name'] is the name of the data source
+	 * <br> $response['is_application'] describes whether the data source is an application or not
+	 * <br> $response['visibility'] is the visibility of the data source (0, 1, 2)
+	 * <br> $response['published'] is the date when the data source was added
+	 */
 	 public function getAccessibleDataSources($userID){
 	     $userID = intval($userID);
 	     $sql = "
@@ -1334,100 +1452,7 @@ class DataSourceModel extends CI_Model{
 		return $dataSources;
 	}
 	
-	/**
-	* getDataSourceProjects() is a method for searching the projects linked with a data source in the database
-	
-	* @param $filter is optional and is an array containing search criterions
-	* @param $filter['project_name'] is optional and contains the name (can be partial) of searched project(s)
-	* @param $filter['ask_access'] is optional and contains the access state (0=on demand, 1=OK, 2=KO) to the searched project(s)
-	* @param $filter['ask_date'] is optional and contains the date when asked an access to the searched project(s)
-	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
-	
-	* @return an array of files (ordered by date)
-	* @see getUserDataSources() for the data structure of returned projects
-	*/
-	public function getDataSourceProjects($dataSourceID, $filter = NULL, $and = false) 			
-	{ 
-	    if(is_null($dataSourceID)) return NULL;
-	    $sql="SELECT
-                    p.fp_id_projet AS project_ID,
-                    projet.p_nom AS project_name,
-                    p.fp_demande_acces AS access_state,
-					p.fp_demande_date AS ask_date         										
-				FROM fichier_projet AS p
-				JOIN projet
-				ON p.fp_id_projet=p_id
-				WHERE p.fp_id_fichier = ?";
 		
-		$params = array();
-		$params [] = intval($dataSourceID);
-		
-		if(!is_null($filter))
-		{
-		
-			$first=true;	
-			$operator=' OR ';
-			if($and) $operator=' AND ';
-
-			foreach($filter as $k => $v)
-			{
-				if($k=='project_name') 
-				{ 
-					if($first)
-					{
-						$sql.=' AND ( ';
-						$first=false;
-					} 
-					else
-					{
-						$sql.=$operator;
-					}
-					$sql.='projet.p_nom LIKE ?';
-					$params[] = '%'.$v.'%';
-				}
-				if($k=='access_state') 
-				{ 
-					if($first)
-					{
-						$sql.=' AND ( ';
-						$first=false;
-					} 
-					else
-					{
-						$sql.=$operator;
-					}
-					$sql.='p.fp_demande_acces = ?';
-					$params[] = $v;
-				}			
-			    if($k=='ask_date') 
-				{ 
-					if($first)
-					{
-						$sql.=' AND ( ';
-						$first=false;
-					} 
-					else
-					{
-						$sql.=$operator;
-					}
-					$sql.='DATE(p.fp_demande_date) = ?';
-					$params[] = $v;
-				}
-			}
-		        if(!($first)){	
-	                   $sql.=' ) ';
-                        }
-		}
-			
-		$sql.=' ORDER BY projet.p_date_start DESC';		
-
-		$query = $this->db->query($sql, $params);
-		$projects=$query->result_array();		
-		//if(is_null($projects['project_ID'])) return false;
-		return $projects;
-	
-	}
-	
 	/**
 	* getUserID() is a method for searching the userID of the last record 
 	* @return userID
