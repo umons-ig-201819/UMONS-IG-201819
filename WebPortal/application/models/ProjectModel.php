@@ -66,16 +66,16 @@ class ProjectModel extends CI_Model
         $pDescription = NULL;
         if (isset($project['pdescription']))
             $pDescription = $project['pdescription'];
-            try{
-        if (! $this->db->query($sql, array(
-            $pName,
-            $pDescription,
-            $pDateStart,
-            $pDateEnd,
-            $userID
-        ))) {
-            return false;
-        }
+        try{
+            if (! $this->db->query($sql, array(
+                $pName,
+                $pDescription,
+                $pDateStart,
+                $pDateEnd,
+                $userID
+            ))) {
+                return false;
+            }
         // 0=demande effectuee, 1=OK, 2=refus
         $projectID = $this->db->insert_id();
         $sql = "INSERT INTO fichier_projet (fp_id_fichier, fp_id_projet, fp_demande_acces, fp_demande_date)
