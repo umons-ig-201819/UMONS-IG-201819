@@ -247,19 +247,21 @@ class ProjectModelTest extends TestCase{
      */
     public function testDeleteAllUsersProject()
     {
-        $filter['id']="1";
-        $filter['project_name']="test";
-        $filter['project_description']="test";
-        $filter['date_start']='2019-01-01';
-        $filter['date_end']='2030-01-01';
-        $filter['owner_lastname']="test";
-        $filter['owner_firstname']="test";
-        $and=false;
-        $res=$this->projectModel->getProjects($filter,$and);
-        $this->assertTrue(!is_null($res),true);
-        $this->assertTrue(count($res)>0,true);
-        $resu=$this->projectModel->deleteAllUsersProject($res[0]["id"]);
-        $this->assertEquals($resu,true);
+        try{
+            $filter['id']="1";
+            $filter['project_name']="test";
+            $filter['project_description']="test";
+            $filter['date_start']='2019-01-01';
+            $filter['date_end']='2030-01-01';
+            $filter['owner_lastname']="test";
+            $filter['owner_firstname']="test";
+            $and=false;
+            $res=$this->projectModel->getProjects($filter,$and);
+            $this->assertTrue(!is_null($res),true);
+            $this->assertTrue(count($res)>0,true);
+            $resu=$this->projectModel->deleteAllUsersProject($res[0]["id"]);
+            $this->assertEquals($resu,true);
+        }catch(Exception $e) { $this->assertTrue(false); }
     }
     
 }

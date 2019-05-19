@@ -328,9 +328,11 @@ class UserModelTest extends TestCase{
     
     public function testDeleteUser2()
     {
-        $lastid = $this->userModel->getId();
-        $res=$this->userModel->deleteUser($lastid);
-        $this->assertEquals($res,true);
+        try{
+            $lastid = $this->userModel->getId();
+            $res=$this->userModel->deleteUser($lastid);
+            $this->assertEquals($res,true);
+        }catch(Exception $e) { $this->assertTrue(false); }
     }
     
 }
