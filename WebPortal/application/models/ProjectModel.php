@@ -766,7 +766,7 @@ class ProjectModel extends CI_Model
 
         $first = true;
         $params = array();
-        $sql = "UPDATE projet SET ";
+        $sql = "UPDATE IGNORE projet SET ";
 
         if (isset($userID)) {
             if (! empty($project['pname'])) {
