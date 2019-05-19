@@ -1356,7 +1356,7 @@ class DataSourceModel extends CI_Model{
 					p.fp_demande_date AS ask_date         										
 				FROM fichier_projet AS p
 				JOIN projet
-				ON p.fp_id_fichier=p_id
+				ON p.fp_id_projet=p_id
 				WHERE p.fp_id_fichier = ?";
 		
 		$params = array();
