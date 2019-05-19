@@ -23,7 +23,7 @@ class Connection extends CI_Controller {
             $data = array('state' => true);
         }
         $this->load->view('header');
-        $this->load->view('lost',data);
+        $this->load->view('lost',$data);
         $this->load->view('footer');
     }
     
