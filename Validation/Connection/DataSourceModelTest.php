@@ -74,14 +74,14 @@ class DataSourceModelTest extends TestCase{
 	 * @param $projectID (required) is the id of the project
 	 * @return TRUE if insert succeeded and FALSE if not
     */
-    public function testAddDataSourceProject(){
+    /*public function testAddDataSourceProject(){
         try{
             $resu =$this->dataSourceModel->getDataSourceID();
             $resul=$this->dataSourceModel->getProjetID();
             $res = $this->dataSourceModel->addDataSourceProject($resu,$resul);
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
 
     /**
     * testAddDataSourceUser() this method tests the method addDataSourceUser()
@@ -94,7 +94,7 @@ class DataSourceModelTest extends TestCase{
      * @param $fileUser ['remove'] (required) means if a user may remove a data source or not (0) = default
      * @return TRUE if insert succeeded and FALSE if not
     */
-    public function testAddDataSourceUser(){
+    /*public function testAddDataSourceUser(){
         try{
             $dataSourceUser['read']=0;
             $dataSourceUser['modify']=0;
@@ -105,7 +105,7 @@ class DataSourceModelTest extends TestCase{
             $res = $this->dataSourceModel->addDataSourceUser($resu,$resul,$dataSourceUser);
             $this->assertEquals($res,true);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
     
     /**
     * testAddAdvisor() this method tests the method addAdvisor()
@@ -216,7 +216,7 @@ class DataSourceModelTest extends TestCase{
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
 	* @return an array of files (ordered by date)
     */
-    public function testGetDataSources(){
+    /*public function testGetDataSources(){
         try{
             $and = false;
             $filter['file_name']="test";
@@ -229,7 +229,7 @@ class DataSourceModelTest extends TestCase{
 	    if(is_null($result['id'])) $result=false;
                 $this->assertNotEquals($result,false);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
 
     /**
     * testGetDataSources1() this method tests the method getDataSources1()
@@ -237,7 +237,7 @@ class DataSourceModelTest extends TestCase{
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
 	* @return an array of files (ordered by date)
     */
-    public function testGetDataSources1(){
+    /*public function testGetDataSources1(){
         try{
             $and = false;
             $res=$this->dataSourceModel->getDataSources(null,$and);
@@ -245,7 +245,7 @@ class DataSourceModelTest extends TestCase{
         	if(is_null($res['id'])) $res= false;
                 $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
     
     /**
     * testGetPersonalDataSources() this method tests the method getPersonalDataSources()
@@ -318,7 +318,7 @@ class DataSourceModelTest extends TestCase{
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
 	* @return an array of files (ordered by date)
     */
-    public function testGetUserDataSources(){
+    /*public function testGetUserDataSources(){
         try{
             $filter['file_name']="";
             $filter['f_read']="";
@@ -337,14 +337,14 @@ class DataSourceModelTest extends TestCase{
             if(is_null($res['fileID'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
     
     /**
     * testGetUserDataSources1() this method tests the method getUserDataSources1()
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
 	* @return an array of files (ordered by date)
     */
-    public function testGetUserDataSources1(){
+    /*public function testGetUserDataSources1(){
         try{
             $and=false;
             $resu=$this->dataSourceModel->getUserID();
@@ -353,7 +353,7 @@ class DataSourceModelTest extends TestCase{
             if(is_null($res['fileID'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
 
     /**
     * testGetDataSourceUsers() this method tests the method getDataSourceUsers()
@@ -366,7 +366,7 @@ class DataSourceModelTest extends TestCase{
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
 	* @return an array of data source(s) (ordered by date)
     */
-    public function testGetDataSourceUsers(){
+   /* public function testGetDataSourceUsers(){
         try{
             $filter['user_name'] = "test2";
             $filter['user_firstName']="test3";
@@ -379,7 +379,7 @@ class DataSourceModelTest extends TestCase{
             if(is_null($res['userID'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
     
     /**
     * testGetDataSourceUsers1() this method tests the method getDataSourceUsers1()
@@ -387,7 +387,7 @@ class DataSourceModelTest extends TestCase{
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
 	* @return an array of data source(s) (ordered by date)
     */
-    public function testGetDataSourceUsers1(){
+    /*public function testGetDataSourceUsers1(){
         try{
             $and = false;
             $resu=$this->dataSourceModel->getDataSourceID();
@@ -396,7 +396,7 @@ class DataSourceModelTest extends TestCase{
             if(is_null($res['userID'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
 
     /**
     * testGetProjectDataSources() this method tests the method getProjectDataSources()
@@ -413,7 +413,7 @@ class DataSourceModelTest extends TestCase{
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
 	* @return an array of data sources (ordered by date)
     */
-    public function testGetProjectDataSources(){
+    /*public function testGetProjectDataSources(){
         try{
             $filter['file_name']="test";
             $filter['file_url']="test";
@@ -430,7 +430,7 @@ class DataSourceModelTest extends TestCase{
             if(is_null($res['fileID'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
     
     /**
     * testGetProjectDataSources1() this method tests the method getProjectDataSources1()
@@ -438,7 +438,7 @@ class DataSourceModelTest extends TestCase{
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
 	* @return an array of data sources (ordered by date)
     */
-    public function testGetProjectDataSources1(){
+    /*public function testGetProjectDataSources1(){
         try{
             $and = false;
             $resu=$this->dataSourceModel->getProjetID();
@@ -447,7 +447,7 @@ class DataSourceModelTest extends TestCase{
             if(is_null($res['fileID'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
 
     /**
     * testGetDataSourceProjects() this method tests the method getDataSourceProjects()
@@ -479,7 +479,7 @@ class DataSourceModelTest extends TestCase{
 	* @param $and is optional and is an boolean which is FALSE (default behavior) for processing the search query with OR operators and TRUE for AND operators
 	* @return an array of files (ordered by date)
     */
-    public function testGetDataSourceProjects1(){
+    /*public function testGetDataSourceProjects1(){
         try{
             $and=false;
             $resu=$this->dataSourceModel->getDataSourceID();
@@ -488,7 +488,7 @@ class DataSourceModelTest extends TestCase{
             if(is_null($res['project_ID'])) $res='false';
             $this->assertEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
 	
 	//-------------------------------------------------------------
    	//-------------------- UPDATE ---------------------------------
@@ -566,7 +566,7 @@ class DataSourceModelTest extends TestCase{
 	 * @param $dataSourceUser ['askaccess'] (optional) means if an access request is refused (2), if it is accepted (1) or if the request is made (0) = default
      * @return TRUE if update succeeded and FALSE if not
     */
-    public function testUpdateDataSourceUser(){
+    /*public function testUpdateDataSourceUser(){
         try{
             $and = false;
             $filter['file_name']="test";
@@ -586,7 +586,7 @@ class DataSourceModelTest extends TestCase{
             $resu=$this->dataSourceModel->updateDataSourceUser($res[0]["id"],$resul,$dataSourceUser);
             $this->assertEquals($resu,true);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
 
     /**
     * testUpdateDataSourceProject() this method tests the method updateDataSourceProject()
@@ -596,7 +596,7 @@ class DataSourceModelTest extends TestCase{
 	 * @param $askAccess (required) means if an access request is refused (2), if it is accepted (1) or if the request is made (0) = default
      * @return TRUE if update succeeded and FALSE if not
     */
-    public function testUpdateDataSourceProject(){
+    /*public function testUpdateDataSourceProject(){
         try{
             $askAccess="1";
             $resu=$this->dataSourceModel->getDataSourceID();
@@ -604,7 +604,7 @@ class DataSourceModelTest extends TestCase{
             $res=$this->dataSourceModel->updateDataSourceUser($resu,$resul,$askAccess);
             $this->assertEquals($res,true);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
     
     /**
     * testAcceptAccess() this method tests the method acceptAccess()
@@ -686,7 +686,7 @@ class DataSourceModelTest extends TestCase{
 	 * @param $projID
 	 * @return a boolean (TRUE if deletion has been applied, FALSE if not)
     */
-    public function testDeleteDataSourceProject()
+    /*public function testDeleteDataSourceProject()
     {
         try{
             $and = true;
@@ -702,7 +702,7 @@ class DataSourceModelTest extends TestCase{
             $resu=$this->dataSourceModel->deleteDataSourceProject($res[0]["id"],$resulID);
             $this->assertEquals($resu,true);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
 
     /**
     * testDeleteAllDataSourcesUser() this method tests the method deleteAllDataSourcesUser()
@@ -725,7 +725,7 @@ class DataSourceModelTest extends TestCase{
      * @param $dataSourceID
      * @return a boolean (TRUE if deletion has been applied, FALSE if not)
     */
-    public function testDeleteAllUsersDataSource(){
+    /*public function testDeleteAllUsersDataSource(){
         try{
             $and = true;
             $filter['file_name']="test";
@@ -739,7 +739,7 @@ class DataSourceModelTest extends TestCase{
             $resu=$this->dataSourceModel->deleteAllUsersDataSource($res[0]["id"]);
             $this->assertEquals($resu,true);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
 
     /**
     * testDeleteAllProjectsDataSource() this method tests the method deleteAllProjectsDataSource()
@@ -747,7 +747,7 @@ class DataSourceModelTest extends TestCase{
      * @param $dataSourceID
      * @return a boolean (TRUE if deletion has been applied, FALSE if not)
     */
-    public function testDeleteAllProjectsDataSource(){
+    /*public function testDeleteAllProjectsDataSource(){
         try{
             $and = true;
             $filter['file_name']="test";
@@ -761,7 +761,7 @@ class DataSourceModelTest extends TestCase{
             $resu=$this->dataSourceModel->deleteAllProjectsDataSource($res[0]["id"]);
             $this->assertEquals($resu,true);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
 
     /**
     * testDeleteAllDataSourcesProject() this method tests the method deleteAllDataSourcesProject()
@@ -769,13 +769,13 @@ class DataSourceModelTest extends TestCase{
      * @param $projectID
      * @return a boolean (TRUE if deletion has been applied, FALSE if not)
     */
-    public function testDeleteAllDataSourcesProject(){
+    /*public function testDeleteAllDataSourcesProject(){
         try{
             $resu=$this->dataSourceModel->getProjetID();
             $res=$this->dataSourceModel->deleteAllDataSourcesProject($resu);
             $this->assertEquals($res,true);
         }catch(Exception $e) { $this->assertTrue(false); }
-    }
+    }*/
     
     /**
     * testRevokeAccess() this method tests the method revokeAccess()
