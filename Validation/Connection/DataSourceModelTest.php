@@ -17,6 +17,119 @@ class DataSourceModelTest extends TestCase{
         $this->dataSourceModel = null;
     }
 
+    
+    
+    //-------------------------------------------------------------
+    //-------------------- INSERT ---------------------------------
+    //-------------------------------------------------------------
+
+    /**
+    * testAddDataSourceApp() this method tests the method getAddDataSourceApp()
+    * addDataSourceApp() is a method for adding a file
+	 * @param $userID is is the id of the owner of the data source
+	 * @param $dataSource is an array containing the informations about the data source
+	 * @param $dataSource ['name'] (required) is the name of the data source
+	 * @param $dataSource ['visible'] (required) means if the data source have to be hidden (=2), visible (=1) or on demand (=0, default)
+	 * @return new data source id if insert succeeded and FALSE if not
+    */
+    public function testAddDataSourceApp(){
+        try{
+            $dataSource['name']="test";
+            $dataSource['visible']=2;
+            $resu=$this->dataSourceModel->getUserID();
+            $res =$this->dataSourceModel->addDataSourceApp($resu,$dataSource);
+            $this->assertNotEquals($res,false);
+        }catch(Exception $e) { $this->assertTrue(false); }
+    }
+
+    /**
+    * testAddDataSourceApp1() this method tests the method addDataSourceApp1()
+    * addDataSourceApp() is a method for adding a file
+	 * @param $userID is is the id of the owner of the data source
+	 * @param $dataSource is an array containing the informations about the data source
+	 * @param $dataSource ['name'] (required) is the name of the data source
+	 * @param $dataSource ['url'] (optional) is the access url to the data source (default value=NULL)
+	 * @param $dataSource ['appli'] (optional) means if the id is an application (1) or not (0) =default
+	 * @param $dataSource ['config'] (optional) could be, for exemple, a JSON app configuration file
+	 * @param $dataSource ['visible'] (required) means if the data source have to be hidden (=2), visible (=1) or on demand (=0, default)
+	 * @return new data source id if insert succeeded and FALSE if not
+    */
+    public function testAddDataSourceApp1(){
+        try{
+            $dataSource['name']="test";
+            $dataSource['url']='test40';
+            $dataSource['appli']=0;
+            $dataSource['config']=NULL;
+            $dataSource['visible']=2;
+            $resu=$this->dataSourceModel->getUserID();
+            $res =$this->dataSourceModel->addDataSourceApp($resu,$dataSource);
+            $this->assertNotEquals($res,false);
+        }catch(Exception $e) { $this->assertTrue(false); }
+    }
+
+    /**
+    * testAddDataSourceProject() this method tests the method addDataSourceProject()
+    * addDataSourceProject() is a method to link a data source to a project
+	 * @param $dataSourceID (required) is the id of a data source
+	 * @param $projectID (required) is the id of the project
+	 * @return TRUE if insert succeeded and FALSE if not
+    */
+    public function testAddDataSourceProject(){
+        try{
+            $resu =$this->dataSourceModel->getDataSourceID();
+            $resul=$this->dataSourceModel->getProjetID();
+            $res = $this->dataSourceModel->addDataSourceProject($resu,$resul);
+            $this->assertNotEquals($res,false);
+        }catch(Exception $e) { $this->assertTrue(false); }
+    }
+
+    /**
+    * testAddDataSourceUser() this method tests the method addDataSourceUser()
+    * addDataSourceUser() is a method for adding a data source for a user   
+     * @param $fileID (required) is the id of a data source
+     * @param $userID (required) is the id of a user
+     * @param $fileUser (required) is an array containing the informations the types of access has a user for a data source
+     * @param $fileUser ['read'] (required) means if a user may read a data source or not (0) = default
+     * @param $fileUser ['modify'] (required) means if a user may modify a data source or not (0) = default
+     * @param $fileUser ['remove'] (required) means if a user may remove a data source or not (0) = default
+     * @return TRUE if insert succeeded and FALSE if not
+    */
+    public function testAddDataSourceUser(){
+        try{
+            $dataSourceUser['read']=0;
+            $dataSourceUser['modify']=0;
+            $dataSourceUser['remove']=0;
+            $dataSourceUser['askAccess']=1;
+            $resu =$this->dataSourceModel->getDataSourceID();
+            $resul=$this->dataSourceModel->getUserID();
+            $res = $this->dataSourceModel->addDataSourceUser($resu,$resul,$dataSourceUser);
+            $this->assertEquals($res,true);
+        }catch(Exception $e) { $this->assertTrue(false); }
+    }
+    
+    /**
+    * testAddAdvisor() this method tests the method addAdvisor()
+    * @see AddAdvisor() for the data structure of returned files
+    */
+    public function testAddAdvisor(){
+        $dataSourceUser = null;
+        try{
+            $res=$this->dataSourceModel->addAdvisor(1,1,$dataSourceUser);
+            $this->assertEquals($res,true);
+        }catch(Exception $e) { $this->assertTrue(false); }
+    }
+    
+    /**
+    * testAskAccess() this method tests the method askAccess()
+    * @see AskAccess() for the data structure of returned files
+    */
+    public function testAskAccess(){
+        try{
+            $res=$this->dataSourceModel->askAccess(1,1);
+            $this->assertEquals($res,true);
+        }catch(Exception $e) { $this->assertTrue(false); }
+    }
+
     //-------------------------------------------------------------
    	//-------------------- SELECT ---------------------------------
    	//-------------------------------------------------------------
@@ -376,119 +489,8 @@ class DataSourceModelTest extends TestCase{
             $this->assertEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
-    
-    //-------------------------------------------------------------
-    //-------------------- INSERT ---------------------------------
-    //-------------------------------------------------------------
-
-    /**
-    * testAddDataSourceApp() this method tests the method getAddDataSourceApp()
-    * addDataSourceApp() is a method for adding a file
-	 * @param $userID is is the id of the owner of the data source
-	 * @param $dataSource is an array containing the informations about the data source
-	 * @param $dataSource ['name'] (required) is the name of the data source
-	 * @param $dataSource ['visible'] (required) means if the data source have to be hidden (=2), visible (=1) or on demand (=0, default)
-	 * @return new data source id if insert succeeded and FALSE if not
-    */
-    public function testAddDataSourceApp(){
-        try{
-            $dataSource['name']="test";
-            $dataSource['visible']=2;
-            $resu=$this->dataSourceModel->getUserID();
-            $res =$this->dataSourceModel->addDataSourceApp($resu,$dataSource);
-            $this->assertNotEquals($res,false);
-        }catch(Exception $e) { $this->assertTrue(false); }
-    }
-
-    /**
-    * testAddDataSourceApp1() this method tests the method addDataSourceApp1()
-    * addDataSourceApp() is a method for adding a file
-	 * @param $userID is is the id of the owner of the data source
-	 * @param $dataSource is an array containing the informations about the data source
-	 * @param $dataSource ['name'] (required) is the name of the data source
-	 * @param $dataSource ['url'] (optional) is the access url to the data source (default value=NULL)
-	 * @param $dataSource ['appli'] (optional) means if the id is an application (1) or not (0) =default
-	 * @param $dataSource ['config'] (optional) could be, for exemple, a JSON app configuration file
-	 * @param $dataSource ['visible'] (required) means if the data source have to be hidden (=2), visible (=1) or on demand (=0, default)
-	 * @return new data source id if insert succeeded and FALSE if not
-    */
-    public function testAddDataSourceApp1(){
-        try{
-            $dataSource['name']="test";
-            $dataSource['url']='test40';
-            $dataSource['appli']=0;
-            $dataSource['config']=NULL;
-            $dataSource['visible']=2;
-            $resu=$this->dataSourceModel->getUserID();
-            $res =$this->dataSourceModel->addDataSourceApp($resu,$dataSource);
-            $this->assertNotEquals($res,false);
-        }catch(Exception $e) { $this->assertTrue(false); }
-    }
-
-    /**
-    * testAddDataSourceProject() this method tests the method addDataSourceProject()
-    * addDataSourceProject() is a method to link a data source to a project
-	 * @param $dataSourceID (required) is the id of a data source
-	 * @param $projectID (required) is the id of the project
-	 * @return TRUE if insert succeeded and FALSE if not
-    */
-    public function testAddDataSourceProject(){
-        try{
-            $resu =$this->dataSourceModel->getDataSourceID();
-            $resul=$this->dataSourceModel->getProjetID();
-            $res = $this->dataSourceModel->addDataSourceProject($resu,$resul);
-            $this->assertNotEquals($res,false);
-        }catch(Exception $e) { $this->assertTrue(false); }
-    }
-
-    /**
-    * testAddDataSourceUser() this method tests the method addDataSourceUser()
-    * addDataSourceUser() is a method for adding a data source for a user   
-     * @param $fileID (required) is the id of a data source
-     * @param $userID (required) is the id of a user
-     * @param $fileUser (required) is an array containing the informations the types of access has a user for a data source
-     * @param $fileUser ['read'] (required) means if a user may read a data source or not (0) = default
-     * @param $fileUser ['modify'] (required) means if a user may modify a data source or not (0) = default
-     * @param $fileUser ['remove'] (required) means if a user may remove a data source or not (0) = default
-     * @return TRUE if insert succeeded and FALSE if not
-    */
-    public function testAddDataSourceUser(){
-        try{
-            $dataSourceUser['read']=0;
-            $dataSourceUser['modify']=0;
-            $dataSourceUser['remove']=0;
-            $dataSourceUser['askAccess']=1;
-            $resu =$this->dataSourceModel->getDataSourceID();
-            $resul=$this->dataSourceModel->getUserID();
-            $res = $this->dataSourceModel->addDataSourceUser($resu,$resul,$dataSourceUser);
-            $this->assertEquals($res,true);
-        }catch(Exception $e) { $this->assertTrue(false); }
-    }
-    
-    /**
-    * testAddAdvisor() this method tests the method addAdvisor()
-    * @see AddAdvisor() for the data structure of returned files
-    */
-    public function testAddAdvisor(){
-        $dataSourceUser = null;
-        try{
-            $res=$this->dataSourceModel->addAdvisor(1,1,$dataSourceUser);
-            $this->assertEquals($res,true);
-        }catch(Exception $e) { $this->assertTrue(false); }
-    }
-    
-    /**
-    * testAskAccess() this method tests the method askAccess()
-    * @see AskAccess() for the data structure of returned files
-    */
-    public function testAskAccess(){
-        try{
-            $res=$this->dataSourceModel->askAccess(1,1);
-            $this->assertEquals($res,true);
-        }catch(Exception $e) { $this->assertTrue(false); }
-    }
-
-    //-------------------------------------------------------------
+	
+	//-------------------------------------------------------------
    	//-------------------- UPDATE ---------------------------------
    	//-------------------------------------------------------------
 
