@@ -85,6 +85,7 @@ class DataSourceModelTest extends TestCase{
             $filter['owner']="test";
             $filter['name']="test40";
             $res=$this->dataSourceModel->searchDataSources($filter,$and);
+            $this->assertTrue(array_key_exists('id',$res));
         	if(is_null($res['id'])) return false;
                 $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
@@ -111,6 +112,7 @@ class DataSourceModelTest extends TestCase{
             $filter['visible']=2;
             $filter['add_date']='2019-04-28 16:28:51';
             $res=$this->dataSourceModel->getDataSources($filter,$and);
+            $this->assertTrue(array_key_exists('id',$res));
         	if(is_null($res['id'])) return false;
                 $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
@@ -139,6 +141,7 @@ class DataSourceModelTest extends TestCase{
         try{
             $resu=$this->dataSourceModel->getUserID();
             $res=$this->dataSourceModel->getPersonalDataSources($resu);
+            $this->assertTrue(array_key_exists('id',$res));
         	if(is_null($res['id'])) return false;
                 $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
@@ -164,6 +167,7 @@ class DataSourceModelTest extends TestCase{
         try{
             $advisorID=$this->dataSourceModel->getAdvisorID();
             $res=$this->dataSourceModel->getAdvisors($advisorID);
+            $this->assertTrue(array_key_exists('userid',$res));
             if(is_null($res['userid'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
@@ -177,6 +181,7 @@ class DataSourceModelTest extends TestCase{
         try{
             $resu=$this->dataSourceModel->getAdvisorID();
             $res=$this->dataSourceModel->getAccessibleDataSources($resu);
+            $this->assertTrue(array_key_exists('id',$res));
             if(is_null($res['id'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
@@ -214,6 +219,7 @@ class DataSourceModelTest extends TestCase{
             $filter['add_date']="";
             $and=false;
             $res=$this->dataSourceModel->getUserDataSources(1,$filter,$and);
+            $this->assertTrue(array_key_exists('fileID',$res));
             if(is_null($res['fileID'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
@@ -229,6 +235,7 @@ class DataSourceModelTest extends TestCase{
             $and=false;
             $resu=$this->dataSourceModel->getUserID();
             $res=$this->dataSourceModel->getUserDataSources($resu,$and);
+            $this->assertTrue(array_key_exists('fileID',$res));
             if(is_null($res['fileID'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
@@ -254,6 +261,7 @@ class DataSourceModelTest extends TestCase{
             $and=false;
             $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->getDataSourceUsers($resu,$filter,$and);
+            $this->assertTrue(array_key_exists('userID',$res));
             if(is_null($res['userID'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
@@ -270,6 +278,7 @@ class DataSourceModelTest extends TestCase{
             $and = false;
             $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->getDataSourceUsers($resu,$and);
+            $this->assertTrue(array_key_exists('userID',$res));
             if(is_null($res['userID'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
@@ -303,6 +312,7 @@ class DataSourceModelTest extends TestCase{
             $and=false;
             $resu=$this->dataSourceModel->getProjetID();
             $res=$this->dataSourceModel->getProjectDataSources($resu,$filter,$and);
+            $this->assertTrue(array_key_exists('fileID',$res));
             if(is_null($res['fileID'])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
