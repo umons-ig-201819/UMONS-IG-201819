@@ -61,8 +61,8 @@ class ProjectModelTest extends TestCase{
         $filter['owner_firstname']="Jean";
         $and=false;
         $res=$this->projectModel->getProjects($filter,$and);
-//        $this->assertTrue(!is_null($res),true);
-  //      $this->assertTrue(count($res)>0,true);
+        $this->assertTrue(!is_null($res),true);
+        $this->assertTrue(count($res)>0,true);
         $this->assertEquals($res[0],false);
     }
     /**
@@ -86,7 +86,7 @@ class ProjectModelTest extends TestCase{
      * testGetUserProjects() this method tests the method getUserProjects()
      */
     
-    /*public function testGetUserProjects()
+    public function testGetUserProjects()
     {
         $filter['project_id']=1;
         $filter['project_name']="détection des chaleurs par podomètre";
@@ -98,7 +98,7 @@ class ProjectModelTest extends TestCase{
         $and=false;
         $res=$this->projectModel->getUserProjects(1, $filter, $and);
         $this->assertNotEquals($res,false);
-    }*/
+    }
     
     // -------------------------------------------------------------
     // -------------------- INSERT ---------------------------------
@@ -114,7 +114,7 @@ class ProjectModelTest extends TestCase{
         $project['pdescription']='test31';
         $userId=$this->projectModel->getUserID();
         $res=$this->projectModel->addProject($userId,$project);
-        $this->assertNotEquals('$res',false);
+        $this->assertNotEquals($res,false);
     }
     
     /**
@@ -127,7 +127,7 @@ class ProjectModelTest extends TestCase{
         $project['pdate_start']='test33';
         $project['pdate_end']='2030-01-01';
         $res=$this->projectModel->addProject($userId,$project);
-        $this->assertNotEquals('$res',false);
+        $this->assertNotEquals($res,false);
     }
     
     /**
@@ -238,12 +238,12 @@ class ProjectModelTest extends TestCase{
     /**
      * testDeleteAllProjectsUser() this method tests the method deleteAllProjectsUser()
      */
-    /*public function testDeleteAllProjectsUser()
+    public function testDeleteAllProjectsUser()
     {
         $userId=$this->projectModel->getUserID();
         $res = $this->projectModel->deleteAllProjectsUser($userId);
         $this->assertEquals($res,true);
-    }*/
+    }
     /**
      * testDeleteAllUsersProject() this method tests the method deleteAllUsersProject()
      */
