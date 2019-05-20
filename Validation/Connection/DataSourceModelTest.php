@@ -797,7 +797,7 @@ class DataSourceModelTest extends TestCase{
         try{
 	    $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->revokeAccess($resu,1);
-	    $resul=$this->dataSourceModel->getAccessUtilisateurFichier(1,$resu)
+	    $resul=$this->dataSourceModel->getAccessUtilisateurFichier(1,$resu);
             $this->assertEquals($resul,4);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
