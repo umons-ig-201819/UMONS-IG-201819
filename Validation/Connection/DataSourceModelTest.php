@@ -124,14 +124,14 @@ class DataSourceModelTest extends TestCase{
     * @see AskAccess() for the data structure of returned files
     */
     public function testAskAccess(){
-        try{
+//        try{
 	    $resu=$this->dataSourceModel->getUserID();
 	    $resul=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->askAccess($resul,$resu);
-            if(is_null($res['uf_id_invite'])) $res='false';
-		    else $res='true';
+            if(is_null($res['uf_id_invite'])) $res=false;
+		    else $res=true;
             $this->assertEquals($res,true);
-        }catch(Exception $e) { $this->assertTrue(false); }
+  //      }catch(Exception $e) { $this->assertTrue(false); }
     }
 
     //-------------------------------------------------------------
@@ -197,7 +197,7 @@ class DataSourceModelTest extends TestCase{
     * @see searchDataSources() for the data structure of returned files
     */
     public function testSearchDataSources(){
-	    try{
+//	    try{
             $and = false;
             $filter['owner']="test";
             $filter['name']="test";
@@ -205,7 +205,7 @@ class DataSourceModelTest extends TestCase{
 //            $this->assertTrue(array_key_exists('id',$res));
         	if(is_null($resul['id'])) $resul=false;
                 $this->assertNotEquals($resul,false);
-        }catch(Exception $e) { $this->assertTrue(false); }
+  //      }catch(Exception $e) { $this->assertTrue(false); }
     }
     
     /**
@@ -256,14 +256,14 @@ class DataSourceModelTest extends TestCase{
     * @see getPersonalDataSources() for the data structure of returned files
     */
     public function testGetPersonalDataSources(){
-        try{
+ //       try{
             $resu=$this->dataSourceModel->getUserID();
             $res=$this->dataSourceModel->getPersonalDataSources(($resu-3));
 //            $this->assertTrue(array_key_exists('id',$res));
         	if(is_null($res['id'])) $res=false;
 		else $res=true;
                 $this->assertNotEquals($res,false);
-        }catch(Exception $e) { $this->assertTrue(false); }
+//        }catch(Exception $e) { $this->assertTrue(false); }
     }
     
     /**
@@ -618,12 +618,12 @@ class DataSourceModelTest extends TestCase{
     * @see acceptAccess() for the data structure of returned files
     */
     public function testAcceptAccess(){
-        try{
+  //      try{
 	    $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->acceptAccess($resu,1);
 	    $resul=$this->dataSourceModel->getAccessUtilisateurFichier(1,$resu);
             $this->assertEquals($resul,"1");
-        }catch(Exception $e) { $this->assertTrue(false); }
+    //    }catch(Exception $e) { $this->assertTrue(false); }
     }
     
     /**
@@ -631,12 +631,12 @@ class DataSourceModelTest extends TestCase{
     * @see refuseAccess() for the data structure of returned files
     */
     public function testRefuseAccess(){
-        try{
+   //     try{
 	    $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->refuseAccess($resu,1);
 	    $resul=$this->dataSourceModel->getAccessUtilisateurFichier(1,$resu);
             $this->assertEquals($resul,"2");
-        }catch(Exception $e) { $this->assertTrue(false); }
+     //   }catch(Exception $e) { $this->assertTrue(false); }
     }
     
         //-------------------------------------------------------------
