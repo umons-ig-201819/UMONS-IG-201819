@@ -708,4 +708,36 @@ class DataSourceModel extends CI_Model{
 	    $lastidadvisor=$id[0]["uf_id_fichier"];
 	    return $lastidadvisor;
 	}
+	/**
+	* getAccessUtilisateurFichier() is a method to retrieve the access code from the uilisateur_fichier table
+	* @return advisorID
+	* @see function for tests
+	*/
+	public function getAccessUtilisateurFichier($advisorID,$sourceID)
+	{
+	    
+	    $sql="SELECT
+				uf_demande_acces as access
+               FROM utilisateur_fichier
+				WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
+	    $query = $this->db->query($sql);
+	    $acces=$query->row_array();
+	    return $acces;
+	}
+	/**
+	* getAccessFichierProjet() is a method for searching the access code of the fichier_projet table 
+	* @return access
+	* @see function for tests
+	*/
+	public function getAccessFichierProjet($projectID,$sourceID)
+	{
+	    
+	    $sql="SELECT
+				 fp_demande_acces as access
+               FROM fichier_projet
+				WHERE `fp_id_projet`=$projectID AND `fp_id_fichier`=$sourceID";
+	    $query = $this->db->query($sql);
+	    $acces=$query->row_array();
+	    return $acces;
+	}
 }
