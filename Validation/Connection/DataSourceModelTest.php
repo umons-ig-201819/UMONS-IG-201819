@@ -113,10 +113,10 @@ class DataSourceModelTest extends TestCase{
     */
     public function testAddAdvisor(){
         $dataSourceUser = null;
-        try{
+//        try{
             $res=$this->dataSourceModel->addAdvisor(1,$dataSourceUser);
             $this->assertEquals($res,true);
-        }catch(Exception $e) { $this->assertTrue(false); }
+//        }catch(Exception $e) { $this->assertTrue(false); }
     }
     
     /**
@@ -128,9 +128,10 @@ class DataSourceModelTest extends TestCase{
 	    $resu=$this->dataSourceModel->getUserID();
 	    $resul=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->askAccess($resul,$resu);
-            if(is_null($res['uf_id_invite'])) $res=false;
-		    else $res=true;
-            $this->assertEquals($res,true);
+	    $result=$this->dataSourceModel->getAdvisorID()
+//            if(is_null($res['uf_id_invite'])) $res=false;
+//		    else $res=true;
+            $this->assertEquals($result,$resul);
   //      }catch(Exception $e) { $this->assertTrue(false); }
     }
 
