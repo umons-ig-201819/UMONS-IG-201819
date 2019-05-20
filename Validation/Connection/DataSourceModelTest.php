@@ -128,6 +128,8 @@ class DataSourceModelTest extends TestCase{
 	    $resu=$this->dataSourceModel->getUserID();
 	    $resul=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->askAccess($resul,$resu);
+            if(is_null($res['uf_id_invite'])) $res='false'
+		    else $res='true';
             $this->assertEquals($res,true);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
@@ -256,9 +258,10 @@ class DataSourceModelTest extends TestCase{
     public function testGetPersonalDataSources(){
         try{
             $resu=$this->dataSourceModel->getUserID();
-            $res=$this->dataSourceModel->getPersonalDataSources($resu);
+            $res=$this->dataSourceModel->getPersonalDataSources(($resu-3));
 //            $this->assertTrue(array_key_exists('id',$res));
         	if(is_null($res['id'])) $res=false;
+		else $res=true;
                 $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
@@ -618,7 +621,8 @@ class DataSourceModelTest extends TestCase{
         try{
 	    $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->acceptAccess($resu,1);
-            $this->assertEquals($res,true);
+	    $resul=$this->dataSourceModel->getAccessUtilisateurFichier(1,$resu)
+            $this->assertEquals($resul,1);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
     
@@ -630,7 +634,8 @@ class DataSourceModelTest extends TestCase{
         try{
 	    $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->refuseAccess($resu,1);
-            $this->assertEquals($res,true);
+	    $resul=$this->dataSourceModel->getAccessUtilisateurFichier(1,$resu)
+            $this->assertEquals($resul,2);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
     
@@ -655,7 +660,7 @@ class DataSourceModelTest extends TestCase{
             $res=$this->dataSourceModel->getDataSources($filter,$and);*/
 //            $this->assertTrue(!is_null($res),true);
 //            $this->assertTrue(count($res)>0,true);
-	    $res=$this->dataSourcemodel->getDataSourceID();
+	    $res=$this->dataSourceModel->getDataSourceID();
             $resu=$this->dataSourceModel->deleteDataSource($res);
             $this->assertEquals($resu,true);
         }catch(Exception $e) { $this->assertTrue(false); }
@@ -792,7 +797,8 @@ class DataSourceModelTest extends TestCase{
         try{
 	    $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->revokeAccess($resu,1);
-            $this->assertEquals($res,true);
+	    $resul=$this->dataSourceModel->getAccessUtilisateurFichier(1,$resu)
+            $this->assertEquals($resul,4);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
    
