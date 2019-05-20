@@ -204,8 +204,9 @@ class DataSourceModelTest extends TestCase{
             $filter['name']="test";
             $resul=$this->dataSourceModel->searchDataSources($filter,$and);
 //            $this->assertTrue(array_key_exists('id',$res));
-        	if(is_null($resul['id'])) $resul=false;
-                $this->assertNotEquals($resul,false);
+        	if(is_null(intval($resul['id']))) $result=false;
+	    else $result=true;
+                $this->assertNotEquals($result,false);
   //      }catch(Exception $e) { $this->assertTrue(false); }
     }
     
@@ -259,9 +260,9 @@ class DataSourceModelTest extends TestCase{
     public function testGetPersonalDataSources(){
  //       try{
             $resu=$this->dataSourceModel->getUserID();
-            $res=$this->dataSourceModel->getPersonalDataSources(($resu-3));
+            $res=$this->dataSourceModel->getPersonalDataSources($resu);
 //            $this->assertTrue(array_key_exists('id',$res));
-        	if(is_null($res['id'])) $res=false;
+        	if(is_null(intval ($res['id']))) $res=false;
 		else $res=true;
                 $this->assertNotEquals($res,false);
 //        }catch(Exception $e) { $this->assertTrue(false); }
