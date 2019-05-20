@@ -128,7 +128,7 @@ class DataSourceModelTest extends TestCase{
 	    $resu=$this->dataSourceModel->getUserID();
 	    $resul=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->askAccess($resul,$resu);
-	    $result=$this->dataSourceModel->getAdvisorID()
+	    $result=$this->dataSourceModel->getAdvisorID();
 //            if(is_null($res['uf_id_invite'])) $res=false;
 //		    else $res=true;
             $this->assertEquals("$result","$resul");
