@@ -158,8 +158,8 @@ class UserModelTest extends TestCase{
         //$this->assertEquals($res[0]["id"],intval();
         $this->assertEquals($res[0]["id"],89);
         $this->assertEquals($res[1]["id"],1);
-        $this->assertEquals($res[2]["id"],158);
-        $this->assertEquals($res[9]["id"],6);
+        $this->assertEquals($res[2]["id"],159);
+        $this->assertEquals($res[9]["id"],8);
         
      }
     
