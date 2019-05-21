@@ -115,7 +115,7 @@ class DataSourceModelTest extends TestCase{
         $dataSourceUser = null;
 //        try{
             $res=$this->dataSourceModel->addAdvisor(1,$dataSourceUser);
-            $this->assertEquals($res,true);
+            $this->assertNotEquals($res,0);
 //        }catch(Exception $e) { $this->assertTrue(false); }
     }
     
@@ -624,7 +624,7 @@ class DataSourceModelTest extends TestCase{
 	    $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->acceptAccess($resu,1);
 	    $resul=$this->dataSourceModel->getAccessUtilisateurFichier(1,$resu);
-            $this->assertEquals($resul,"1");
+            $this->assertEquals("$resul","1");
     //    }catch(Exception $e) { $this->assertTrue(false); }
     }
     
@@ -637,7 +637,7 @@ class DataSourceModelTest extends TestCase{
 	    $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->refuseAccess($resu,1);
 	    $resul=$this->dataSourceModel->getAccessUtilisateurFichier(1,$resu);
-            $this->assertEquals($resul,"2");
+            $this->assertEquals("$resul","2");
      //   }catch(Exception $e) { $this->assertTrue(false); }
     }
     
@@ -800,7 +800,7 @@ class DataSourceModelTest extends TestCase{
 	    $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->revokeAccess($resu,1);
 	    $resul=$this->dataSourceModel->getAccessUtilisateurFichier(1,$resu);
-            $this->assertEquals($resul,"4");
+            $this->assertEquals("$resul","4");
   //      }catch(Exception $e) { $this->assertTrue(false); }
     }
    
