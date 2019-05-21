@@ -796,12 +796,12 @@ class DataSourceModelTest extends TestCase{
     * @see revokeAccess() for the data structure of returned files
     */
     public function testRevokeAccess(){
-        try{
+//        try{
 	    $resu=$this->dataSourceModel->getDataSourceID();
             $res=$this->dataSourceModel->revokeAccess($resu,1);
 	    $resul=$this->dataSourceModel->getAccessUtilisateurFichier(1,$resu);
             $this->assertEquals($resul,4);
-        }catch(Exception $e) { $this->assertTrue(false); }
+  //      }catch(Exception $e) { $this->assertTrue(false); }
     }
    
 }
