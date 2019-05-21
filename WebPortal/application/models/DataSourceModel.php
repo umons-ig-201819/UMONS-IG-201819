@@ -722,8 +722,8 @@ class DataSourceModel extends CI_Model{
 				WHERE `uf_id_invite`=$advisorID AND `uf_id_fichier`=$sourceID";
 	    $query = $this->db->query($sql);
 	    $acces=$query->row_array();
-	    if(is_null(intval($acces["access"]))) return "4";
-	    return $acces;
+	    if(is_null($acces["access"])) return "4";
+	    return $acces["access"];
 	}
 	/**
 	* getAccessFichierProjet() is a method for searching the access code of the fichier_projet table 
@@ -739,7 +739,7 @@ class DataSourceModel extends CI_Model{
 				WHERE `fp_id_projet`=$projectID AND `fp_id_fichier`=$sourceID";
 	    $query = $this->db->query($sql);
 	    $acces=$query->row_array();
-            if(is_null(intval($acces["access"]))) return "4";
-	    return $acces;
+            if(is_null($acces["access"])) return "4";
+	    return $acces["access"];
 	}
 }
