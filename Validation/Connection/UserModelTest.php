@@ -155,11 +155,10 @@ class UserModelTest extends TestCase{
         $res=$this->userModel->getUsers();
         $this->assertTrue(!is_null($res),true);
         $this->assertTrue(count($res)>9,true);
-        //$this->assertEquals($res[0]["id"],intval();
-        $this->assertEquals($res[0]["id"],89);
-        $this->assertEquals($res[1]["id"],1);
-        $this->assertEquals($res[2]["id"],159);
-        $this->assertEquals($res[9]["id"],8);
+        $this->assertEquals($res[0]["id"],intval($lastid);
+        $this->assertEquals($res[1]["id"],5);
+        $this->assertEquals($res[2]["id"],1);
+        $this->assertEquals($res[9]["id"],2);
         
      }
     
