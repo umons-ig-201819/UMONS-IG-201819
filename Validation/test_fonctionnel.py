@@ -26,13 +26,17 @@ def print_same_line(text):
 
 class Wallesmart:
 
-    def __init__(self, username, password,datasource1,datasource2,new_data_source,lastname):
+    def __init__(self, username, password,datasource1,datasource2,new_data_source,lastname,owner,file,email,datasourceaj):
         self.username = username
         self.password = password
         self.datasource1 = datasource1
         self.datasource2 = datasource2
         self.lastname=lastname
+        self.owner=owner
+        self.file=file
+        self.email=email
         self.new_data_source=new_data_source
+        self.datasourcetest=datasourceaj
 
         self.driver = webdriver.Chrome()
 
@@ -81,6 +85,23 @@ class Wallesmart:
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(2)
 
+        #modifier le profil
+        emailadress = driver.find_element_by_xpath("//input[@name='email']")
+        emailadress.clear()
+        emailadress.send_keys(self.email)
+        charger_elem = driver.find_element_by_xpath("//input[@name='action']")
+        charger_elem.click()
+        time.sleep(4)
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        charger_elem = driver.find_element_by_xpath("(//*[@id='advice'])[1]")
+        charger_elem.click()
+        time.sleep(4)
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        
+        time.sleep(4)
+
         #charger un exemple de database
         datasource_button = driver.find_element_by_xpath("//a[@href='http://192.168.2.168/index.php/datasource']")
         datasource_button.click()
@@ -97,6 +118,7 @@ class Wallesmart:
         time.sleep(4)  
 
         #deuxieme exemple pour charger la base
+        driver.execute_script("window.scrollTo(0, 0);")
         datasource_elem = driver.find_element_by_xpath("//select[@name='datasource']")
         datasource_elem.click()
         datasource_elem.send_keys(self.datasource2)
@@ -119,6 +141,29 @@ class Wallesmart:
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
+        #rechercher une source de donnees
+        driver.execute_script("window.scrollTo(1, document.body.scrollHeight);")
+        search_button = driver.find_element_by_xpath("//a[@href='http://192.168.2.168/index.php/search/datasource']")
+        search_button.click()
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        search_elem = driver.find_element_by_xpath("//input[@name='owner']")
+        search_elem.clear()
+        search_elem.send_keys(self.owner)
+        envoyer = driver.find_element_by_xpath("//input[@name='action']")
+        envoyer.click()
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(4)
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        search_elem = driver.find_element_by_xpath("//input[@name='name']")
+        search_elem.clear()
+        search_elem.send_keys(self.file)
+        envoyer = driver.find_element_by_xpath("//input[@name='action']")
+        envoyer.click()
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        
         #charger
         charger_button = driver.find_element_by_xpath("//a[@href='http://192.168.2.168/index.php/datasource']")
         charger_button.click()
@@ -126,24 +171,24 @@ class Wallesmart:
         ajouter = driver.find_element_by_xpath("//a[@href='http://192.168.2.168/index.php/datasource/addSource']")
         ajouter.click()
         select_button = driver.find_element_by_xpath("//input[@name='datafile']")
-        #select_button.click()
         select_button.send_keys("/Users/aureliecools/Downloads/aurelie.csv");
         envoyer = driver.find_element_by_xpath("//input[@name='action']")
         envoyer.click()
         time.sleep(3)
 
         #the new file
+        charger_button = driver.find_element_by_xpath("//a[@href='http://192.168.2.168/index.php/datasource']")
+        charger_button.click()
         datasource_elem = driver.find_element_by_xpath("//select[@name='datasource']")
         datasource_elem.click()
-        datasource_elem.send_keys(self.new_data_source)
+        datasource_elem.send_keys(self.datasourcetest)
         charger_elem = driver.find_element_by_xpath("//input[@name='action']")
         charger_elem.click()
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
         time.sleep(4)
-
-
+        
+        self.closeBrowser()
 
 
 if __name__ == "__main__":
@@ -154,9 +199,10 @@ if __name__ == "__main__":
     datasource2 = "Access exemple"
     new_data_source = "aurelie.csv"
     lastname="MACHIN"
+    owner="supernadine"
+    file="mon troupeau laitier"
+    email="huluberlu@umons.ac.be"
+    datasourceaj="test2.csv"
 
     ig = Wallesmart(username, password,datasource1,datasource2,new_data_source,lastname)
     ig.login()
-
-
-    
