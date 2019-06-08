@@ -549,12 +549,12 @@ class DataSourceModelTest extends TestCase{
             $filter['application']=0;
             $filter['visible']=2;
             $filter['add_date']='1980-01-01 00:00:00';
-            $res=$this->dataSourceModel->getDataSources($filter,$and);
+            $res=$this->dataSourceModel->getDataSources($filter,$and);*/
             $dataSource['name']="testDataSourceModel";
             $dataSource['url']="testDataSource";
             $dataSource['appli']=1;
             $dataSource['config']="test";
-            $dataSource['visible']="test";*/
+            $dataSource['visible']="test";
 	    $res=$this->dataSourceModel->getDataSourceID();
             $resul=$this->dataSourceModel->getUserID();
  //           $this->assertTrue(!is_null($res),true);
