@@ -204,7 +204,7 @@ class DataSourceModelTest extends TestCase{
             $filter['name']="test";
             $resul=$this->dataSourceModel->searchDataSources($filter,$and);
 //            $this->assertTrue(array_key_exists('id',$res));
-        	if(is_null(intval($resul['id']))) $result=false;
+        	if(is_null(intval($resul["id"]))) $result=false;
 	    else $result=true;
                 $this->assertNotEquals($result,false);
   //      }catch(Exception $e) { $this->assertTrue(false); }
@@ -262,7 +262,7 @@ class DataSourceModelTest extends TestCase{
             $resu=$this->dataSourceModel->getUserID();
             $res=$this->dataSourceModel->getPersonalDataSources($resu);
 //            $this->assertTrue(array_key_exists('id',$res));
-        	if(is_null(intval ($res['id']))) $res=false;
+        	if(is_null(intval ($res["id"]))) $res=false;
 		else $res=true;
                 $this->assertNotEquals($res,false);
 //        }catch(Exception $e) { $this->assertTrue(false); }
@@ -289,7 +289,7 @@ class DataSourceModelTest extends TestCase{
             $advisorID=$this->dataSourceModel->getAdvisorID();
             $res=$this->dataSourceModel->getAdvisors($advisorID);
 //            $this->assertTrue(array_key_exists('userid',$res));
-            if(is_null($res['userid'])) $res='false';
+            if(is_null($res["userid"])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
@@ -303,7 +303,7 @@ class DataSourceModelTest extends TestCase{
             $resu=$this->dataSourceModel->getAdvisorID();
             $res=$this->dataSourceModel->getAccessibleDataSources($resu);
 //            $this->assertTrue(array_key_exists('id',$res));
-            if(is_null($res['id'])) $res='false';
+            if(is_null($res["id"])) $res='false';
             $this->assertNotEquals($res,false);
         }catch(Exception $e) { $this->assertTrue(false); }
     }
