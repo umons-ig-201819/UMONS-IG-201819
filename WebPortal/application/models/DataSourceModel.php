@@ -610,7 +610,7 @@ class DataSourceModel extends CI_Model{
              WHERE
                     `ds`.`f_visible_awe`=1
                 OR  `ds`.`f_id_proprio`= $userID
-                OR  $userID IN (SELECT `c_id_conseiller` FROM `conseil` WHERE `c_id_utilisateur` = `ds`.`f_id_proprio`)
+                OR  $userID IN (SELECT `uf_id_invite` FROM `utilisateur_fichier` WHERE `uf_id_fichier` = `ds`.`f_id` AND `uf_lire` = 1 AND `uf_demande_acces` = 1)
                 OR  $userID IN (
                                     SELECT `up`.`up_id_participant`
                                     FROM `utilisateur_projet` AS `up`
@@ -619,13 +619,16 @@ class DataSourceModel extends CI_Model{
                                     WHERE `fp`.`fp_demande_acces`=1 AND `fp`.`fp_id_fichier`=`ds`.`f_id`
                                     AND DATE(p.p_date_end)>=current_timestamp()
                                 )
+	     ";
+/*
                OR $userID IN (	SELECT p.p_id_createur 
                          	      FROM projet AS p
                          	      LEFT JOIN fichier_projet AS fp ON fp.fp_id_projet=p.p_id
                          	      WHERE fp.fp_demande_acces=1 AND fp.fp_id_fichier=ds.f_id
                          	      AND DATE(p.p_date_end)>=current_timestamp()
                               )
-	     ";
+
+ */
 	     $query = $this->db->query($sql);
 	     $dataSources=$query->result_array();
 	     //if(is_null($dataSources['id'])) return false;

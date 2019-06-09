@@ -5,6 +5,10 @@ class Profil extends CI_Controller {
     public function __construct(){
         // TODO ensure that user is logged
         parent::__construct();
+        if(!isset($this->session->UserID)){
+            http_response_code(403);
+            die('Access denied!');
+        }
         $this->load->model('UserModel');
         $this->load->model('DataSourceModel');
     }
@@ -12,7 +16,6 @@ class Profil extends CI_Controller {
 //        if(is_null($userID)) $userID = $this->session->UserID;
 //        $editable_login = FALSE;
 /*        if($userID != $this->session->UserID){
-            // TODO get right to change user personal info
             $editable_login = TRUE;
         }*/
         $data                   = $this->UserModel->getUser($this->session->UserID);
@@ -48,7 +51,6 @@ class Profil extends CI_Controller {
         }else{
             $userID = $this->session->UserID;
         }
-        // TODO update infos
         
         $allowed = array(
             'lastname'  => 'lastname',
@@ -68,11 +70,12 @@ class Profil extends CI_Controller {
         $data['id'] = $userID;
         
         $resuserupdate = $this->UserModel->updateUser($data);
+        /*
         if ($resuserupdate)
-            echo "<script>alert('Modification effectuée')</script>";
+            echo "<script>alert('Modification effectuï¿½e')</script>";
         else 
-            echo "<script>alert('Modification échouée')</script>";
-        
+            echo "<script>alert('Modification ï¿½chouï¿½e')</script>";
+        */
         $this->index($userID);
     }
     public function rights($userID=null)
@@ -89,7 +92,6 @@ class Profil extends CI_Controller {
         {
             $userID = $this->session->UserID;
         }
-        // TODO update infos
         
         $allowed = array(
             'sharing'   => 'visible',
@@ -101,43 +103,39 @@ class Profil extends CI_Controller {
         $data['id'] = $userID;
         
         $resuserupdate = $this->UserModel->updateUser($data);
+        /*
         if ($resuserupdate)
             echo "<script>alert('Modification effectuee')</script>";
             else
                 echo "<script>alert('Modification echouee')</script>";
-                
+                */
         $this->index($userID);
     }
     public function remove($userID=null){
-        // TODO remove all data sources (and references) owned by user
-        // TODO remove user info and link to this user (ex: advisor)
+        //  remove all data sources (and references) owned by user
+        //  remove user info and link to this user (ex: advisor)
         // then disconnect
-            if($userID != $this->session->UserID){ // TODO and get right
-                $userID = intval($this->session->UserID);
-                if(!array_key_exists('EDIT_USER'/*TODO correct right (edit user) */,$this->UserModel->getUserRights($this->session->UserID))){
-                    $userID = $this->session->UserID;
-                }
-            }
-            else
-            {
+        if($userID != $this->session->UserID){ // TODO and get right
+            $userID = intval($this->session->UserID);
+            if(!array_key_exists('EDIT_USER'/*TODO correct right (edit user) */,$this->UserModel->getUserRights($this->session->UserID))){
                 $userID = $this->session->UserID;
             }
-            
-            $resultatdel1 =  $this->DataSourceModel->deleteAllDataSourcesUser($userID);
-            $resultatdel2 =  $this->UserModel->deleteUserAllRole($userID);
-            $resultatdel3 =  $this->UserModel->deleteUser($userID);
-            if ($resultatdel1 && $resultatdel2 && $resultatdel3)
-            {
-                echo "<script charset='ISO-8859-1'>alert('Suppression des donnees effectuee')</script>";
-                $this->session->sess_destroy();
-                $this->load->view('connection');
-          //      redirect('/');
-            }
-            else
-            {
-                echo "<script charset='ISO-8859-1'>alert('Suppression echouee, veuillez contacter l'administrateur')</script>";
-                $this->load->view('profil');
-            }
+        } else {
+            $userID = $this->session->UserID;
+        }
+        
+        $resultatdel1 =  $this->DataSourceModel->deleteAllDataSourcesUser($userID);
+        $resultatdel2 =  $this->UserModel->deleteUserAllRole($userID);
+        $resultatdel3 =  $this->UserModel->deleteUser($userID);
+        if ($resultatdel1 && $resultatdel2 && $resultatdel3) {
+            echo "<script charset='ISO-8859-1'>alert('Suppression des donnees effectuee')</script>";
+            $this->session->sess_destroy();
+            $this->load->view('connection');
+        //      redirect('/');
+        } else {
+            echo "<script charset='ISO-8859-1'>alert('Suppression echouee, veuillez contacter l'administrateur')</script>";
+            $this->load->view('profil');
+        }
             
     }
     public function data($userID=null){
@@ -174,23 +172,17 @@ class Profil extends CI_Controller {
         $data[$key] = html_escape($value);
            
         
-        if ($this->form_validation->run() == FALSE)
-        {
+        if ($this->form_validation->run() == FALSE) {
             $this->load->view('profil',$data);
-        }
-        else
-        {
+        } else {
             $data2['id'] = $this->session->UserID;
             $data2['password'] = $this->input->post('password');
             $resultatUpdatePassword =  $this->UserModel->updateUser($data2);
-            if (!$resultatUpdatePassword)
-            {
+            if (!$resultatUpdatePassword) {
                 $this->load->view('profil',$data);
-                echo "<script charset='ISO-8859-1'>alert('Changement de MDP échouée')</script>";
-            }
-            else
-            {   
-                echo "<script charset='ISO-8859-1'>alert('Changement réussi')</script>";
+                //echo "<script charset='ISO-8859-1'>alert('Changement de MDP ï¿½chouï¿½e')</script>";
+            } else {   
+                //echo "<script charset='ISO-8859-1'>alert('Changement rï¿½ussi')</script>";
                 $this->load->view('profil',$data);
             }
         }

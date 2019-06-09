@@ -5,6 +5,10 @@ class Datasource extends CI_Controller {
     private $error,$success;
     public function __construct(){
         parent::__construct();
+        if(!isset($this->session->UserID)){
+            http_response_code(403);
+            die('Access denied!');
+        }
         $this->load->model('DataSourceModel');
         $this->load->helper('zeppelin');
         $this->error = '';
@@ -127,13 +131,11 @@ class Datasource extends CI_Controller {
         $this->manage();
     }
     public function revoke($sourceID){
-        // TODO check permission for each function...
         $userID = $this->session->UserID;
         $this->DataSourceModel->revokeAccess($sourceID,$userID);
         $this->manage();
     }
     public function ask($sourceID){
-        // TODO check permission for each function...
         $userID = $this->session->UserID;
         $this->DataSourceModel->askAccess($sourceID,$userID);
         $this->success = 'Demande envoy&eacute;e';
@@ -141,7 +143,6 @@ class Datasource extends CI_Controller {
     }
     
     public function remove($sourceID){
-        // TODO check permission for each function...
         $userID         = $this->session->UserID;
         $source         = $this->DataSourceModel->getDataSource($sourceID);
         $zeppelinID     = $source['url'];
@@ -154,7 +155,6 @@ class Datasource extends CI_Controller {
         $this->manage();
     }
     public function advisor($sourceID){
-        // TODO check permission for each function...
         $userID     = $this->session->UserID;
         
         if($this->input->post('action')){
@@ -172,7 +172,7 @@ class Datasource extends CI_Controller {
         $this->load->view('footer');
     }
     public function project($sourceID){
-        // TODO check permission for each function...
+        //  check permission for each function...
         $userID     = $this->session->UserID;
         if($this->input->post('action')){
             $state      = $this->input->post('state');
